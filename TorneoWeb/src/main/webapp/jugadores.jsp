@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -131,6 +132,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable();
+            
+            cargarTabla() ;
 
             $('#searchInput').on('keyup', function() {
                 table.search(this.value).draw();
@@ -177,8 +180,45 @@
             });
         });
         
+        var tablaJugadores;
+        var columns = [
+            {
+                "title": '<input type="checkbox" id="seleccionarTodo">',
+                "render": function (data, type, full, meta) {
+                    let activo = data.activo;
+                    let input = "";
+                    var checkboxId = 'checkbox_' + data.id;
+                    input = '<input type="checkbox" class="seleccionarEvento" id="' + checkboxId + '" data-id="' + data.id + '">';
+                    return input;
+                },
+                "bSortable": false,
+                "bSearchable": false,
+                "data": null
+            },
+            {
+                "title": "Id",
+                "data": "id"
+            },
+            {
+                "title": "Nombre",
+                "data": "nombres"
+            },
+            {
+                "title": "Apellido",
+                "data": "apellidos"
+            },
+            {
+                "title": "Equipo",
+                "data": "equipo"
+            },
+            {
+                "title": "Nacionalidad",
+                "data": "nacionalidad"
+            }
+        ];
+        
         function cargarTabla() {
-            tablaExpos = $('#tabla_expos').DataTable({
+        	tablaJugadores = $('#example').DataTable({
                 "columns": columns,
                 "ajax": {
                     "url": '/TorneoWeb/JugadorServlet?ACCION=LISTAR&FORMATO=JSON',
