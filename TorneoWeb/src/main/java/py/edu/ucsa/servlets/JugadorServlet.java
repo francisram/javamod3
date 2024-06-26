@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import net.sf.json.JSONArray;
 import py.edu.ucsa.ejb.entities.Jugador;
 import py.edu.ucsa.ejb.session.JugadorEjbRemote;
 
@@ -44,16 +47,31 @@ public class JugadorServlet extends HttpServlet {
 				System.out.println(jugadores);
 				request.getSession().setAttribute("JUGADORES", jugadores);
 			//	request.getRequestDispatcher("jugadores.jsp").forward(request, response);
+				request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 			}
 			if ("JSON".equals(request.getParameter("FORMATO"))) {
 				response.setContentType("application/json");
 				System.out.println("llego pedido por json");
 				List<Jugador> jugadores = (List<Jugador>) context.getAttribute("jugadores");
-				JSONArray newArray = new JSONArray();
+				 Gson gson = new Gson();
+	                JsonArray jsonArray = new JsonArray();
+	                for (Jugador jugador : jugadores) {
+	                    JsonObject jsonObject = new JsonObject();
+	                    jsonObject.addProperty("id", jugador.getId());
+	                    jsonObject.addProperty("nombres", jugador.getNombres());
+	                    jsonObject.addProperty("apellidos", jugador.getApellidos());
+	                    jsonObject.addProperty("equipo", jugador.getEquipo().getNombre());
+	                    jsonObject.addProperty("nacionalidad", jugador.getNacionalidad());
+	                    jsonArray.add(jsonObject);
+	                }
+	                JsonObject jsonResponse = new JsonObject();
+	                jsonResponse.add("jugadores", jsonArray);
+
+	                response.getWriter().print(gson.toJson(jsonResponse));
 			}
 			
 		}
-		request.getRequestDispatcher("jugadores.jsp").forward(request, response);
+		//request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 	}
 
 	/**
