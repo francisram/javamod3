@@ -44,6 +44,7 @@ public class AppContextListener implements ServletContextListener {
         e.setId(1);
         e.setNombre("rayadito");
         j.setEquipo(e);
+        j.setNacionalidad("paraguayo");
         
         jImpl.insertar(j);
         

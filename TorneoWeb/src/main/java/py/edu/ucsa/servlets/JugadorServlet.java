@@ -61,13 +61,13 @@ public class JugadorServlet extends HttpServlet {
 	                    jsonObject.addProperty("nombres", jugador.getNombres());
 	                    jsonObject.addProperty("apellidos", jugador.getApellidos());
 	                    jsonObject.addProperty("equipo", jugador.getEquipo().getNombre());
-	                    jsonObject.addProperty("nacionalidad", jugador.getNacionalidad());
+	                    jsonObject.addProperty("pais", jugador.getNacionalidad());
 	                    jsonArray.add(jsonObject);
 	                }
-	                JsonObject jsonResponse = new JsonObject();
-	                jsonResponse.add("jugadores", jsonArray);
+	                //JsonObject jsonResponse = new JsonObject();
+	                //jsonResponse.add("data", jsonArray);
 
-	                response.getWriter().print(gson.toJson(jsonResponse));
+	                response.getWriter().print(gson.toJson(jsonArray));
 			}
 			
 		}
