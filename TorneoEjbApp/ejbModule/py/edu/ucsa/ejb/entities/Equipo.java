@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -31,6 +32,9 @@ public class Equipo {
 	
 	
 	public List<Jugador> getJugadores() {
+		if(this.jugadores == null) {
+			this.jugadores = new ArrayList<Jugador>();
+		}
 		return jugadores;
 	}
 	public void setJugadores(List<Jugador> jugadores) {
