@@ -1,15 +1,31 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
-
-
-
-
+@Entity
+@Table(name = "partidos")
+@NamedQuery(name = "Partido.findAll", query = "SELECT p FROM  Partido p ORDER BY p.id ASC")
 public class Partido {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "equipo_local_id")
 	private Equipo equipoLocal;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "equipo_visitante_id")
 	private Equipo equipoVisitante;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "torneo_id")
 	private Torneo torneo;
 	private String fecha;
 	private int numeroFechaTorneo;

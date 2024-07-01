@@ -2,12 +2,31 @@ package py.edu.ucsa.ejb.entities;
 
 import java.util.List;
 
-public class Equipo {
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "equipos")
+@NamedQuery(name = "Equipo.findAll",query = "SELECT e FROM Equipo e ORDER BY e.nombre ASC")
+public class Equipo {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private String slogan;
-	private String capitan;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name ="capitan_id" )
+	private Jugador capitan;
+	@OneToMany(mappedBy = "equipo")
 	private List<Jugador> jugadores;
 	
 	
@@ -38,10 +57,11 @@ public class Equipo {
 	public void setSlogan(String slogan) {
 		this.slogan = slogan;
 	}
-	public String getCapitan() {
+
+	public Jugador getCapitan() {
 		return capitan;
 	}
-	public void setCapitan(String capitan) {
+	public void setCapitan(Jugador capitan) {
 		this.capitan = capitan;
 	}
 	@Override
