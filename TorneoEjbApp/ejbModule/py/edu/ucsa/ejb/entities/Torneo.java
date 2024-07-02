@@ -1,7 +1,9 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,23 +20,22 @@ public class Torneo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name = "anho")
 	private String anho;
+	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "numero_equipo")
 	private int numeroEquipo;
-	private String fechaInicio;
-	private String fechaFin;
-	@OneToMany(mappedBy = "partido")
-	private List<Partido> partidos;
+	@Column(name = "fecha_inicio" , columnDefinition = "DATE")
+	private LocalDate fechaInicio;
+	@Column(name = "fecha_fin" , columnDefinition = "DATE")
+	private LocalDate fechaFin;
+
 	
 	
 	
 	
-	public List<Partido> getPartidos() {
-		return partidos;
-	}
-	public void setPartidos(List<Partido> partidos) {
-		this.partidos = partidos;
-	}
+
 
 	public Long getId() {
 		return id;
@@ -60,24 +61,24 @@ public class Torneo {
 	public void setNumeroEquipo(int numeroEquipo) {
 		this.numeroEquipo = numeroEquipo;
 	}
-	public String getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
-	public void setFechaInicio(String fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	public String getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
-	public void setFechaFin(String fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	@Override
 	public String toString() {
 		return "Torneo [id=" + id + ", anho=" + anho + ", nombre=" + nombre + ", numeroEquipo=" + numeroEquipo
-				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", partidos=" + partidos + "]";
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + "]";
 	}
-	
+
 	
 
 }
