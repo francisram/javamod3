@@ -17,7 +17,7 @@ import jakarta.persistence.OneToOne;
 public class Torneo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String anho;
 	private String nombre;
 	private int numeroEquipo;
@@ -35,10 +35,11 @@ public class Torneo {
 	public void setPartidos(List<Partido> partidos) {
 		this.partidos = partidos;
 	}
-	public int getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getAnho() {
@@ -74,7 +75,7 @@ public class Torneo {
 	@Override
 	public String toString() {
 		return "Torneo [id=" + id + ", anho=" + anho + ", nombre=" + nombre + ", numeroEquipo=" + numeroEquipo
-				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + "]";
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", partidos=" + partidos + "]";
 	}
 	
 	

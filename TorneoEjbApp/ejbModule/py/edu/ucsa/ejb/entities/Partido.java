@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,12 +16,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "partidos")
-@NamedQuery(name = "Partido.findAll", query = "SELECT p FROM  Partido p ORDER BY p.numeroFechaTorneo ASC")
+@NamedQuery(name = "Partido.findAll", query = "SELECT p FROM  Partido p ORDER BY p.fechaNro ASC")
 public class Partido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@ManyToOne()
 	@JoinColumn(name = "equipo_local")
 	private Equipo equipoLocal;
@@ -30,16 +32,28 @@ public class Partido {
 	@JoinColumn(name = "torneo_id")
 	private Torneo torneo;
 	@Column(name = "fecha_partido", columnDefinition = "DATE")
-	private String fecha;
-	private int numeroFechaTorneo;
+	private LocalDate fecha;
+	@Column(name = "hora", columnDefinition = "	TIMESTAMP")
 	private String hora;
-	private String resultado;
+	@Column(name = "goles_local")
+	private int goleLocal;
+	@Column(name = "goles_visitante")
+	private int goleVisitante;
+	@Column(name = "fecha_nro")
+	private int fechaNro;
 	
 	
-	public int getId() {
+	
+	public int getFechaNro() {
+		return fechaNro;
+	}
+	public void setFechaNro(int fechaNro) {
+		this.fechaNro = fechaNro;
+	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Equipo getEquipoLocal() {
@@ -60,35 +74,38 @@ public class Partido {
 	public void setTorneo(Torneo torneo) {
 		this.torneo = torneo;
 	}
-	public String getFecha() {
+
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	public int getNumeroFechaTorneo() {
-		return numeroFechaTorneo;
-	}
-	public void setNumeroFechaTorneo(int numeroFechaTorneo) {
-		this.numeroFechaTorneo = numeroFechaTorneo;
-	}
+
 	public String getHora() {
 		return hora;
 	}
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-	public String getResultado() {
-		return resultado;
+
+	public int getGoleLocal() {
+		return goleLocal;
 	}
-	public void setResultado(String resultado) {
-		this.resultado = resultado;
+	public void setGoleLocal(int goleLocal) {
+		this.goleLocal = goleLocal;
+	}
+	public int getGoleVisitante() {
+		return goleVisitante;
+	}
+	public void setGoleVisitante(int goleVisitante) {
+		this.goleVisitante = goleVisitante;
 	}
 	@Override
 	public String toString() {
 		return "Partido [id=" + id + ", equipoLocal=" + equipoLocal + ", equipoVisitante=" + equipoVisitante
-				+ ", torneo=" + torneo + ", fecha=" + fecha + ", numeroFechaTorneo=" + numeroFechaTorneo + ", hora="
-				+ hora + ", resultado=" + resultado + "]";
+				+ ", torneo=" + torneo + ", fecha=" + fecha + ", hora=" + hora + ", goleLocal=" + goleLocal
+				+ ", goleVisitante=" + goleVisitante + ", fechaNro=" + fechaNro + "]";
 	}
 	
 	

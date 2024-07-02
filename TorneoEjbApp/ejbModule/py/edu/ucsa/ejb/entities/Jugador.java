@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 public class Jugador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@Column(name = "nombres")
 	private String nombres;
 	@Column(name = "apellidos")
@@ -46,11 +46,11 @@ public class Jugador {
 		this.equipo = equipo;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
