@@ -1,4 +1,4 @@
-package py.edu.ucsa.ejb.session;
+package py.edu.ucsa.ejb.services;
 
 import java.io.Serializable;
 import java.util.List;

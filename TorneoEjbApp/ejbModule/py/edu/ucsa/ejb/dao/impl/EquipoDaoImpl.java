@@ -21,7 +21,7 @@ public class EquipoDaoImpl extends AbstractDao<Long, Equipo> implements IEquipoD
 	@Override
 	public Iterable<Equipo> findAllByNombre(String nombre, boolean isNull) {
 		boolean isBlank = Objects.isNull(nombre) || nombre.isBlank();
-		String hql = "FROM Equipo e" 
+		String hql = "FROM EquipoDTO e" 
 				+ ((isBlank && !isNull) ? "" : "where"
 				+ (!isBlank ? "e.nombre LIKE : nombre" : "")
 				+ (!isBlank && isNull ? "AND" : "")

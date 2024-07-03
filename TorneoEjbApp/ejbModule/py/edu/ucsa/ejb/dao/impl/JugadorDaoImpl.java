@@ -21,8 +21,8 @@ public class JugadorDaoImpl extends AbstractDao<Long, Jugador>  implements IJuga
 	@Override
 	public Iterable<Jugador> findByNombre(String nombre, boolean isNull) {
 		boolean isBlank = Objects.isNull(nombre) || nombre.isBlank();
-		String hql = "SELECT NEW Jugador(j.id,j.nroFicha , j.nombre , j.apellido ,j.nacionalidad)" 
-				+ ((isBlank && !isNull) ? "" : "where"
+		String hql = "SELECT NEW JugadorDTO(j.id,j.nroFicha , j.nombre , j.apellido ,j.nacionalidad) FROM JugadorDTO j" 
+				+ ((isBlank && !isNull) ? "" : "WHERE"
 				+ (!isBlank ? "e.nombre LIKE : nombre" : "")
 				+ (!isBlank && isNull ? "AND" : "")
 				+(isNull? "e.equipo IS NULL" : "" ));

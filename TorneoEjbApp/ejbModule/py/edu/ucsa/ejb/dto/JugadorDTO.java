@@ -1,49 +1,33 @@
-package py.edu.ucsa.ejb.entities;
+package py.edu.ucsa.ejb.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "jugadores")
-@NamedQuery(name = "JugadorDTO.findAll", query = "SELECT j FROM JugadorDTO j ORDER BY j.nombres ASC")
-public class Jugador {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class JugadorDTO {
+
 	private Long id;
-	@Column(name = "nombres")
+
 	private String nombres;
-	@Column(name = "apellidos")
+
 	private String apellidos;
-	@Column(name = "fecha_nacimiento", columnDefinition = "DATE")
+
 	private String fechaNacimiento;
-	@Column(name = "numero_ficha")
+
 	private int numeroFicha;
-	@Column(name = "nacionalidad")
+
 	private String nacionalidad;
-	@Column(name = "telefono")
+
 	private String telefono;
-	@Column(name = "email")
+
 	private String email;
 
-	@ManyToOne(optional = true)
-	@JoinColumn(name = "equipo_id")
-	private Equipo equipo;
+	private EquipoDTO equipoDTO;
 
-	public Equipo getEquipo() {
-		return equipo;
+	public EquipoDTO getEquipo() {
+		return equipoDTO;
 	}
 
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
+	public void setEquipo(EquipoDTO equipoDTO) {
+		this.equipoDTO = equipoDTO;
 	}
 
 	public Long getId() {
@@ -114,10 +98,10 @@ public class Jugador {
 	public String toString() {
 		return "JugadorDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento="
 				+ fechaNacimiento + ", numeroFicha=" + numeroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
-				+ telefono + ", email=" + email + ", equipo=" + equipo + "]";
+				+ telefono + ", email=" + email + ", equipoDTO=" + equipoDTO + "]";
 	}
 
-	public Jugador() {
+	public JugadorDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

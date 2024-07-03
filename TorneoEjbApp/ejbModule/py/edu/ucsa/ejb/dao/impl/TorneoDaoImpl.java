@@ -18,7 +18,7 @@ public class TorneoDaoImpl extends AbstractDao<Long, Torneo> implements ITorneoD
 	@Override
 	public Iterable<Equipo> findByAnho(int anho) {
 		// TODO Auto-generated method stub
-		return this.entityManager.createQuery("SELECT t FROM Torneo t WHERE t.anho = :anho").setParameter("anho", anho).getResultList();
+		return this.entityManager.createQuery("SELECT t FROM TorneoDTO t WHERE t.anho = :anho").setParameter("anho", anho).getResultList();
 
 	}
 

@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "equipos")
-@NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e ORDER BY e.nombre ASC")
+@NamedQuery(name = "EquipoDTO.findAll", query = "SELECT e FROM EquipoDTO e ORDER BY e.nombre ASC")
 public class Equipo {
 
 	@Id
@@ -78,7 +78,7 @@ public class Equipo {
 
 	@Override
 	public String toString() {
-		return "Equipo [id=" + id + ", nombre=" + nombre + ", slogan=" + slogan + ", capitan=" + capitan
+		return "EquipoDTO [id=" + id + ", nombre=" + nombre + ", slogan=" + slogan + ", capitan=" + capitan
 				+ ", jugadores=" + jugadores + "]";
 	}
 

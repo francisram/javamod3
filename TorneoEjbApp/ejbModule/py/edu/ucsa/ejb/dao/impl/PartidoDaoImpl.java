@@ -17,7 +17,7 @@ public class PartidoDaoImpl extends AbstractDao<Long, Partido> implements IParti
 	@Override
 	public Iterable<Partido> findByFechaNro(int fechaNro) {
 		// TODO Auto-generated method stub
-		return this.entityManager.createQuery("SELECT p FROM Partido p WHERE p.fechaNro = :fechaNro").setParameter("fechaNro", fechaNro).getResultList();
+		return this.entityManager.createQuery("SELECT p FROM PartidoDTO p WHERE p.fechaNro = :fechaNro").setParameter("fechaNro", fechaNro).getResultList();
 	}
 
 }
