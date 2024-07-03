@@ -34,7 +34,7 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 	}
 
 	@Override
-	public Torneo getById(Integer id) {
+	public Torneo getById(Long id) {
 		Torneo p = new Torneo();
 		if (id != null) {
 			for (Torneo t : listaTorneos) {
@@ -75,7 +75,7 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
+	public void eliminar(Long id) {
 		if (!Objects.isNull(id)) {
 			for (int i = 0 ; i <listaTorneos.size(); i++) {
 				if(listaTorneos.get(i).getId() == id) {

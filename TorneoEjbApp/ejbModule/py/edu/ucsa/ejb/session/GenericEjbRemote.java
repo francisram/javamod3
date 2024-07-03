@@ -11,11 +11,11 @@ public interface GenericEjbRemote< PK extends Serializable ,T> {
 
 	public List<T> listar();
 
-	public T getById(Integer id);
+	public T getById(Long id);
 
 	public T insertar(T obj);
 
 	public void actualizar(T obj);
 
-	public void eliminar(Integer id);
+	public void eliminar(Long id);
 }

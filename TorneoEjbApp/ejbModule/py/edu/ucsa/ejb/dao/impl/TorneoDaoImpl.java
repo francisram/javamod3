@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.dao.impl;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.ITorneoDao;
 import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Torneo;

@@ -52,7 +52,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
+	public void eliminar(Long id) {
 		if (!Objects.isNull(id)) {
 			for (int i = 0 ; i <listaEquipos.size(); i++) {
 				if(listaEquipos.get(i).getId() == id) {
@@ -81,7 +81,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 
 
 	@Override
-	public Equipo getById(Integer id) {
+	public Equipo getById(Long id) {
 		Equipo e = new Equipo();
 		if (id != null) {
 			for (Equipo equipo : listaEquipos) {

@@ -27,7 +27,7 @@ public interface PartidoEjbRemote extends GenericEjbRemote<Long ,Partido> {
 	}
 
 	@Override
-	default Partido getById(Integer id) {
+	default Partido getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,7 +45,7 @@ public interface PartidoEjbRemote extends GenericEjbRemote<Long ,Partido> {
 	}
 
 	@Override
-	default void eliminar(Integer id) {
+	default void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}

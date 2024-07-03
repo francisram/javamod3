@@ -29,7 +29,7 @@ public interface JugadorEjbRemote extends GenericEjbRemote<Long ,Jugador>{
 	}
 
 	@Override
-	default Jugador getById(Integer id) {
+	default Jugador getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,7 +47,7 @@ public interface JugadorEjbRemote extends GenericEjbRemote<Long ,Jugador>{
 	}
 
 	@Override
-	default void eliminar(Integer id) {
+	default void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}

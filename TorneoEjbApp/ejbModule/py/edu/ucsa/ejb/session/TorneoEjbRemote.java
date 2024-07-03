@@ -28,7 +28,7 @@ public interface TorneoEjbRemote extends GenericEjbRemote<Long , Torneo>{
 	}
 
 	@Override
-	default Torneo getById(Integer id) {
+	default Torneo getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,7 +46,7 @@ public interface TorneoEjbRemote extends GenericEjbRemote<Long , Torneo>{
 	}
 
 	@Override
-	default void eliminar(Integer id) {
+	default void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -26,7 +26,7 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 	}
 
 	@Override
-	public Partido getById(Integer id) {
+	public Partido getById(Long id) {
 		Partido p = new Partido();
 		if (id != null) {
 			for (Partido partido : listaPartidos) {
@@ -66,7 +66,7 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
+	public void eliminar(Long id) {
 		if (!Objects.isNull(id)) {
 			for (int i = 0 ; i <listaPartidos.size(); i++) {
 				if(listaPartidos.get(i).getId() == id) {

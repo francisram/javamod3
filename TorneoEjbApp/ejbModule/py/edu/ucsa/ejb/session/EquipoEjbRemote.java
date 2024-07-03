@@ -27,7 +27,7 @@ public interface EquipoEjbRemote extends GenericEjbRemote<Long ,Equipo> {
 	}
 
 	@Override
-	default Equipo getById(Integer id) {
+	default Equipo getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,7 +45,7 @@ public interface EquipoEjbRemote extends GenericEjbRemote<Long ,Equipo> {
 	}
 
 	@Override
-	default void eliminar(Integer id) {
+	default void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}

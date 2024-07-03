@@ -25,7 +25,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	}
 
 	@Override
-	public Jugador getById(Integer id) {
+	public Jugador getById(Long id) {
 		Jugador jugador = new Jugador();
 		for (Jugador j : listaJugadores) {
 			if(j.getId() == id) {
@@ -61,7 +61,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
+	public void eliminar(Long id) {
 		if(!Objects.isNull(id)) {
 			for (int i = 0; i < listaJugadores.size(); i++) {
 				if(listaJugadores.get(i).getId() == id) {

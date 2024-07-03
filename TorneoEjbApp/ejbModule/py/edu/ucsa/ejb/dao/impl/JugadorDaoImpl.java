@@ -2,9 +2,10 @@ package py.edu.ucsa.ejb.dao.impl;
 
 import java.util.Objects;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.Query;
 import py.edu.ucsa.ejb.dao.IJugadorDao;
-import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 
 @RequestScoped
