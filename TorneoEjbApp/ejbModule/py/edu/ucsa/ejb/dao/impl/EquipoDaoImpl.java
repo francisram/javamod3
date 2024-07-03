@@ -18,11 +18,8 @@ public class EquipoDaoImpl extends AbstractDao<Long, Equipo> implements IEquipoD
 		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<Equipo> findByNombre(String nombre, boolean isNull) {
-		
-		
+	public Iterable<Equipo> findAllByNombre(String nombre, boolean isNull) {
 		boolean isBlank = Objects.isNull(nombre) || nombre.isBlank();
 		String hql = "FROM Equipo e" 
 				+ ((isBlank && !isNull) ? "" : "where"
@@ -35,6 +32,8 @@ public class EquipoDaoImpl extends AbstractDao<Long, Equipo> implements IEquipoD
 		}
 		return query.getResultList();
 	}
+
+
 	
 	
 

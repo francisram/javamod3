@@ -7,6 +7,8 @@ import py.edu.ucsa.ejb.dao.IJugadorDao;
 import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 
+@RequestScoped
+@Named("jugadorDAO")
 public class JugadorDaoImpl extends AbstractDao<Long, Jugador>  implements IJugadorDao{
 
 	public JugadorDaoImpl() {
@@ -23,7 +25,7 @@ public class JugadorDaoImpl extends AbstractDao<Long, Jugador>  implements IJuga
 				+ (!isBlank ? "e.nombre LIKE : nombre" : "")
 				+ (!isBlank && isNull ? "AND" : "")
 				+(isNull? "e.equipo IS NULL" : "" ));
-		Query query = this.entityManager.createQuery(hql, Equipo.class);
+		Query query = this.entityManager.createQuery(hql, Jugador.class);
 		if(!isBlank) {
 			query.setParameter("nombre","%"+ nombre +"%" );
 		}

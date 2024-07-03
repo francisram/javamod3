@@ -1,8 +1,13 @@
 package py.edu.ucsa.ejb.session;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface GenericEjbRemote<T> {
+public interface GenericEjbRemote< PK extends Serializable ,T> {
+	
+	public List<T> findAll() throws Exception;
+	
+	public void insert(T dto) throws Exception;
 
 	public List<T> listar();
 

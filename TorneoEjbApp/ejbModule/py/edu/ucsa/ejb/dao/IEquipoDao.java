@@ -40,6 +40,6 @@ public interface IEquipoDao extends IGenericDao<Long, Equipo> {
 		
 	}
 	
-	public Iterable<Equipo> findByNombre(String nombre, boolean isNull);
+	public Iterable<Equipo> findAllByNombre(String nombre, boolean isNull);
 
 }
