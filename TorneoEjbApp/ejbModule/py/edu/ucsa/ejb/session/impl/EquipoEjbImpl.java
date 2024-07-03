@@ -1,20 +1,36 @@
 package py.edu.ucsa.ejb.session.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
+import py.edu.ucsa.ejb.dao.IEquipoDao;
 import py.edu.ucsa.ejb.entities.Equipo;
+import py.edu.ucsa.ejb.entities.Jugador;
 import py.edu.ucsa.ejb.session.EquipoEjbRemote;
 
 /**
  * Session Bean implementation class EquipoEjbImpl
  */
-@Stateless
-@LocalBean
+@Stateless(mappedName = "equipoEJB")
+@Transactional
 public class EquipoEjbImpl implements EquipoEjbRemote {
+	
+	@Inject
+	@Named("equipoDao")
+	private IEquipoDao eDao;
+	
+	@Inject
+	@Named("jugadorDao")
+	private IEquipoDao jDao;
 	
 	private List<Equipo> listaEquipos = new ArrayList<>();
 
@@ -95,5 +111,37 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	}
 
 
+
+	@Override
+	public List<Equipo> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		Stream<Equipo> equipos = StreamSupport.stream(eDao.findAll().spliterator(), false);
+		return equipos.map().toList();
+	}
+
+
+
+	@Override
+	public void insert(Equipo dto) throws Exception {
+		// TODO Auto-generated method stub
+		if(dto.getJugadores().size()>20) {
+			throw new Exception("no se permite mas de 20 jugadores");
+		}
+		//se guarda el equipo
+		Equipo equipo = new Equipo.ofDTO();
+		equipo = eDao.insert(equipo);
+		
+		//se guarda a los jugadores
+		Jugador eJugador;
+		for(Jugador j: equipo.getJugadores()) {
+			eJugador = jDao.findById(j.getId());
+			eJugador.setEquipo(equipo);
+			jDao.update(eJugador);
+		}
+	}
+
+
+	
+	
 
 }
