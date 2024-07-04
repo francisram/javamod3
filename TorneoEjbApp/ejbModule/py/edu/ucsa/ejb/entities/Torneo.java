@@ -58,7 +58,7 @@ public class Torneo {
 		entity.setId(dto.getId());
 		entity.setAnho(dto.getAnho());
 		entity.setNombre(dto.getNombre());
-		entity.setNumEquipo(dto.getNumEquipo());
+		entity.setNumEquipos(dto.getNumEquipo());
 		if(!Objects.isNull(dto.getFechaInicio())) {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			entity.setFechaInicio(LocalDate.parse(dto.getFechaInicio(),dtf));

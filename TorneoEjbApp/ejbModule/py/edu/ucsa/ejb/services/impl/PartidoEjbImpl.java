@@ -50,20 +50,18 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 		return null;
 	}
 
-	@Override
-	public PartidoDTO insertar(PartidoDTO obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
 
 	@Override
-	public void actualizar(PartidoDTO obj) {
+	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void eliminar(Long id) {
+	public void actualizar(PartidoDTO obj) {
 		// TODO Auto-generated method stub
 		
 	}

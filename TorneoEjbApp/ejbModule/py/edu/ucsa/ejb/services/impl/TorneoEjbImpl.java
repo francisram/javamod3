@@ -60,11 +60,7 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 		return null;
 	}
 
-	@Override
-	public TorneoDTO insertar(TorneoDTO obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public void actualizar(TorneoDTO obj) {

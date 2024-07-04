@@ -53,11 +53,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 		return null;
 	}
 
-	@Override
-	public JugadorDTO insertar(JugadorDTO obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public void actualizar(JugadorDTO obj) {

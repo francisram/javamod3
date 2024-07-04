@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 import py.edu.ucsa.ejb.dao.IEquipoDao;
+import py.edu.ucsa.ejb.dao.IJugadorDao;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
 import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.entities.Equipo;
@@ -30,9 +31,8 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	
 	@Inject
 	@Named("jugadorDao")
-	private IEquipoDao jDao;
+	private IJugadorDao jDao;
 	
-	private List<EquipoDTO> listaEquipos = new ArrayList<>();
 
 	@Override
 	public List<EquipoDTO> findAll() throws Exception {
@@ -53,7 +53,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 		for (Jugador jugador : equipo.getJugadores()) {
 			eJugador = jDao.findById(jugador.getId());
 			eJugador.setEquipo(equipo);
-			jDao.update(equipo);
+			jDao.update(eJugador);
 		}
 		
 	}
@@ -70,11 +70,6 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 		return null;
 	}
 
-	@Override
-	public EquipoDTO insertar(EquipoDTO obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void actualizar(EquipoDTO obj) {

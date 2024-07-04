@@ -13,7 +13,6 @@ public interface GenericEjbRemote< PK extends Serializable ,T> {
 
 	public T getById(Long id);
 
-	public T insertar(T obj);
 
 	public void actualizar(T obj);
 

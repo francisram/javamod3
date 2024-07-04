@@ -20,7 +20,7 @@ import py.edu.ucsa.ejb.dto.JugadorDTO;
 
 @Entity
 @Table(name = "equipos")
-@NamedQuery(name = "EquipoDTO.findAll", query = "SELECT e FROM EquipoDTO e ORDER BY e.nombre ASC")
+@NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e ORDER BY e.nombre ASC")
 public class Equipo {
 
 	@Id
@@ -38,7 +38,7 @@ public class Equipo {
 
 	public List<Jugador> getJugadores() {
 		if (this.jugadores == null) {
-			this.jugadores = new ArrayList<Jugador>();
+			this.jugadores = new ArrayList<>();
 		}
 		return jugadores;
 	}
@@ -99,7 +99,7 @@ public class Equipo {
 			dto.setCapitan(this.getCapitan().toDTO());
 		}
 		if(!this.getJugadores().isEmpty()) {
-			List<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();
+			List<JugadorDTO> jugadores = new ArrayList<>();
 			for (Jugador j : this.getJugadores()) {
 				jugadores.add(j.toDTO());
 			}
