@@ -1,8 +1,7 @@
 package py.edu.ucsa.ejb.services.impl;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -13,10 +12,10 @@ import jakarta.transaction.Transactional;
 import py.edu.ucsa.ejb.dao.IEquipoDao;
 import py.edu.ucsa.ejb.dao.IJugadorDao;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
-import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 import py.edu.ucsa.ejb.services.EquipoEjbRemote;
+
 
 /**
  * Session Bean implementation class EquipoEjbImpl
@@ -94,6 +93,10 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 		Stream<Equipo> equipos = StreamSupport.stream(eDao.findAllByNombre(nombre,isNull).spliterator(), false) ;
 		return equipos.map(Equipo::toListaDTO).toList();
 	}
+
+
+
+
 
 
 
