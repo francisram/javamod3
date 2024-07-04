@@ -1,5 +1,11 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +17,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.EquipoDTO;
+import py.edu.ucsa.ejb.dto.JugadorDTO;
 
 @Entity
 @Table(name = "jugadores")
@@ -24,9 +32,9 @@ public class Jugador {
 	@Column(name = "apellidos")
 	private String apellidos;
 	@Column(name = "fecha_nacimiento", columnDefinition = "DATE")
-	private String fechaNacimiento;
-	@Column(name = "numero_ficha")
-	private int numeroFicha;
+	private LocalDate fechaNacimiento;
+	@Column(name = "nro_ficha")
+	private int nroFicha;
 	@Column(name = "nacionalidad")
 	private String nacionalidad;
 	@Column(name = "telefono")
@@ -70,20 +78,23 @@ public class Jugador {
 		this.apellidos = apellidos;
 	}
 
-	public String getFechaNacimiento() {
+
+
+
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public int getNumeroFicha() {
-		return numeroFicha;
+	public int getNroFicha() {
+		return nroFicha;
 	}
 
-	public void setNumeroFicha(int numeroFicha) {
-		this.numeroFicha = numeroFicha;
+	public void setNroFicha(int nroFicha) {
+		this.nroFicha = nroFicha;
 	}
 
 	public String getNacionalidad() {
@@ -112,14 +123,78 @@ public class Jugador {
 
 	@Override
 	public String toString() {
-		return "JugadorDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento="
-				+ fechaNacimiento + ", numeroFicha=" + numeroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
+		return "Jugador [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento="
+				+ fechaNacimiento + ", nroFicha=" + nroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
 				+ telefono + ", email=" + email + ", equipo=" + equipo + "]";
 	}
 
 	public Jugador() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public JugadorDTO toDTO() {
+		JugadorDTO dto = new JugadorDTO();
+		dto.setId(this.getId());
+		dto.setNroFicha(this.getNroFicha());
+		dto.setNombres(this.getNombres());
+		dto.setApellidos(this.getApellidos());
+		if(!Objects.isNull(this.getFechaNacimiento())) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dto.setFechaNacimiento(this.getFechaNacimiento().format(dtf));
+		}
+		dto.setNacionalidad(this.getNacionalidad());
+		dto.setTelefono(this.getTelefono());
+		dto.setEmail(this.getEmail());
+		if(!Objects.isNull(this.getEquipo())) {
+				dto.setEquipo(this.getEquipo().toDTO());
+		}
+		return dto;
+	}
+	
+	public JugadorDTO toListaDTO() {
+		JugadorDTO dto = new JugadorDTO();
+		dto.setId(this.getId());
+		dto.setNroFicha(this.getNroFicha());
+		dto.setNombres(this.getNombres());
+		dto.setApellidos(this.getApellidos());
+		if(!Objects.isNull(this.getFechaNacimiento())) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dto.setFechaNacimiento(this.getFechaNacimiento().format(dtf));
+		}
+		dto.setNacionalidad(this.getNacionalidad());
+		dto.setTelefono(this.getTelefono());
+		dto.setEmail(this.getEmail());
+		return dto;
+	}
+	
+	public JugadorDTO toListaBusqueda() {
+		JugadorDTO dto = new JugadorDTO();
+		dto.setId(this.getId());
+		dto.setNroFicha(this.getNroFicha());
+		dto.setNombres(this.getNombres());
+		dto.setApellidos(this.getApellidos());
+		dto.setNacionalidad(this.getNacionalidad());
+		return dto;
+	}
+	
+	public static Jugador ofDTO(JugadorDTO dto) {
+		Jugador entity = new Jugador();
+		entity.setId(dto.getId());
+		entity.setNroFicha(dto.getNroFicha());
+		entity.setNombres(dto.getNombres());
+		entity.setApellidos(dto.getApellidos());
+		if(!Objects.isNull(dto.getFechaNacimiento())) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			entity.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento(),dtf));
+		}
+		entity.setNacionalidad(dto.getNacionalidad());
+		entity.setTelefono(dto.getTelefono());
+		entity.setEmail(dto.getEmail());
+		if(!Objects.isNull(dto.getEquipo())) {
+			entity.setEquipo(Equipo.ofDTO(dto.getEquipo()));
+		}
+		return entity;
 	}
 
 }

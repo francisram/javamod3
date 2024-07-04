@@ -1,22 +1,19 @@
 package py.edu.ucsa.ejb.dto;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
 
-public class TorneoDTO {
+
+public class TorneoDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
 	private String anho;
-
 	private String nombre;
-
-	private int numeroEquipo;
-
-	private LocalDate fechaInicio;
-
-	private LocalDate fechaFin;
-
+	private int numEquipo;
+	private String fechaInicio;
+	private String fechaFin;
 	public Long getId() {
 		return id;
 	}
@@ -41,33 +38,35 @@ public class TorneoDTO {
 		this.nombre = nombre;
 	}
 
-	public int getNumeroEquipo() {
-		return numeroEquipo;
+
+
+	public int getNumEquipo() {
+		return numEquipo;
 	}
 
-	public void setNumeroEquipo(int numeroEquipo) {
-		this.numeroEquipo = numeroEquipo;
+	public void setNumEquipo(int numEquipo) {
+		this.numEquipo = numEquipo;
 	}
 
-	public LocalDate getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(LocalDate fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public LocalDate getFechaFin() {
+	public String getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(LocalDate fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
 	@Override
 	public String toString() {
-		return "TorneoDTO [id=" + id + ", anho=" + anho + ", nombre=" + nombre + ", numeroEquipo=" + numeroEquipo
+		return "TorneoDTO [id=" + id + ", anho=" + anho + ", nombre=" + nombre + ", numEquipo=" + numEquipo
 				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + "]";
 	}
 

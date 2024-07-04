@@ -3,31 +3,41 @@ package py.edu.ucsa.ejb.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.jws.WebService;
+import py.edu.ucsa.ejb.dao.IJugadorDao;
 import py.edu.ucsa.ejb.dto.JugadorDTO;
+import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 
 /**
  * Session Bean implementation class JugadorEjbImpl
  */
-@Stateless
-@LocalBean
+@Stateless(mappedName = "JugadorEJB")
+@WebService
 public class JugadorEjbImpl implements JugadorEjbRemote {
+	@Inject
+	@Named("JugadorDao")
+	private IJugadorDao iDao;
 	
 	private List<Jugador> listaJugadores = new ArrayList<Jugador>();
 
 	@Override
 	public List<JugadorDTO> findAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Stream<Jugador> jugadores = StreamSupport.stream(iDao.findAll().spliterator(), false) ;
+		return jugadores.map(Jugador::toListaDTO).toList();
 	}
 
 	@Override
 	public void insert(JugadorDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		iDao.insert(Jugador.ofDTO(dto));
 		
 	}
 
@@ -69,8 +79,8 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 
 	@Override
 	public List<JugadorDTO> findByNombre(String nombre, boolean isNull) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Stream<Jugador> jugadores = StreamSupport.stream(iDao.findByNombre(nombre, isNull).spliterator(), false) ;
+		return jugadores.map(Jugador::toListaBusqueda).toList();
 	}
 
 

@@ -1,28 +1,31 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
 
-public class PartidoDTO {
+public class PartidoDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
 	private EquipoDTO equipoLocal;
-
 	private EquipoDTO equipoVisitante;
-
 	private TorneoDTO torneoDTO;
-
-	private LocalDate fecha;
-
+	private String fecha;
 	private String hora;
-
 	private int goleLocal;
-
 	private int goleVisitante;
-
 	private int fechaNro;
+	
+	
+	
+	
+	public PartidoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getFechaNro() {
 		return fechaNro;
@@ -64,11 +67,21 @@ public class PartidoDTO {
 		this.torneoDTO = torneoDTO;
 	}
 
-	public LocalDate getFecha() {
+
+
+	public TorneoDTO getTorneoDTO() {
+		return torneoDTO;
+	}
+
+	public void setTorneoDTO(TorneoDTO torneoDTO) {
+		this.torneoDTO = torneoDTO;
+	}
+
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

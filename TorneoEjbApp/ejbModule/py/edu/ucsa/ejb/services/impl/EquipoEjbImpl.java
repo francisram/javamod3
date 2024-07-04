@@ -36,13 +36,25 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 
 	@Override
 	public List<EquipoDTO> findAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Stream<Equipo> equipos = StreamSupport.stream(eDao.findAll().spliterator(), false) ;
+		return equipos.map(Equipo::toListaDTO).toList();
 	}
 
 	@Override
 	public void insert(EquipoDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		if(dto.getJugadores().size() > 20) {
+			throw new Exception("nose permite mas de 20 jugadores");
+		}
+		
+		Equipo equipo = Equipo.ofDTO(dto);
+		equipo = eDao.insert(equipo);
+		
+		Jugador eJugador;
+		for (Jugador jugador : equipo.getJugadores()) {
+			eJugador = jDao.findById(jugador.getId());
+			eJugador.setEquipo(equipo);
+			jDao.update(equipo);
+		}
 		
 	}
 
@@ -84,8 +96,8 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 
 	@Override
 	public List<EquipoDTO> findByNombre(String nombre, boolean isNull) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Stream<Equipo> equipos = StreamSupport.stream(eDao.findAllByNombre(nombre,isNull).spliterator(), false) ;
+		return equipos.map(Equipo::toListaDTO).toList();
 	}
 
 

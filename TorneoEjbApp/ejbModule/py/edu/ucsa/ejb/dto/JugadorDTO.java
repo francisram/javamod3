@@ -1,33 +1,27 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 
+public class JugadorDTO implements Serializable{
 
-public class JugadorDTO {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
+	private int nroFicha;
 	private String nombres;
-
 	private String apellidos;
-
 	private String fechaNacimiento;
-
-	private int numeroFicha;
-
 	private String nacionalidad;
-
 	private String telefono;
-
 	private String email;
-
-	private EquipoDTO equipoDTO;
+	private EquipoDTO equipo;
 
 	public EquipoDTO getEquipo() {
-		return equipoDTO;
+		return equipo;
 	}
 
 	public void setEquipo(EquipoDTO equipoDTO) {
-		this.equipoDTO = equipoDTO;
+		this.equipo = equipoDTO;
 	}
 
 	public Long getId() {
@@ -62,12 +56,13 @@ public class JugadorDTO {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public int getNumeroFicha() {
-		return numeroFicha;
+
+	public int getNroFicha() {
+		return nroFicha;
 	}
 
-	public void setNumeroFicha(int numeroFicha) {
-		this.numeroFicha = numeroFicha;
+	public void setNroFicha(int nroFicha) {
+		this.nroFicha = nroFicha;
 	}
 
 	public String getNacionalidad() {
@@ -97,8 +92,8 @@ public class JugadorDTO {
 	@Override
 	public String toString() {
 		return "JugadorDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento="
-				+ fechaNacimiento + ", numeroFicha=" + numeroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
-				+ telefono + ", email=" + email + ", equipoDTO=" + equipoDTO + "]";
+				+ fechaNacimiento + ", numeroFicha=" + nroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
+				+ telefono + ", email=" + email + ", equipoDTO=" + equipo + "]";
 	}
 
 	public JugadorDTO() {
