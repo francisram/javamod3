@@ -16,7 +16,7 @@ public class EquipoDTO implements Serializable{
 	
 	public List<JugadorDTO> getJugadores() {
 		if (this.jugadores == null) {
-			this.jugadores = new ArrayList<JugadorDTO>();
+			this.jugadores = new ArrayList<>();
 		}
 		return jugadores;
 	}

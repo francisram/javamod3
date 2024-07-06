@@ -17,7 +17,7 @@ import jakarta.persistence.OneToOne;
 import py.edu.ucsa.ejb.dto.TorneoDTO;
 
 @Entity
-@NamedQuery(name = "TorneoDTO.findAll",query = "SELECT t FROM TorneoDTO t ORDER BY t.id ASC")
+@NamedQuery(name = "Torneo.findAll",query = "SELECT t FROM Torneo t ORDER BY t.id ASC")
 public class Torneo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

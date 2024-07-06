@@ -18,7 +18,7 @@ import py.edu.ucsa.ejb.dto.PartidoDTO;
 
 @Entity
 @Table(name = "partidos")
-@NamedQuery(name = "PartidoDTO.findAll", query = "SELECT p FROM  PartidoDTO p ORDER BY p.fechaNro ASC")
+@NamedQuery(name = "Partido.findAll", query = "SELECT p FROM  Partido p ORDER BY p.fechaNro ASC")
 public class Partido {
 
 	@Id

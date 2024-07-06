@@ -22,7 +22,7 @@ import py.edu.ucsa.ejb.dto.JugadorDTO;
 
 @Entity
 @Table(name = "jugadores")
-@NamedQuery(name = "JugadorDTO.findAll", query = "SELECT j FROM JugadorDTO j ORDER BY j.nombres ASC")
+@NamedQuery(name = "Jugador.findAll", query = "SELECT j FROM Jugador j ORDER BY j.nombres ASC")
 public class Jugador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
