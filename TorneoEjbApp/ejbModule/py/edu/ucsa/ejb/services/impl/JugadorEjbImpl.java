@@ -24,7 +24,7 @@ import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 @WebService
 public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Inject
-	@Named("JugadorDao")
+	@Named("jugadorDAO")
 	private IJugadorDao iDao;
 	
 	private List<Jugador> listaJugadores = new ArrayList<Jugador>();

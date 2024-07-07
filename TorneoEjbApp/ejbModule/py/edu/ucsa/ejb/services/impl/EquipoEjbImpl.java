@@ -25,11 +25,11 @@ import py.edu.ucsa.ejb.services.EquipoEjbRemote;
 public class EquipoEjbImpl implements EquipoEjbRemote {
 	
 	@Inject
-	@Named("equipoDao")
+	@Named("equipoDAO")
 	private IEquipoDao eDao;
 	
 	@Inject
-	@Named("jugadorDao")
+	@Named("jugadorDAO")
 	private IJugadorDao jDao;
 	
 
