@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u ORDER BY e.id ASC")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u ORDER BY u.id ASC")
 public class Usuario {
 	
 	@Id

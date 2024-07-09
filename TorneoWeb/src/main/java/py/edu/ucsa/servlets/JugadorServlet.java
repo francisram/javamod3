@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.entities.Jugador;
-import py.edu.ucsa.ejb.session.JugadorEjbRemote;
+import py.edu.ucsa.ejb.services.JugadorEjbRemote;
+
 
 /**
  * Servlet implementation class JugadorServlet

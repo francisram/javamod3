@@ -9,7 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.entities.Equipo;
-import py.edu.ucsa.ejb.session.EquipoEjbRemote;
+import py.edu.ucsa.ejb.services.EquipoEjbRemote;
+
 
 
 /**

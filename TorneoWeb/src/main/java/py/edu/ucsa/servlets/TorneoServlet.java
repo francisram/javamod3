@@ -8,8 +8,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.entities.Torneo;
-import py.edu.ucsa.ejb.session.TorneoEjbRemote;
-import py.edu.ucsa.ejb.session.impl.TorneoEjbImpl;
+import py.edu.ucsa.ejb.services.TorneoEjbRemote;
+import py.edu.ucsa.ejb.services.impl.TorneoEjbImpl;
+
 
 
 /**
