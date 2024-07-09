@@ -17,7 +17,7 @@ import py.edu.ucsa.ejb.services.PartidoEjbRemote;
 public class PartidoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@EJB(mappedName = "java:global/TorneoEjbApp/PartidoEjbImpl!py.edu.ucsa.ejb.session.PartidoEjbRemote")
+	@EJB(mappedName = "java:global/TorneoEjbApp/PartidoEjbImpl!py.edu.ucsa.ejb.services.PartidoEjbRemote")
 	private PartidoEjbRemote partidoEjbClient;
 
     /**

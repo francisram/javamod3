@@ -46,6 +46,13 @@
 		<servlet-name>CerrarSession</servlet-name>
 		<servlet-class>py.edu.ucsa.servlets.CerrarSession</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UsuarioServlet</display-name>
+		<servlet-name>UsuarioServlet</servlet-name>
+		<servlet-class>py.edu.ucsa.servlets.UsuarioServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>TorneoServlet</servlet-name>
 		<url-pattern>/TorneoServlet</url-pattern>
@@ -69,6 +76,10 @@
 	<servlet-mapping>
 		<servlet-name>CerrarSession</servlet-name>
 		<url-pattern>/CerrarSession</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UsuarioServlet</servlet-name>
+		<url-pattern>/UsuarioServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

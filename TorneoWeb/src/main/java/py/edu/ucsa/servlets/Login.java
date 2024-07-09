@@ -8,6 +8,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import py.edu.ucsa.ejb.dao.impl.UsuarioDaoImpl;
+import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 
 /**
@@ -40,18 +42,20 @@ public class Login extends HttpServlet {
 
 			username = request.getParameter("usuario");
 			password = request.getParameter("password");
+			
+			UsuarioDaoImpl uDao = new UsuarioDaoImpl();
 
-			Usuario usuario = DaoFactory.getUsuarioDao().validarUsuario(username, password);
+			UsuarioDTO usuario = uDao.validarUsuario(username, password);
 
 			if (Objects.isNull(usuario)) {
 				System.out.println("Inicio de sesión fallido: usuario--> " + username + " pass--> " + password);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
-				List<Rol> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
-				request.getSession().setAttribute("ROLES", roles);
-				System.out.println(roles);
-				request.getRequestDispatcher("menu.jsp").forward(request, response);
+				//List<Rol> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
+				//request.getSession().setAttribute("ROLES", roles);
+				//System.out.println(roles);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 
 		}

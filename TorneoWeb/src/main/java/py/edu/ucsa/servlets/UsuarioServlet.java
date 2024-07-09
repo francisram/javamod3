@@ -1,31 +1,23 @@
 package py.edu.ucsa.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
-import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import py.edu.ucsa.ejb.entities.Equipo;
-import py.edu.ucsa.ejb.services.EquipoEjbRemote;
-
 
 
 /**
- * Servlet implementation class EquipoServlet
+ * Servlet implementation class UsuarioServlet
  */
-public class EquipoServlet extends HttpServlet {
+public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB(mappedName = " java:global/TorneoEjbApp/EquipoEjbImpl!py.edu.ucsa.ejb.services.EquipoEjbRemote")
-	private EquipoEjbRemote equipoEbjbClient;
 
     /**
      * Default constructor. 
      */
-    public EquipoServlet() {
+    public UsuarioServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -34,9 +26,7 @@ public class EquipoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 List<Equipo> listaEquipos = (List<Equipo>) getServletContext().getAttribute("equipos");
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("equipos.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -24,7 +24,7 @@ import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 public class JugadorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@EJB(mappedName = "java:global/TorneoEjbApp/JugadorEjbImpl!py.edu.ucsa.ejb.session.JugadorEjbRemote")
+	@EJB(mappedName = " java:global/TorneoEjbApp/JugadorEjbImpl!py.edu.ucsa.ejb.services.JugadorEjbRemote")
 	private JugadorEjbRemote jugadorRemote;
 
 	/**
