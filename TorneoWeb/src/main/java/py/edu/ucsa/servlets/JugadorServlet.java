@@ -9,12 +9,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import jakarta.ejb.EJB;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import py.edu.ucsa.ejb.entities.Jugador;
+import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 
 
@@ -24,7 +23,7 @@ import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 public class JugadorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@EJB(mappedName = " java:global/TorneoEjbApp/JugadorEjbImpl!py.edu.ucsa.ejb.services.JugadorEjbRemote")
+	@EJB(mappedName = "java:global/TorneoEjbApp/JugadorEjbImpl!py.edu.ucsa.ejb.services.JugadorEjbRemote")
 	private JugadorEjbRemote jugadorRemote;
 
 	/**
@@ -40,39 +39,73 @@ public class JugadorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
-			ServletContext context = getServletContext();
+		//	ServletContext context = getServletContext();
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
-				@SuppressWarnings("unchecked")
-				List<Jugador> jugadores = (List<Jugador>) context.getAttribute("jugadores");
-				System.out.println(jugadores);
-				request.getSession().setAttribute("JUGADORES", jugadores);
+				List<JugadorDTO> jugadores;
+				
+				
+			 	JugadorDTO j= new JugadorDTO();
+	        	 j.setNroFicha(1234);
+	        	 j.setNombres("Francis");
+	        	 j.setApellidos("Lopez");
+	        	 j.setFechaNacimiento("1987/01/29");
+	        	 j.setNacionalidad("Paraguayo");
+	        	 j.setTelefono("0981123456");
+	        	 j.setEmail("test@example.com");
+	        	 
+	       try {
+			jugadorRemote.insert(j);
+		} catch (Exception e) {
+		    System.out.println("Error al tratar de insertar" + e.getMessage());
+		}
+				
+				
+				try {
+					jugadores = jugadorRemote.findAll();
+					System.out.println("paso sin solicitud json: " + jugadores);
+					request.getSession().setAttribute("JUGADORES", jugadores);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			//	request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 				request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 			}
+			
 			if ("JSON".equals(request.getParameter("FORMATO"))) {
 				response.setContentType("application/json");
 				System.out.println("llego pedido por json");
-				List<Jugador> jugadores = (List<Jugador>) context.getAttribute("jugadores");
-				 Gson gson = new Gson();
-	                JsonArray jsonArray = new JsonArray();
-	                for (Jugador jugador : jugadores) {
-	                    JsonObject jsonObject = new JsonObject();
-	                    jsonObject.addProperty("id", jugador.getId());
-	                    jsonObject.addProperty("nombres", jugador.getNombres());
-	                    jsonObject.addProperty("apellidos", jugador.getApellidos());
-	                    jsonObject.addProperty("equipo", jugador.getEquipo().getNombre());
-	                    jsonObject.addProperty("pais", jugador.getNacionalidad());
-	                    jsonArray.add(jsonObject);
-	                }
+			
+				try {
+					List<JugadorDTO> jugadores = jugadorRemote.findAll();
+					 Gson gson = new Gson();
+		                JsonArray jsonArray = new JsonArray();
+		                for (JugadorDTO jugador : jugadores) {
+		                    JsonObject jsonObject = new JsonObject();
+		                    jsonObject.addProperty("id", jugador.getId());
+		                    jsonObject.addProperty("nombres", jugador.getNombres());
+		                    jsonObject.addProperty("apellidos", jugador.getApellidos());
+		                    jsonObject.addProperty("equipo", jugador.getEquipo().getNombre());
+		                    jsonObject.addProperty("pais", jugador.getNacionalidad());
+		                    jsonArray.add(jsonObject);
+							response.getWriter().print(gson.toJson(jsonArray));
+		                }
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 	                //JsonObject jsonResponse = new JsonObject();
 	                //jsonResponse.add("data", jsonArray);
 
-	                response.getWriter().print(gson.toJson(jsonArray));
 			}
 			
+			
 		}
-		//request.getRequestDispatcher("jugadores.jsp").forward(request, response);
+		
+	//	request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 	}
 
 	/**

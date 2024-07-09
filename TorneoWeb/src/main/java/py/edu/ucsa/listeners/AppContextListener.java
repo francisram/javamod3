@@ -1,5 +1,7 @@
 package py.edu.ucsa.listeners;
 
+import java.util.List;
+
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
@@ -27,11 +29,11 @@ public class AppContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 		
-		
-		EquipoEjbImpl eImpl = new EquipoEjbImpl();
+		/*
+		//EquipoEjbImpl eImpl = new EquipoEjbImpl();
 		JugadorEjbImpl jImpl = new JugadorEjbImpl();
-		PartidoEjbImpl pImpl = new PartidoEjbImpl();
-		TorneoEjbImpl tImpl = new TorneoEjbImpl();
+		//PartidoEjbImpl pImpl = new PartidoEjbImpl();
+		//TorneoEjbImpl tImpl = new TorneoEjbImpl();
         JugadorDTO j = new JugadorDTO();
         j.setId(1L);
         j.setNombres("francis");
@@ -48,13 +50,22 @@ public class AppContextListener implements ServletContextListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		};
+		
+		try {
+			List<JugadorDTO> jugadores = jImpl.findAll();
+			sce.getServletContext().setAttribute("jugadores", jugadores);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		*/
         /*
         sce.getServletContext().setAttribute("equipos", eImpl.listar());
-        sce.getServletContext().setAttribute("jugadores", jImpl.listar());
         sce.getServletContext().setAttribute("partidos", pImpl.listar());
         sce.getServletContext().setAttribute("torneos", tImpl.listar());
         */
 		//ServletContextListener.super.contextInitialized(sce);
+		
 	}
 
 	@Override

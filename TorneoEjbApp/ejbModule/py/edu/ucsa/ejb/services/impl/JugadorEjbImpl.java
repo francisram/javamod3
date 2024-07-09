@@ -20,7 +20,7 @@ import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 /**
  * Session Bean implementation class JugadorEjbImpl
  */
-@Stateless(mappedName = "JugadorEJB")
+@Stateless(mappedName = "jugadorEJB")
 @WebService
 public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Inject
