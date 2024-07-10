@@ -39,18 +39,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- 
-				<c:forEach var="j" items="${JUGADORES}">
-					<tr>
-						<th scope="row"><c:out value="${j.id}"></c:out></th>
-						<td><c:out value="${j.nombres}"></c:out></td>
-						<td><c:out value="${j.apellidos}"></c:out></td>
-						<td><c:out value="${j.equipo.nombre}"></c:out></td>
-						<td><c:out value="${j.nacionalidad}"></c:out></td>
-						<td></td>
-					</tr>
-				</c:forEach>
-				-->
+
 			</tbody>
 		</table>
 
@@ -71,12 +60,12 @@
 						<form id="addForm">
 							<div class="mb-3">
 								<label for="nombre" class="form-label">Nombre del
-									Jugador</label> <input type="text" class="form-control" id="nombre"
+									Jugador *</label> <input type="text" class="form-control" id="nombre"
 									name="nombre" required>
 							</div>
 							<div class="mb-3">
 								<label for="apellido" class="form-label">Apellido del
-									Jugador</label> <input type="text" class="form-control" id="apellido"
+									Jugador *</label> <input type="text" class="form-control" id="apellido"
 									name="apellido" required>
 							</div>
 							<div class="mb-3">
@@ -85,7 +74,7 @@
 									name="fecNac">
 							</div>
 							<div class="mb-3">
-								<label for="ficNum" class="form-label">numero de Ficha</label> <input
+								<label for="ficNum" class="form-label">numero de Ficha *</label> <input
 									type="text" class="form-control" id="ficNum" name="ficNum"
 									required>
 							</div>
@@ -101,7 +90,7 @@
 								<label for="email" class="form-label">Email</label> <input
 									type="text" class="form-control" id="email" name="email">
 							</div>
-							<button type="button" class="btn btn-primary" id="saveButton">Guardar</button>
+							<button type="button" class="btn btn-primary" id="saveButton" onclick="registrar();">Guardar</button>
 						</form>
 					</div>
 				</div>
@@ -147,163 +136,45 @@
 		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 	<script>
-		/*
-			$(document)
-					.ready(
-							function() {
-								var table = $('#example')
-										.DataTable(
-												{
-													"ajax" : {
-														"url" : 'http://127.0.0.1:8080/TorneoWeb/JugadorServlet?ACCION=LISTAR&FORMATO=JSON',
-														"dataSrc" : "data"
-													},
-													"columns" : [
-															{
-																"data" : "id"
-															},
-															{
-																"data" : "nombres"
-															},
-															{
-																"data" : "apellidos"
-															},
-															{
-																"data" : "equipo"
-															},
-															{
-																"data" : "nacionalidad"
-															},
-															{
-																"data" : null,
-																"defaultContent" : '<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>'
-															} ]
-												});
 
-								// Configura el evento de búsqueda
-								$('#searchInput').on('keyup', function() {
-									table.search(this.value).draw();
-								});
-
-								// Manejo del botón guardar
-								$('#saveButton')
-										.on(
-												'click',
-												function() {
-													var nombre = $('#nombre').val();
-													var apellido = $('#apellido')
-															.val();
-													var fecNac = $('#fecNac').val();
-													var ficNum = $('#ficNum').val();
-													var pais = $('#pais').val();
-													var telefono = $('#telefono')
-															.val();
-													var email = $('#email').val();
-
-													if (nombre && apellido
-															&& ficNum) {
-														table.row.add({
-															"nombres" : nombre,
-															"apellidos" : apellido,
-															"equipo" : ficNum,
-															"nacionalidad" : pais
-														}).draw(false);
-
-														$('#addModal')
-																.modal('hide');
-														$('#addForm')[0].reset();
-													} else {
-														alert("Por favor, complete todos los campos.");
-													}
-												});
-
-								// Manejo del botón eliminar
-								var rowToDelete;
-								$('#example tbody')
-										.on(
-												'click',
-												'.delete-btn',
-												function() {
-													rowToDelete = table.row($(this)
-															.parents('tr'));
-													var data = rowToDelete.data();
-													$('#deleteTeamName').text(
-															data.nombres);
-												});
-
-								$('#confirmDeleteButton').on('click', function() {
-									rowToDelete.remove().draw(false);
-									$('#deleteModal').modal('hide');
-								});
-							});
-		 */
 		$(document)
 				.ready(
 						function() {
-							var table = $('#example')
-									.DataTable(
-											{
-												"ajax" : {
-													"url" : "http://127.0.0.1:8080/TorneoWeb/JugadorServlet?ACCION=LISTAR&FORMATO=JSON",
-													"dataSrc" : "",
-													 "dataSrc": function(json) {
-									                        console.log(json); // Imprime los datos recibidos en la consola
-									                        return json; // Asegúrate de devolver el array de objetos directamente
-									                    }
-												},
-												"columns" : [
-														{
-															"data" : "nombres"
-														},
-														{
-															"data" : "apellidos"
-														},
-														{
-															"data" : "equipo"
-														},
-														{
-															"data" : "pais"
-														},
-														{
-															"data" : null,
-															"defaultContent" : '<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>'
-														} ]
-											});
+							
+							var table = $('#example').DataTable({
+								 ajax: {
+							            url: 'JugadorServlet',
+							            type: 'POST',
+							            contentType: 'application/json',
+							            data: function(d) {
+							                return JSON.stringify({ accion : 'listar' });
+							            },
+							            dataSrc: ''
+							        },
+							        columns: [
+										{
+											data : 'nombres'
+										},
+										{
+											data : 'apellidos'
+										},
+										{
+											data : 'equipo'
+										},
+										{
+											data : 'pais'
+										},
+										{
+											data : null,
+											"defaultContent" : '<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>'
+										} ]
+						        });
+							
 
 							$('#searchInput').on('keyup', function() {
 								table.search(this.value).draw();
 							});
 
-							$('#saveButton')
-									.on(
-											'click',
-											function() {
-												var nombre = $('#nombre').val();
-												var apellido = $('#apellido')
-														.val();
-												var fecNac = $('#fecNac').val();
-												var ficNum = $('#ficNum').val();
-												var pais = $('#pais').val();
-												var telefono = $('#telefono')
-														.val();
-												var email = $('#email').val();
-
-												if (nombre && apellido
-														&& ficNum) {
-													table.row.add({
-														"nombres" : nombre,
-														"apellidos" : apellido,
-														"equipo" : ficNum,
-														"nacionalidad" : pais
-													}).draw(false);
-
-													$('#addModal')
-															.modal('hide');
-													$('#addForm')[0].reset();
-												} else {
-													alert("Por favor, complete todos los campos.");
-												}
-											});
 
 							var rowToDelete;
 							$('#example tbody')
@@ -323,6 +194,77 @@
 								$('#deleteModal').modal('hide');
 							});
 						});
+		
+		
+		function registrar() {
+
+			var nombre= $('#nombre').val();
+			var apellido = $('#apellido').val();
+			var ficha = $('#ficNum').val();
+			var fecnac = $('#fecNac').val();
+			var pais = $('#pais').val();
+			var telefono = $('#telefono').val();
+			var email = $('#email').val();
+
+			if (nombre && apellido && ficha) {
+				$
+						.ajax({
+							url : 'EquipoServlet',
+							type : 'POST',
+							contentType : 'application/json',
+							data : JSON.stringify({
+								nombre : nombre,
+								apellido : apellido,
+								ficha : ficha,
+								fecnac : fecnac,
+								pais : pais,
+								telefono : telefono,
+								email : email,
+								accion : 'inscribir'
+							}),
+							success : function(response) {
+								//console.log(response);
+								if (response.status === "error") {
+									Swal.fire({
+										icon : 'error',
+										title : 'Error',
+										text : response.message
+									});
+								} else {
+									Swal
+											.fire(
+													{
+														icon : 'success',
+														title : '¡Éxito!',
+														text : 'El jugador se ha registrado correctamente.'
+													}).then(function() {
+												$('#addModal').modal('hide');
+												$('#addForm')[0].reset();
+												location.reload();
+											});
+								}
+							},
+							error : function() {
+								// Mostrar SweetAlert de error
+								Swal
+										.fire({
+											icon : 'error',
+											title : 'Error',
+											text : 'Ocurrió un error al registrar el jugador. Inténtelo nuevamente.'
+										});
+							}
+						});
+			} else {
+				// Mostrar SweetAlert de advertencia
+				Swal.fire({
+					icon : 'warning',
+					title : 'Campos incompletos',
+					text : 'Por favor, complete todos los campos obligatorios.'
+				});
+			}
+		}
+		
+		
 	</script>
 
 </body>

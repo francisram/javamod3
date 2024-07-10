@@ -41,7 +41,7 @@
 			</thead>
 			<tbody>
 
-				<!-- Más filas de ejemplo -->
+
 			</tbody>
 		</table>
 
@@ -134,7 +134,7 @@
 			            { 
 			                data: 'nombre',
 			                render: function(data, type, row) {
-			                    return data ? data : ''; // Renderizar el valor o cadena vacía si es null o undefined
+			                    return data ? data : ''; 
 			                }
 			            },
 			            { 
@@ -178,14 +178,12 @@
 	</script>
 	<script>
 		function registrar() {
-			// Obtener los valores del formulario
+
 			var teamName = $('#teamName').val();
 			var slogan = $('#slogan').val();
 			var capitan = $('#capitan').val();
 
-			// Verificar que todos los campos estén llenos
 			if (teamName && slogan && capitan) {
-				// Realizar la solicitud AJAX
 				$
 						.ajax({
 							url : 'EquipoServlet',
@@ -198,8 +196,7 @@
 								accion : 'inscribir'
 							}),
 							success : function(response) {
-								// Mostrar SweetAlert de éxito
-								console.log(response);
+								//console.log(response);
 								if (response.status === "error") {
 									Swal.fire({
 										icon : 'error',
@@ -214,7 +211,6 @@
 														title : '¡Éxito!',
 														text : 'El equipo se ha registrado correctamente.'
 													}).then(function() {
-												// Cerrar el modal y resetear el formulario
 												$('#addModal').modal('hide');
 												$('#addForm')[0].reset();
 												location.reload();
