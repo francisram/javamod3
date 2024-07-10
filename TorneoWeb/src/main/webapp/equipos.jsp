@@ -119,60 +119,62 @@
 		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-							var table = $('#example').DataTable();
+		$(document).ready(function() {
+			 var table = $('#example').DataTable({
+				 ajax: {
+			            url: 'EquipoServlet',
+			            type: 'POST',
+			            contentType: 'application/json',
+			            data: function(d) {
+			                return JSON.stringify({ accion : 'listar' });
+			            },
+			            dataSrc: ''
+			        },
+			        columns: [
+			            { 
+			                data: 'nombre',
+			                render: function(data, type, row) {
+			                    return data ? data : ''; // Renderizar el valor o cadena vacía si es null o undefined
+			                }
+			            },
+			            { 
+			                data: 'slogan',
+			                render: function(data, type, row) {
+			                    return data ? data : '';
+			                }
+			            },
+			            { 
+			                data: 'capitan',
+			                render: function(data, type, row) {
+			                    return data ? data : '';
+			                }
+			            },
+			            { 
+			                data: null,
+			                render: function(data, type, row) {
+			                    return '<button class="delete-btn btn btn-danger">Eliminar</button>';
+			                },
+			                orderable: false
+			            }
+			        ]
+		        });
 
-							$('#searchInput').on('keyup', function() {
-								table.search(this.value).draw();
-							});
+			$('#searchInput').on('keyup', function() {
+				table.search(this.value).draw();
+			});
 
-							$('#saveButton')
-									.on(
-											'click',
-											function() {
-												var teamName = $('#teamName')
-														.val();
-												var slogan = $('#slogan').val();
-												var capitan = $('#capitan')
-														.val();
+			var rowToDelete;
+			$('#example tbody').on('click', '.delete-btn', function() {
+				rowToDelete = table.row($(this).parents('tr'));
+				var data = rowToDelete.data();
+				$('#deleteTeamName').text(data[0]);
+			});
 
-												if (teamName && slogan
-														&& capitan) {
-													table.row
-															.add(
-																	[
-																			teamName,
-																			slogan,
-																			capitan,
-																			'<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>' ])
-															.draw(false);
-
-													$('#addModal')
-															.modal('hide');
-													$('#addForm')[0].reset();
-												} else {
-													alert("Por favor, complete todos los campos.");
-												}
-											});
-
-							var rowToDelete;
-							$('#example tbody').on(
-									'click',
-									'.delete-btn',
-									function() {
-										rowToDelete = table.row($(this)
-												.parents('tr'));
-										var data = rowToDelete.data();
-										$('#deleteTeamName').text(data[0]);
-									});
-
-							$('#confirmDeleteButton').on('click', function() {
-								rowToDelete.remove().draw(false);
-								$('#deleteModal').modal('hide');
-							});
-						});
+			$('#confirmDeleteButton').on('click', function() {
+				rowToDelete.remove().draw(false);
+				$('#deleteModal').modal('hide');
+			});
+		});
 	</script>
 	<script>
 		function registrar() {
@@ -197,17 +199,27 @@
 							}),
 							success : function(response) {
 								// Mostrar SweetAlert de éxito
-								Swal
-										.fire(
-												{
-													icon : 'success',
-													title : '¡Éxito!',
-													text : 'El equipo se ha registrado correctamente.'
-												}).then(function() {
-											// Cerrar el modal y resetear el formulario
-											$('#addModal').modal('hide');
-											$('#addForm')[0].reset();
-										});
+								console.log(response);
+								if (response.status === "error") {
+									Swal.fire({
+										icon : 'error',
+										title : 'Error',
+										text : response.message
+									});
+								} else {
+									Swal
+											.fire(
+													{
+														icon : 'success',
+														title : '¡Éxito!',
+														text : 'El equipo se ha registrado correctamente.'
+													}).then(function() {
+												// Cerrar el modal y resetear el formulario
+												$('#addModal').modal('hide');
+												$('#addForm')[0].reset();
+												location.reload();
+											});
+								}
 							},
 							error : function() {
 								// Mostrar SweetAlert de error
