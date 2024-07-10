@@ -41,7 +41,7 @@ public class JugadorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		/*
 		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
 			// ServletContext context = getServletContext();
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
@@ -103,8 +103,10 @@ public class JugadorServlet extends HttpServlet {
 			}
 
 		}
+		*/
 
-		// request.getRequestDispatcher("jugadores.jsp").forward(request, response);
+		 request.getRequestDispatcher("jugadores.jsp").forward(request, response);
+		 
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class JugadorServlet extends HttpServlet {
 			System.out.println(accion);
 			// listar
 			if ("listar".equals(accion)) {
-				System.out.println("llego pedido de listar equipos");
+				System.out.println("llego pedido de listar jugadores");
 				List<JugadorDTO> jugadores = jugadorRemote.findAll();
 				System.out.println(jugadores.toString());
 				Gson gsonList = new Gson();
@@ -150,7 +152,7 @@ public class JugadorServlet extends HttpServlet {
 				jugador.setApellidos(jsonObject.get("apellido").getAsString());
 				jugador.setNroFicha(Integer.parseInt(jsonObject.get("ficha").getAsString()));
 				jugador.setEmail(jsonObject.get("email").getAsString());
-				jugador.setFechaNacimiento(jsonObject.get("fecnac").getAsString());
+				//jugador.setFechaNacimiento(jsonObject.get("fecnac").getAsString());
 				jugador.setTelefono(jsonObject.get("telefono").getAsString());
 				jugadorRemote.insert(jugador);
 				JsonObject responseJson = new JsonObject();

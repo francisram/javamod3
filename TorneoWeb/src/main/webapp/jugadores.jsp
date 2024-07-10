@@ -14,6 +14,7 @@
 <!-- DataTables CSS -->
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
@@ -153,16 +154,28 @@
 							        },
 							        columns: [
 										{
-											data : 'nombres'
+											data : 'nombres',
+											render: function(data, type, row) {
+							                    return data ? data : '';
+							                }
 										},
 										{
-											data : 'apellidos'
+											data : 'apellidos',
+											render: function(data, type, row) {
+							                    return data ? data : '';
+							                }
 										},
 										{
-											data : 'equipo'
+											data : 'equipo',
+											render: function(data, type, row) {
+							                    return data ? data : '';
+							                }
 										},
 										{
-											data : 'pais'
+											data : 'pais',
+											render: function(data, type, row) {
+							                    return data ? data : '';
+							                }
 										},
 										{
 											data : null,
@@ -209,7 +222,7 @@
 			if (nombre && apellido && ficha) {
 				$
 						.ajax({
-							url : 'EquipoServlet',
+							url : 'JugadorServlet',
 							type : 'POST',
 							contentType : 'application/json',
 							data : JSON.stringify({
