@@ -27,19 +27,19 @@ public class Jugador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "nombres")
+	@Column(name = "nombres", nullable = true)
 	private String nombres;
-	@Column(name = "apellidos")
+	@Column(name = "apellidos", nullable = true)
 	private String apellidos;
-	@Column(name = "fecha_nacimiento", columnDefinition = "DATE")
+	@Column(name = "fecha_nacimiento", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaNacimiento;
-	@Column(name = "nro_ficha")
+	@Column(name = "nro_ficha", nullable = true)
 	private int nroFicha;
-	@Column(name = "nacionalidad")
+	@Column(name = "nacionalidad", nullable = true)
 	private String nacionalidad;
-	@Column(name = "telefono")
+	@Column(name = "telefono", nullable = true)
 	private String telefono;
-	@Column(name = "email")
+	@Column(name = "email", nullable = true)
 	private String email;
 
 	@ManyToOne(optional = true)

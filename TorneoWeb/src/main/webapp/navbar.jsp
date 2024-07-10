@@ -35,6 +35,18 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="EquipoServlet">Gestion de Equipos</a></li>
 					</ul></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Partidos </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="PartidoServlet">Gestion de Partidos</a></li>
+					</ul></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Torneo </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="TorneoServlet">Gestion de Torneo</a></li>
+					</ul></li>
 
 			</ul>
 

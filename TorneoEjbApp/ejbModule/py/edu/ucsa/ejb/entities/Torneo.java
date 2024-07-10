@@ -22,15 +22,15 @@ public class Torneo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "anho")
+	@Column(name = "anho", nullable = true)
 	private String anho;
-	@Column(name = "nombre")
+	@Column(name = "nombre", nullable = true)
 	private String nombre;
-	@Column(name = "num_equipos")
+	@Column(name = "num_equipos", nullable = true)
 	private int numEquipos;
-	@Column(name = "fecha_inicio" , columnDefinition = "DATE")
+	@Column(name = "fecha_inicio" , columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaInicio;
-	@Column(name = "fecha_fin" , columnDefinition = "DATE")
+	@Column(name = "fecha_fin" , columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaFin;
 
 	

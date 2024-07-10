@@ -25,23 +25,23 @@ public class Partido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne()
-	@JoinColumn(name = "equipo_local")
+	@JoinColumn(name = "equipo_local", nullable = true)
 	private Equipo equipoLocal;
 	@ManyToOne()
-	@JoinColumn(name = "equipo_visitante")
+	@JoinColumn(name = "equipo_visitante", nullable = true)
 	private Equipo equipoVisitante;
 	@ManyToOne()
-	@JoinColumn(name = "torneo_id")
+	@JoinColumn(name = "torneo_id", nullable = true)
 	private Torneo torneo;
-	@Column(name = "fecha_partido", columnDefinition = "DATE")
+	@Column(name = "fecha_partido", columnDefinition = "DATE", nullable = true)
 	private LocalDate fecha;
-	@Column(name = "hora", columnDefinition = "	TIMESTAMP")
+	@Column(name = "hora", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDateTime  hora;
-	@Column(name = "goles_local")
+	@Column(name = "goles_local", nullable = true)
 	private int goleLocal;
-	@Column(name = "goles_visitante")
+	@Column(name = "goles_visitante", nullable = true)
 	private int goleVisitante;
-	@Column(name = "fecha_nro")
+	@Column(name = "fecha_nro", nullable = true)
 	private int fechaNro;
 	
 	public PartidoDTO toDTO() {

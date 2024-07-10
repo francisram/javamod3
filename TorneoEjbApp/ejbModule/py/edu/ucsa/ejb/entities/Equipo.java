@@ -26,12 +26,12 @@ public class Equipo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "nombre")
+	@Column(name = "nombre" , nullable = true)
 	private String nombre;
-	 @Column(name = "slogan")
+	 @Column(name = "slogan" , nullable = true)
 	private String slogan;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "capitan_id")
+	@JoinColumn(name = "capitan_id" , nullable = true)
 	private Jugador capitan;
 	@OneToMany(mappedBy = "equipo")
 	private List<Jugador> jugadores;
