@@ -50,7 +50,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Override
 	public JugadorDTO getById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return iDao.findById(id).toDTO();
 	}
 
 
@@ -58,7 +58,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Override
 	public void actualizar(JugadorDTO obj) {
 		// TODO Auto-generated method stub
-		
+		iDao.update(Jugador.ofDTO(obj));
 	}
 
 	@Override

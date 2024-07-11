@@ -211,13 +211,13 @@
 		
 		function registrar() {
 
-			var nombre= $('#nombre').val();
-			var apellido = $('#apellido').val();
-			var ficha = $('#ficNum').val();
-			var fecnac = $('#fecNac').val();
-			var pais = $('#pais').val();
-			var telefono = $('#telefono').val();
-			var email = $('#email').val();
+			let nombre= $('#nombre').val();
+			let apellido = $('#apellido').val();
+			let ficha = $('#ficNum').val();
+			let fecnac = $('#fecNac').val();
+			let pais = $('#pais').val();
+			let telefono = $('#telefono').val();
+			let email = $('#email').val();
 
 			if (nombre && apellido && ficha) {
 				$

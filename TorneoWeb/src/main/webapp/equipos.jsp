@@ -50,7 +50,8 @@
 
 		<!-- Modal Agregar -->
 		<div class="modal fade" id="addModal" tabindex="-1"
-			aria-labelledby="addModalLabel" aria-hidden="true">
+			aria-labelledby="addModalLabel" aria-hidden="true"
+			onfocus="cargarJugadores();">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -69,8 +70,10 @@
 									type="text" class="form-control" id="slogan">
 							</div>
 							<div class="mb-3">
-								<label for="capitan" class="form-label">Capitán</label> <input
-									type="text" class="form-control" id="capitan">
+								<label for="jugadores" class="form-label">Jugadores</label>
+								<div id="jugadores" class="form-control" style="height: auto;">
+									<!-- Aquí se cargará la lista de jugadores -->
+								</div>
 							</div>
 							<button type="button" class="btn btn-primary" id="saveButton"
 								onclick="registrar();">Guardar</button>
@@ -119,64 +122,83 @@
 		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 	<script>
-		$(document).ready(function() {
-			 var table = $('#example').DataTable({
-				 ajax: {
-			            url: 'EquipoServlet',
-			            type: 'POST',
-			            contentType: 'application/json',
-			            data: function(d) {
-			                return JSON.stringify({ accion : 'listar' });
-			            },
-			            dataSrc: ''
-			        },
-			        columns: [
-			            { 
-			                data: 'nombre',
-			                render: function(data, type, row) {
-			                    return data ? data : ''; 
-			                }
-			            },
-			            { 
-			                data: 'slogan',
-			                render: function(data, type, row) {
-			                    return data ? data : '';
-			                }
-			            },
-			            { 
-			                data: 'capitan',
-			                render: function(data, type, row) {
-			                    return data ? data : '';
-			                }
-			            },
-			            { 
-			                data: null,
-			                render: function(data, type, row) {
-			                    return '<button class="delete-btn btn btn-danger">Eliminar</button>';
-			                },
-			                orderable: false
-			            }
-			        ]
-		        });
+		$(document)
+				.ready(
+						function() {
+							var table = $('#example')
+									.DataTable(
+											{
+												ajax : {
+													url : 'EquipoServlet',
+													type : 'POST',
+													contentType : 'application/json',
+													data : function(d) {
+														return JSON.stringify({
+															accion : 'listar'
+														});
+													},
+													dataSrc : ''
+												},
+												columns : [
+														{
+															data : 'nombre',
+															render : function(
+																	data, type,
+																	row) {
+																return data ? data
+																		: '';
+															}
+														},
+														{
+															data : 'slogan',
+															render : function(
+																	data, type,
+																	row) {
+																return data ? data
+																		: '';
+															}
+														},
+														{
+															data : 'capitan',
+															render : function(
+																	data, type,
+																	row) {
+																return data ? data
+																		: '';
+															}
+														},
+														{
+															data : null,
+															render : function(
+																	data, type,
+																	row) {
+																return '<button class="delete-btn btn btn-danger">Eliminar</button>';
+															},
+															orderable : false
+														} ]
+											});
 
-			$('#searchInput').on('keyup', function() {
-				table.search(this.value).draw();
-			});
+							$('#searchInput').on('keyup', function() {
+								table.search(this.value).draw();
+							});
 
-			var rowToDelete;
-			$('#example tbody').on('click', '.delete-btn', function() {
-				rowToDelete = table.row($(this).parents('tr'));
-				var data = rowToDelete.data();
-				$('#deleteTeamName').text(data[0]);
-			});
+							var rowToDelete;
+							$('#example tbody').on(
+									'click',
+									'.delete-btn',
+									function() {
+										rowToDelete = table.row($(this)
+												.parents('tr'));
+										var data = rowToDelete.data();
+										$('#deleteTeamName').text(data[0]);
+									});
 
-			$('#confirmDeleteButton').on('click', function() {
-				rowToDelete.remove().draw(false);
-				$('#deleteModal').modal('hide');
-			});
-		});
-	</script>
-	<script>
+							$('#confirmDeleteButton').on('click', function() {
+								rowToDelete.remove().draw(false);
+								$('#deleteModal').modal('hide');
+							});
+						});
+
 		function registrar() {
 
 			var teamName = $('#teamName').val();
@@ -218,7 +240,6 @@
 								}
 							},
 							error : function() {
-								// Mostrar SweetAlert de error
 								Swal
 										.fire({
 											icon : 'error',
@@ -228,7 +249,6 @@
 							}
 						});
 			} else {
-				// Mostrar SweetAlert de advertencia
 				Swal.fire({
 					icon : 'warning',
 					title : 'Campos incompletos',
@@ -256,6 +276,32 @@
 				$('#deleteModal').modal('hide');
 			});
 		});
+		
+		
+		function cargarJugadores() {
+		    $.ajax({
+		        url: 'JugadorServlet',
+		        type: 'POST',
+		        contentType: 'application/json',
+		        data: JSON.stringify({ accion: 'listar' }),
+		        success: function(data) {
+		            const jugadoresDiv = $('#jugadores');
+		            jugadoresDiv.empty(); 
+					console.log(data);
+
+		        },
+		        error: function(xhr, status, error) {
+		            console.error('Error al cargar los jugadores:', error);
+		        }
+		    });
+		}
+/*
+		$('#addModal').on('click', function() {
+		    cargarJugadores();
+		});
+
+		*/
+		
 	</script>
 
 </body>
