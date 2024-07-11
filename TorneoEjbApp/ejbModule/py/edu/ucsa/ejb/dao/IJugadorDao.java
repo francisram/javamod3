@@ -42,5 +42,6 @@ public interface IJugadorDao extends IGenericDao<Long, Jugador> {
 	}
 
 	public Iterable<Jugador> findByNombre(String nombre, boolean isNull);
+	public Iterable<Jugador> findJugadoresSinEquipo() ;
 	
 }

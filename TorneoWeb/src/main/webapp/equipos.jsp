@@ -283,11 +283,32 @@
 		        url: 'JugadorServlet',
 		        type: 'POST',
 		        contentType: 'application/json',
-		        data: JSON.stringify({ accion: 'listar' }),
+		        data: JSON.stringify({ accion: 'listarLosSinEquipo' }),
 		        success: function(data) {
 		            const jugadoresDiv = $('#jugadores');
 		            jugadoresDiv.empty(); 
 					console.log(data);
+					
+					  data.forEach(jugador => {
+			                const jugadorCheckbox = $('<input>', {
+			                    type: 'checkbox',
+			                    id: 'jugador_' + jugador.id,
+			                    value: jugador.id
+			                });
+
+			                const jugadorLabel = $('<label>', {
+			                    for: 'jugador_' + jugador.id,
+			                    text: `${jugador.nombres} ${jugador.apellidos}` // Mostrar nombres y apellidos
+			                });
+
+			                const jugadorDiv = $('<div>', {
+			                    class: 'form-check'
+			                });
+
+			                jugadorDiv.append(jugadorCheckbox);
+			                jugadorDiv.append(jugadorLabel);
+			                jugadoresDiv.append(jugadorDiv);
+			            });
 
 		        },
 		        error: function(xhr, status, error) {

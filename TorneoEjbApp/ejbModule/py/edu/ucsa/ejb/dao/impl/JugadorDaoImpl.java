@@ -33,4 +33,13 @@ public class JugadorDaoImpl extends AbstractDao<Long, Jugador>  implements IJuga
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Iterable<Jugador> findJugadoresSinEquipo() {
+		
+		//Query query = this.entityManager.createQuery(hql, Jugador.class);
+		Query q = this.entityManager.createNamedQuery("Jugador.findJugadoresSinEquipo");
+		return q.getResultList();
+	}
+	
 }

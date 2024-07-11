@@ -143,6 +143,20 @@ public class JugadorServlet extends HttpServlet {
 				out.write(jugadoresJson);
 				out.flush();
 			}
+			if ("listarLosSinEquipo".equals(accion)) {
+				System.out.println("llego pedido de listar jugadores");
+				List<JugadorDTO> jugadores = jugadorRemote.findJugadoresSinEquipo();
+				System.out.println(jugadores.toString());
+				Gson gsonList = new Gson();
+				String jugadoresJson = gsonList.toJson(jugadores);
+				// Establecer el tipo de contenido de la respuesta a JSON
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				// Escribir el JSON en la respuesta
+				PrintWriter out = response.getWriter();
+				out.write(jugadoresJson);
+				out.flush();
+			}
 
 			// registrar
 			if ("inscribir".equals(accion)) {

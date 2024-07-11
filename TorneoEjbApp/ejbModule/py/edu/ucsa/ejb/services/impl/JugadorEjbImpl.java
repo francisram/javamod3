@@ -79,6 +79,12 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 		return jugadores.map(Jugador::toListaBusqueda).toList();
 	}
 
+	@Override
+	public List<JugadorDTO> findJugadoresSinEquipo() throws Exception {
+		Stream<Jugador> jugadores = StreamSupport.stream(iDao.findJugadoresSinEquipo().spliterator(), false) ;
+		return jugadores.map(Jugador::toListaDTO).toList();
+	}
+
 
 
 

@@ -23,6 +23,7 @@ import py.edu.ucsa.ejb.dto.JugadorDTO;
 @Entity
 @Table(name = "jugadores")
 @NamedQuery(name = "Jugador.findAll", query = "SELECT j FROM Jugador j ORDER BY j.nombres ASC")
+@NamedQuery(name = "Jugador.findJugadoresSinEquipo", query = "SELECT j FROM Jugador j WHERE j.equipo is NULL")
 public class Jugador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
