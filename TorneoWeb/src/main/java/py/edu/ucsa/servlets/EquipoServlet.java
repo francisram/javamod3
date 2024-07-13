@@ -3,9 +3,11 @@ package py.edu.ucsa.servlets;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import jakarta.ejb.EJB;
@@ -14,7 +16,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
+import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.services.EquipoEjbRemote;
+import py.edu.ucsa.ejb.services.JugadorEjbRemote;
 
 /**
  * Servlet implementation class EquipoServlet
@@ -24,6 +28,9 @@ public class EquipoServlet extends HttpServlet {
 
 	@EJB(mappedName = "java:global/TorneoEjbApp/EquipoEjbImpl!py.edu.ucsa.ejb.services.EquipoEjbRemote")
 	private EquipoEjbRemote equipoEbjbClient;
+	
+	@EJB(mappedName = "java:global/TorneoEjbApp/JugadorEjbImpl!py.edu.ucsa.ejb.services.JugadorEjbRemote")
+	private JugadorEjbRemote jugadorRemote;
 
 	/**
 	 * Default constructor.
@@ -63,9 +70,9 @@ public class EquipoServlet extends HttpServlet {
 			System.out.println(accion);
 			// listar
 			if ("listar".equals(accion)) {
-				System.out.println("llego pedido de listar equipos");
+				//System.out.println("llego pedido de listar equipos");
 				List<EquipoDTO> equipos = equipoEbjbClient.findAll();
-				System.out.println(equipos.toString());
+				//System.out.println(equipos.toString());
 				Gson gsonList = new Gson();
 				String equiposJson = gsonList.toJson(equipos);
 				// Establecer el tipo de contenido de la respuesta a JSON
@@ -82,10 +89,15 @@ public class EquipoServlet extends HttpServlet {
 				EquipoDTO equipo = new EquipoDTO();
 				equipo.setNombre(jsonObject.get("teamName").getAsString());
 				equipo.setSlogan(jsonObject.get("slogan").getAsString());
-				// JugadorDTO j = new JugadorDTO();
-				// j.setNombres(jsonObject.get("capitan").getAsString());
-				// j.setId(null);
-				// equipo.setCapitan(j);
+				//jsonObject.getAsJsonArray("jugadores");
+				JsonArray jugadoresArray = jsonObject.getAsJsonArray("jugadores");
+				List<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();
+				for (int i = 0; i < jugadoresArray.size(); i++) {
+					JugadorDTO j = 	jugadorRemote.getById(jugadoresArray.get(i).getAsLong());
+					jugadores.add(j);
+					//System.out.println(j);
+				}	
+				equipo.setJugadores(jugadores);
 				equipoEbjbClient.insert(equipo);
 				JsonObject responseJson = new JsonObject();
 				responseJson.addProperty("status", "ok");

@@ -2,6 +2,7 @@ package py.edu.ucsa.ejb.services.impl;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -12,6 +13,7 @@ import jakarta.transaction.Transactional;
 import py.edu.ucsa.ejb.dao.IEquipoDao;
 import py.edu.ucsa.ejb.dao.IJugadorDao;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
+import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 import py.edu.ucsa.ejb.services.EquipoEjbRemote;
@@ -46,13 +48,23 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 		}
 		
 		Equipo equipo = Equipo.ofDTO(dto);
+		//System.out.println("se registra equipo");
 		equipo = eDao.insert(equipo);
+		List<Jugador> jugadores = equipo.getJugadores();
+		System.out.println("lista de jugadores");
+		//jugadores.forEach((x)->System.out.println(x));
 		
-		Jugador eJugador;
-		for (Jugador jugador : equipo.getJugadores()) {
-			eJugador = jDao.findById(jugador.getId());
-			eJugador.setEquipo(equipo);
-			jDao.update(eJugador);
+		for (Jugador jugador : jugadores) {
+			//Jugador eJugador;
+			Jugador j = jDao.findById(jugador.getId());
+			//eJugador = jDao.findById(jugador.getId());
+			if(Objects.isNull(j)) {
+				System.out.println("no se encontro al jugador");
+			}else {
+				System.out.println("jugador encontrado" + j.toString());
+			}
+			j.setEquipo(equipo);
+			jDao.update(j);
 		}
 		
 	}

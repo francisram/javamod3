@@ -127,7 +127,7 @@ public class JugadorServlet extends HttpServlet {
 			Gson gson = new Gson();
 			JsonObject jsonObject = gson.fromJson(sb.toString(), JsonObject.class);
 			String accion = jsonObject.get("accion").getAsString();
-			System.out.println(accion);
+			//System.out.println(accion);
 			// listar
 			if ("listar".equals(accion)) {
 				System.out.println("llego pedido de listar jugadores");
@@ -144,7 +144,7 @@ public class JugadorServlet extends HttpServlet {
 				out.flush();
 			}
 			if ("listarLosSinEquipo".equals(accion)) {
-				System.out.println("llego pedido de listar jugadores");
+				//System.out.println("llego pedido de listar jugadores");
 				List<JugadorDTO> jugadores = jugadorRemote.findJugadoresSinEquipo();
 				System.out.println(jugadores.toString());
 				Gson gsonList = new Gson();

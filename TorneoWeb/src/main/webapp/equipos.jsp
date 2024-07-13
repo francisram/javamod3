@@ -203,9 +203,13 @@
 
 			var teamName = $('#teamName').val();
 			var slogan = $('#slogan').val();
-			var capitan = $('#capitan').val();
+			var jugadoresSeleccionados = [];
+			
+			  $('#jugadores input[type="checkbox"]:checked').each(function() {
+			        jugadoresSeleccionados.push($(this).val());
+			    });
 
-			if (teamName && slogan && capitan) {
+			if (teamName && slogan && jugadoresSeleccionados.length > 0) {
 				$
 						.ajax({
 							url : 'EquipoServlet',
@@ -214,7 +218,7 @@
 							data : JSON.stringify({
 								teamName : teamName,
 								slogan : slogan,
-								capitan : capitan,
+								jugadores: jugadoresSeleccionados,
 								accion : 'inscribir'
 							}),
 							success : function(response) {
@@ -287,28 +291,18 @@
 		        success: function(data) {
 		            const jugadoresDiv = $('#jugadores');
 		            jugadoresDiv.empty(); 
-					console.log(data);
-					
-					  data.forEach(jugador => {
-			                const jugadorCheckbox = $('<input>', {
-			                    type: 'checkbox',
-			                    id: 'jugador_' + jugador.id,
-			                    value: jugador.id
-			                });
+					  
+		            data.forEach(function(jugador) {
+		                console.log(jugador); // Para verificar los datos en la consola
 
-			                const jugadorLabel = $('<label>', {
-			                    for: 'jugador_' + jugador.id,
-			                    text: `${jugador.nombres} ${jugador.apellidos}` // Mostrar nombres y apellidos
-			                });
+		                var jugadorHTML = 
+		                    '<div class="form-check">' +
+		                        '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">' +
+		                        '<label for="jugador_' + jugador.id + '" class="form-check-label">' + jugador.nombres + ' ' + jugador.apellidos + '</label>' +
+		                    '</div>';
 
-			                const jugadorDiv = $('<div>', {
-			                    class: 'form-check'
-			                });
-
-			                jugadorDiv.append(jugadorCheckbox);
-			                jugadorDiv.append(jugadorLabel);
-			                jugadoresDiv.append(jugadorDiv);
-			            });
+		                jugadoresDiv.append(jugadorHTML);
+		            });
 
 		        },
 		        error: function(xhr, status, error) {
@@ -316,12 +310,7 @@
 		        }
 		    });
 		}
-/*
-		$('#addModal').on('click', function() {
-		    cargarJugadores();
-		});
 
-		*/
 		
 	</script>
 
