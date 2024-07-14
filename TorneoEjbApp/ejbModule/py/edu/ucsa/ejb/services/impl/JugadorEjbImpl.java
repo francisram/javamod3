@@ -64,7 +64,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Override
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
-		
+		iDao.deleteById(id);
 	}
 
 	@Override

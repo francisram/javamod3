@@ -186,7 +186,7 @@ public class Jugador {
 		entity.setNombres(dto.getNombres());
 		entity.setApellidos(dto.getApellidos());
 		if(!Objects.isNull(dto.getFechaNacimiento())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			entity.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento(),dtf));
 		}
 		entity.setNacionalidad(dto.getNacionalidad());

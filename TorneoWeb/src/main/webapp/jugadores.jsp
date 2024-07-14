@@ -118,7 +118,7 @@
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Cancelar</button>
 						<button type="button" class="btn btn-danger"
-							id="confirmDeleteButton">Eliminar</button>
+							id="confirmDeleteButton" onclick="eliminar(this);">Eliminar</button>
 					</div>
 				</div>
 			</div>
@@ -198,14 +198,10 @@
 												rowToDelete = table.row($(this)
 														.parents('tr'));
 												var data = rowToDelete.data();
-												$('#deleteTeamName').text(
-														data.nombres);
+												//console.log(data);
+												$('#delJugNom').text('¿Estás seguro de que deseas eliminar a ' + data.nombres + ' ' + data.apellidos + '?');
 											});
 
-							$('#confirmDeleteButton').on('click', function() {
-								rowToDelete.remove().draw(false);
-								$('#deleteModal').modal('hide');
-							});
 						});
 		
 		
@@ -273,6 +269,63 @@
 					icon : 'warning',
 					title : 'Campos incompletos',
 					text : 'Por favor, complete todos los campos obligatorios.'
+				});
+			}
+		}
+		
+		
+		function eliminar(x) {
+
+			let valor = x;
+
+			console.log(valor);
+
+			if (valor) {
+				$.ajax({
+							url : 'JugadorServlet',
+							type : 'POST',
+							contentType : 'application/json',
+							data : JSON.stringify({
+								id : valor,
+								accion : 'borrar'
+							}),
+							success : function(response) {
+								//console.log(response);
+								if (response.status === "error") {
+									Swal.fire({
+										icon : 'error',
+										title : 'Error',
+										text : response.message
+									});
+								} else {
+									Swal
+											.fire(
+													{
+														icon : 'success',
+														title : '¡Éxito!',
+														text : 'Eliminado correctamente.'
+													}).then(function() {
+												$('#addModal').modal('hide');
+												$('#addForm')[0].reset();
+												location.reload();
+											});
+								}
+							},
+							error : function() {
+								Swal
+										.fire({
+											icon : 'error',
+											title : 'Error',
+											text : 'Ocurrió un error al borrar el jugador. Inténtelo nuevamente.'
+										});
+							}
+						});
+			} else {
+				// Mostrar SweetAlert de advertencia
+				Swal.fire({
+					icon : 'warning',
+					title : 'No se obtuvo el id a borrar',
+					text : 'Por favor, contacte con soporte'
 				});
 			}
 		}

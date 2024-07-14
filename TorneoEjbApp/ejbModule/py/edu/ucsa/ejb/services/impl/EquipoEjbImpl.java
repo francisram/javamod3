@@ -78,7 +78,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	@Override
 	public EquipoDTO getById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return eDao.findById(id).toDTO();
 	}
 
 
@@ -91,7 +91,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	@Override
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
-		
+		eDao.deleteById(id);  
 	}
 
 	@Override
