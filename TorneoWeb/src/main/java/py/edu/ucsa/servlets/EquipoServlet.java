@@ -89,6 +89,9 @@ public class EquipoServlet extends HttpServlet {
 				EquipoDTO equipo = new EquipoDTO();
 				equipo.setNombre(jsonObject.get("teamName").getAsString());
 				equipo.setSlogan(jsonObject.get("slogan").getAsString());
+				JugadorDTO capitan = new JugadorDTO();
+				capitan.setId(jsonObject.get("capitan").getAsLong());
+				equipo.setCapitan(capitan);
 				//jsonObject.getAsJsonArray("jugadores");
 				JsonArray jugadoresArray = jsonObject.getAsJsonArray("jugadores");
 				List<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();

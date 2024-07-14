@@ -201,9 +201,10 @@
 
 		function registrar() {
 
-			var teamName = $('#teamName').val();
-			var slogan = $('#slogan').val();
-			var jugadoresSeleccionados = [];
+			let teamName = $('#teamName').val();
+			let slogan = $('#slogan').val();
+			let jugadoresSeleccionados = [];
+			let capitan = [];
 			
 			  $('#jugadores input[type="checkbox"]:checked').each(function() {
 			        jugadoresSeleccionados.push($(this).val());
@@ -296,10 +297,20 @@
 		                console.log(jugador); // Para verificar los datos en la consola
 
 		                var jugadorHTML = 
-		                    '<div class="form-check">' +
-		                        '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">' +
-		                        '<label for="jugador_' + jugador.id + '" class="form-check-label">' + jugador.nombres + ' ' + jugador.apellidos + '</label>' +
-		                    '</div>';
+		                	'<div class="row">' +
+			                	'<div class="col">' +
+				                    '<div class="form-check">' +
+				                        '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">' +
+				                        '<label for="jugador_' + jugador.id + '" class="form-check-label">' + jugador.nombres + ' ' + jugador.apellidos + '</label>' +
+				                    '</div>'+
+				                 '</div>'+
+				                 '<div class="col">' +
+				                    '<div class="form-check">' +
+				                        '<input type="radio" id="jugador_' + jugador.id + '"  name="capitan" class="form-check-input">' +
+				                        '<label for="capitan_' + jugador.id + '" class="form-check-label">sera&acute; capit&aacute;n</label>' +
+			                    	'</div>'+
+			                    '</div>'+
+	                    	'</div>';
 
 		                jugadoresDiv.append(jugadorHTML);
 		            });

@@ -118,7 +118,7 @@
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Cancelar</button>
 						<button type="button" class="btn btn-danger"
-							id="confirmDeleteButton" onclick="eliminar(this);">Eliminar</button>
+							id="confirmDeleteButton" >Eliminar</button>
 					</div>
 				</div>
 			</div>
@@ -178,8 +178,10 @@
 							                }
 										},
 										{
-											data : null,
-											"defaultContent" : '<button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>'
+											 data: null,
+								                render: function(data, type, row) {
+								                    return '<button type="button" class="btn btn-danger btn-sm delete-btn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>';
+								                }
 										} ]
 						        });
 							
@@ -200,6 +202,7 @@
 												var data = rowToDelete.data();
 												//console.log(data);
 												$('#delJugNom').text('¿Estás seguro de que deseas eliminar a ' + data.nombres + ' ' + data.apellidos + '?');
+												$('#confirmDeleteButton').attr('onclick', 'eliminar(' + data.id + ');');
 											});
 
 						});
@@ -277,9 +280,7 @@
 		function eliminar(x) {
 
 			let valor = x;
-
-			console.log(valor);
-
+			//console.log(valor);
 			if (valor) {
 				$.ajax({
 							url : 'JugadorServlet',

@@ -1,6 +1,7 @@
 package py.edu.ucsa.servlets;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -41,69 +42,6 @@ public class JugadorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
-			// ServletContext context = getServletContext();
-			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
-				List<JugadorDTO> jugadores;
-
-				JugadorDTO j = new JugadorDTO();
-				j.setNroFicha(1234);
-				j.setNombres("Francis");
-				j.setApellidos("Lopez");
-				j.setFechaNacimiento("1987/01/29");
-				j.setNacionalidad("Paraguayo");
-				j.setTelefono("0981123456");
-				j.setEmail("test@example.com");
-
-				try {
-					jugadorRemote.insert(j);
-				} catch (Exception e) {
-					System.out.println("Error al tratar de insertar" + e.getMessage());
-				}
-
-				try {
-					jugadores = jugadorRemote.findAll();
-					System.out.println("paso sin solicitud json: " + jugadores);
-					request.getSession().setAttribute("JUGADORES", jugadores);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				// request.getRequestDispatcher("jugadores.jsp").forward(request, response);
-				request.getRequestDispatcher("jugadores.jsp").forward(request, response);
-			}
-
-			if ("JSON".equals(request.getParameter("FORMATO"))) {
-				response.setContentType("application/json");
-				System.out.println("llego pedido por json");
-
-				try {
-					List<JugadorDTO> jugadores = jugadorRemote.findAll();
-					Gson gson = new Gson();
-					JsonArray jsonArray = new JsonArray();
-					for (JugadorDTO jugador : jugadores) {
-						JsonObject jsonObject = new JsonObject();
-						jsonObject.addProperty("id", jugador.getId());
-						jsonObject.addProperty("nombres", jugador.getNombres());
-						jsonObject.addProperty("apellidos", jugador.getApellidos());
-						jsonObject.addProperty("equipo", jugador.getEquipo().getNombre());
-						jsonObject.addProperty("pais", jugador.getNacionalidad());
-						jsonArray.add(jsonObject);
-						response.getWriter().print(gson.toJson(jsonArray));
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				// JsonObject jsonResponse = new JsonObject();
-				// jsonResponse.add("data", jsonArray);
-
-			}
-
-		}
-		*/
 
 		 request.getRequestDispatcher("jugadores.jsp").forward(request, response);
 		 
@@ -170,6 +108,19 @@ public class JugadorServlet extends HttpServlet {
 				jugador.setTelefono(jsonObject.get("telefono").getAsString());
 				jugador.setNacionalidad(jsonObject.get("pais").getAsString());
 				jugadorRemote.insert(jugador);
+				JsonObject responseJson = new JsonObject();
+				responseJson.addProperty("status", "ok");
+				// Enviar la respuesta
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(responseJson.toString());
+				// request.getRequestDispatcher("equipos.jsp").forward(request, response);
+			}
+			if ("borrar".equals(accion)) {
+				JugadorDTO jugador = new JugadorDTO();
+				Long id = jsonObject.get("id").getAsLong();
+				System.out.println(id);
+				jugadorRemote.eliminar(id);
 				JsonObject responseJson = new JsonObject();
 				responseJson.addProperty("status", "ok");
 				// Enviar la respuesta
