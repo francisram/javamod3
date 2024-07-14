@@ -69,11 +69,27 @@
 								<label for="slogan" class="form-label">Slogan</label> <input
 									type="text" class="form-control" id="slogan">
 							</div>
+							<!-- 
 							<div class="mb-3">
 								<label for="jugadores" class="form-label">Jugadores</label>
 								<div id="jugadores" class="form-control" style="height: auto;">
-									<!-- Aquí se cargará la lista de jugadores -->
+									<!-- Aquí se cargará la lista de jugadores 
 								</div>
+							</div>
+							-->
+							<div class="mb-3">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th scope="col">Jugador</th>
+											<th scope="col">Seleccionar</th>
+											<th scope="col">Capitán</th>
+										</tr>
+									</thead>
+									<tbody id="jugadoresTableBody">
+										<!-- Las filas de los jugadores se añadirán aquí -->
+									</tbody>
+								</table>
 							</div>
 							<button type="button" class="btn btn-primary" id="saveButton"
 								onclick="registrar();">Guardar</button>
@@ -204,11 +220,11 @@
 			let teamName = $('#teamName').val();
 			let slogan = $('#slogan').val();
 			let jugadoresSeleccionados = [];
-			let capitan = [];
-			
-			  $('#jugadores input[type="checkbox"]:checked').each(function() {
-			        jugadoresSeleccionados.push($(this).val());
-			    });
+			let capitan = $('input[name="capitan"]:checked').val();
+
+			$('#jugadoresTableBody input[type="checkbox"]:checked').each(function() {
+				jugadoresSeleccionados.push($(this).val());
+			});
 
 			if (teamName && slogan && jugadoresSeleccionados.length > 0) {
 				$
@@ -219,7 +235,8 @@
 							data : JSON.stringify({
 								teamName : teamName,
 								slogan : slogan,
-								jugadores: jugadoresSeleccionados,
+								capitan: capitan,
+								jugadores : jugadoresSeleccionados,
 								accion : 'inscribir'
 							}),
 							success : function(response) {
@@ -281,48 +298,82 @@
 				$('#deleteModal').modal('hide');
 			});
 		});
-		
-		
+
 		function cargarJugadores() {
-		    $.ajax({
-		        url: 'JugadorServlet',
-		        type: 'POST',
-		        contentType: 'application/json',
-		        data: JSON.stringify({ accion: 'listarLosSinEquipo' }),
-		        success: function(data) {
-		            const jugadoresDiv = $('#jugadores');
-		            jugadoresDiv.empty(); 
-					  
-		            data.forEach(function(jugador) {
-		                console.log(jugador); // Para verificar los datos en la consola
+			$
+					.ajax({
+						url : 'JugadorServlet',
+						type : 'POST',
+						contentType : 'application/json',
+						data : JSON.stringify({
+							accion : 'listarLosSinEquipo'
+						}),
+						success : function(data) {
+							//const jugadoresDiv = $('#jugadores');
+							const jugadoresTableBody = $('#jugadoresTableBody');
+							/*
+							jugadoresDiv.empty();
 
-		                var jugadorHTML = 
-		                	'<div class="row">' +
-			                	'<div class="col">' +
-				                    '<div class="form-check">' +
-				                        '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">' +
-				                        '<label for="jugador_' + jugador.id + '" class="form-check-label">' + jugador.nombres + ' ' + jugador.apellidos + '</label>' +
-				                    '</div>'+
-				                 '</div>'+
-				                 '<div class="col">' +
-				                    '<div class="form-check">' +
-				                        '<input type="radio" id="jugador_' + jugador.id + '"  name="capitan" class="form-check-input">' +
-				                        '<label for="capitan_' + jugador.id + '" class="form-check-label">sera&acute; capit&aacute;n</label>' +
-			                    	'</div>'+
-			                    '</div>'+
-	                    	'</div>';
+							data
+									.forEach(function(jugador) {
+										console.log(jugador); // Para verificar los datos en la consola
 
-		                jugadoresDiv.append(jugadorHTML);
-		            });
+										var jugadorHTML = '<div class="row">'
+												+ '<div class="col">'
+												+ '<div class="form-check">'
+												+ '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">'
+												+ '<label for="jugador_' + jugador.id + '" class="form-check-label">'
+												+ jugador.nombres
+												+ ' '
+												+ jugador.apellidos
+												+ '</label>'
+												+ '</div>'
+												+ '</div>'
+												+ '<div class="col">'
+												+ '<div class="form-check">'
+												+ '<input type="radio" id="jugador_' + jugador.id + '"  name="capitan" class="form-check-input">'
+												+ '<label for="capitan_' + jugador.id + '" class="form-check-label">sera&acute; capit&aacute;n</label>'
+												+ '</div>' + '</div>'
+												+ '</div>';
 
-		        },
-		        error: function(xhr, status, error) {
-		            console.error('Error al cargar los jugadores:', error);
-		        }
-		    });
+										jugadoresDiv.append(jugadorHTML);
+									});
+
+							}
+							 */
+							jugadoresTableBody.empty();
+
+							data
+									.forEach(function(jugador) {
+										var rowHtml = '<tr>'
+												+ '<td>'
+												+ jugador.nombres
+												+ ' '
+												+ jugador.apellidos
+												+ '</td>'
+												+ '<td>'
+												+ '<div class="form-check">'
+												+ '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">'
+												+ '<label for="jugador_' + jugador.id + '" class="form-check-label"></label>'
+												+ '</div>'
+												+ '</td>'
+												+ '<td>'
+												+ '<div class="form-check">'
+												+ '<input type="radio" id="capitan_' + jugador.id + '" name="capitan" value="' + jugador.id + '" class="form-check-input">'
+												+ '<label for="capitan_' + jugador.id + '" class="form-check-label">Será Capitán</label>'
+												+ '</div>' + '</td>' + '</tr>';
+
+										jugadoresTableBody.append(rowHtml);
+									});
+						}
+
+						,
+						error : function(xhr, status, error) {
+							console.error('Error al cargar los jugadores:',
+									error);
+						}
+					});
 		}
-
-		
 	</script>
 
 </body>

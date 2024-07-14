@@ -67,7 +67,7 @@ public class EquipoServlet extends HttpServlet {
 			Gson gson = new Gson();
 			JsonObject jsonObject = gson.fromJson(sb.toString(), JsonObject.class);
 			String accion = jsonObject.get("accion").getAsString();
-			System.out.println(accion);
+			//System.out.println(accion);
 			// listar
 			if ("listar".equals(accion)) {
 				//System.out.println("llego pedido de listar equipos");
