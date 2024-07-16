@@ -117,7 +117,7 @@ public class JugadorServlet extends HttpServlet {
 				// request.getRequestDispatcher("equipos.jsp").forward(request, response);
 			}
 			if ("borrar".equals(accion)) {
-				JugadorDTO jugador = new JugadorDTO();
+				//JugadorDTO jugador = new JugadorDTO();
 				Long id = jsonObject.get("id").getAsLong();
 				System.out.println(id);
 				jugadorRemote.eliminar(id);

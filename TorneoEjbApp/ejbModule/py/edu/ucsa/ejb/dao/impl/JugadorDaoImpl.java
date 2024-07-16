@@ -6,6 +6,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.Query;
 import py.edu.ucsa.ejb.dao.IJugadorDao;
+import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.entities.Jugador;
 
 @RequestScoped
@@ -39,6 +40,15 @@ public class JugadorDaoImpl extends AbstractDao<Long, Jugador>  implements IJuga
 		
 		//Query query = this.entityManager.createQuery(hql, Jugador.class);
 		Query q = this.entityManager.createNamedQuery("Jugador.findJugadoresSinEquipo");
+		return q.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Iterable<Jugador> findJugadoresPorEquipo(Equipo e) {
+		// TODO Auto-generated method stub
+		Query q = this.entityManager.createNamedQuery("Jugador.findJugadoresPorEquipo");
+		q.setParameter("equipo", e);
 		return q.getResultList();
 	}
 	

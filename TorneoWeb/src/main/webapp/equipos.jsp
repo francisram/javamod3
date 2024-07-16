@@ -69,14 +69,6 @@
 								<label for="slogan" class="form-label">Slogan</label> <input
 									type="text" class="form-control" id="slogan">
 							</div>
-							<!-- 
-							<div class="mb-3">
-								<label for="jugadores" class="form-label">Jugadores</label>
-								<div id="jugadores" class="form-control" style="height: auto;">
-									<!-- Aquí se cargará la lista de jugadores 
-								</div>
-							</div>
-							-->
 							<div class="mb-3">
 								<table class="table table-bordered">
 									<thead>

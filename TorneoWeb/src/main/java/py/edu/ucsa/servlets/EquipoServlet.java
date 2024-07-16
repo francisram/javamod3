@@ -110,6 +110,17 @@ public class EquipoServlet extends HttpServlet {
 				response.getWriter().write(responseJson.toString());
 			//	request.getRequestDispatcher("equipos.jsp").forward(request, response);
 			}
+			if ("borrar".equals(accion)) {
+				//EquipoDTO equipo = new EquipoDTO();
+				Long id = jsonObject.get("id").getAsLong();
+				System.out.println(id);
+				equipoEbjbClient.eliminar(id);
+				JsonObject responseJson = new JsonObject();
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(responseJson.toString());
+				// request.getRequestDispatcher("equipos.jsp").forward(request, response);
+			}
 		} catch (Exception e) {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

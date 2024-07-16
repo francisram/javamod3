@@ -51,7 +51,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 		//System.out.println("se registra equipo");
 		equipo = eDao.insert(equipo);
 		List<Jugador> jugadores = equipo.getJugadores();
-		System.out.println("lista de jugadores");
+		System.out.println("lista de jugadores a asignar");
 		//jugadores.forEach((x)->System.out.println(x));
 		
 		for (Jugador jugador : jugadores) {
@@ -91,7 +91,26 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	@Override
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
+		Equipo e = eDao.findById(id);
 		eDao.deleteById(id);  
+		System.out.println("lista de jugadores a liberar");
+		
+		Iterable<Jugador> jugadores = jDao.findJugadoresPorEquipo(e);
+		
+		for (Jugador jugador : jugadores) {
+			//Jugador eJugador;
+			Jugador j = jDao.findById(jugador.getId());
+			//eJugador = jDao.findById(jugador.getId());
+			if(Objects.isNull(j)) {
+				System.out.println("no se encontro al jugador");
+			}else {
+				System.out.println("jugador encontrado" + j.toString());
+			}
+			Equipo equipo = new Equipo();
+			j.setEquipo(equipo);
+			jDao.update(j);
+		}
+		
 	}
 
 	@Override
