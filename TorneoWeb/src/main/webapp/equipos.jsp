@@ -33,6 +33,7 @@
 			style="width: 100%">
 			<thead>
 				<tr>
+					<th>Id</th>
 					<th>Nombre del Equipo</th>
 					<th>Slogan</th>
 					<th>Capitán</th>
@@ -149,6 +150,15 @@
 												},
 												columns : [
 														{
+															data : 'id',
+															render : function(
+																	data, type,
+																	row) {
+																return data ? data
+																		: '';
+															}
+														},
+														{
 															data : 'nombre',
 															render : function(
 																	data, type,
@@ -180,7 +190,7 @@
 															render : function(
 																	data, type,
 																	row) {
-																return '<button class="delete-btn btn btn-danger">Eliminar</button>';
+																return '<button type="button" class="btn btn-danger btn-sm delete-btn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>';
 															},
 															orderable : false
 														} ]
@@ -198,13 +208,15 @@
 										rowToDelete = table.row($(this)
 												.parents('tr'));
 										var data = rowToDelete.data();
-										$('#deleteTeamName').text(data[0]);
+										//console.log(data);
+										$('#deleteTeamName').text(
+												'¿Estás seguro de que deseas eliminar a '
+														+ data.nombre + ' ?');
+										$('#confirmDeleteButton').attr(
+												'onclick',
+												'eliminar(' + data.id + ');');
 									});
 
-							$('#confirmDeleteButton').on('click', function() {
-								rowToDelete.remove().draw(false);
-								$('#deleteModal').modal('hide');
-							});
 						});
 
 		function registrar() {
@@ -214,9 +226,10 @@
 			let jugadoresSeleccionados = [];
 			let capitan = $('input[name="capitan"]:checked').val();
 
-			$('#jugadoresTableBody input[type="checkbox"]:checked').each(function() {
-				jugadoresSeleccionados.push($(this).val());
-			});
+			$('#jugadoresTableBody input[type="checkbox"]:checked').each(
+					function() {
+						jugadoresSeleccionados.push($(this).val());
+					});
 
 			if (teamName && slogan && jugadoresSeleccionados.length > 0) {
 				$
@@ -227,7 +240,7 @@
 							data : JSON.stringify({
 								teamName : teamName,
 								slogan : slogan,
-								capitan: capitan,
+								capitan : capitan,
 								jugadores : jugadoresSeleccionados,
 								accion : 'inscribir'
 							}),
@@ -271,6 +284,8 @@
 			}
 		}
 
+		/*
+
 		$(document).ready(function() {
 			var table = $('#example').DataTable();
 
@@ -284,13 +299,9 @@
 				var data = rowToDelete.data();
 				$('#deleteTeamName').text(data[0]);
 			});
-
-			$('#confirmDeleteButton').on('click', function() {
-				rowToDelete.remove().draw(false);
-				$('#deleteModal').modal('hide');
-			});
+			
 		});
-
+		 */
 		function cargarJugadores() {
 			$
 					.ajax({
@@ -303,36 +314,7 @@
 						success : function(data) {
 							//const jugadoresDiv = $('#jugadores');
 							const jugadoresTableBody = $('#jugadoresTableBody');
-							/*
-							jugadoresDiv.empty();
 
-							data
-									.forEach(function(jugador) {
-										console.log(jugador); // Para verificar los datos en la consola
-
-										var jugadorHTML = '<div class="row">'
-												+ '<div class="col">'
-												+ '<div class="form-check">'
-												+ '<input type="checkbox" id="jugador_' + jugador.id + '" value="' + jugador.id + '" class="form-check-input">'
-												+ '<label for="jugador_' + jugador.id + '" class="form-check-label">'
-												+ jugador.nombres
-												+ ' '
-												+ jugador.apellidos
-												+ '</label>'
-												+ '</div>'
-												+ '</div>'
-												+ '<div class="col">'
-												+ '<div class="form-check">'
-												+ '<input type="radio" id="jugador_' + jugador.id + '"  name="capitan" class="form-check-input">'
-												+ '<label for="capitan_' + jugador.id + '" class="form-check-label">sera&acute; capit&aacute;n</label>'
-												+ '</div>' + '</div>'
-												+ '</div>';
-
-										jugadoresDiv.append(jugadorHTML);
-									});
-
-							}
-							 */
 							jugadoresTableBody.empty();
 
 							data
@@ -365,6 +347,59 @@
 									error);
 						}
 					});
+		}
+
+		function eliminar(x) {
+
+			let valor = x;
+			//console.log(valor);
+			if (valor) {
+				$
+						.ajax({
+							url : 'EquipoServlet',
+							type : 'POST',
+							contentType : 'application/json',
+							data : JSON.stringify({
+								id : valor,
+								accion : 'borrar'
+							}),
+							success : function(response) {
+								//console.log(response);
+								if (response.status === "error") {
+									Swal.fire({
+										icon : 'error',
+										title : 'Error',
+										text : response.message
+									});
+								} else {
+									Swal.fire({
+										icon : 'success',
+										title : '¡Éxito!',
+										text : 'Eliminado correctamente.'
+									}).then(function() {
+										$('#addModal').modal('hide');
+										$('#addForm')[0].reset();
+										location.reload();
+									});
+								}
+							},
+							error : function() {
+								Swal
+										.fire({
+											icon : 'error',
+											title : 'Error',
+											text : 'Ocurrió un error al borrar el jugador. Inténtelo nuevamente.'
+										});
+							}
+						});
+			} else {
+				// Mostrar SweetAlert de advertencia
+				Swal.fire({
+					icon : 'warning',
+					title : 'No se obtuvo el id a borrar',
+					text : 'Por favor, contacte con soporte'
+				});
+			}
 		}
 	</script>
 

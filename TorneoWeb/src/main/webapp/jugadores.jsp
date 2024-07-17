@@ -32,6 +32,7 @@
 			style="width: 100%">
 			<thead>
 				<tr>
+					<th>Id</th>
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Equipo</th>
@@ -153,6 +154,12 @@
 							            dataSrc: ''
 							        },
 							        columns: [
+										{
+											data : 'id',
+											render: function(data, type, row) {
+							                    return data ? data : '';
+							                }
+										},
 										{
 											data : 'nombres',
 											render: function(data, type, row) {
