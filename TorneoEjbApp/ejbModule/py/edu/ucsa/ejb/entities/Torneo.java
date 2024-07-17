@@ -80,11 +80,11 @@ public class Torneo {
 		entity.setNombre(dto.getNombre());
 		entity.setNumEquipos(dto.getNumEquipo());
 		if(!Objects.isNull(dto.getFechaInicio())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 			entity.setFechaInicio(LocalDate.parse(dto.getFechaInicio(),dtf));
 		}
 		if(!Objects.isNull(dto.getFechaFin())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 			entity.setFechaFin(LocalDate.parse(dto.getFechaInicio(),dtf));
 		}
 		

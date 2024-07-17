@@ -15,6 +15,7 @@
 	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <!-- SweetAlert CSS and JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -72,12 +73,12 @@
 							</div>
 							<div class="mb-3">
 								<label for="inicio" class="form-label">Fec. Inicio</label> <input
-									type="text" class="form-control" id="inicio" name="ficNum"
+									type="date" class="form-control" id="inicio" name="inicio"
 									required>
 							</div>
 							<div class="mb-3">
 								<label for="fin" class="form-label">Fec. Fin</label> <input
-									type="text" class="form-control" id="fin" name="ficNum"
+									type="date" class="form-control" id="fin" name="fin"
 									required>
 							</div>
 							<button type="button" class="btn btn-primary" id="saveButton"
@@ -214,7 +215,7 @@
 												.parents('tr'));
 										var data = rowToDelete.data();
 										//console.log(data);
-										$('#deleteTeamName').text(
+										$('#deleteTorneoName').text(
 												'¿Estás seguro de que deseas eliminar a '
 														+ data.nombre + ' ?');
 										$('#confirmDeleteButton').attr(
@@ -235,7 +236,7 @@
 			if (torneoName && numEquipos && inicio && fin ) {
 				$
 						.ajax({
-							url : 'EquipoServlet',
+							url : 'TorneoServlet',
 							type : 'POST',
 							contentType : 'application/json',
 							data : JSON.stringify({
