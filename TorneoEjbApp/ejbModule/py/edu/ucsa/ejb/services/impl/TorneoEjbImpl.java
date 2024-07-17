@@ -9,6 +9,7 @@ import java.util.stream.StreamSupport;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.ITorneoDao;
 import py.edu.ucsa.ejb.dto.TorneoDTO;
 import py.edu.ucsa.ejb.entities.Jugador;
@@ -26,6 +27,7 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 	private List<Torneo> listaTorneos = new ArrayList<Torneo>();
 
 	@Inject
+	@Named("torneoDAO")
 	private ITorneoDao iDao;
 	
     /**
@@ -57,7 +59,7 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 	@Override
 	public TorneoDTO getById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return iDao.findById(id).toDTO();
 	}
 
 
@@ -65,13 +67,13 @@ public class TorneoEjbImpl implements TorneoEjbRemote {
 	@Override
 	public void actualizar(TorneoDTO obj) {
 		// TODO Auto-generated method stub
-		
+		iDao.update(Torneo.ofDTO(obj));
 	}
 
 	@Override
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
-		
+		iDao.deleteById(id);
 	}
 
 	@Override

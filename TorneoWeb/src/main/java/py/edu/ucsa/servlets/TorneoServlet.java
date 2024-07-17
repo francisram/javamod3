@@ -35,10 +35,7 @@ public class TorneoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		TorneoEjbImpl tImpl = new TorneoEjbImpl();
-		Torneo t = new Torneo();
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("torneo.jsp").forward(request, response);
 	}
 
 	/**

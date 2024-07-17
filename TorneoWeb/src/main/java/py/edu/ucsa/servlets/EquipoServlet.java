@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -90,8 +91,11 @@ public class EquipoServlet extends HttpServlet {
 				equipo.setNombre(jsonObject.get("teamName").getAsString());
 				equipo.setSlogan(jsonObject.get("slogan").getAsString());
 				JugadorDTO capitan = new JugadorDTO();
-				capitan.setId(jsonObject.get("capitan").getAsLong());
-				equipo.setCapitan(capitan);
+				if(!Objects.isNull(jsonObject.get("capitan"))) {					
+					capitan.setId(jsonObject.get("capitan").getAsLong());
+					equipo.setCapitan(capitan);
+				}
+				
 				//jsonObject.getAsJsonArray("jugadores");
 				JsonArray jugadoresArray = jsonObject.getAsJsonArray("jugadores");
 				List<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();

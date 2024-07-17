@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.dto.TorneoDTO;
 
 @Entity
@@ -32,6 +33,25 @@ public class Torneo {
 	private LocalDate fechaInicio;
 	@Column(name = "fecha_fin" , columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaFin;
+	
+	public TorneoDTO toListaDTO() {
+		TorneoDTO dto = new TorneoDTO();
+		
+		dto.setId(this.getId());
+		dto.setNombre(this.getNombre());
+		dto.setNumEquipo(this.getNumEquipos());
+		if(!Objects.isNull(this.getFechaInicio())) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dto.setFechaInicio(this.getFechaInicio().format(dtf));
+		}
+		if(!Objects.isNull(this.getFechaFin())) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dto.setFechaInicio(this.getFechaFin().format(dtf));
+		}
+		dto.setAnho(this.getAnho());
+		
+		return dto;
+	}
 
 	
 	

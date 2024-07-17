@@ -9,6 +9,8 @@ import java.util.stream.StreamSupport;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import py.edu.ucsa.ejb.dao.IEquipoDao;
 import py.edu.ucsa.ejb.dao.IPartidoDao;
 import py.edu.ucsa.ejb.dto.PartidoDTO;
 import py.edu.ucsa.ejb.entities.Equipo;
@@ -25,6 +27,10 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 	
 	@Inject
 	private IPartidoDao iDao;
+	
+	@Inject
+	@Named("equipoDAO")
+	private IEquipoDao eDao;
 
 	@Override
 	public List<PartidoDTO> findAll() throws Exception {
