@@ -19,6 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
 import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.dto.PartidoDTO;
+import py.edu.ucsa.ejb.entities.Equipo;
+import py.edu.ucsa.ejb.services.EquipoEjbRemote;
 import py.edu.ucsa.ejb.services.PartidoEjbRemote;
 
 
@@ -31,6 +33,9 @@ public class PartidoServlet extends HttpServlet {
 	
 	@EJB(mappedName = "java:global/TorneoEjbApp/PartidoEjbImpl!py.edu.ucsa.ejb.services.PartidoEjbRemote")
 	private PartidoEjbRemote partidoEjbClient;
+	
+	@EJB(mappedName = "java:global/TorneoEjbApp/EquipoEjbImpl!py.edu.ucsa.ejb.services.EquipoEjbRemote")
+	private EquipoEjbRemote equipoEbjbClient;
 
     /**
      * Default constructor. 
@@ -63,12 +68,12 @@ public class PartidoServlet extends HttpServlet {
 			Gson gson = new Gson();
 			JsonObject jsonObject = gson.fromJson(sb.toString(), JsonObject.class);
 			String accion = jsonObject.get("accion").getAsString();
-			//System.out.println(accion);
+		//	System.out.println(jsonObject.toString());
 			// listar
 			if ("listar".equals(accion)) {
 				//System.out.println("llego pedido de listar equipos");
 				List<PartidoDTO> partidos = partidoEjbClient.findAll();
-				System.out.println(partidos.toString());
+				//System.out.println(partidos.toString());
 				Gson gsonList = new Gson();
 				String equiposJson = gsonList.toJson(partidos);
 				// Establecer el tipo de contenido de la respuesta a JSON
@@ -79,29 +84,25 @@ public class PartidoServlet extends HttpServlet {
 				out.write(equiposJson);
 				out.flush();
 			}
-			/*
+			
 
 			// registrar
 			if ("inscribir".equals(accion)) {
-				EquipoDTO equipo = new EquipoDTO();
-				equipo.setNombre(jsonObject.get("teamName").getAsString());
-				equipo.setSlogan(jsonObject.get("slogan").getAsString());
-				JugadorDTO capitan = new JugadorDTO();
-				if(!Objects.isNull(jsonObject.get("capitan"))) {					
-					capitan.setId(jsonObject.get("capitan").getAsLong());
-					equipo.setCapitan(capitan);
-				}
+				PartidoDTO partido = new PartidoDTO();
+				EquipoDTO local = equipoEbjbClient.getById(Long.parseLong(jsonObject.getAsJsonObject("equipoLocal").get("id").getAsString()));  
+				EquipoDTO visitante = equipoEbjbClient.getById(Long.parseLong(jsonObject.getAsJsonObject("equipoVisitante").get("id").getAsString()));  
 				
-				//jsonObject.getAsJsonArray("jugadores");
-				JsonArray jugadoresArray = jsonObject.getAsJsonArray("jugadores");
-				List<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();
-				for (int i = 0; i < jugadoresArray.size(); i++) {
-					JugadorDTO j = 	jugadorRemote.getById(jugadoresArray.get(i).getAsLong());
-					jugadores.add(j);
-					//System.out.println(j);
-				}	
-				equipo.setJugadores(jugadores);
-				equipoEbjbClient.insert(equipo);
+				//System.out.println(equipo);
+				partido.setEquipoLocal(local);
+				partido.setEquipoVisitante(visitante);
+				partido.setFecha(jsonObject.get("fecha").getAsString());
+				partido.setFechaNro(0);
+				partido.setGoleLocal(0);
+				partido.setGoleVisitante(0);
+				partido.setHora(accion);
+				partido.setTorneo(null);
+				
+				//partidoEjbClient.insert(partido);
 				JsonObject responseJson = new JsonObject();
 				responseJson.addProperty("status", "ok");
 				// Enviar la respuesta
@@ -110,6 +111,7 @@ public class PartidoServlet extends HttpServlet {
 				response.getWriter().write(responseJson.toString());
 			//	request.getRequestDispatcher("equipos.jsp").forward(request, response);
 			}
+			/*
 			if ("borrar".equals(accion)) {
 				//EquipoDTO equipo = new EquipoDTO();
 				Long id = jsonObject.get("id").getAsLong();

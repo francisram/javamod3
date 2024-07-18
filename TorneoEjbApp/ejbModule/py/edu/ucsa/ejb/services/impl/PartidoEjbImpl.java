@@ -53,7 +53,7 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 	@Override
 	public PartidoDTO getById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return iDao.findById(id).toDTO();
 	}
 
 
@@ -62,7 +62,7 @@ public class PartidoEjbImpl implements PartidoEjbRemote {
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
+		iDao.deleteById(id);
 		
 	}
 

@@ -26,7 +26,7 @@ public class Equipo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "nombre" , nullable = true)
+	@Column(name = "nombre" , nullable = true, unique = true)
 	private String nombre;
 	 @Column(name = "slogan" , nullable = true)
 	private String slogan;
