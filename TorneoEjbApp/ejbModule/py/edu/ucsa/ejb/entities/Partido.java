@@ -54,7 +54,7 @@ public class Partido {
 			dto.setEquipoLocal(this.getEquipoLocal().toListaDTO());
 		}
 		if(!Objects.isNull(this.getEquipoVisitante())) {
-			dto.setEquipoLocal(this.getEquipoVisitante().toListaDTO());
+			dto.setEquipoVisitante(this.getEquipoLocal().toListaDTO());
 		}
 		if(!Objects.isNull(this.getFecha())) {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -83,10 +83,10 @@ public class Partido {
 			entity.setEquipoLocal(Equipo.ofDTO(dto.getEquipoLocal()));
 		}
 		if(!Objects.isNull(dto.getEquipoVisitante())) {
-			entity.setEquipoLocal(Equipo.ofDTO(dto.getEquipoVisitante()));
+			entity.setEquipoVisitante(Equipo.ofDTO(dto.getEquipoLocal()));
 		}
 		if(!Objects.isNull(dto.getFecha())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			entity.setFecha(LocalDate.parse(dto.getFecha(),dtf));
 		}
 		if(!Objects.isNull(dto.getHora())) {

@@ -104,7 +104,7 @@ public class JugadorServlet extends HttpServlet {
 				jugador.setApellidos(jsonObject.get("apellido").getAsString());
 				jugador.setNroFicha(Integer.parseInt(jsonObject.get("ficha").getAsString()));
 				jugador.setEmail(jsonObject.get("email").getAsString());
-				//jugador.setFechaNacimiento(jsonObject.get("fecnac").getAsString());
+				jugador.setFechaNacimiento(jsonObject.get("fecnac").getAsString());
 				jugador.setTelefono(jsonObject.get("telefono").getAsString());
 				jugador.setNacionalidad(jsonObject.get("pais").getAsString());
 				jugadorRemote.insert(jugador);

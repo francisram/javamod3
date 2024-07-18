@@ -142,7 +142,7 @@ public class Jugador {
 		dto.setNombres(this.getNombres());
 		dto.setApellidos(this.getApellidos());
 		if(!Objects.isNull(this.getFechaNacimiento())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaNacimiento(this.getFechaNacimiento().format(dtf));
 		}
 		dto.setNacionalidad(this.getNacionalidad());
@@ -161,7 +161,7 @@ public class Jugador {
 		dto.setNombres(this.getNombres());
 		dto.setApellidos(this.getApellidos());
 		if(!Objects.isNull(this.getFechaNacimiento())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaNacimiento(this.getFechaNacimiento().format(dtf));
 		}
 		dto.setNacionalidad(this.getNacionalidad());
@@ -187,7 +187,7 @@ public class Jugador {
 		entity.setNombres(dto.getNombres());
 		entity.setApellidos(dto.getApellidos());
 		if(!Objects.isNull(dto.getFechaNacimiento())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			entity.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento(),dtf));
 		}
 		entity.setNacionalidad(dto.getNacionalidad());

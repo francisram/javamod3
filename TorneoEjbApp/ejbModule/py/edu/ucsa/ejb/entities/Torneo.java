@@ -41,11 +41,11 @@ public class Torneo {
 		dto.setNombre(this.getNombre());
 		dto.setNumEquipo(this.getNumEquipos());
 		if(!Objects.isNull(this.getFechaInicio())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaInicio(this.getFechaInicio().format(dtf));
 		}
 		if(!Objects.isNull(this.getFechaFin())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaInicio(this.getFechaFin().format(dtf));
 		}
 		dto.setAnho(this.getAnho());
@@ -62,11 +62,11 @@ public class Torneo {
 		dto.setNombre(this.getNombre());
 		dto.setNumEquipo(this.getNumEquipos());
 		if(!Objects.isNull(this.getFechaInicio())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaInicio(this.getFechaInicio().format(dtf));
 		}
 		if(!Objects.isNull(this.getFechaFin())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			dto.setFechaFin(this.getFechaFin().format(dtf));
 		}
 		
@@ -80,11 +80,11 @@ public class Torneo {
 		entity.setNombre(dto.getNombre());
 		entity.setNumEquipos(dto.getNumEquipo());
 		if(!Objects.isNull(dto.getFechaInicio())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			entity.setFechaInicio(LocalDate.parse(dto.getFechaInicio(),dtf));
 		}
 		if(!Objects.isNull(dto.getFechaFin())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			entity.setFechaFin(LocalDate.parse(dto.getFechaInicio(),dtf));
 		}
 		
