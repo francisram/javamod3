@@ -149,7 +149,7 @@ public class Jugador {
 		dto.setTelefono(this.getTelefono());
 		dto.setEmail(this.getEmail());
 		if(!Objects.isNull(this.getEquipo())) {
-				dto.setEquipo(this.getEquipo().toDTO());
+			dto.setEquipo(this.getEquipo().toListaDTO());
 		}
 		return dto;
 	}
@@ -167,6 +167,9 @@ public class Jugador {
 		dto.setNacionalidad(this.getNacionalidad());
 		dto.setTelefono(this.getTelefono());
 		dto.setEmail(this.getEmail());
+		if(!Objects.isNull(this.getEquipo())) {
+			dto.setEquipo(this.getEquipo().toListaDTO());			
+		}
 		return dto;
 	}
 	

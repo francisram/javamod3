@@ -177,7 +177,7 @@
 															}
 														},
 														{
-															data : 'capitan',
+															data : 'capitan.nombres',
 															render : function(
 																	data, type,
 																	row) {

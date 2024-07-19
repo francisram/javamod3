@@ -32,7 +32,7 @@ public class JugadorEjbImpl implements JugadorEjbRemote {
 	@Override
 	public List<JugadorDTO> findAll() throws Exception {
 		Stream<Jugador> jugadores = StreamSupport.stream(iDao.findAll().spliterator(), false) ;
-		return jugadores.map(Jugador::toListaDTO).toList();
+		return jugadores.map(Jugador::toDTO).toList();
 	}
 
 	@Override

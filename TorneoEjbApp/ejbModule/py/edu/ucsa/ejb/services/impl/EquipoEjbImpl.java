@@ -38,7 +38,7 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 	@Override
 	public List<EquipoDTO> findAll() throws Exception {
 		Stream<Equipo> equipos = StreamSupport.stream(eDao.findAll().spliterator(), false) ;
-		return equipos.map(Equipo::toListaDTO).toList();
+		return equipos.map(Equipo::toDTO).toList();
 	}
 
 	@Override

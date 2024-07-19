@@ -73,7 +73,7 @@ public class EquipoServlet extends HttpServlet {
 			if ("listar".equals(accion)) {
 				//System.out.println("llego pedido de listar equipos");
 				List<EquipoDTO> equipos = equipoEbjbClient.findAll();
-				//System.out.println(equipos.toString());
+				//equipos.forEach((x)->System.out.println(x));
 				Gson gsonList = new Gson();
 				String equiposJson = gsonList.toJson(equipos);
 				// Establecer el tipo de contenido de la respuesta a JSON

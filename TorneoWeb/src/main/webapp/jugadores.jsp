@@ -173,13 +173,13 @@
 							                }
 										},
 										{
-											data : 'equipo',
+											data : 'equipo.nombre',
 											render: function(data, type, row) {
 							                    return data ? data : '';
 							                }
 										},
 										{
-											data : 'pais',
+											data : 'nacionalidad',
 											render: function(data, type, row) {
 							                    return data ? data : '';
 							                }

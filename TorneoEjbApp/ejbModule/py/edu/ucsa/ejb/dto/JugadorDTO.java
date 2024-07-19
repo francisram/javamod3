@@ -91,9 +91,9 @@ public class JugadorDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "JugadorDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento="
-				+ fechaNacimiento + ", numeroFicha=" + nroFicha + ", nacionalidad=" + nacionalidad + ", telefono="
-				+ telefono + ", email=" + email + ", equipoDTO=" + equipo + "]";
+		return "JugadorDTO [id=" + id + ", nroFicha=" + nroFicha + ", nombres=" + nombres + ", apellidos=" + apellidos
+				+ ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", telefono=" + telefono
+				+ ", email=" + email + ", equipo=" + equipo + "]";
 	}
 
 	public JugadorDTO() {

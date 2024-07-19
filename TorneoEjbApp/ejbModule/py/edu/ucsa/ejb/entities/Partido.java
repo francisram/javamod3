@@ -54,7 +54,7 @@ public class Partido {
 			dto.setEquipoLocal(this.getEquipoLocal().toListaDTO());
 		}
 		if(!Objects.isNull(this.getEquipoVisitante())) {
-			dto.setEquipoVisitante(this.getEquipoLocal().toListaDTO());
+			dto.setEquipoVisitante(this.getEquipoVisitante().toListaDTO());
 		}
 		if(!Objects.isNull(this.getFecha())) {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");

@@ -81,7 +81,7 @@ public class Equipo {
 
 	@Override
 	public String toString() {
-		return "EquipoDTO [id=" + id + ", nombre=" + nombre + ", slogan=" + slogan + ", capitan=" + capitan
+		return "Equipo [id=" + id + ", nombre=" + nombre + ", slogan=" + slogan + ", capitan=" + capitan
 				+ ", jugadores=" + jugadores + "]";
 	}
 
@@ -96,6 +96,7 @@ public class Equipo {
 		dto.setNombre(this.getNombre());
 		dto.setSlogan(this.getSlogan());
 		if(!Objects.isNull(this.getCapitan())) {
+			//System.out.println(this.getCapitan().toDTO().toString());
 			dto.setCapitan(this.getCapitan().toDTO());
 		}
 		if(!this.getJugadores().isEmpty()) {
@@ -113,6 +114,11 @@ public class Equipo {
 		dto.setId(this.getId());
 		dto.setNombre(this.getNombre());
 		dto.setSlogan(this.getSlogan());
+		if(!Objects.isNull(this.getCapitan())) {
+			//dto.setCapitan(this.getCapitan().toDTO());
+			System.out.println(this.getCapitan().getId().toString());
+		}
+		//dto.setCapitan(this.getCapitan().toDTO());
 		return dto;
 	}
 	

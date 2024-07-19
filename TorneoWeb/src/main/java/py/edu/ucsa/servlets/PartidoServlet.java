@@ -19,9 +19,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.dto.EquipoDTO;
 import py.edu.ucsa.ejb.dto.JugadorDTO;
 import py.edu.ucsa.ejb.dto.PartidoDTO;
+import py.edu.ucsa.ejb.dto.TorneoDTO;
 import py.edu.ucsa.ejb.entities.Equipo;
 import py.edu.ucsa.ejb.services.EquipoEjbRemote;
 import py.edu.ucsa.ejb.services.PartidoEjbRemote;
+import py.edu.ucsa.ejb.services.TorneoEjbRemote;
 
 
 
@@ -36,6 +38,9 @@ public class PartidoServlet extends HttpServlet {
 	
 	@EJB(mappedName = "java:global/TorneoEjbApp/EquipoEjbImpl!py.edu.ucsa.ejb.services.EquipoEjbRemote")
 	private EquipoEjbRemote equipoEbjbClient;
+	
+	@EJB(mappedName = "java:global/TorneoEjbApp/TorneoEjbImpl!py.edu.ucsa.ejb.services.TorneoEjbRemote")
+	private TorneoEjbRemote torneoEjbcliente;
 
     /**
      * Default constructor. 
@@ -96,13 +101,14 @@ public class PartidoServlet extends HttpServlet {
 				partido.setEquipoLocal(local);
 				partido.setEquipoVisitante(visitante);
 				partido.setFecha(jsonObject.get("fecha").getAsString());
-				partido.setFechaNro(0);
-				partido.setGoleLocal(0);
-				partido.setGoleVisitante(0);
-				partido.setHora(accion);
-				partido.setTorneo(null);
+				partido.setFechaNro(jsonObject.get("fechaNro").getAsInt());
+				partido.setGoleLocal(jsonObject.get("goleLocal").getAsInt());
+				partido.setGoleVisitante(jsonObject.get("goleVisitante").getAsInt());
+				partido.setHora(jsonObject.get("hora").getAsString());
+				TorneoDTO torneo = torneoEjbcliente.getById(Long.parseLong(jsonObject.getAsJsonObject("torneoDTO").get("id").getAsString()));
+				partido.setTorneo(torneo);
 				
-				//partidoEjbClient.insert(partido);
+				partidoEjbClient.insert(partido);
 				JsonObject responseJson = new JsonObject();
 				responseJson.addProperty("status", "ok");
 				// Enviar la respuesta
@@ -111,19 +117,18 @@ public class PartidoServlet extends HttpServlet {
 				response.getWriter().write(responseJson.toString());
 			//	request.getRequestDispatcher("equipos.jsp").forward(request, response);
 			}
-			/*
+			
 			if ("borrar".equals(accion)) {
-				//EquipoDTO equipo = new EquipoDTO();
 				Long id = jsonObject.get("id").getAsLong();
 				System.out.println(id);
-				equipoEbjbClient.eliminar(id);
+				partidoEjbClient.eliminar(id);
 				JsonObject responseJson = new JsonObject();
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(responseJson.toString());
 				// request.getRequestDispatcher("equipos.jsp").forward(request, response);
 			}
-			*/
+			
 		} catch (Exception e) {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
