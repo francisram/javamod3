@@ -43,6 +43,18 @@ public class EquipoEjbImpl implements EquipoEjbRemote {
 
 	@Override
 	public void insert(EquipoDTO dto) throws Exception {
+		/*
+		List<EquipoDTO> equips = findByNombre(dto.getNombre(), false);
+		if(!Objects.isNull(equips)) {
+			for (EquipoDTO equipoDTO : equips) {
+				//Equipo e = eDao.findById(equipoDTO.getId());
+				//Iterable<Jugador> jds = jDao.findJugadoresPorEquipo(e);		
+				if(equipoDTO.getJugadores().size() > 20) {
+					throw new Exception("nose permite mas de 20 jugadores");
+				}
+			}
+		}
+		*/
 		if(dto.getJugadores().size() > 20) {
 			throw new Exception("nose permite mas de 20 jugadores");
 		}
