@@ -90,8 +90,8 @@ public class Partido {
 			entity.setFecha(LocalDate.parse(dto.getFecha(),dtf));
 		}
 		if(!Objects.isNull(dto.getHora())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-			entity.setHora(LocalDateTime.parse(dto.getHora(),dtf));
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+			entity.setHora(LocalDateTime.parse(dto.getFecha()+"T"+dto.getHora(),dtf));
 		}
 		entity.setFechaNro(dto.getFechaNro());
 		entity.setGoleLocal(dto.getGoleLocal());

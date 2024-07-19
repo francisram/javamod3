@@ -79,14 +79,14 @@
 							</div>
 							<div class="mb-3">
 								<label for="fecha" class="form-label">Fecha</label> 
-								<input type="datetime-local" class="form-control" id="fecha">
+								<input type="date" class="form-control" id="fecha">
 							</div>
-							<!-- 
+							
 							<div class="mb-3">
 								<label for="hora" class="form-label">Hora</label> 
 								<input type="time" class="form-control" id="hora">
 							</div>
-							-->
+						
 							<div class="mb-3">
 								<label for="golesLocal" class="form-label">Goles Local</label> 
 								<input type="number" class="form-control" id="golesLocal">
@@ -195,7 +195,7 @@
 			let equipoVisitante = $('#equipoVisitante').val();
 			let torneo = $('#torneo').val();
 			let fecha = $('#fecha').val();
-			let hora = $('#fecha').val();
+			let hora = $('#hora').val();
 			let golesLocal = $('#golesLocal').val();
 			let golesVisitante = $('#golesVisitante').val();
 			let fechaNro = $('#fechaNro').val();
