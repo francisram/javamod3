@@ -2,6 +2,13 @@ package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "exposiciones")
+@NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e ORDER BY e.nombre ASC")
 public class Exposicion {
 	
 	private Integer id;

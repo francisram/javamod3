@@ -1,5 +1,12 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tiposmovimientos")
+@NamedQuery(name = "TipoMovimiento.findAll", query = "SELECT t FROM TipoMovimiento t ORDER BY t.codigo ASC")
 public class TipoMovimiento {
 	private int id;
     private String codigo;

@@ -1,5 +1,12 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "rol")
+@NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.rol ASC")
 public class Rol {
 	private Integer idUsuario;
 	private Integer rol;

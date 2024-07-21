@@ -3,6 +3,13 @@ package py.edu.ucsa.ejb.entities;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "montocuotas")
+@NamedQuery(name = "MontoCuota.findAll", query = "SELECT m FROM MontoCuota m ORDER BY m.monto ASC")
 public class MontoCuota {
 
 	private Integer id;

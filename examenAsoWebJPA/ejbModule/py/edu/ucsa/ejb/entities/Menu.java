@@ -1,5 +1,12 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "menus")
+@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m ORDER BY m.columnMenu ASC")
 public class Menu {
 	
 	private Integer id;
