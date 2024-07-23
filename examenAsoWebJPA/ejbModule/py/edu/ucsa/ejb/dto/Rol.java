@@ -1,27 +1,26 @@
 package py.edu.ucsa.ejb.dto;
 
 public class Rol {
-	private Integer idUsuario;
-	private Integer rol;
-	
-		
+
+	private int id;
+	private String nombreRol;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNombreRol() {
+		return nombreRol;
+	}
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
+	}
 	@Override
 	public String toString() {
-		return "Rol [idUsuario=" + idUsuario + ", rol=" + rol + "]";
+		return "Rol [id=" + id + ", nombreRol=" + nombreRol + "]";
 	}
 	
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public Integer getRol() {
-		return rol;
-	}
-	public void setRol(Integer rol) {
-		this.rol = rol;
-	}
 	
 	
 

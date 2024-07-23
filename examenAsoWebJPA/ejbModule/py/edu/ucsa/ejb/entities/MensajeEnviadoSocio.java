@@ -2,8 +2,15 @@ package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,10 +18,18 @@ import jakarta.persistence.Table;
 @NamedQuery(name = "MensajeEnviadoSocio.findAll", query = "SELECT m FROM MensajeEnviadoSocio m ORDER BY m.socioDestino ASC")
 public class MensajeEnviadoSocio {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "socios_id" )
 	private Socio socioDestino;
+	@Column(name = "mensajeenviadosocio", nullable = true)
 	private MensajeEnviadoSocio mensaje;
+	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDateTime fechaCreacion;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" )
 	private Usuario usuarioCreacion;
 	public Integer getId() {
 		return id;

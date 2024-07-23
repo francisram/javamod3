@@ -3,22 +3,35 @@ package py.edu.ucsa.ejb.entities;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "montocuotas")
+@Table(name = "montos_cuota")
 @NamedQuery(name = "MontoCuota.findAll", query = "SELECT m FROM MontoCuota m ORDER BY m.monto ASC")
 public class MontoCuota {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "monto", nullable = true)
 	private double monto;
+	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDateTime fechaCreacion;
+	@Column(name = "fecha_inicio_vigencia", nullable = true)
 	private LocalDateTime fechaInicioVigencia;
+	@Column(name = "fecha_fin_vigencia", nullable = true)
 	private LocalDateTime fechaFinVigencia;
+	@Column(name = "fecha_inactivacion", nullable = true)
 	private LocalDateTime fechaInactivacion;
+	@Column(name = "estado", nullable = true)
 	private String estado;
+	@Column(name = "usuario_id", nullable = true)
 	private Usuario usuarioInactivacion;
 	
 	

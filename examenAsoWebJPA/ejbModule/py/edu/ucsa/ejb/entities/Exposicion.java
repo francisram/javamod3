@@ -2,8 +2,15 @@ package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,14 +18,25 @@ import jakarta.persistence.Table;
 @NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e ORDER BY e.nombre ASC")
 public class Exposicion {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "nombre", nullable = true)
 	private String nombre;
+	@Column(name = "descripcion", nullable = true)
 	private String descripcion;
+	@Column(name = "organizacion", nullable = true)
 	private String organiza;
+	@Column(name = "ubicacion", nullable = true)
 	private String ubicacion;
+	@Column(name = "fecha_expo", nullable = true)
 	private LocalDate fechaExpo;
+	@Column(name = "contacto", nullable = true)
 	private String contacto;
+	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDate fechaCreacion;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" )
 	private Usuario usuarioCreacion;
 	public Integer getId() {
 		return id;

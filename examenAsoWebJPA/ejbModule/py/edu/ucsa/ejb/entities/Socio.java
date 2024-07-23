@@ -3,6 +3,9 @@ package py.edu.ucsa.ejb.entities;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
@@ -10,7 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "socios")
 @NamedQuery(name = "Socio.findAll", query = "SELECT s FROM Socio s ORDER BY s.nombres ASC")
 public class Socio {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombres;
 	private String apellidos;

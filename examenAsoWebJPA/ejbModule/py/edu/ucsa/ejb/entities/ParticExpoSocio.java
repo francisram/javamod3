@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
@@ -11,6 +14,8 @@ import jakarta.persistence.Table;
 @Table(name = "particexposocios")
 @NamedQuery(name = "ParticExpoSocio.findAll", query = "SELECT pe FROM ParticExpoSocio pe ORDER BY pe.id ASC")
 public class ParticExpoSocio {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Socio socio;
 	private Exposicion exposicion;

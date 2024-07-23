@@ -1,6 +1,9 @@
 package py.edu.ucsa.ejb.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
@@ -9,6 +12,8 @@ import jakarta.persistence.Table;
 @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m ORDER BY m.columnMenu ASC")
 public class Menu {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String columnaMenu;
 	private String estado;
