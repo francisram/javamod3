@@ -10,23 +10,37 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "pagocuotasocios")
+@Table(name = "pagos_cuotas_socios")
 @NamedQuery(name = "PagoCuotaSocio.findAll", query = "SELECT pc FROM PagoCuotaSocio pc ORDER BY pc.id ASC")
 public class PagoCuotaSocio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "anho_cuota", nullable = true)
     private Integer anhoCuota;
+	@Column(name = "exonerado", nullable = true)
     private boolean exonerado;
+	@Column(name = "fecha_creacion", nullable = true)
     private Date fechaCreacion;
+	@Column(name = "mes_cuota", nullable = true)
     private Integer mesCuota;
+	@Column(name = "monto_cuota", nullable = true)
     private double montoCuota;
     private Opcion idEstado;
+    @OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
     private Opcion motivoExoneracion;
+    @OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "movimientos_socios_id" , nullable = true)
     private MovimientoSocio movimientoSocio;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "socios_id" , nullable = true)
     private Socio socio;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
     private Usuario usuarioCreacion;
+	
 	public Integer getId() {
 		return id;
 	}

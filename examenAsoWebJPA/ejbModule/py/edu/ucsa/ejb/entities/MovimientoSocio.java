@@ -11,20 +11,36 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "movimientosocios")
+@Table(name = "movimientos_socios")
 @NamedQuery(name = "MovimientoSocio.findAll", query = "SELECT m FROM MovimientoSocio m ORDER BY m.monto ASC")
 public class MovimientoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "fecha_pago", nullable = true)
 	private LocalDateTime fechaPago;
+	@Column(name = "monto", nullable = true)
 	private double monto;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion concepto;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion estado;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion medioPago;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "socios_id" , nullable = true)
 	private Socio socio;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tipos_movimientos_id" , nullable = true)
 	private TipoMovimiento tipoMovimiento;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioAprobacion;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioCreacion;
 
 	

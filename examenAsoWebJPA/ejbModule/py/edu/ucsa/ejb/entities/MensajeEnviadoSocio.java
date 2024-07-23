@@ -14,7 +14,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "mensajeenviadosocio")
+@Table(name = "mensajes_enviados_socios")
 @NamedQuery(name = "MensajeEnviadoSocio.findAll", query = "SELECT m FROM MensajeEnviadoSocio m ORDER BY m.socioDestino ASC")
 public class MensajeEnviadoSocio {
 	
@@ -24,7 +24,8 @@ public class MensajeEnviadoSocio {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "socios_id" )
 	private Socio socioDestino;
-	@Column(name = "mensajeenviadosocio", nullable = true)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "mensajes_id" )
 	private MensajeEnviadoSocio mensaje;
 	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDateTime fechaCreacion;
