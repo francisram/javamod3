@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,15 +9,19 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tiposmovimientos")
+@Table(name = "tipos_movimiento")
 @NamedQuery(name = "TipoMovimiento.findAll", query = "SELECT t FROM TipoMovimiento t ORDER BY t.codigo ASC")
 public class TipoMovimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "codigo", nullable = true)
     private String codigo;
+	@Column(name = "decripcion", nullable = true)
     private String descripcion;
+	@Column(name = "estado", nullable = true)
     private String estado;
+	@Column(name = "tipo_deb_cred", nullable = true)
     private String tipoDebCred;
     
     

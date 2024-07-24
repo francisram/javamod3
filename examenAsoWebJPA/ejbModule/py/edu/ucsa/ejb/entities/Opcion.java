@@ -1,10 +1,14 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,10 +19,17 @@ public class Opcion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "codigo",  nullable = true)
 	private String codigo;
+	@Column(name = "descripcion",  nullable = true)
 	private String descripcion;
+	@Column(name = "estado",  nullable = true)
 	private String estado;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "dominios_id" , nullable = true)
 	private Dominio dominio;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion padre;
 	
 	

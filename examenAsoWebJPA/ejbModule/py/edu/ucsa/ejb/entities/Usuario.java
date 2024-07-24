@@ -2,11 +2,15 @@ package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 
@@ -18,13 +22,22 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "usuario", nullable = true)
 	private String usuario;
+	@Column(name = "email", nullable = true)
 	private String email;
+	@Column(name = "clave", nullable = true)
 	private String clave;
+	@Column(name = "habilitado", columnDefinition = "boolean", nullable = true)
 	private boolean habilitado;
+	@Column(name = "cuenta_expirada", columnDefinition = "boolean", nullable = true)
 	private boolean cuentaExpirada;
+	@Column(name = "cuenta_bloqueada", columnDefinition = "boolean", nullable = true)
 	private boolean cuentaBloqueada;
+	@Column(name = "fecha_creacion_usuario", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fechaCreacionUsuario;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Socio idSocio;
 	
 	

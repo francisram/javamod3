@@ -14,7 +14,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "codigodeseguridad")
+@Table(name = "codigo_de_seguridad")
 @NamedQuery(name = "CodigoDeSeguridad.findAll", query = "SELECT c FROM CodigoDeSeguridad c ORDER BY c.codigo ASC")
 public class CodigoDeSeguridad {
 	@Id
@@ -22,12 +22,12 @@ public class CodigoDeSeguridad {
 	private Integer id;
 	@Column(name = "codigo" , nullable = true, unique = true)
 	private String codigo;
-	@Column(name = "horaPeticion", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "hora_peticion", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDateTime horaPeticion;
-	@Column(name = "tipoActivacion", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "tipo_activacion", columnDefinition = "	TIMESTAMP", nullable = true)
 	private Integer tipoActivacion;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_id" , nullable = true)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuario;
 	
 		

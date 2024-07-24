@@ -4,10 +4,13 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import py.edu.ucsa.ejb.dto.Opcion;
 import py.edu.ucsa.ejb.dto.Usuario;
@@ -20,19 +23,30 @@ public class TematicaParticExpoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "descripcion", nullable = true)
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "partic_expo_socios_id" , nullable = true)
 	private ParticExpoSocio particExpoSocio;
-	@Column(name = "descripcion", nullable = true)
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion tematicaGeneral;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private String tematicaEspecifica;
 	
+	@Column(name = "cancelo_participacion", columnDefinition="boolean",  nullable = true)
 	private boolean canceloPartidoTematica;
 	
+	@Column(name = "fecha_cancelacion", columnDefinition="TIMESTAMPS",  nullable = true)
 	private LocalDate fechaCancelacion;
 	
+	@Column(name = "cancelo_creacion", columnDefinition="TIMESTAMPS",  nullable = true)
 	private LocalDate fechaCreacion;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioCreacion;
 
 	public int getId() {

@@ -2,11 +2,15 @@ package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,18 +20,35 @@ public class Socio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "nombres", nullable = true)
 	private String nombres;
+	@Column(name = "apellidos", nullable = true)
 	private String apellidos;
+	@Column(name = "email", nullable = true)
 	private String email;
+	@Column(name = "nro_socio", nullable = true)
 	private int nroSocio;
+	@Column(name = "nro_cedula", nullable = true)
 	private int nroCedula;
+	@Column(name = "fecha_ingreso", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fechaIngreso;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion estadoActual;
+	@Column(name = "fecha_estado_actual", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fechaEstadoActual;
+	@Column(name = "fundador",  columnDefinition = "boolean" , nullable = true)
 	private boolean fundador;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioCreacion;
+	@Column(name = "fecha_creacion", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fecha_creacion;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "socios_id" , nullable = true)
 	private Socio socioProponente;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion tipoSocio;
 	
 	

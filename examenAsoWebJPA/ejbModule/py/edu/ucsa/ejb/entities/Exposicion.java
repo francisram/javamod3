@@ -25,19 +25,21 @@ public class Exposicion {
 	private String nombre;
 	@Column(name = "descripcion", nullable = true)
 	private String descripcion;
-	@Column(name = "organizacion", nullable = true)
+	@Column(name = "organiza", nullable = true)
 	private String organiza;
 	@Column(name = "ubicacion", nullable = true)
 	private String ubicacion;
-	@Column(name = "fecha_expo", nullable = true)
+	@Column(name = "fecha_expo", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fechaExpo;
 	@Column(name = "contacto", nullable = true)
 	private String contacto;
-	@Column(name = "fecha_creacion", nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition = "	TIMESTAMP",nullable = true)
 	private LocalDate fechaCreacion;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarios_id" )
 	private Usuario usuarioCreacion;
+	
+	
 	public Integer getId() {
 		return id;
 	}

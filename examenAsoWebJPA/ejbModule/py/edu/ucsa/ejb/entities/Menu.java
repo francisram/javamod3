@@ -1,10 +1,14 @@
 package py.edu.ucsa.ejb.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,13 +19,22 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "columna_menu", nullable = true)
 	private String columnaMenu;
+	@Column(name = "estado", nullable = true)
 	private String estado;
+	@Column(name = "icono", nullable = true)
 	private String icono;
+	@Column(name = "nombre", nullable = true)
 	private String nombre;
+	@Column(name = "tipo_menu", nullable = true)
 	private String tipoMenu;
+	@Column(name = "tipo_usuario", nullable = true)
 	private String tipoUsuario;
+	@Column(name = "vista", nullable = true)
 	private String vista;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "menus_id" )
 	private Integer subMenu;
 	
 	

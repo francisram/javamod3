@@ -8,7 +8,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rol")
+@Table(name = "roles_usuarios")
 @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.rol ASC")
 public class RolUsuario {
 	@OneToOne(fetch = FetchType.LAZY)
