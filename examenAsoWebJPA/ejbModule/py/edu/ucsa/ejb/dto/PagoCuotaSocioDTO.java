@@ -2,18 +2,18 @@ package py.edu.ucsa.ejb.dto;
 
 import java.sql.Date;
 
-public class PagoCuotaSocio {
+public class PagoCuotaSocioDTO {
 	private Integer id;
     private Integer anhoCuota;
     private boolean exonerado;
     private Date fechaCreacion;
     private Integer mesCuota;
     private double montoCuota;
-    private Opcion idEstado;
-    private Opcion motivoExoneracion;
-    private MovimientoSocio movimientoSocio;
-    private Socio socio;
-    private Usuario usuarioCreacion;
+    private OpcionDTO idEstado;
+    private OpcionDTO motivoExoneracion;
+    private MovimientoSocioDTO movimientoSocioDTO;
+    private SocioDTO socioDTO;
+    private UsuarioDTO usuarioCreacion;
 	public Integer getId() {
 		return id;
 	}
@@ -51,42 +51,42 @@ public class PagoCuotaSocio {
 		this.montoCuota = montoCuota;
 	}
 
-	public Opcion getIdEstado() {
+	public OpcionDTO getIdEstado() {
 		return idEstado;
 	}
-	public void setIdEstado(Opcion idEstado) {
+	public void setIdEstado(OpcionDTO idEstado) {
 		this.idEstado = idEstado;
 	}
-	public Opcion getMotivoExoneracion() {
+	public OpcionDTO getMotivoExoneracion() {
 		return motivoExoneracion;
 	}
-	public void setMotivoExoneracion(Opcion motivoExoneracion) {
+	public void setMotivoExoneracion(OpcionDTO motivoExoneracion) {
 		this.motivoExoneracion = motivoExoneracion;
 	}
-	public MovimientoSocio getMovimientoSocio() {
-		return movimientoSocio;
+	public MovimientoSocioDTO getMovimientoSocio() {
+		return movimientoSocioDTO;
 	}
-	public void setMovimientoSocio(MovimientoSocio movimientoSocio) {
-		this.movimientoSocio = movimientoSocio;
+	public void setMovimientoSocio(MovimientoSocioDTO movimientoSocioDTO) {
+		this.movimientoSocioDTO = movimientoSocioDTO;
 	}
-	public Socio getSocio() {
-		return socio;
+	public SocioDTO getSocio() {
+		return socioDTO;
 	}
-	public void setSocio(Socio socio) {
-		this.socio = socio;
+	public void setSocio(SocioDTO socioDTO) {
+		this.socioDTO = socioDTO;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	@Override
 	public String toString() {
-		return "PagoCuotaSocio [id=" + id + ", anhoCuota=" + anhoCuota + ", exonerado=" + exonerado + ", fechaCreacion="
+		return "PagoCuotaSocioDTO [id=" + id + ", anhoCuota=" + anhoCuota + ", exonerado=" + exonerado + ", fechaCreacion="
 				+ fechaCreacion + ", mesCuota=" + mesCuota + ", montoCuota=" + montoCuota + ", idEstado=" + idEstado
-				+ ", motivoExoneracion=" + motivoExoneracion + ", movimientoSocio=" + movimientoSocio + ", socio="
-				+ socio + ", usuarioCreacion=" + usuarioCreacion + "]";
+				+ ", motivoExoneracion=" + motivoExoneracion + ", movimientoSocioDTO=" + movimientoSocioDTO + ", socioDTO="
+				+ socioDTO + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}
     
     

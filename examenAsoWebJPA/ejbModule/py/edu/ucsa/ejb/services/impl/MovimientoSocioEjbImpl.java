@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.MovimientoSocioEjbRemote;
 /**
  * Session Bean implementation class MovimientoSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "MovimientoSocioEjb")
 @LocalBean
 public class MovimientoSocioEjbImpl implements MovimientoSocioEjbRemote {
 

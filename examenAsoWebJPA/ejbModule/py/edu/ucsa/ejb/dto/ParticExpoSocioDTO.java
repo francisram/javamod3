@@ -3,14 +3,14 @@ package py.edu.ucsa.ejb.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class ParticExpoSocio {
+public class ParticExpoSocioDTO {
 	private Integer id;
-	private Socio socio;
-	private Exposicion exposicion;
+	private SocioDTO socioDTO;
+	private ExposicionDTO exposicionDTO;
 	private boolean canceloParticipacion;
 	private LocalDateTime fechaCancelacion;
 	private LocalDateTime fechaCreacion;
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 	
 	
 	
@@ -19,7 +19,7 @@ public class ParticExpoSocio {
 	
 	@Override
 	public String toString() {
-		return "ParticExpoSocio [id=" + id + ", socio=" + socio + ", exposicion=" + exposicion
+		return "ParticExpoSocioDTO [id=" + id + ", socioDTO=" + socioDTO + ", exposicionDTO=" + exposicionDTO
 				+ ", canceloParticipacion=" + canceloParticipacion + ", fechaCancelacion=" + fechaCancelacion
 				+ ", fechaCreacion=" + fechaCreacion + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}
@@ -29,17 +29,17 @@ public class ParticExpoSocio {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Socio getSocio() {
-		return socio;
+	public SocioDTO getSocio() {
+		return socioDTO;
 	}
-	public void setSocio(Socio socio) {
-		this.socio = socio;
+	public void setSocio(SocioDTO socioDTO) {
+		this.socioDTO = socioDTO;
 	}
-	public Exposicion getExposicion() {
-		return exposicion;
+	public ExposicionDTO getExposicion() {
+		return exposicionDTO;
 	}
-	public void setExposicion(Exposicion exposicion) {
-		this.exposicion = exposicion;
+	public void setExposicion(ExposicionDTO exposicionDTO) {
+		this.exposicionDTO = exposicionDTO;
 	}
 	public boolean isCanceloParticipacion() {
 		return canceloParticipacion;
@@ -59,13 +59,13 @@ public class ParticExpoSocio {
 	public void setFechaCreacion(LocalDateTime fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
-	public ParticExpoSocio() {
+	public ParticExpoSocioDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -1,6 +1,6 @@
 package py.edu.ucsa.ejb.dto;
 
-public class Menu {
+public class MenuDTO {
 	
 	private Integer id;
 	private String columnaMenu;
@@ -16,7 +16,7 @@ public class Menu {
 	
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
+		return "MenuDTO [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
 				+ ", nombre=" + nombre + ", tipoMenu=" + tipoMenu + ", tipoUsuario=" + tipoUsuario + ", vista=" + vista
 				+ ", subMenu=" + subMenu + "]";
 	}

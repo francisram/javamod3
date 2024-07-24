@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.MenuEjbRemote;
 /**
  * Session Bean implementation class MenuEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "MenuEjb")
 @LocalBean
 public class MenuEjbImpl implements MenuEjbRemote {
 

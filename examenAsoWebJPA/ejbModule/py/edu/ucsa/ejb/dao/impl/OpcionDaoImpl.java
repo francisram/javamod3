@@ -1,9 +1,30 @@
 package py.edu.ucsa.ejb.dao.impl;
 
+import java.util.List;
+
 import py.edu.ucsa.ejb.dao.OpcionDao;
 import py.edu.ucsa.ejb.entities.Opcion;
 
 public class OpcionDaoImpl extends AbstractDao<Long, Opcion> implements OpcionDao {
+	
+
+	@Override
+	public Opcion getOpcionByDominioCodOpcion(String dominio, String codOpcion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Opcion> getOpcionesByCodDominio(String dominio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Opcion> getOpcionesByIdDominio(Integer idDominio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public Iterable<Opcion> findAll() {

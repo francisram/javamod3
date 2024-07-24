@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.TematicaParticExpoSocioEjbRemote;
 /**
  * Session Bean implementation class TematicaParticExpoSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "TematicaParticExpoSocioEjb")
 @LocalBean
 public class TematicaParticExpoSocioEjbImpl implements TematicaParticExpoSocioEjbRemote {
 

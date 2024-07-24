@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "montos_cuota")
-@NamedQuery(name = "MontoCuota.findAll", query = "SELECT m FROM MontoCuota m ORDER BY m.monto ASC")
+@NamedQuery(name = "MontoCuotaDTO.findAll", query = "SELECT m FROM MontoCuotaDTO m ORDER BY m.monto ASC")
 public class MontoCuota {
 	
 	@Id
@@ -39,7 +39,7 @@ public class MontoCuota {
 	
 	@Override
 	public String toString() {
-		return "MontoCuota [id=" + id + ", monto=" + monto + ", fechaCreacion=" + fechaCreacion
+		return "MontoCuotaDTO [id=" + id + ", monto=" + monto + ", fechaCreacion=" + fechaCreacion
 				+ ", fechaInicioVigencia=" + fechaInicioVigencia + ", fechaFinVigencia=" + fechaFinVigencia
 				+ ", fechaInactivacion=" + fechaInactivacion + ", estado=" + estado + ", usuarioInactivacion="
 				+ usuarioInactivacion + "]";

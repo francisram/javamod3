@@ -1,5 +1,5 @@
 package py.edu.ucsa.ejb.dto;
 
-public class Menus {
+public class MenusDTO {
 
 }

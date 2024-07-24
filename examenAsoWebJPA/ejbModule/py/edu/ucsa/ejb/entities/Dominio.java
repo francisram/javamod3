@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "dominios")
-@NamedQuery(name = "Dominio.findAll", query = "SELECT c FROM Dominio c ORDER BY c.codigo ASC")
+@NamedQuery(name = "DominioDTO.findAll", query = "SELECT c FROM DominioDTO c ORDER BY c.codigo ASC")
 public class Dominio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,7 +79,7 @@ public class Dominio {
 
 	@Override
 	public String toString() {
-		return "Dominio [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+		return "DominioDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", dominioPadre=" + dominioPadre + "]";
 	}
 

@@ -2,12 +2,12 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDateTime;
 
-public class EstadoSocio {
+public class EstadoSocioDTO {
 	private Integer id;
-	private Socio socio;
-	private EstadoSocio estado;
+	private SocioDTO socioDTO;
+	private EstadoSocioDTO estado;
 	private LocalDateTime fechaEstado;
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 	private LocalDateTime fechaCreacion;
 	private String observacion;
 	
@@ -16,7 +16,7 @@ public class EstadoSocio {
 	
 	@Override
 	public String toString() {
-		return "EstadoSocio [id=" + id + ", socio=" + socio + ", estado=" + estado + ", fechaEstado=" + fechaEstado
+		return "EstadoSocioDTO [id=" + id + ", socioDTO=" + socioDTO + ", estado=" + estado + ", fechaEstado=" + fechaEstado
 				+ ", usuarioCreacion=" + usuarioCreacion + ", fechaCreacion=" + fechaCreacion + ", observacion="
 				+ observacion + "]";
 	}
@@ -26,16 +26,16 @@ public class EstadoSocio {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Socio getSocio() {
-		return socio;
+	public SocioDTO getSocio() {
+		return socioDTO;
 	}
-	public void setSocio(Socio socio) {
-		this.socio = socio;
+	public void setSocio(SocioDTO socioDTO) {
+		this.socioDTO = socioDTO;
 	}
-	public EstadoSocio getEstado() {
+	public EstadoSocioDTO getEstado() {
 		return estado;
 	}
-	public void setEstado(EstadoSocio estado) {
+	public void setEstado(EstadoSocioDTO estado) {
 		this.estado = estado;
 	}
 	public LocalDateTime getFechaEstado() {
@@ -44,10 +44,10 @@ public class EstadoSocio {
 	public void setFechaEstado(LocalDateTime fechaEstado) {
 		this.fechaEstado = fechaEstado;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	public LocalDateTime getFechaCreacion() {

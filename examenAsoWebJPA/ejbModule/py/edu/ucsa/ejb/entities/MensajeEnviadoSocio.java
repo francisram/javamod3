@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "mensajes_enviados_socios")
-@NamedQuery(name = "MensajeEnviadoSocio.findAll", query = "SELECT m FROM MensajeEnviadoSocio m ORDER BY m.socioDestino ASC")
+@NamedQuery(name = "MensajeEnviadoSocioDTO.findAll", query = "SELECT m FROM MensajeEnviadoSocioDTO m ORDER BY m.socioDestino ASC")
 public class MensajeEnviadoSocio {
 	
 	@Id
@@ -64,7 +64,7 @@ public class MensajeEnviadoSocio {
 	}
 	@Override
 	public String toString() {
-		return "MensajeEnviadoSocio [id=" + id + ", socioDestino=" + socioDestino + ", mensaje=" + mensaje
+		return "MensajeEnviadoSocioDTO [id=" + id + ", socioDestino=" + socioDestino + ", mensaje=" + mensaje
 				+ ", fechaCreacion=" + fechaCreacion + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}
 	

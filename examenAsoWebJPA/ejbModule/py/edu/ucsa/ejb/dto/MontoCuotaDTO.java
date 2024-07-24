@@ -3,7 +3,7 @@ package py.edu.ucsa.ejb.dto;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class MontoCuota {
+public class MontoCuotaDTO {
 
 	private Integer id;
 	private double monto;
@@ -12,14 +12,14 @@ public class MontoCuota {
 	private LocalDateTime fechaFinVigencia;
 	private LocalDateTime fechaInactivacion;
 	private String estado;
-	private Usuario usuarioInactivacion;
+	private UsuarioDTO usuarioInactivacion;
 	
 	
 	
 	
 	@Override
 	public String toString() {
-		return "MontoCuota [id=" + id + ", monto=" + monto + ", fechaCreacion=" + fechaCreacion
+		return "MontoCuotaDTO [id=" + id + ", monto=" + monto + ", fechaCreacion=" + fechaCreacion
 				+ ", fechaInicioVigencia=" + fechaInicioVigencia + ", fechaFinVigencia=" + fechaFinVigencia
 				+ ", fechaInactivacion=" + fechaInactivacion + ", estado=" + estado + ", usuarioInactivacion="
 				+ usuarioInactivacion + "]";
@@ -66,10 +66,10 @@ public class MontoCuota {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Usuario getUsuarioInactivacion() {
+	public UsuarioDTO getUsuarioInactivacion() {
 		return usuarioInactivacion;
 	}
-	public void setUsuarioInactivacion(Usuario usuarioInactivacion) {
+	public void setUsuarioInactivacion(UsuarioDTO usuarioInactivacion) {
 		this.usuarioInactivacion = usuarioInactivacion;
 	}
 	

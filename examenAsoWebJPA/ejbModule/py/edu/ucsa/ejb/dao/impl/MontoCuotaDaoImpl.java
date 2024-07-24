@@ -12,6 +12,12 @@ public class MontoCuotaDaoImpl extends AbstractDao<Long, MontoCuota> implements 
 	}
 
 	@Override
+	public MontoCuota getMontoCuotaByAnho(int mes, int anho) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public MontoCuota findById(Long id) {
 		// TODO Auto-generated method stub
 		return super.findById(id);

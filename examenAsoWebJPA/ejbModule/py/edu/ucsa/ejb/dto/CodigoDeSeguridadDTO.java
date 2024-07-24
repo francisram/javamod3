@@ -2,19 +2,19 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDateTime;
 
-public class CodigoDeSeguridad {
+public class CodigoDeSeguridadDTO {
 	private Integer id;
 	private String codigo;
 	private LocalDateTime horaPeticion;
 	private Integer tipoActivacion;
-	private Usuario usuario;
+	private UsuarioDTO usuarioDTO;
 	
 	
 	
 	@Override
 	public String toString() {
-		return "CodigoDeSeguridad [id=" + id + ", codigo=" + codigo + ", horaPeticion=" + horaPeticion
-				+ ", tipoActivacion=" + tipoActivacion + ", usuario=" + usuario + "]";
+		return "CodigoDeSeguridadDTO [id=" + id + ", codigo=" + codigo + ", horaPeticion=" + horaPeticion
+				+ ", tipoActivacion=" + tipoActivacion + ", usuarioDTO=" + usuarioDTO + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -40,11 +40,11 @@ public class CodigoDeSeguridad {
 	public void setTipoActivacion(Integer tipoActivacion) {
 		this.tipoActivacion = tipoActivacion;
 	}
-	public Usuario getUsuario() {
-		return usuario;
+	public UsuarioDTO getUsuario() {
+		return usuarioDTO;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(UsuarioDTO usuarioDTO) {
+		this.usuarioDTO = usuarioDTO;
 	}
 	
 	

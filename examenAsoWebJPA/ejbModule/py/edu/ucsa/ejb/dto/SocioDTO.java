@@ -2,7 +2,7 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDate;
 
-public class Socio {
+public class SocioDTO {
 	
 	private int id;
 	private String nombres;
@@ -11,21 +11,21 @@ public class Socio {
 	private int nroSocio;
 	private int nroCedula;
 	private LocalDate fechaIngreso;
-	private Opcion estadoActual;
+	private OpcionDTO estadoActual;
 	private LocalDate fechaEstadoActual;
 	private boolean fundador;
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 	private LocalDate fecha_creacion;
-	private Socio socioProponente;
-	private Opcion tipoSocio;
+	private SocioDTO socioProponente;
+	private OpcionDTO tipoSocio;
 	
 	
 	
-	public Socio(int id) {
+	public SocioDTO(int id) {
 		super();
 		this.id = id;
 	}
-	public Socio() {
+	public SocioDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -71,10 +71,10 @@ public class Socio {
 	public void setFechaIngreso(LocalDate fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
-	public Opcion getEstadoActual() {
+	public OpcionDTO getEstadoActual() {
 		return estadoActual;
 	}
-	public void setEstadoActual(Opcion estadoActual) {
+	public void setEstadoActual(OpcionDTO estadoActual) {
 		this.estadoActual = estadoActual;
 	}
 	public LocalDate getFechaEstadoActual() {
@@ -89,10 +89,10 @@ public class Socio {
 	public void setFundador(boolean fundador) {
 		this.fundador = fundador;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	public LocalDate getFecha_creacion() {
@@ -101,21 +101,21 @@ public class Socio {
 	public void setFecha_creacion(LocalDate fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
 	}
-	public Socio getSocioProponente() {
+	public SocioDTO getSocioProponente() {
 		return socioProponente;
 	}
-	public void setSocioProponente(Socio socioProponente) {
+	public void setSocioProponente(SocioDTO socioProponente) {
 		this.socioProponente = socioProponente;
 	}
-	public Opcion getTipoSocio() {
+	public OpcionDTO getTipoSocio() {
 		return tipoSocio;
 	}
-	public void setTipoSocio(Opcion tipoSocio) {
+	public void setTipoSocio(OpcionDTO tipoSocio) {
 		this.tipoSocio = tipoSocio;
 	}
 	@Override
 	public String toString() {
-		return "Socio [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email
+		return "SocioDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email
 				+ ", nroSocio=" + nroSocio + ", nroCedula=" + nroCedula + ", fechaIngreso=" + fechaIngreso
 				+ ", estadoActual=" + estadoActual + ", fechaEstadoActual=" + fechaEstadoActual + ", fundador="
 				+ fundador + ", usuarioCreacion=" + usuarioCreacion + ", fecha_creacion=" + fecha_creacion

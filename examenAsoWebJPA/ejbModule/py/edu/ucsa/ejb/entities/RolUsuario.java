@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles_usuarios")
-@NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.rol ASC")
+@NamedQuery(name = "RolDTO.findAll", query = "SELECT r FROM RolDTO r ORDER BY r.rol ASC")
 public class RolUsuario {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_id" , nullable = true)
@@ -21,7 +21,7 @@ public class RolUsuario {
 		
 	@Override
 	public String toString() {
-		return "RolUsuario [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
+		return "RolUsuarioDTO [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
 	}
 	
 	public Integer getIdUsuario() {

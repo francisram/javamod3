@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.CodigoDeSeguridadEjbRemote;
 /**
  * Session Bean implementation class CodigoDeSeguridadEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "CodigoDeSeguridadEjb")
 @LocalBean
 public class CodigoDeSeguridadEjbImpl implements CodigoDeSeguridadEjbRemote {
 

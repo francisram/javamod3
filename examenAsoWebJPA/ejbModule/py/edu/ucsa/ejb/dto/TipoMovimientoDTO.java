@@ -1,6 +1,6 @@
 package py.edu.ucsa.ejb.dto;
 
-public class TipoMovimiento {
+public class TipoMovimientoDTO {
 	private int id;
     private String codigo;
     private String descripcion;
@@ -12,13 +12,13 @@ public class TipoMovimiento {
        
     
     
-	public TipoMovimiento() {
+	public TipoMovimientoDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
-		return "TipoMovimiento [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+		return "TipoMovimientoDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", tipoDebCred=" + tipoDebCred + "]";
 	}
 	public int getId() {

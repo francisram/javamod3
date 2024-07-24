@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "menus")
-@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m ORDER BY m.columnMenu ASC")
+@NamedQuery(name = "MenuDTO.findAll", query = "SELECT m FROM MenuDTO m ORDER BY m.columnMenu ASC")
 public class Menu {
 	
 	@Id
@@ -41,7 +41,7 @@ public class Menu {
 	
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
+		return "MenuDTO [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
 				+ ", nombre=" + nombre + ", tipoMenu=" + tipoMenu + ", tipoUsuario=" + tipoUsuario + ", vista=" + vista
 				+ ", subMenu=" + subMenu + "]";
 	}

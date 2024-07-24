@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "movimientos_socios")
-@NamedQuery(name = "MovimientoSocio.findAll", query = "SELECT m FROM MovimientoSocio m ORDER BY m.monto ASC")
+@NamedQuery(name = "MovimientoSocioDTO.findAll", query = "SELECT m FROM MovimientoSocioDTO m ORDER BY m.monto ASC")
 public class MovimientoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -142,7 +142,7 @@ public class MovimientoSocio {
 
 	@Override
 	public String toString() {
-		return "MovimientoSocio [id=" + id + ", fechaPago=" + fechaPago + ", monto=" + monto + ", concepto=" + concepto
+		return "MovimientoSocioDTO [id=" + id + ", fechaPago=" + fechaPago + ", monto=" + monto + ", concepto=" + concepto
 				+ ", estado=" + estado + ", medioPago=" + medioPago + ", socio=" + socio + ", tipoMovimiento="
 				+ tipoMovimiento + ", usuarioAprobacion=" + usuarioAprobacion + ", usuarioCreacion=" + usuarioCreacion
 				+ "]";

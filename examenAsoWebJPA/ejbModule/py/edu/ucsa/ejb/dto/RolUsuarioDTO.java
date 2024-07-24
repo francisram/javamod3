@@ -1,13 +1,13 @@
 package py.edu.ucsa.ejb.dto;
 
-public class RolUsuario {
+public class RolUsuarioDTO {
 	private Integer idUsuario;
 	private Integer idRol;
 	
 		
 	@Override
 	public String toString() {
-		return "RolUsuario [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
+		return "RolUsuarioDTO [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
 	}
 	
 	public Integer getIdUsuario() {

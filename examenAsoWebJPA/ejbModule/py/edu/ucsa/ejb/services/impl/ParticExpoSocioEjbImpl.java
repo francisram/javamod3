@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 /**
  * Session Bean implementation class ParticExpoSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "ParticExpoSocioEjb")
 @LocalBean
 public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 

@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.DominioEjbRemote;
 /**
  * Session Bean implementation class DominioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "DominioEjb")
 @LocalBean
 public class DominioEjbImpl implements DominioEjbRemote {
 

@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.MontoCuotaEjbRemote;
 /**
  * Session Bean implementation class MontoCuotaEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "MontoCuotaEjb")
 @LocalBean
 public class MontoCuotaEjbImpl implements MontoCuotaEjbRemote {
 

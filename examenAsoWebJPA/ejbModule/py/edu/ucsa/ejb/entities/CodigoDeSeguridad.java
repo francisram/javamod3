@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "codigo_de_seguridad")
-@NamedQuery(name = "CodigoDeSeguridad.findAll", query = "SELECT c FROM CodigoDeSeguridad c ORDER BY c.codigo ASC")
+@NamedQuery(name = "CodigoDeSeguridadDTO.findAll", query = "SELECT c FROM CodigoDeSeguridadDTO c ORDER BY c.codigo ASC")
 public class CodigoDeSeguridad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,7 +65,7 @@ public class CodigoDeSeguridad {
 	
 	@Override
 	public String toString() {
-		return "CodigoDeSeguridad [id=" + id + ", codigo=" + codigo + ", horaPeticion=" + horaPeticion
+		return "CodigoDeSeguridadDTO [id=" + id + ", codigo=" + codigo + ", horaPeticion=" + horaPeticion
 				+ ", tipoActivacion=" + tipoActivacion + ", usuario=" + usuario + "]";
 	}
 

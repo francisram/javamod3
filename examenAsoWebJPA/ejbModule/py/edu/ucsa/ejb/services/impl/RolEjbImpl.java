@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.RolEjbRemote;
 /**
  * Session Bean implementation class RolEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "RolEjb")
 @LocalBean
 public class RolEjbImpl implements RolEjbRemote {
 

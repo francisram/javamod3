@@ -2,7 +2,7 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDate;
 
-public class Exposicion {
+public class ExposicionDTO {
 	
 	private Integer id;
 	private String nombre;
@@ -12,7 +12,7 @@ public class Exposicion {
 	private LocalDate fechaExpo;
 	private String contacto;
 	private LocalDate fechaCreacion;
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 	public Integer getId() {
 		return id;
 	}
@@ -61,15 +61,15 @@ public class Exposicion {
 	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	@Override
 	public String toString() {
-		return "Exposicion [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", organiza=" + organiza
+		return "ExposicionDTO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", organiza=" + organiza
 				+ ", ubicacion=" + ubicacion + ", fechaExpo=" + fechaExpo + ", contacto=" + contacto
 				+ ", fechaCreacion=" + fechaCreacion + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}

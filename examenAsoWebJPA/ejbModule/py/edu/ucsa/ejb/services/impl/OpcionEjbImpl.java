@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.OpcionEjbRemote;
 /**
  * Session Bean implementation class OpcionEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "OpcionEjb")
 @LocalBean
 public class OpcionEjbImpl implements OpcionEjbRemote {
 

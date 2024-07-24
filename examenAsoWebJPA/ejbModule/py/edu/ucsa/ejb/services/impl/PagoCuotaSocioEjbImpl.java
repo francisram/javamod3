@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.PagoCuotaSocioEjbRemote;
 /**
  * Session Bean implementation class PagoCuotaSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "PagoCuotaSocioEjb")
 @LocalBean
 public class PagoCuotaSocioEjbImpl implements PagoCuotaSocioEjbRemote {
 

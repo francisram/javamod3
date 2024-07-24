@@ -12,12 +12,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import py.edu.ucsa.ejb.dto.Opcion;
-import py.edu.ucsa.ejb.dto.Usuario;
+import py.edu.ucsa.ejb.dto.OpcionDTO;
+import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 @Entity
 @Table(name = "tematica_partic_expo_socios")
-@NamedQuery(name = "TematicaParticExpoSocio.findAll", query = "SELECT r FROM TematicaParticExpoSocio r ORDER BY r.rol ASC")
+@NamedQuery(name = "TematicaParticExpoSocioDTO.findAll", query = "SELECT r FROM TematicaParticExpoSocioDTO r ORDER BY r.rol ASC")
 public class TematicaParticExpoSocio {
 	
 	@Id
@@ -30,7 +30,7 @@ public class TematicaParticExpoSocio {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "opciones_id" , nullable = true)
-	private Opcion tematicaGeneral;
+	private OpcionDTO tematicaGeneral;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "opciones_id" , nullable = true)
@@ -47,7 +47,7 @@ public class TematicaParticExpoSocio {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarios_id" , nullable = true)
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 
 	public int getId() {
 		return id;
@@ -65,11 +65,11 @@ public class TematicaParticExpoSocio {
 		this.particExpoSocio = particExpoSocio;
 	}
 
-	public Opcion getTematicaGeneral() {
+	public OpcionDTO getTematicaGeneral() {
 		return tematicaGeneral;
 	}
 
-	public void setTematicaGeneral(Opcion tematicaGeneral) {
+	public void setTematicaGeneral(OpcionDTO tematicaGeneral) {
 		this.tematicaGeneral = tematicaGeneral;
 	}
 
@@ -105,11 +105,11 @@ public class TematicaParticExpoSocio {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
 
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	

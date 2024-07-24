@@ -1,12 +1,12 @@
 package py.edu.ucsa.ejb.dto;
 
-public class Opcion {
+public class OpcionDTO {
 	private Integer id;
 	private String codigo;
 	private String descripcion;
 	private String estado;
-	private Dominio dominio;
-	private Opcion padre;
+	private DominioDTO dominioDTO;
+	private OpcionDTO padre;
 	
 	
 	
@@ -14,18 +14,18 @@ public class Opcion {
 	
 	
 	
-	public Opcion() {
+	public OpcionDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "Opcion [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
-				+ ", dominio=" + dominio + ", padre=" + padre + "]";
+		return "OpcionDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+				+ ", dominioDTO=" + dominioDTO + ", padre=" + padre + "]";
 	}
 
-	public Opcion(Integer id) {
+	public OpcionDTO(Integer id) {
 		super();
 		this.id = id;
 	}
@@ -62,19 +62,19 @@ public class Opcion {
 		this.estado = estado;
 	}
 
-	public Dominio getDominio() {
-		return dominio;
+	public DominioDTO getDominio() {
+		return dominioDTO;
 	}
 
-	public void setDominio(Dominio dominioPadre) {
-		this.dominio = dominioPadre;
+	public void setDominio(DominioDTO dominioPadre) {
+		this.dominioDTO = dominioPadre;
 	}
 
-	public Opcion getPadre() {
+	public OpcionDTO getPadre() {
 		return padre;
 	}
 
-	public void setPadre(Opcion padre) {
+	public void setPadre(OpcionDTO padre) {
 		this.padre = padre;
 	}
 }

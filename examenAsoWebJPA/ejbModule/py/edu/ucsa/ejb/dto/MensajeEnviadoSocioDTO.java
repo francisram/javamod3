@@ -2,29 +2,29 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDateTime;
 
-public class MensajeEnviadoSocio {
+public class MensajeEnviadoSocioDTO {
 	
 	private Integer id;
-	private Socio socioDestino;
-	private MensajeEnviadoSocio mensaje;
+	private SocioDTO socioDestino;
+	private MensajeEnviadoSocioDTO mensaje;
 	private LocalDateTime fechaCreacion;
-	private Usuario usuarioCreacion;
+	private UsuarioDTO usuarioCreacion;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Socio getSocioDestino() {
+	public SocioDTO getSocioDestino() {
 		return socioDestino;
 	}
-	public void setSocioDestino(Socio socioDestino) {
+	public void setSocioDestino(SocioDTO socioDestino) {
 		this.socioDestino = socioDestino;
 	}
-	public MensajeEnviadoSocio getMensaje() {
+	public MensajeEnviadoSocioDTO getMensaje() {
 		return mensaje;
 	}
-	public void setMensaje(MensajeEnviadoSocio mensaje) {
+	public void setMensaje(MensajeEnviadoSocioDTO mensaje) {
 		this.mensaje = mensaje;
 	}
 	public LocalDateTime getFechaCreacion() {
@@ -33,15 +33,15 @@ public class MensajeEnviadoSocio {
 	public void setFechaCreacion(LocalDateTime fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public Usuario getUsuarioCreacion() {
+	public UsuarioDTO getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
-	public void setUsuarioCreacion(Usuario usuarioCreacion) {
+	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
 	@Override
 	public String toString() {
-		return "MensajeEnviadoSocio [id=" + id + ", socioDestino=" + socioDestino + ", mensaje=" + mensaje
+		return "MensajeEnviadoSocioDTO [id=" + id + ", socioDestino=" + socioDestino + ", mensaje=" + mensaje
 				+ ", fechaCreacion=" + fechaCreacion + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}
 	

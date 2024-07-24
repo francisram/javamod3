@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.EstadoSocioEjbRemote;
 /**
  * Session Bean implementation class EstadoSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "EstadoSocioEjb")
 @LocalBean
 public class EstadoSocioEjbImpl implements EstadoSocioEjbRemote {
 

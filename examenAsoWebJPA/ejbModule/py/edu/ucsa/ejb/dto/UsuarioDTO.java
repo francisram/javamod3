@@ -2,7 +2,7 @@ package py.edu.ucsa.ejb.dto;
 
 import java.time.LocalDate;
 
-public class Usuario {
+public class UsuarioDTO {
 
 	private Integer id;
 	private String usuario;
@@ -12,7 +12,7 @@ public class Usuario {
 	private boolean cuentaExpirada;
 	private boolean cuentaBloqueada;
 	private LocalDate fechaCreacionUsuario;
-	private Socio idSocio;
+	private SocioDTO idSocio;
 	
 	
 	
@@ -24,10 +24,10 @@ public class Usuario {
 		this.fechaCreacionUsuario = fechaCreacionUsuario;
 	}
 
-	public Socio getIdSocio() {
+	public SocioDTO getIdSocio() {
 		return idSocio;
 	}
-	public void setIdSocio(Socio idSocio) {
+	public void setIdSocio(SocioDTO idSocio) {
 		this.idSocio = idSocio;
 	}
 	public boolean isCuentaExpirada() {
@@ -42,11 +42,11 @@ public class Usuario {
 	public void setCuentaBloqueada(boolean cuentaBloqueada) {
 		this.cuentaBloqueada = cuentaBloqueada;
 	}
-	public Usuario() {
+	public UsuarioDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Usuario(Integer id) {
+	public UsuarioDTO(Integer id) {
 		super();
 		this.id = id;
 	}
@@ -85,7 +85,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave + ", habilitado="
+		return "UsuarioDTO [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave + ", habilitado="
 				+ habilitado + ", cuentaExpirada=" + cuentaExpirada + ", cuentaBloqueada=" + cuentaBloqueada
 				+ ", fechaCreacionUsuario=" + fechaCreacionUsuario + ", idSocio=" + idSocio + "]";
 	}

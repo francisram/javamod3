@@ -1,6 +1,6 @@
 package py.edu.ucsa.ejb.dto;
 
-public class Rol {
+public class RolDTO {
 
 	private int id;
 	private String nombreRol;
@@ -18,7 +18,7 @@ public class Rol {
 	}
 	@Override
 	public String toString() {
-		return "Rol [id=" + id + ", nombreRol=" + nombreRol + "]";
+		return "RolDTO [id=" + id + ", nombreRol=" + nombreRol + "]";
 	}
 	
 	

@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 /**
  * Session Bean implementation class UsuarioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "UsuarioEjb")
 @LocalBean
 public class UsuarioEjbImpl implements UsuarioEjbRemote {
 

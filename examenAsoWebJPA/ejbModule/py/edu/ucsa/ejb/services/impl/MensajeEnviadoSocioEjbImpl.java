@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.MensajeEnviadoSocioEjbRemote;
 /**
  * Session Bean implementation class MensajeEnviadoSocioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "MensajeEnviadoSocioEjb")
 @LocalBean
 public class MensajeEnviadoSocioEjbImpl implements MensajeEnviadoSocioEjbRemote {
 

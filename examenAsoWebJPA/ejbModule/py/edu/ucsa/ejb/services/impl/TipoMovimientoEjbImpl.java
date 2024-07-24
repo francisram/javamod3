@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.TipoMovimientoEjbRemote;
 /**
  * Session Bean implementation class TipoMovimientoEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "TipoMovimientoEjb")
 @LocalBean
 public class TipoMovimientoEjbImpl implements TipoMovimientoEjbRemote {
 

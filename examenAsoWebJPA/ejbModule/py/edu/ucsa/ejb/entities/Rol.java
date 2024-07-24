@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles ")
-@NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.rol ASC")
+@NamedQuery(name = "RolDTO.findAll", query = "SELECT r FROM RolDTO r ORDER BY r.rol ASC")
 public class Rol {
 	
 	@Id
@@ -36,7 +36,7 @@ public class Rol {
 	}
 	@Override
 	public String toString() {
-		return "Rol [id=" + id + ", nombreRol=" + nombreRol + "]";
+		return "RolDTO [id=" + id + ", nombreRol=" + nombreRol + "]";
 	}
 	
 	

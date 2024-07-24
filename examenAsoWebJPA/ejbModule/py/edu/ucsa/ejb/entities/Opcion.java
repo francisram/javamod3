@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "opciones")
-@NamedQuery(name = "Opcion.findAll", query = "SELECT o FROM Opcion o ORDER BY o.codigo ASC")
+@NamedQuery(name = "OpcionDTO.findAll", query = "SELECT o FROM OpcionDTO o ORDER BY o.codigo ASC")
 
 public class Opcion {
 	@Id
@@ -45,7 +45,7 @@ public class Opcion {
 
 	@Override
 	public String toString() {
-		return "Opcion [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+		return "OpcionDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", dominio=" + dominio + ", padre=" + padre + "]";
 	}
 

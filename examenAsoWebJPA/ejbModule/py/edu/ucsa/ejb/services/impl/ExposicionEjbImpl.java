@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 /**
  * Session Bean implementation class ExposicionEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "ExposicionEjb")
 @LocalBean
 public class ExposicionEjbImpl implements ExposicionEjbRemote {
 

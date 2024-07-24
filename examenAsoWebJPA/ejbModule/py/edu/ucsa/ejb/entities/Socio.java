@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "socios")
-@NamedQuery(name = "Socio.findAll", query = "SELECT s FROM Socio s ORDER BY s.nombres ASC")
+@NamedQuery(name = "SocioDTO.findAll", query = "SELECT s FROM SocioDTO s ORDER BY s.nombres ASC")
 public class Socio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -147,7 +147,7 @@ public class Socio {
 	}
 	@Override
 	public String toString() {
-		return "Socio [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email
+		return "SocioDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email
 				+ ", nroSocio=" + nroSocio + ", nroCedula=" + nroCedula + ", fechaIngreso=" + fechaIngreso
 				+ ", estadoActual=" + estadoActual + ", fechaEstadoActual=" + fechaEstadoActual + ", fundador="
 				+ fundador + ", usuarioCreacion=" + usuarioCreacion + ", fecha_creacion=" + fecha_creacion

@@ -1,25 +1,25 @@
 package py.edu.ucsa.ejb.dto;
 
-public class Dominio {
+public class DominioDTO {
  private Integer id;
  private String codigo;
  private String descripcion;
  private String estado;
- private Dominio dominioPadre;
+ private DominioDTO dominioPadre;
  
  
  
  
-public Dominio() {
+public DominioDTO() {
 	super();
 }
-public Dominio(Integer id) {
+public DominioDTO(Integer id) {
 	super();
 	this.id = id;
 }
 @Override
 public String toString() {
-	return "Dominio [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+	return "DominioDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 			+ ", dominioPadre=" + dominioPadre + "]";
 }
 public Integer getId() {
@@ -46,10 +46,10 @@ public String getEstado() {
 public void setEstado(String estado) {
 	this.estado = estado;
 }
-public Dominio getDominioPadre() {
+public DominioDTO getDominioPadre() {
 	return dominioPadre;
 }
-public void setDominioPadre(Dominio dominioPadre) {
+public void setDominioPadre(DominioDTO dominioPadre) {
 	this.dominioPadre = dominioPadre;
 }
 
