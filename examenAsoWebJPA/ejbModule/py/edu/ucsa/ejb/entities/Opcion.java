@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "opciones")
-@NamedQuery(name = "OpcionDTO.findAll", query = "SELECT o FROM OpcionDTO o ORDER BY o.codigo ASC")
+@NamedQuery(name = "Opcion.findAll", query = "SELECT o FROM Opcion o ORDER BY o.codigo ASC")
 
 public class Opcion {
 	@Id

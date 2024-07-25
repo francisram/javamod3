@@ -10,8 +10,8 @@ public interface OpcionDao extends IGenericDao<Long, Opcion>{
 	
 
 	Opcion getOpcionByDominioCodOpcion(String dominio,String codOpcion);
-	List<Opcion> getOpcionesByCodDominio(String dominio);
-	List<Opcion> getOpcionesByIdDominio(Integer idDominio);
+	Iterable<Opcion> getOpcionesByCodDominio(String dominio);
+	Iterable<Opcion> getOpcionesByIdDominio(Integer idDominio);
 
 
 	

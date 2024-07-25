@@ -17,7 +17,7 @@ import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 @Entity
 @Table(name = "tematica_partic_expo_socios")
-@NamedQuery(name = "TematicaParticExpoSocioDTO.findAll", query = "SELECT r FROM TematicaParticExpoSocioDTO r ORDER BY r.rol ASC")
+@NamedQuery(name = "TematicaParticExpoSocio.findAll", query = "SELECT t FROM TematicaParticExpoSocio t ORDER BY t.id ASC")
 public class TematicaParticExpoSocio {
 	
 	@Id

@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "socios")
-@NamedQuery(name = "SocioDTO.findAll", query = "SELECT s FROM SocioDTO s ORDER BY s.nombres ASC")
+@NamedQuery(name = "Socio.findAll", query = "SELECT s FROM Socio s ORDER BY s.nombres ASC")
 public class Socio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

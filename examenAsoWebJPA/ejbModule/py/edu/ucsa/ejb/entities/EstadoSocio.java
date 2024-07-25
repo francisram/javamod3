@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "estados_socios")
-@NamedQuery(name = "EstadoSocioDTO.findAll", query = "SELECT c FROM EstadoSocioDTO c ORDER BY c.socio ASC")
+@NamedQuery(name = "EstadoSocio.findAll", query = "SELECT c FROM EstadoSocio c ORDER BY c.socio ASC")
 public class EstadoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class EstadoSocio {
 	@Column(name = "fecha_estado", nullable = true)
 	private LocalDateTime fechaEstado;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" )
+	@JoinColumn(name = "usuario_creacion_id" )
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDateTime fechaCreacion;

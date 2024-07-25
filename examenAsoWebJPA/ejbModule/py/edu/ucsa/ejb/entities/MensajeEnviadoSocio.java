@@ -15,23 +15,28 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "mensajes_enviados_socios")
-@NamedQuery(name = "MensajeEnviadoSocioDTO.findAll", query = "SELECT m FROM MensajeEnviadoSocioDTO m ORDER BY m.socioDestino ASC")
+@NamedQuery(name = "MensajeEnviadoSocio.findAll", query = "SELECT m FROM MensajeEnviadoSocio m ORDER BY m.socioDestino ASC")
 public class MensajeEnviadoSocio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socios_id" )
+	@JoinColumn(name = "socio_destino_id" )
 	private Socio socioDestino;
+	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "mensajes_id" )
+	@JoinColumn(name = "mensajes_socio_id" )
 	private MensajeEnviadoSocio mensaje;
+	
 	@Column(name = "fecha_creacion", nullable = true)
 	private LocalDateTime fechaCreacion;
+	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" )
+	@JoinColumn(name = "usuario_creacion_id" )
 	private Usuario usuarioCreacion;
+	
 	public Integer getId() {
 		return id;
 	}

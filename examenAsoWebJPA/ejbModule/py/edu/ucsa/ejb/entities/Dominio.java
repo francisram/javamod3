@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "dominios")
-@NamedQuery(name = "DominioDTO.findAll", query = "SELECT c FROM DominioDTO c ORDER BY c.codigo ASC")
+@NamedQuery(name = "Dominio.findAll", query = "SELECT c FROM Dominio c ORDER BY c.codigo ASC")
 public class Dominio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Dominio {
 	@Column(name = "estado" , nullable = true)
 	private String estado;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dominios_id" , nullable = true)
+	@JoinColumn(name = "dominio_padre_id" , nullable = true)
 	private Dominio dominioPadre;
 
 	public Dominio() {

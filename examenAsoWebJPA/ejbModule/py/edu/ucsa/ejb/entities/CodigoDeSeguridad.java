@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "codigo_de_seguridad")
-@NamedQuery(name = "CodigoDeSeguridadDTO.findAll", query = "SELECT c FROM CodigoDeSeguridadDTO c ORDER BY c.codigo ASC")
+@NamedQuery(name = "CodigoDeSeguridad.findAll", query = "SELECT c FROM CodigoDeSeguridad c ORDER BY c.codigo ASC")
 public class CodigoDeSeguridad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class CodigoDeSeguridad {
 	@Column(name = "tipo_activacion", columnDefinition = "	TIMESTAMP", nullable = true)
 	private Integer tipoActivacion;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "usuario_id" , nullable = true)
 	private Usuario usuario;
 	
 		

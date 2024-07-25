@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tipos_movimiento")
-@NamedQuery(name = "TipoMovimientoDTO.findAll", query = "SELECT t FROM TipoMovimientoDTO t ORDER BY t.codigo ASC")
+@NamedQuery(name = "TipoMovimiento.findAll", query = "SELECT t FROM TipoMovimiento t ORDER BY t.codigo ASC")
 public class TipoMovimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

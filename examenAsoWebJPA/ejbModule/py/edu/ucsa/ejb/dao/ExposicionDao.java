@@ -8,6 +8,6 @@ import py.edu.ucsa.ejb.entities.Exposicion;
 
 public interface ExposicionDao extends IGenericDao<Long, Exposicion> {
 	
-	List<Exposicion> listarPorFechas(String fechaInicial , String fechaFinal);
+	Iterable<Exposicion> listarPorFechas(String fechaInicial , String fechaFinal);
 
 }

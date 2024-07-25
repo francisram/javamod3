@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.entities.Usuario;
 
 public interface UsuarioDao extends IGenericDao<Long, Usuario> {
 	
-	List<Rol> getRolesByUsuario(Integer idUsuario);
+	Iterable<Rol> getRolesByUsuario(Integer idUsuario);
 	
 	public Usuario validarUsuario(String username, String password) ;
 

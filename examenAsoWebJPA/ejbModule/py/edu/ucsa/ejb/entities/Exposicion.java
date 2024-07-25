@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "exposiciones")
-@NamedQuery(name = "ExposicionDTO.findAll", query = "SELECT e FROM ExposicionDTO e ORDER BY e.nombre ASC")
+@NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e ORDER BY e.nombre ASC")
 public class Exposicion {
 	
 	@Id
@@ -36,7 +36,7 @@ public class Exposicion {
 	@Column(name = "fecha_creacion", columnDefinition = "	TIMESTAMP",nullable = true)
 	private LocalDate fechaCreacion;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" )
+	@JoinColumn(name = "usuarios_creacion_id" )
 	private Usuario usuarioCreacion;
 	
 	

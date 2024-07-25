@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles ")
-@NamedQuery(name = "RolDTO.findAll", query = "SELECT r FROM RolDTO r ORDER BY r.rol ASC")
+@NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.rol ASC")
 public class Rol {
 	
 	@Id

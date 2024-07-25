@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pagos_cuotas_socios")
-@NamedQuery(name = "PagoCuotaSocioDTO.findAll", query = "SELECT pc FROM PagoCuotaSocioDTO pc ORDER BY pc.id ASC")
+@NamedQuery(name = "PagoCuotaSocio.findAll", query = "SELECT pc FROM PagoCuotaSocio pc ORDER BY pc.id ASC")
 public class PagoCuotaSocio {
 	
 	@Id
