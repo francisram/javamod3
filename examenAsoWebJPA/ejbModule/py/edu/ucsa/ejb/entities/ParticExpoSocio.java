@@ -1,6 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -39,7 +39,7 @@ public class ParticExpoSocio {
 	private LocalDateTime fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
 	private Usuario usuarioCreacion;
 	
 	

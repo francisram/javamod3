@@ -48,7 +48,7 @@ public class Socio {
 	@JoinColumn(name = "socios_id" , nullable = true)
 	private Socio socioProponente;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "tipo_socio_id" , nullable = true)
 	private Opcion tipoSocio;
 	
 	

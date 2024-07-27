@@ -1,6 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;

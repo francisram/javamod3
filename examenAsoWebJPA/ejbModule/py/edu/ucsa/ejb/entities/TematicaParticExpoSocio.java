@@ -29,11 +29,10 @@ public class TematicaParticExpoSocio {
 	private ParticExpoSocio particExpoSocio;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
-	private OpcionDTO tematicaGeneral;
+	@JoinColumn(name = "tematica_general_id" , nullable = true)
+	private Opcion tematicaGeneral;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@Column(name = "tematica_especifica",   nullable = true)
 	private String tematicaEspecifica;
 	
 	@Column(name = "cancelo_participacion", columnDefinition="boolean",  nullable = true)
@@ -46,8 +45,8 @@ public class TematicaParticExpoSocio {
 	private LocalDate fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
-	private UsuarioDTO usuarioCreacion;
+	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
+	private Usuario usuarioCreacion;
 
 	public int getId() {
 		return id;
@@ -65,11 +64,13 @@ public class TematicaParticExpoSocio {
 		this.particExpoSocio = particExpoSocio;
 	}
 
-	public OpcionDTO getTematicaGeneral() {
+
+
+	public Opcion getTematicaGeneral() {
 		return tematicaGeneral;
 	}
 
-	public void setTematicaGeneral(OpcionDTO tematicaGeneral) {
+	public void setTematicaGeneral(Opcion tematicaGeneral) {
 		this.tematicaGeneral = tematicaGeneral;
 	}
 
@@ -105,13 +106,15 @@ public class TematicaParticExpoSocio {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public UsuarioDTO getUsuarioCreacion() {
+	public Usuario getUsuarioCreacion() {
 		return usuarioCreacion;
 	}
 
-	public void setUsuarioCreacion(UsuarioDTO usuarioCreacion) {
+	public void setUsuarioCreacion(Usuario usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
+
+
 	
 
 	

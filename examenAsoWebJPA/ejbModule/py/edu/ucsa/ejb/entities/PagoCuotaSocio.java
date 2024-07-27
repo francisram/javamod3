@@ -38,11 +38,11 @@ public class PagoCuotaSocio {
     private double montoCuota;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "estado_id" , nullable = true)
     private Opcion idEstado;
 	
     @OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "motivo_exoneracion_id" , nullable = true)
     private Opcion motivoExoneracion;
     
     @OneToOne(fetch = FetchType.LAZY)
@@ -54,7 +54,7 @@ public class PagoCuotaSocio {
     private Socio socio;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
     private Usuario usuarioCreacion;
 	
 	public Integer getId() {

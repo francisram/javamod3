@@ -13,12 +13,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "menus")
-@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m ORDER BY m.columnMenu ASC")
+@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m ORDER BY m.columnaMenu ASC")
 public class Menu {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	@Column(name = "columna_menu", nullable = true)
 	private String columnaMenu;
 	@Column(name = "estado", nullable = true)
@@ -35,22 +35,37 @@ public class Menu {
 	private String vista;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sub_menu_id" )
-	private Integer subMenu;
+	private Menu subMenu;
 	
 	
 	
 	@Override
 	public String toString() {
-		return "MenuDTO [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
+		return "Menu [id=" + id + ", columnaMenu=" + columnaMenu + ", estado=" + estado + ", icono=" + icono
 				+ ", nombre=" + nombre + ", tipoMenu=" + tipoMenu + ", tipoUsuario=" + tipoUsuario + ", vista=" + vista
 				+ ", subMenu=" + subMenu + "]";
 	}
-	public Integer getId() {
+	
+	
+
+	public Menu getSubMenu() {
+		return subMenu;
+	}
+
+
+
+	public void setSubMenu(Menu subMenu) {
+		this.subMenu = subMenu;
+	}
+
+
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+
+
+
 	public String getColumnaMenu() {
 		return columnaMenu;
 	}
@@ -93,12 +108,11 @@ public class Menu {
 	public void setVista(String vista) {
 		this.vista = vista;
 	}
-	public Integer getSubMenu() {
-		return subMenu;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setSubMenu(Integer subMenu) {
-		this.subMenu = subMenu;
-	}
+
 	
 	
 

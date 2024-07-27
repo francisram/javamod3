@@ -37,7 +37,7 @@ public class Usuario {
 	@Column(name = "fecha_creacion_usuario", columnDefinition = "	TIMESTAMP", nullable = true)
 	private LocalDate fechaCreacionUsuario;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "socio_id" , nullable = true)
 	private Socio idSocio;
 	
 	

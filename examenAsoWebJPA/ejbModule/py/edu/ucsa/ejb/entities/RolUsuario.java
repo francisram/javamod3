@@ -20,10 +20,10 @@ public class RolUsuario {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_id" , nullable = true)
-	private Integer idUsuario;
+	private Usuario idUsuario;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rol_id" , nullable = true)
-	private Integer idRol;
+	private Rol idRol;
 	
 		
 	@Override
@@ -31,21 +31,37 @@ public class RolUsuario {
 		return "RolUsuarioDTO [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
 	}
 	
-	public Integer getIdUsuario() {
+
+
+	public Usuario getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(Integer idUsuario) {
+
+
+
+	public void setIdUsuario(Usuario idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-	public Integer getIdRol() {
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Rol getIdRol() {
 		return idRol;
 	}
 
-	public void setIdRol(Integer idRol) {
+	public void setIdRol(Rol idRol) {
 		this.idRol = idRol;
 	}
 
+	
 	
 	
 

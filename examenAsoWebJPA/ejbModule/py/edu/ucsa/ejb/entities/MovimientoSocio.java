@@ -26,13 +26,13 @@ public class MovimientoSocio {
 	@Column(name = "monto", nullable = true)
 	private double monto;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "concepto_id" , nullable = true)
 	private Opcion concepto;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "estado_id" , nullable = true)
 	private Opcion estado;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "medio_pago_id" , nullable = true)
 	private Opcion medioPago;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "socios_id" , nullable = true)
@@ -41,10 +41,10 @@ public class MovimientoSocio {
 	@JoinColumn(name = "tipos_movimientos_id" , nullable = true)
 	private TipoMovimiento tipoMovimiento;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "usuario_aprobacion_id" , nullable = true)
 	private Usuario usuarioAprobacion;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
 	private Usuario usuarioCreacion;
 
 	
