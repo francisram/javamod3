@@ -1,7 +1,10 @@
 package py.edu.ucsa.ejb.services.impl;
 
+import java.util.List;
+
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import py.edu.ucsa.ejb.dto.OpcionDTO;
 import py.edu.ucsa.ejb.services.OpcionEjbRemote;
 
 /**
@@ -17,5 +20,41 @@ public class OpcionEjbImpl implements OpcionEjbRemote {
     public OpcionEjbImpl() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public List<OpcionDTO> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(OpcionDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<OpcionDTO> listar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OpcionDTO getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizar(OpcionDTO obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
