@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.MensajeEnviadoSocioDao;
+import py.edu.ucsa.ejb.dao.IMensajeEnviadoSocioDao;
 import py.edu.ucsa.ejb.entities.MensajeEnviadoSocio;
 
-public class MensajeEnviadoSocioDaoImpl extends AbstractDao<Long, MensajeEnviadoSocio> implements MensajeEnviadoSocioDao{
+public class MensajeEnviadoSocioDaoImpl extends AbstractDao<Long, MensajeEnviadoSocio> implements IMensajeEnviadoSocioDao{
+
+	
+	public MensajeEnviadoSocioDaoImpl() {
+		super(MensajeEnviadoSocio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<MensajeEnviadoSocio> findAll() {

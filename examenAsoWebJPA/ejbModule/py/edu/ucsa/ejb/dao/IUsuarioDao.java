@@ -5,7 +5,7 @@ import java.util.List;
 import py.edu.ucsa.ejb.entities.Rol;
 import py.edu.ucsa.ejb.entities.Usuario;
 
-public interface UsuarioDao extends IGenericDao<Long, Usuario> {
+public interface IUsuarioDao extends IGenericDao<Long, Usuario> {
 	
 	Iterable<Rol> getRolesByUsuario(Integer idUsuario);
 	

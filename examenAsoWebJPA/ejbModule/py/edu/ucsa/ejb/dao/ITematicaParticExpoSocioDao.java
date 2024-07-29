@@ -6,7 +6,7 @@ import py.edu.ucsa.ejb.entities.TematicaParticExpoSocio;
 
 
 
-public interface TematicaParticExpoSocioDao extends IGenericDao<Long, TematicaParticExpoSocio>{
+public interface ITematicaParticExpoSocioDao extends IGenericDao<Long, TematicaParticExpoSocio>{
 
 
 

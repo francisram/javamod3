@@ -1,9 +1,16 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.TematicaParticExpoSocioDao;
+import py.edu.ucsa.ejb.dao.ITematicaParticExpoSocioDao;
 import py.edu.ucsa.ejb.entities.TematicaParticExpoSocio;
 
-public class TematicaParticExpoSocioDaoImpl extends AbstractDao<Long, TematicaParticExpoSocio> implements TematicaParticExpoSocioDao {
+public class TematicaParticExpoSocioDaoImpl extends AbstractDao<Long, TematicaParticExpoSocio> implements ITematicaParticExpoSocioDao {
+
+	
+	
+	public TematicaParticExpoSocioDaoImpl() {
+		super(TematicaParticExpoSocio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<TematicaParticExpoSocio> findAll() {

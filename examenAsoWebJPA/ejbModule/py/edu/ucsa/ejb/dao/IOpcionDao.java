@@ -6,7 +6,7 @@ import py.edu.ucsa.ejb.entities.Opcion;
 
 
 
-public interface OpcionDao extends IGenericDao<Long, Opcion>{
+public interface IOpcionDao extends IGenericDao<Long, Opcion>{
 	
 
 	Opcion getOpcionByDominioCodOpcion(String dominio,String codOpcion);

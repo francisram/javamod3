@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.MontoCuotaDao;
+import py.edu.ucsa.ejb.dao.IMontoCuotaDao;
 import py.edu.ucsa.ejb.entities.MontoCuota;
 
-public class MontoCuotaDaoImpl extends AbstractDao<Long, MontoCuota> implements MontoCuotaDao {
+public class MontoCuotaDaoImpl extends AbstractDao<Long, MontoCuota> implements IMontoCuotaDao {
+
+	
+	public MontoCuotaDaoImpl() {
+		super(MontoCuota.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<MontoCuota> findAll() {

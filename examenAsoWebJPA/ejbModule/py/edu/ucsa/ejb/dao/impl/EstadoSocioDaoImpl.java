@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.EstadoSocioDao;
+import py.edu.ucsa.ejb.dao.IEstadoSocioDao;
 import py.edu.ucsa.ejb.entities.EstadoSocio;
 
-public class EstadoSocioDaoImpl extends AbstractDao<Long, EstadoSocio> implements EstadoSocioDao{
+public class EstadoSocioDaoImpl extends AbstractDao<Long, EstadoSocio> implements IEstadoSocioDao{
+
+	
+	public EstadoSocioDaoImpl() {
+		super(EstadoSocio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<EstadoSocio> findAll() {

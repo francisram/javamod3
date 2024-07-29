@@ -1,9 +1,16 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.SocioDao;
+import py.edu.ucsa.ejb.dao.ISocioDao;
 import py.edu.ucsa.ejb.entities.Socio;
 
-public class SocioDaoImpl extends AbstractDao<Long, Socio>  implements SocioDao{
+public class SocioDaoImpl extends AbstractDao<Long, Socio>  implements ISocioDao{
+
+	
+	
+	public SocioDaoImpl() {
+		super(Socio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Socio getSocioByNroCedula(String nroCedula) {

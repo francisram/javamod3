@@ -1,9 +1,23 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.DominioDao;
+import jakarta.persistence.EntityManager;
+import py.edu.ucsa.ejb.dao.IDominioDao;
 import py.edu.ucsa.ejb.entities.Dominio;
 
-public class DominioDaoImpl extends AbstractDao<Long, Dominio> implements DominioDao {
+public class DominioDaoImpl extends AbstractDao<Long, Dominio> implements IDominioDao {
+
+	
+	
+	public DominioDaoImpl() {
+		super(Dominio.class);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return super.getEntityManager();
+	}
 
 	@Override
 	public Iterable<Dominio> findAll() {

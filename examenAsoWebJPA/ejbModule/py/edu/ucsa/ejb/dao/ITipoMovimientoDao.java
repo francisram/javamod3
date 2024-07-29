@@ -4,7 +4,7 @@ import py.edu.ucsa.ejb.entities.TipoMovimiento;
 
 
 
-public interface TipoMovimientoDao extends IGenericDao<Long, TipoMovimiento>{
+public interface ITipoMovimientoDao extends IGenericDao<Long, TipoMovimiento>{
 
 
 

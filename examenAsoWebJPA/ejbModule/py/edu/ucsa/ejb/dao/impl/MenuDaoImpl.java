@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.MenuDao;
+import py.edu.ucsa.ejb.dao.IMenuDao;
 import py.edu.ucsa.ejb.entities.Menu;
 
-public class MenuDaoImpl extends AbstractDao<Long, Menu> implements MenuDao {
+public class MenuDaoImpl extends AbstractDao<Long, Menu> implements IMenuDao {
+
+	
+	public MenuDaoImpl() {
+		super(Menu.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<Menu> findAll() {

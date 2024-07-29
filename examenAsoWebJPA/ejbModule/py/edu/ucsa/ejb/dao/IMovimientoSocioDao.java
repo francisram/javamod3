@@ -7,7 +7,7 @@ import py.edu.ucsa.ejb.entities.MovimientoSocio;
 
 
 
-public interface MovimientoSocioDao extends IGenericDao<Long, MovimientoSocio> {
+public interface IMovimientoSocioDao extends IGenericDao<Long, MovimientoSocio> {
 
 
 	

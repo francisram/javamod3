@@ -4,7 +4,7 @@ import py.edu.ucsa.ejb.entities.EstadoSocio;
 
 
 
-public interface EstadoSocioDao extends IGenericDao<Long, EstadoSocio> {
+public interface IEstadoSocioDao extends IGenericDao<Long, EstadoSocio> {
 
 
 

@@ -4,7 +4,7 @@ import py.edu.ucsa.ejb.entities.Menu;
 
 
 
-public interface MenuDao extends IGenericDao<Long, Menu> {
+public interface IMenuDao extends IGenericDao<Long, Menu> {
 
 
 	

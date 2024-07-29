@@ -6,7 +6,7 @@ import py.edu.ucsa.ejb.entities.Dominio;
 
 
 
-public interface DominioDao extends IGenericDao<Long, Dominio> {
+public interface IDominioDao extends IGenericDao<Long, Dominio> {
 
 
 

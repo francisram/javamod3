@@ -1,9 +1,16 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.TipoMovimientoDao;
+import py.edu.ucsa.ejb.dao.ITipoMovimientoDao;
 import py.edu.ucsa.ejb.entities.TipoMovimiento;
 
-public class TipoMovimientoDaoImpl extends AbstractDao<Long, TipoMovimiento> implements TipoMovimientoDao {
+public class TipoMovimientoDaoImpl extends AbstractDao<Long, TipoMovimiento> implements ITipoMovimientoDao {
+
+	
+	
+	public TipoMovimientoDaoImpl() {
+		super(TipoMovimiento.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<TipoMovimiento> findAll() {

@@ -1,9 +1,14 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.CodigoDeSeguridadDao;
+import py.edu.ucsa.ejb.dao.ICodigoDeSeguridadDao;
 import py.edu.ucsa.ejb.entities.CodigoDeSeguridad;
 
-public class CodigoDeSeguridadDaoImpl extends AbstractDao<Long, CodigoDeSeguridad> implements CodigoDeSeguridadDao {
+public class CodigoDeSeguridadDaoImpl extends AbstractDao<Long, CodigoDeSeguridad> implements ICodigoDeSeguridadDao {
+
+	public CodigoDeSeguridadDaoImpl() {
+		super(CodigoDeSeguridad.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<CodigoDeSeguridad> findAll() {

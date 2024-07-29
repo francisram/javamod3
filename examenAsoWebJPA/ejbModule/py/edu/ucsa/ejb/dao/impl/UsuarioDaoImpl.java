@@ -1,15 +1,24 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import java.util.List;
-
-import py.edu.ucsa.ejb.dao.UsuarioDao;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.persistence.NoResultException;
+import py.edu.ucsa.ejb.dao.IUsuarioDao;
 import py.edu.ucsa.ejb.entities.Rol;
 import py.edu.ucsa.ejb.entities.Usuario;
 
-public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements UsuarioDao {
+
+@RequestScoped
+@Named("usuarioDAO")
+public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements IUsuarioDao {
+
+	public UsuarioDaoImpl(Class<Usuario> clazz) {
+		super(clazz);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
-	public List<Rol> getRolesByUsuario(Integer idUsuario) {
+	public Iterable<Rol> getRolesByUsuario(Integer idUsuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -17,43 +26,22 @@ public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements Usuari
 	@Override
 	public Usuario validarUsuario(String username, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
+		// this.entityManager.createQuery("SELECT t FROM TorneoDTO t WHERE t.anho = :anho").setParameter("anho", anho).getResultList();
+		
+		try {
+	        Usuario usuario = this.entityManager.createQuery(
+	                "SELECT u FROM UsuarioDTO u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
+	                .setParameter("usuario", username)
+	                .setParameter("password", password)
+	                .getSingleResult();
+
+	        return usuario;
+	    } catch (NoResultException e) {
+	        return new Usuario();
+	    }
 	}
 
-	@Override
-	public Iterable<Usuario> findAll() {
-		// TODO Auto-generated method stub
-		return super.findAll();
-	}
-
-	@Override
-	public Usuario findById(Long id) {
-		// TODO Auto-generated method stub
-		return super.findById(id);
-	}
-
-	@Override
-	public Usuario insert(Usuario entity) {
-		// TODO Auto-generated method stub
-		return super.insert(entity);
-	}
-
-	@Override
-	public Usuario update(Usuario entity) {
-		// TODO Auto-generated method stub
-		return super.update(entity);
-	}
-
-	@Override
-	public void delete(Usuario entity) {
-		// TODO Auto-generated method stub
-		super.delete(entity);
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		super.deleteById(id);
-	}
+	
 
 }

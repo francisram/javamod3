@@ -6,7 +6,7 @@ import py.edu.ucsa.ejb.entities.Socio;
 
 
 
-public interface SocioDao extends IGenericDao<Long, Socio>{
+public interface ISocioDao extends IGenericDao<Long, Socio>{
 	Socio getSocioByNroCedula(String nroCedula);
 
 

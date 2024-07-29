@@ -1,9 +1,16 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.RolDao;
+import py.edu.ucsa.ejb.dao.IRolDao;
 import py.edu.ucsa.ejb.entities.Rol;
 
-public class RolDaoImpl extends AbstractDao<Long, Rol>  implements RolDao{
+public class RolDaoImpl extends AbstractDao<Long, Rol>  implements IRolDao{
+
+	
+	
+	public RolDaoImpl() {
+		super(Rol.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<Rol> findAll() {

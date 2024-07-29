@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.MovimientoSocioDao;
+import py.edu.ucsa.ejb.dao.IMovimientoSocioDao;
 import py.edu.ucsa.ejb.entities.MovimientoSocio;
 
-public class MovimientoSocioDaoImpl extends AbstractDao<Long, MovimientoSocio> implements MovimientoSocioDao {
+public class MovimientoSocioDaoImpl extends AbstractDao<Long, MovimientoSocio> implements IMovimientoSocioDao {
+
+	
+	public MovimientoSocioDaoImpl() {
+		super(MovimientoSocio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<MovimientoSocio> findAll() {

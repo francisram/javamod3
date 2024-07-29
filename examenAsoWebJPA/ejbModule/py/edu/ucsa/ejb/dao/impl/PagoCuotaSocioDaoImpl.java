@@ -1,9 +1,15 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import py.edu.ucsa.ejb.dao.PagoCuotaSocioDao;
+import py.edu.ucsa.ejb.dao.IPagoCuotaSocioDao;
 import py.edu.ucsa.ejb.entities.PagoCuotaSocio;
 
-public class PagoCuotaSocioDaoImpl extends AbstractDao<Long, PagoCuotaSocio> implements PagoCuotaSocioDao {
+public class PagoCuotaSocioDaoImpl extends AbstractDao<Long, PagoCuotaSocio> implements IPagoCuotaSocioDao {
+
+	
+	public PagoCuotaSocioDaoImpl() {
+		super(PagoCuotaSocio.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Iterable<PagoCuotaSocio> findAll() {

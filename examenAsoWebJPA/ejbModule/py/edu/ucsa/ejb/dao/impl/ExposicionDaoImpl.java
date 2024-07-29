@@ -2,10 +2,16 @@ package py.edu.ucsa.ejb.dao.impl;
 
 import java.util.List;
 
-import py.edu.ucsa.ejb.dao.ExposicionDao;
+import py.edu.ucsa.ejb.dao.IExposicionDao;
 import py.edu.ucsa.ejb.entities.Exposicion;
 
-public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements ExposicionDao {
+public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements IExposicionDao {
+
+	
+	public ExposicionDaoImpl() {
+		super(Exposicion.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public List<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {

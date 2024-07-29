@@ -4,7 +4,7 @@ import py.edu.ucsa.ejb.entities.Rol;
 
 
 
-public interface RolDao extends IGenericDao<Long, Rol> {
+public interface IRolDao extends IGenericDao<Long, Rol> {
 
 
 }
