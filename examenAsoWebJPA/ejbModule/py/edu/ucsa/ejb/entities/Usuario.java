@@ -1,7 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
-
+import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.SocioDTO;
+import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 
 @Entity
@@ -41,6 +43,70 @@ public class Usuario {
 	private Socio idSocio;
 	
 	
+	public static Usuario ofDTO(UsuarioDTO dto) {
+		Usuario u = new Usuario();
+		u.setClave(dto.getClave());
+		u.setCuentaBloqueada(dto.isCuentaBloqueada());
+		u.setCuentaExpirada(dto.isCuentaExpirada());
+		u.setEmail(dto.getEmail());
+		if(!Objects.isNull(dto.getFechaCreacionUsuario())) {
+			u.setFechaCreacionUsuario(dto.getFechaCreacionUsuario());			
+		}
+		u.setHabilitado(dto.isHabilitado());
+		u.setId(dto.getId());
+		if(Objects.isNull(dto.getIdSocio())) {
+			u.setIdSocio(Socio.ofDTO(dto.getIdSocio()));
+		}
+
+		u.setUsuario(dto.getUsuario());
+		
+		return u;
+				
+	}
+	
+	public UsuarioDTO toDTO() {
+		
+		UsuarioDTO u = new UsuarioDTO();
+		u.setClave(this.clave);
+		u.setCuentaBloqueada(this.isCuentaBloqueada());
+		u.setCuentaExpirada(this.isCuentaExpirada());
+		u.setEmail(this.email);
+		if(!Objects.isNull(this.getFechaCreacionUsuario())) {
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			u.setFechaCreacionUsuario(this.getFechaCreacionUsuario());
+		}
+		u.setHabilitado(this.isHabilitado());
+		u.setId(this.id);
+		SocioDTO s = new SocioDTO();
+		s.setId(this.id);
+		u.setIdSocio(s);
+		u.setUsuario(usuario);
+		
+		return u;
+		
+	}
+	
+	public UsuarioDTO toListaDTO() {
+		
+		UsuarioDTO u = new UsuarioDTO();
+		u.setClave(this.clave);
+		u.setCuentaBloqueada(this.isCuentaBloqueada());
+		u.setCuentaExpirada(this.isCuentaExpirada());
+		u.setEmail(this.email);
+		if(!Objects.isNull(u.getFechaCreacionUsuario())) {
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			u.setFechaCreacionUsuario(this.getFechaCreacionUsuario());
+		}
+		u.setHabilitado(this.isHabilitado());
+		u.setId(this.id);
+		SocioDTO s = new SocioDTO();
+		s.setId(this.id);
+		u.setIdSocio(s);
+		u.setUsuario(usuario);
+		
+		return u;
+		
+	}
 	
 	
 	public LocalDate getFechaCreacionUsuario() {

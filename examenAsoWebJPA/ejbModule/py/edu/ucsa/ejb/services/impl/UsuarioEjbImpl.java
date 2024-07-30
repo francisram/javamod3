@@ -5,6 +5,8 @@ import java.util.List;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import py.edu.ucsa.ejb.dto.UsuarioDTO;
+import py.edu.ucsa.ejb.entities.Rol;
+import py.edu.ucsa.ejb.entities.Usuario;
 import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
 /**
@@ -55,6 +57,18 @@ public class UsuarioEjbImpl implements UsuarioEjbRemote {
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Iterable<Rol> getRolesByUsuario(Integer idUsuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario validarUsuario(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
     

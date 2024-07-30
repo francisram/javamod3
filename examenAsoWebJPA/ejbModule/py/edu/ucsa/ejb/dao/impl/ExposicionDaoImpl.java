@@ -13,11 +13,6 @@ public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements 
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public List<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Iterable<Exposicion> findAll() {
@@ -53,6 +48,13 @@ public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements 
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
 		super.deleteById(id);
+	}
+
+
+	@Override
+	public Iterable<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -12,15 +12,16 @@ import py.edu.ucsa.ejb.entities.Usuario;
 @Named("usuarioDAO")
 public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements IUsuarioDao {
 
-	public UsuarioDaoImpl(Class<Usuario> clazz) {
-		super(clazz);
+	public UsuarioDaoImpl() {
+		super(Usuario.class);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Iterable<Rol> getRolesByUsuario(Integer idUsuario) {
-		// TODO Auto-generated method stub
-		return null;
+	
+			 return this.entityManager.createQuery("SELECT r FROM RolUsuarioDTO r WHERE r.idUsuario = :idUsuario").setParameter(1, idUsuario).getResultList();
+			
 	}
 
 	@Override

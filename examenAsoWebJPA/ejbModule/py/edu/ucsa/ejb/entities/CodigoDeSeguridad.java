@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.CodigoDeSeguridadDTO;
+import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 @Entity
 @Table(name = "codigo_de_seguridad")
@@ -31,6 +33,28 @@ public class CodigoDeSeguridad {
 	private Usuario usuario;
 	
 		
+	
+	public static CodigoDeSeguridad ofDTO(CodigoDeSeguridadDTO dto) {
+		CodigoDeSeguridad cds= new CodigoDeSeguridad();
+		cds.setCodigo(dto.getCodigo());
+		cds.setId(dto.getId());
+		cds.setHoraPeticion(dto.getHoraPeticion());
+		cds.setTipoActivacion(dto.getTipoActivacion());
+		cds.setUsuario(Usuario.ofDTO(dto.getUsuario()));
+		
+		return cds;
+		
+	}
+	/*
+	
+	public CodigoDeSeguridadDTO toListaDTO() {
+		
+	}
+	
+	public CodigoDeSeguridadDTO toDTO() {
+		
+	}
+	*/
 
 	public Integer getId() {
 		return id;

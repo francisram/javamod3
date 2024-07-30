@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import py.edu.ucsa.ejb.entities.Usuario;
+import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
 
 @WebServlet(urlPatterns = { "/Login" })
@@ -18,6 +20,8 @@ public class Login extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private UsuarioEjbRemote usuarioEjbClient;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -33,7 +37,7 @@ public class Login extends HttpServlet {
 			username = request.getParameter("usuario");
 			password = request.getParameter("password");
 
-			Usuario usuario = DaoFactory.getUsuarioDao().validarUsuario(username, password);
+			Usuario usuario = usuarioEjbClient.
 
 			if (Objects.isNull(usuario)) {
 				System.out.println("Inicio de sesión fallido: usuario--> " + username + " pass--> " + password);

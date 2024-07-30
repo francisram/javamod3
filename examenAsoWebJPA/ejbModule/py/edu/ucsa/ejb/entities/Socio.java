@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.SocioDTO;
 
 @Entity
 @Table(name = "socios")
@@ -51,6 +52,16 @@ public class Socio {
 	@JoinColumn(name = "tipo_socio_id" , nullable = true)
 	private Opcion tipoSocio;
 	
+	
+	public static Socio ofDTO(SocioDTO dto) {
+		Socio socio = new Socio();
+		return socio;
+	}
+	
+	public SocioDTO toDTO() {
+		SocioDTO socio = new SocioDTO();
+		return socio;
+	}
 	
 	
 	public Socio(int id) {

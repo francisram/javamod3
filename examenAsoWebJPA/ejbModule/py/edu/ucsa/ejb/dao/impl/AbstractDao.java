@@ -24,39 +24,41 @@ public class AbstractDao <PK extends Serializable , T> implements IGenericDao<PK
 		return this.entityManager;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<T> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.entityManager.createNamedQuery(persistentClass.getSimpleName()+".findAll").getResultList();
 	}
 
 	@Override
 	public T findById(PK id) {
 		// TODO Auto-generated method stub
-		return null;
+		return (T) this.entityManager.find(persistentClass, id);
 	}
 
 	@Override
 	public T insert(T entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.entityManager.merge(entity);
 	}
 
 	@Override
 	public T update(T entity) {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
+		return this.entityManager.merge(entity);
 	}
 
 	@Override
 	public void delete(T entity) {
-		// TODO Auto-generated method stub
+		this.entityManager.remove(entity);
 		
 	}
 
 	@Override
 	public void deleteById(PK id) {
-		// TODO Auto-generated method stub
+		this.entityManager.remove(this.findById(id));
 		
 	}
 

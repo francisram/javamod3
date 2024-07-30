@@ -20,51 +20,17 @@ public class OpcionDaoImpl extends AbstractDao<Long, Opcion> implements IOpcionD
 	}
 
 	@Override
-	public List<Opcion> getOpcionesByCodDominio(String dominio) {
+	public Iterable<Opcion> getOpcionesByCodDominio(String dominio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Opcion> getOpcionesByIdDominio(Integer idDominio) {
+	public Iterable<Opcion> getOpcionesByIdDominio(Integer idDominio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public Iterable<Opcion> findAll() {
-		// TODO Auto-generated method stub
-		return super.findAll();
-	}
-
-	@Override
-	public Opcion findById(Long id) {
-		// TODO Auto-generated method stub
-		return super.findById(id);
-	}
-
-	@Override
-	public Opcion insert(Opcion entity) {
-		// TODO Auto-generated method stub
-		return super.insert(entity);
-	}
-
-	@Override
-	public Opcion update(Opcion entity) {
-		// TODO Auto-generated method stub
-		return super.update(entity);
-	}
-
-	@Override
-	public void delete(Opcion entity) {
-		// TODO Auto-generated method stub
-		super.delete(entity);
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		super.deleteById(id);
-	}
+	
 
 }
