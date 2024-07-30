@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.OpcionDTO;
 
 @Entity
 @Table(name = "opciones")
@@ -33,7 +34,10 @@ public class Opcion {
 	private Opcion padre;
 	
 	
-	
+	public static Opcion ofDTO(OpcionDTO dto) {
+		Opcion opcion = new Opcion();
+		return opcion;
+	}
 
 	
 	

@@ -55,6 +55,20 @@ public class Socio {
 	
 	public static Socio ofDTO(SocioDTO dto) {
 		Socio socio = new Socio();
+		socio.setApellidos(dto.getApellidos());
+		socio.setEmail(dto.getEmail());
+		socio.setEstadoActual(Opcion.ofDTO(dto.getEstadoActual()));
+		socio.setFecha_creacion(dto.getFecha_creacion());
+		socio.setFechaEstadoActual(dto.getFechaEstadoActual());
+		socio.setFechaIngreso(dto.getFechaIngreso());
+		socio.setFundador(dto.isFundador());
+		socio.setId(dto.getId());
+		socio.setNombres(dto.getNombres());
+		socio.setNroCedula(dto.getNroCedula());
+		socio.setNroSocio(dto.getNroSocio());
+		socio.setSocioProponente(Socio.ofDTO(dto.getSocioProponente()));
+		socio.setTipoSocio(Opcion.ofDTO(dto.getTipoSocio()));
+		socio.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));
 		return socio;
 	}
 	

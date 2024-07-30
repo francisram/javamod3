@@ -19,6 +19,7 @@ import py.edu.ucsa.ejb.dto.UsuarioDTO;
 @Entity
 @Table(name = "usuarios")
 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u ORDER BY u.usuario ASC")
+@NamedQuery(name = "Usuario.validarUsuario" , query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario and u.clave = :clave")
 public class Usuario {
 
 	@Id
