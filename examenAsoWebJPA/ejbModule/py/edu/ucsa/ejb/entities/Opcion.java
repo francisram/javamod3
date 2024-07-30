@@ -38,6 +38,11 @@ public class Opcion {
 		Opcion opcion = new Opcion();
 		return opcion;
 	}
+	
+	public OpcionDTO toDTO() {
+		OpcionDTO opcion = new OpcionDTO();
+		return opcion;
+	}
 
 	
 	

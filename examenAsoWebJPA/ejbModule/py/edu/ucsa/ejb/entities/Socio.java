@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.OpcionDTO;
 import py.edu.ucsa.ejb.dto.SocioDTO;
 
 @Entity
@@ -74,6 +75,23 @@ public class Socio {
 	
 	public SocioDTO toDTO() {
 		SocioDTO socio = new SocioDTO();
+		socio.setApellidos(this.apellidos);
+		socio.setEmail(this.email);
+		OpcionDTO opcion = new OpcionDTO();
+		opcion.setId(this.estadoActual.getId());
+		socio.setEstadoActual(opcion);
+		socio.setFecha_creacion(fecha_creacion);
+		socio.setFechaEstadoActual(fechaEstadoActual);
+		socio.setFechaIngreso(fechaIngreso);
+		socio.setFundador(fundador);
+		socio.setId(id);
+		socio.setNombres(nombres);
+		socio.setNroCedula(nroCedula);
+		socio.setNroSocio(nroSocio);
+		socio.setSocioProponente(socio);
+		socio.setTipoSocio(null);
+		socio.setUsuarioCreacion(null);
+		
 		return socio;
 	}
 	
