@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.ExposicionDTO;
 
 @Entity
 @Table(name = "exposiciones")
@@ -39,6 +40,36 @@ public class Exposicion {
 	@JoinColumn(name = "usuarios_creacion_id" )
 	private Usuario usuarioCreacion;
 	
+	public static Exposicion ofDTO(ExposicionDTO dto) {
+			Exposicion exposicion = new Exposicion();
+			exposicion.setContacto(dto.getContacto());
+			exposicion.setDescripcion(dto.getDescripcion());
+			exposicion.setFechaCreacion(dto.getFechaCreacion());
+			exposicion.setFechaExpo(dto.getFechaExpo());
+			exposicion.setId(null);
+			exposicion.setNombre(null);
+			exposicion.setOrganiza(null);
+			exposicion.setUbicacion(null);
+			exposicion.setUbicacion(null);
+			exposicion.setUsuarioCreacion(null);
+			return exposicion;
+	}
+	
+	
+	public ExposicionDTO toDTO() {
+		ExposicionDTO exposicion = new ExposicionDTO();
+		exposicion.setContacto(null);
+		exposicion.setDescripcion(null);
+		exposicion.setFechaCreacion(null);
+		exposicion.setFechaExpo(null);
+		exposicion.setId(null);
+		exposicion.setNombre(null);
+		exposicion.setOrganiza(null);
+		exposicion.setUbicacion(null);
+		exposicion.setUbicacion(null);
+		exposicion.setUsuarioCreacion(null);
+		return exposicion;
+	}
 	
 	public Integer getId() {
 		return id;

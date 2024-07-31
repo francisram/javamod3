@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.DominioDTO;
 import py.edu.ucsa.ejb.dto.OpcionDTO;
 
 @Entity
@@ -36,11 +37,31 @@ public class Opcion {
 	
 	public static Opcion ofDTO(OpcionDTO dto) {
 		Opcion opcion = new Opcion();
+		opcion.setCodigo(dto.getCodigo());
+		opcion.setDescripcion(dto.getDescripcion());
+		Dominio dominio = new Dominio();
+		dominio.setId(dto.getDominio().getId());
+		opcion.setDominio(dominio);
+		opcion.setEstado(dto.getEstado());
+		opcion.setId(dto.getId());
+		Opcion padre = new Opcion();
+		padre.setId(dto.getPadre().getId());
+		opcion.setPadre(padre);
 		return opcion;
 	}
 	
 	public OpcionDTO toDTO() {
 		OpcionDTO opcion = new OpcionDTO();
+		opcion.setCodigo(this.getCodigo());
+		opcion.setDescripcion(this.getDescripcion());
+		DominioDTO dominio = new DominioDTO();
+		dominio.setId(this.getDominio().getId());
+		opcion.setDominio(dominio);
+		opcion.setEstado(this.getEstado());
+		opcion.setId(this.getId());
+		OpcionDTO padre = new OpcionDTO();
+		padre.setId(this.getPadre().getId());
+		opcion.setPadre(padre);
 		return opcion;
 	}
 

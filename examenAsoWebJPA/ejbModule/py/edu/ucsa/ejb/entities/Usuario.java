@@ -73,7 +73,6 @@ public class Usuario {
 		u.setCuentaExpirada(this.isCuentaExpirada());
 		u.setEmail(this.email);
 		if(!Objects.isNull(this.getFechaCreacionUsuario())) {
-			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			u.setFechaCreacionUsuario(this.getFechaCreacionUsuario());
 		}
 		u.setHabilitado(this.isHabilitado());

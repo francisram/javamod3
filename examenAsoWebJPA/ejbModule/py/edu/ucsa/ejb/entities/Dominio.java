@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.DominioDTO;
 
 @Entity
 @Table(name = "dominios")
@@ -27,6 +28,26 @@ public class Dominio {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dominio_padre_id" , nullable = true)
 	private Dominio dominioPadre;
+	
+	public static Dominio ofDTO(DominioDTO dto) {
+		Dominio dominio = new Dominio();
+		dominio.setCodigo(dto.getCodigo());
+		dominio.setDescripcion(dto.getDescripcion());
+		dominio.setDominioPadre(Dominio.ofDTO(dto.getDominioPadre()));
+		dominio.setEstado(dto.getEstado());
+		dominio.setId(dto.getId());
+		return dominio;
+	}
+	
+	public DominioDTO toDTO() {
+		DominioDTO dominio = new DominioDTO();
+		dominio.setCodigo(this.getCodigo());
+		dominio.setDescripcion(this.getDescripcion());
+		dominio.setDominioPadre(this.getDominioPadre().toDTO());
+		dominio.setEstado(this.getEstado());
+		dominio.setId(this.getId());
+		return dominio;
+	}
 
 	public Dominio() {
 		super();

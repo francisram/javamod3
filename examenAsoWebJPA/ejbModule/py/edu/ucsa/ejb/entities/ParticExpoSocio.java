@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
 
 @Entity
 @Table(name = "partic_expo_socios")
@@ -43,6 +44,17 @@ public class ParticExpoSocio {
 	private Usuario usuarioCreacion;
 	
 	
+	public static ParticExpoSocio ofDTO(ParticExpoSocioDTO dto) {
+		ParticExpoSocio particExpoSocio = new ParticExpoSocio();
+		
+		return particExpoSocio;
+	}
+
+	public ParticExpoSocioDTO toDTO() {
+		ParticExpoSocioDTO partic = new ParticExpoSocioDTO();
+		
+		return partic;
+	}
 	
 	
 	

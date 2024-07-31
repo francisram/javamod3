@@ -1,6 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import py.edu.ucsa.ejb.dto.OpcionDTO;
 import py.edu.ucsa.ejb.dto.SocioDTO;
+import py.edu.ucsa.ejb.dto.UsuarioDTO;
 
 @Entity
 @Table(name = "socios")
@@ -80,17 +82,29 @@ public class Socio {
 		OpcionDTO opcion = new OpcionDTO();
 		opcion.setId(this.estadoActual.getId());
 		socio.setEstadoActual(opcion);
-		socio.setFecha_creacion(fecha_creacion);
-		socio.setFechaEstadoActual(fechaEstadoActual);
-		socio.setFechaIngreso(fechaIngreso);
-		socio.setFundador(fundador);
-		socio.setId(id);
-		socio.setNombres(nombres);
-		socio.setNroCedula(nroCedula);
-		socio.setNroSocio(nroSocio);
-		socio.setSocioProponente(socio);
-		socio.setTipoSocio(null);
-		socio.setUsuarioCreacion(null);
+		if(!Objects.isNull(this.fecha_creacion)) {
+			socio.setFecha_creacion(this.fecha_creacion);			
+		}
+		if(Objects.isNull(this.fechaEstadoActual)) {
+			socio.setFechaEstadoActual(this.fechaEstadoActual);			
+		}
+		if(Objects.isNull(this.fechaIngreso)) {
+			socio.setFechaIngreso(this.fechaIngreso);		
+		}
+		socio.setFundador(this.fundador);
+		socio.setId(this.id);
+		socio.setNombres(this.nombres);
+		socio.setNroCedula(this.nroCedula);
+		socio.setNroSocio(this.nroSocio);
+		SocioDTO proponente = new SocioDTO();
+		proponente.setId(this.socioProponente.getId());
+		socio.setSocioProponente(proponente);
+		OpcionDTO tipoSocio = new OpcionDTO();
+		tipoSocio.setId(this.tipoSocio.getId());
+		socio.setTipoSocio(tipoSocio);
+		UsuarioDTO creador = new UsuarioDTO();
+		creador.setId(this.usuarioCreacion.getId());
+		socio.setUsuarioCreacion(creador);
 		
 		return socio;
 	}
