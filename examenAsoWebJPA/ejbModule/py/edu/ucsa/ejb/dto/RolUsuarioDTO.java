@@ -1,40 +1,48 @@
 package py.edu.ucsa.ejb.dto;
 
+import py.edu.ucsa.ejb.entities.Rol;
+import py.edu.ucsa.ejb.entities.Usuario;
+
 public class RolUsuarioDTO {
-	private Integer idUsuario;
-	private Integer idRol;
-	private Integer id;
+	private Usuario idUsuario;
+	private Rol idRol;
+	private Long id;
 	
-	
-	
+			
+
 		
-	public Integer getId() {
+
+	public Usuario getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Usuario idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Rol getIdRol() {
+		return idRol;
+	}
+
+	public void setIdRol(Rol idRol) {
+		this.idRol = idRol;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "RolUsuarioDTO [idUsuario=" + idUsuario + ", idRol=" + idRol + ", id=" + id + "]";
 	}
 	
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
 
-	public Integer getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Integer idRol) {
-		this.idRol = idRol;
-	}
 
 	
 	

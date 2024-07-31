@@ -46,28 +46,28 @@ public class Exposicion {
 			exposicion.setDescripcion(dto.getDescripcion());
 			exposicion.setFechaCreacion(dto.getFechaCreacion());
 			exposicion.setFechaExpo(dto.getFechaExpo());
-			exposicion.setId(null);
-			exposicion.setNombre(null);
-			exposicion.setOrganiza(null);
-			exposicion.setUbicacion(null);
-			exposicion.setUbicacion(null);
-			exposicion.setUsuarioCreacion(null);
+			exposicion.setId(dto.getId());
+			exposicion.setNombre(dto.getNombre());
+			exposicion.setOrganiza(dto.getOrganiza());
+			exposicion.setUbicacion(dto.getUbicacion());
+			exposicion.setUbicacion(dto.getUbicacion());
+			exposicion.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));
 			return exposicion;
 	}
 	
 	
 	public ExposicionDTO toDTO() {
 		ExposicionDTO exposicion = new ExposicionDTO();
-		exposicion.setContacto(null);
-		exposicion.setDescripcion(null);
-		exposicion.setFechaCreacion(null);
-		exposicion.setFechaExpo(null);
-		exposicion.setId(null);
-		exposicion.setNombre(null);
-		exposicion.setOrganiza(null);
-		exposicion.setUbicacion(null);
-		exposicion.setUbicacion(null);
-		exposicion.setUsuarioCreacion(null);
+		exposicion.setContacto(this.getContacto());
+		exposicion.setDescripcion(this.getDescripcion());
+		exposicion.setFechaCreacion(this.getFechaCreacion());
+		exposicion.setFechaExpo(this.getFechaExpo());
+		exposicion.setId(this.getId());
+		exposicion.setNombre(this.getNombre());
+		exposicion.setOrganiza(this.getOrganiza());
+		exposicion.setUbicacion(this.getUbicacion());
+		exposicion.setUbicacion(this.getUbicacion());
+		exposicion.setUsuarioCreacion(this.getUsuarioCreacion().toDTO());
 		return exposicion;
 	}
 	

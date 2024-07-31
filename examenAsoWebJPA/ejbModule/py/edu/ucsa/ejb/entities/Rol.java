@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import py.edu.ucsa.ejb.dto.RolDTO;
 
 @Entity
 @Table(name = "roles ")
@@ -21,6 +22,22 @@ public class Rol {
 	private Long id;
 	@Column(name = "nombre", nullable = true)
 	private String nombreRol;
+	
+	
+	public static Rol ofDTO(RolDTO dto) {
+		Rol rol = new Rol();
+		rol.setId(dto.getId());
+		rol.setNombreRol(dto.getNombreRol());
+		return rol;
+		
+	}
+	
+	public RolDTO toDTO() {
+		RolDTO rol = new RolDTO();
+		rol.setId(this.getId());
+		rol.setNombreRol(this.getNombreRol());
+		return rol;
+	}
 	
 	public Long getId() {
 		return id;
