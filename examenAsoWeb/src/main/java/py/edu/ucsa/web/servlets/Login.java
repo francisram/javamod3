@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +21,7 @@ public class Login extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/UsuarioEjbImpl!py.edu.ucsa.ejb.services.UsuarioEjbRemote")
 	private UsuarioEjbRemote usuarioEjbClient;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

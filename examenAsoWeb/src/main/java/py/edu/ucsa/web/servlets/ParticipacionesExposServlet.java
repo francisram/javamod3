@@ -10,11 +10,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
+import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
 
 /**
@@ -23,6 +26,12 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = { "/ParticipacionesExposServlet" })
 public class ParticipacionesExposServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/TematicaParticExpoSocioEjbImpl!py.edu.ucsa.ejb.services.TematicaParticExpoSocioEjbRemote")
+	private ParticExpoSocioEjbRemote particExpoSocioEjbRemote;
+	
+	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/UsuarioEjbImpl!py.edu.ucsa.ejb.services.UsuarioEjbRemote")
+	private UsuarioEjbRemote usuarioEjbClient;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,7 +48,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
+		 
 		try {
 
 			BufferedReader reader = request.getReader();
