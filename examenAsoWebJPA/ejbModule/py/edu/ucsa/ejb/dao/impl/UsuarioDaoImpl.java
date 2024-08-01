@@ -1,8 +1,11 @@
 package py.edu.ucsa.ejb.dao.impl;
 
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 import py.edu.ucsa.ejb.dao.IUsuarioDao;
 import py.edu.ucsa.ejb.entities.Rol;
 import py.edu.ucsa.ejb.entities.Usuario;
@@ -17,6 +20,7 @@ public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements IUsuar
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Rol> getRolesByUsuario(Integer idUsuario) {
 	
@@ -26,21 +30,27 @@ public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements IUsuar
 
 	@Override
 	public Usuario validarUsuario(String username, String password) {
-		// TODO Auto-generated method stub
-		//return null;
-		// this.entityManager.createQuery("SELECT t FROM TorneoDTO t WHERE t.anho = :anho").setParameter("anho", anho).getResultList();
+	
 		
-		try {
-	        Usuario usuario = this.entityManager.createQuery(
-	                "SELECT u FROM UsuarioDTO u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
-	                .setParameter("usuario", username)
-	                .setParameter("password", password)
-	                .getSingleResult();
+	//	try {
+	        TypedQuery<Usuario> q = this.entityManager.createNamedQuery("Usuario.validarUsuario", Usuario.class);
+	        q.setParameter("usuario", username);
+	        q.setParameter("clave", password);
+	        
+	        Usuario usuario = q.getSingleResult();
 
-	        return usuario;
-	    } catch (NoResultException e) {
-	        return new Usuario();
+	        if (!Objects.isNull(usuario)) {
+	            return usuario;
+	        } else {
+	            return null; 
+	        }
+	        /*
+	    } catch (Exception e) {
+	        // Manejar la excepción si ocurre algún error
+	        e.printStackTrace();
+	        return null;
 	    }
+		*/
 	}
 
 	
