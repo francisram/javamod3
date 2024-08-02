@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
+import py.edu.ucsa.ejb.entities.ParticExpoSocio;
 import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 
 /**
@@ -13,8 +14,21 @@ import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 @Stateless(mappedName = "ParticExpoSocioEjb")
 @LocalBean
 public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
+	
 
-    /**
+    @Override
+	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Integer idSocio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
      * Default constructor. 
      */
     public ParticExpoSocioEjbImpl() {

@@ -16,6 +16,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import py.edu.ucsa.ejb.entities.Exposicion;
+import py.edu.ucsa.ejb.entities.ParticExpoSocio;
+import py.edu.ucsa.ejb.entities.Socio;
+import py.edu.ucsa.ejb.entities.Usuario;
+import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
@@ -32,6 +37,9 @@ public class ParticipacionesExposServlet extends HttpServlet {
 	
 	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/UsuarioEjbImpl!py.edu.ucsa.ejb.services.UsuarioEjbRemote")
 	private UsuarioEjbRemote usuarioEjbClient;
+	
+	@EJB(mappedName = "")
+	private ExposicionEjbRemote exposicionEjbRemote;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -62,7 +70,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 			JsonArray valores = jsonObject.getAsJsonArray("valores");
 			JsonArray valoresActualizados = new JsonArray();
 			String accion = jsonObject.get("accion").getAsString();
-			Usuario user = new Usuario();
+			Usuario  user = new Usuario();
 			user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
 			Socio socio = new Socio();
 			socio.setId(user.getIdSocio().getId());
@@ -86,7 +94,8 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					pExpo.setSocio(socio);
 					// verificamos si ya existe el registro
 					ParticExpoSocio participa = new ParticExpoSocio();
-					participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
+					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
+					participa = particExpoSocioEjbRemote.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
 					// antes de registrar vamos a verificar que hacer con el
 					String queHacer = validarSiActualizarRegistrarSaltar(participa);
 					//System.out.println(queHacer);
@@ -119,7 +128,8 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					pExpo.setSocio(socio);
 					// verificamos si ya existe el registro
 					ParticExpoSocio participa = new ParticExpoSocio();
-					participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
+					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
+					participa = particExpoSocioEjbRemote.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
 					// antes de registrar vamos a verificar que hacer con el
 					String queHacer = validarSiCancelarSaltar(participa);
 					//System.out.println(queHacer);
@@ -152,8 +162,9 @@ public class ParticipacionesExposServlet extends HttpServlet {
 
 	public void actualizarParticipacion(ParticExpoSocio participacion) {
 		try {
-			ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
-			pExpoImpl.modificar(participacion);
+			//ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
+			//pExpoImpl.modificar(participacion);
+			particExpoSocioEjbRemote.actualizar(participacion.toDTO());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -161,8 +172,9 @@ public class ParticipacionesExposServlet extends HttpServlet {
 
 	public void registrarParticipacion(ParticExpoSocio participacion) {
 		try {
-			ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
-			pExpoImpl.insertar(participacion);
+			//ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
+			//pExpoImpl.insertar(participacion);
+			particExpoSocioEjbRemote.insert(participacion.toDTO());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
