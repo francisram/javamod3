@@ -1,17 +1,21 @@
 package py.edu.ucsa.web.servlets;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
-
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
+import py.edu.ucsa.ejb.dto.OpcionDTO;
+import py.edu.ucsa.ejb.entities.Dominio;
+import py.edu.ucsa.ejb.entities.Opcion;
+import py.edu.ucsa.ejb.services.DominioEjbRemote;
+import py.edu.ucsa.ejb.services.OpcionEjbRemote;
 
 /**
  * Servlet implementation class Opciones
@@ -19,6 +23,12 @@ import java.util.Objects;
 @WebServlet(urlPatterns = { "/Opciones-servlet" })
 public class OpcionesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@EJB(mappedName = "")
+	private OpcionEjbRemote opcionEjbRemote;
+	
+	@EJB(mappedName = "")
+	private DominioEjbRemote dominioEjbRemote;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,23 +44,24 @@ public class OpcionesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		OpcionDao opcionesDao = DaoFactory.getOpcionDao();
-		DominioDao dominios = DaoFactory.getDominioDao();
+		//OpcionDao opcionesDao = DaoFactory.getOpcionDao();
+		//DominioDao dominios = DaoFactory.getDominioDao();
 		if (Objects.isNull(request.getParameter("ACCION")) || "".equals(request.getParameter("ACCION"))
 				|| "LISTAR".equals(request.getParameter("ACCION"))) {
 			if(Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
-				request.getSession().setAttribute("OPCIONES", opcionesDao.listar());
-				request.getSession().setAttribute("DOMINIOS", dominios.listar());
+				request.getSession().setAttribute("OPCIONES", opcionEjbRemote.listar());
+				request.getSession().setAttribute("DOMINIOS", dominioEjbRemote.listar());
 				request.getRequestDispatcher("opciones.jsp").forward(request, response);
 			}
 			if("JSON".equals(request.getParameter("FORMATO"))) {
 				response.setContentType("application/json");
 				if(Objects.isNull(request.getParameter("ID-DOMINIO"))) {
-					List<Opcion> opciones = opcionesDao.listar();
+					List<OpcionDTO> opciones = opcionEjbRemote.listar();
 					System.out.println(opciones);
 					response.getWriter().print(JSONArray.fromObject(opciones));
 				}else {
-					List<Opcion> opciones = opcionesDao.getOpcionesByIdDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
+					//List<Opcion> opciones = opcionesDao.getOpcionesByIdDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
+					List<OpcionDTO> opciones = opcionEjbRemote.
 					//Opcion opc = opcionesDao.getOpcionesByIdDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
 					response.getWriter().print(JSONArray.fromObject(opciones));
 				}

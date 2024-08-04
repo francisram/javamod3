@@ -44,12 +44,6 @@ public class Login extends HttpServlet {
 				System.out.println("Inicio de sesión fallido: usuario--> " + username + " pass--> " + password);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-				/*
-				request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
-				List<Rol> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
-				request.getSession().setAttribute("ROLES", roles);
-				System.out.println(roles);
-				*/
 				request.getRequestDispatcher("menu.jsp").forward(request, response);
 			}
 
