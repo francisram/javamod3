@@ -1,16 +1,14 @@
 package py.edu.ucsa.web.servlets;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import py.edu.ucsa.ejb.entities.Rol;
 import py.edu.ucsa.ejb.entities.Usuario;
 import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
@@ -42,8 +40,15 @@ public class Login extends HttpServlet {
 
 			if (Objects.isNull(usuario)) {
 				System.out.println("Inicio de sesión fallido: usuario--> " + username + " pass--> " + password);
+				System.out.println("fallo de inicio de session");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
+				System.out.println("usuario conectado" + usuario);
+				request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
+				//List<RolUsuario> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
+				Iterable<Rol> roles = usuarioEjbClient.getRolesByUsuario(usuario.getId());
+				roles.forEach(x->System.out.println(x));
+				request.getSession().setAttribute("ROLES", roles);
 				request.getRequestDispatcher("menu.jsp").forward(request, response);
 			}
 

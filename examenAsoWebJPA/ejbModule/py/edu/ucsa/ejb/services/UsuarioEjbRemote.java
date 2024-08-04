@@ -8,7 +8,7 @@ import py.edu.ucsa.ejb.entities.Usuario;
 @Remote
 public interface UsuarioEjbRemote extends GenericEjbRemote<Long, UsuarioDTO>{
 	
-Iterable<Rol> getRolesByUsuario(Integer idUsuario);
+	Iterable<Rol> getRolesByUsuario(Integer idUsuario);
 	
 	public Usuario validarUsuario(String username, String password) ;
 

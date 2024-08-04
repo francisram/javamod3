@@ -1,15 +1,16 @@
 
 <%@ page import="java.util.List" %>
-<%@ page import="py.edu.ucsa.aso.web.jdbc.dao.dto.Rol" %>
+<%@ page import="py.edu.ucsa.ejb.dto.RolUsuarioDTO" %>
 <%
 //Obtiene el atributo de sesión "roles"
-List<RolDTO> roles = (List<RolDTO>) session.getAttribute("ROLES");
+//List<RolUsuarioDTO> roles = (List<RolUsuarioDTO>) session.getAttribute("ROLES");
+Iterable<RolUsuarioDTO> roles = (Iterable<RolUsuarioDTO>) session.getAttribute("ROLES");
 boolean tieneRol1 = false;
 
 // recorremos la lista
 if (roles != null) {
-	for (RolDTO rol : roles) {
-		if (rol.getRol() == 1) {
+	for (RolUsuarioDTO rol : roles) {
+		if (rol.getIdRol().getId() == 1) {
 	tieneRol1 = true;
 	break;
 		}
