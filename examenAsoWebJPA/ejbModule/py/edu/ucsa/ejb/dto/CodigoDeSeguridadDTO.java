@@ -1,8 +1,14 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class CodigoDeSeguridadDTO {
+public class CodigoDeSeguridadDTO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String codigo;
 	private LocalDateTime horaPeticion;

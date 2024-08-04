@@ -1,6 +1,11 @@
 package py.edu.ucsa.ejb.dto;
 
-public class TipoMovimientoDTO {
+import java.io.Serializable;
+
+public class TipoMovimientoDTO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
     private String codigo;
     private String descripcion;

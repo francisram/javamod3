@@ -2,9 +2,16 @@ package py.edu.ucsa.ejb.dao.impl;
 
 import java.util.List;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import py.edu.ucsa.ejb.dao.IOpcionDao;
 import py.edu.ucsa.ejb.entities.Opcion;
 
+
+@RequestScoped
+@Named("opcionDAO")
 public class OpcionDaoImpl extends AbstractDao<Long, Opcion> implements IOpcionDao {
 	
 
@@ -15,8 +22,11 @@ public class OpcionDaoImpl extends AbstractDao<Long, Opcion> implements IOpcionD
 
 	@Override
 	public Opcion getOpcionByDominioCodOpcion(String dominio, String codOpcion) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Opcion> q = this.entityManager.createNamedQuery("Opcion.getOpcionByDominioCodOpcion",Opcion.class);
+				q.setParameter("dominio", dominio);
+				q.setParameter("opcion", codOpcion);
+		Opcion opcion = q.getSingleResult();
+		return opcion;
 	}
 
 	@Override

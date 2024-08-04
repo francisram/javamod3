@@ -1,8 +1,11 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class SocioDTO {
+public class SocioDTO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private String nombres;

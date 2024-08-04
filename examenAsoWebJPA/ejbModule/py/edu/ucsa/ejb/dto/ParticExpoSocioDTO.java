@@ -1,9 +1,13 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class ParticExpoSocioDTO {
+public class ParticExpoSocioDTO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private SocioDTO socioDTO;
 	private ExposicionDTO exposicionDTO;

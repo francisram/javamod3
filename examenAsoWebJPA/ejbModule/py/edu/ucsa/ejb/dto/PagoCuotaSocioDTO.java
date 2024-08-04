@@ -1,8 +1,12 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class PagoCuotaSocioDTO {
+public class PagoCuotaSocioDTO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
     private Integer anhoCuota;
     private boolean exonerado;

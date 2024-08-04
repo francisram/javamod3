@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"],
+        button[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="reset"] {
+            background-color: #f00;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="procesar_login.php" method="POST">
+            <div class="form-group">
+                <label for="ruc">RUC:</label>
+                <input type="text" id="ruc" name="ruc" required>
+            </div>
+            <div class="form-group">
+                <label for="razon_social">Razón Social:</label>
+                <input type="text" id="razon_social" name="razon_social" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Contribuyente:</label>
+                <label for="persona_juridica">Persona Jurídica</label>
+                <input type="radio" id="persona_juridica" name="tipo_contribuyente" value="persona_juridica" required>
+                <label for="gran_contribuyente">Gran Contribuyente</label>
+                <input type="radio" id="gran_contribuyente" name="tipo_contribuyente" value="gran_contribuyente">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="actividad_economica">Actividad Económica:</label>
+                <select id="actividad_economica" name="actividad_economica">
+                    <option value="informatica">Informática</option>
+                    <option value="contabilidad">Contabilidad</option>
+                    <option value="agronomia">Agronomía</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button type="submit">Iniciar Sesión</button>
+                <button type="reset">Limpiar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

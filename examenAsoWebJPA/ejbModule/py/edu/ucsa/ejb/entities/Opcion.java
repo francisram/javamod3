@@ -16,6 +16,14 @@ import py.edu.ucsa.ejb.dto.OpcionDTO;
 @Entity
 @Table(name = "opciones")
 @NamedQuery(name = "Opcion.findAll", query = "SELECT o FROM Opcion o ORDER BY o.codigo ASC")
+@NamedQuery(name = "Opcion.getOpcionByDominioCodOpcion",
+	    	query = "SELECT o, d.codigo as codDominio, d.descripcion as descDominio, " +
+	            "padre.codigo as codOpcionPadre, padre.descripcion as descOpcionPadre " +
+	            "FROM Opcion o " +
+	            "JOIN o.dominio d " +
+	            "LEFT JOIN o.padre padre "
+	            + "WHERE d.codigo = :dominio and o.codigo = :opcion"
+	)
 
 public class Opcion {
 	@Id

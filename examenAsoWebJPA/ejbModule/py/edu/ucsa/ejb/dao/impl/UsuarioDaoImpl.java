@@ -37,13 +37,21 @@ public class UsuarioDaoImpl extends AbstractDao<Long, Usuario> implements IUsuar
 	        q.setParameter("usuario", username);
 	        q.setParameter("clave", password);
 	        
-	        Usuario usuario = q.getSingleResult();
-
+	        
+	        try {
+	        	Usuario usuario = q.getSingleResult();
+	        	 return usuario;
+			} catch (Exception e) {
+				// TODO: handle exception
+				return null; 
+			}
+	        /*
 	        if (!Objects.isNull(usuario)) {
 	            return usuario;
 	        } else {
 	            return null; 
 	        }
+	        */
 	        /*
 	    } catch (Exception e) {
 	        // Manejar la excepción si ocurre algún error

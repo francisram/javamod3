@@ -1,10 +1,13 @@
 package py.edu.ucsa.ejb.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class MontoCuotaDTO {
+public class MontoCuotaDTO implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private double monto;
 	private LocalDateTime fechaCreacion;

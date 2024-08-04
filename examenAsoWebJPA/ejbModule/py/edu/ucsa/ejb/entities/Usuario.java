@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import jakarta.persistence.Column;
@@ -20,8 +21,14 @@ import py.edu.ucsa.ejb.dto.UsuarioDTO;
 @Table(name = "usuarios")
 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u ORDER BY u.usuario ASC")
 @NamedQuery(name = "Usuario.validarUsuario" , query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario and u.clave = :clave")
-public class Usuario {
+public class Usuario implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

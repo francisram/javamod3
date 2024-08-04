@@ -1,7 +1,11 @@
 package py.edu.ucsa.ejb.dto;
 
-public class RolDTO {
+import java.io.Serializable;
 
+public class RolDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String nombreRol;
 

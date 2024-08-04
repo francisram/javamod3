@@ -4,6 +4,9 @@ import java.util.List;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import py.edu.ucsa.ejb.dao.IOpcionDao;
 import py.edu.ucsa.ejb.dto.OpcionDTO;
 import py.edu.ucsa.ejb.entities.Opcion;
 import py.edu.ucsa.ejb.services.OpcionEjbRemote;
@@ -15,9 +18,10 @@ import py.edu.ucsa.ejb.services.OpcionEjbRemote;
 @LocalBean
 public class OpcionEjbImpl implements OpcionEjbRemote {
 
-    /**
-     * Default constructor. 
-     */
+	@Inject
+	@Named("opcionDAO")
+	private IOpcionDao oDao;
+    
     public OpcionEjbImpl() {
         // TODO Auto-generated constructor stub
     }
