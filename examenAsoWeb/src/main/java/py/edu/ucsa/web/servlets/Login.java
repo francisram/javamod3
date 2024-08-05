@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.entities.Rol;
 import py.edu.ucsa.ejb.entities.Usuario;
+import py.edu.ucsa.ejb.services.RolUsuarioEjbRemote;
 import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
 
 
@@ -21,6 +22,9 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/UsuarioEjbImpl!py.edu.ucsa.ejb.services.UsuarioEjbRemote")
 	private UsuarioEjbRemote usuarioEjbClient;
+	
+	@EJB(mappedName = "")
+	private RolUsuarioEjbRemote rolUsuarioEjbRemote;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -44,7 +48,7 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				System.out.println("usuario conectado" + usuario);
-				request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
+				request.getSession(true).setAttribute("SOCIO_CONECTADO :", usuario);
 				//List<RolUsuario> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
 				Iterable<Rol> roles = usuarioEjbClient.getRolesByUsuario(usuario.getId());
 				roles.forEach(x->System.out.println(x));

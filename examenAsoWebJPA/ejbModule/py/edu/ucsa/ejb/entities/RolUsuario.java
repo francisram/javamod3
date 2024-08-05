@@ -14,6 +14,7 @@ import py.edu.ucsa.ejb.dto.RolUsuarioDTO;
 @Entity
 @Table(name = "roles_usuarios")
 @NamedQuery(name = "RolUsuario.findAll", query = "SELECT r FROM RolUsuario r ORDER BY r.idRol ASC")
+@NamedQuery(name = "RolUsuario.getRolesByUsuario" , query = "SELECT r FROM RolUsuario r WHERE r.idUsuario = :usuario")
 public class RolUsuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

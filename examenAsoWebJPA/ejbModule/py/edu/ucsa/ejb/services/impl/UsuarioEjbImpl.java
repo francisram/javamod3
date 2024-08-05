@@ -68,8 +68,8 @@ public class UsuarioEjbImpl implements UsuarioEjbRemote {
 
 	@Override
 	public Iterable<Rol> getRolesByUsuario(Integer idUsuario) {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Rol> roles = uDao.getRolesByUsuario(idUsuario);
+		return roles;
 	}
 
 	@Override
