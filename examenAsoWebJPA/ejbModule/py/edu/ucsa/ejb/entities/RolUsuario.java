@@ -32,8 +32,8 @@ public class RolUsuario {
 		
 		RolUsuario rolUsuario = new RolUsuario();
 		rolUsuario.setId(dto.getId());
-		rolUsuario.setIdRol(dto.getIdRol());
-		rolUsuario.setIdUsuario(dto.getIdUsuario());
+		rolUsuario.setIdRol(Rol.ofDTO(dto.getIdRol()));
+		rolUsuario.setIdUsuario(Usuario.ofDTO(dto.getIdUsuario()));
 		return rolUsuario;
 		
 	}
@@ -41,8 +41,8 @@ public class RolUsuario {
 	public RolUsuarioDTO toDTO() {
 		RolUsuarioDTO rolUsuario = new RolUsuarioDTO();
 		rolUsuario.setId(this.getId());
-		rolUsuario.setIdRol(this.getIdRol());
-		rolUsuario.setIdUsuario(this.getIdUsuario());
+		rolUsuario.setIdRol(this.getIdRol().toDTO());
+		rolUsuario.setIdUsuario(this.getIdUsuario().toDTO());
 		return rolUsuario;
 		
 	}

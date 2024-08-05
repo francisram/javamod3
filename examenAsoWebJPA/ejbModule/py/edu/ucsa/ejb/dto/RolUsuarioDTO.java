@@ -9,27 +9,27 @@ public class RolUsuarioDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Usuario idUsuario;
-	private Rol idRol;
+	private UsuarioDTO idUsuario;
+	private RolDTO idRol;
 	private Long id;
 	
 			
 
 		
 
-	public Usuario getIdUsuario() {
+	public UsuarioDTO getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Usuario idUsuario) {
+	public void setIdUsuario(UsuarioDTO idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-	public Rol getIdRol() {
+	public RolDTO getIdRol() {
 		return idRol;
 	}
 
-	public void setIdRol(Rol idRol) {
+	public void setIdRol(RolDTO idRol) {
 		this.idRol = idRol;
 	}
 
