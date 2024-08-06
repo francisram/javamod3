@@ -22,12 +22,16 @@ public class CodigoDeSeguridad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name = "codigo" , nullable = true, unique = true)
 	private String codigo;
-	@Column(name = "hora_peticion", columnDefinition = "	TIMESTAMP", nullable = true)
+	
+	@Column(name = "hora_peticion", columnDefinition = "TIMESTAMP", nullable = true)
 	private LocalDateTime horaPeticion;
-	@Column(name = "tipo_activacion", columnDefinition = "	TIMESTAMP", nullable = true)
+	
+	@Column(name = "tipo_activacion", nullable = true)
 	private Integer tipoActivacion;
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_id" , nullable = true)
 	private Usuario usuario;

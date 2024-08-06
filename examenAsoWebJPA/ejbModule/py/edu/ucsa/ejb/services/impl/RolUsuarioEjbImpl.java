@@ -16,7 +16,7 @@ import py.edu.ucsa.ejb.services.RolUsuarioEjbRemote;
 /**
  * Session Bean implementation class RolUsuarioEjbImpl
  */
-@Stateless
+@Stateless(mappedName = "rolUsuarioEjb")
 @LocalBean
 public class RolUsuarioEjbImpl implements RolUsuarioEjbRemote {
 	
@@ -67,9 +67,11 @@ public class RolUsuarioEjbImpl implements RolUsuarioEjbRemote {
 	}
 
 	@Override
-	public Iterable<Rol> getRolesByUsuario(Usuario idUsuario) {
-		Iterable<Rol> roles = rdao.getRolesByUsuario(idUsuario);
+	public Iterable<RolUsuario> getRolesByUsuario(Usuario idUsuario) {
+		Iterable<RolUsuario> roles = rdao.getRolesByUsuario(idUsuario);
 		return roles;
 	}
 
+	
+	
 }

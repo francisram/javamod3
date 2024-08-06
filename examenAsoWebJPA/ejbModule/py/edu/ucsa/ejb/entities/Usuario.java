@@ -44,7 +44,7 @@ public class Usuario implements Serializable {
 	private boolean cuentaExpirada;
 	@Column(name = "cuenta_bloqueada", columnDefinition = "boolean", nullable = true)
 	private boolean cuentaBloqueada;
-	@Column(name = "fecha_creacion_usuario", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "fecha_creacion_usuario", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaCreacionUsuario;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "socio_id" , nullable = true)

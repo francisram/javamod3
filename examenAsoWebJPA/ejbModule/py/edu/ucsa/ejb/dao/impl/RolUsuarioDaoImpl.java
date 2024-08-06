@@ -55,7 +55,7 @@ public class RolUsuarioDaoImpl extends AbstractDao<Long, RolUsuario> implements 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<Rol> getRolesByUsuario(Usuario usuario) {
+	public Iterable<RolUsuario> getRolesByUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
 
 		Query q = this.entityManager.createNamedQuery("RolUsuario.getRolesByUsuario");

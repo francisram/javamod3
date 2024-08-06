@@ -22,18 +22,25 @@ public class MontoCuota {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name = "monto", nullable = true)
 	private double monto;
-	@Column(name = "fecha_creacion", nullable = true)
+	
+	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaCreacion;
-	@Column(name = "fecha_inicio_vigencia", nullable = true)
+	
+	@Column(name = "fecha_inicio_vigencia",columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaInicioVigencia;
-	@Column(name = "fecha_fin_vigencia", nullable = true)
+	
+	@Column(name = "fecha_fin_vigencia", columnDefinition = "DATE",nullable = true)
 	private LocalDateTime fechaFinVigencia;
-	@Column(name = "fecha_inactivacion", nullable = true)
+	
+	@Column(name = "fecha_inactivacion", columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaInactivacion;
+	
 	@Column(name = "estado", nullable = true)
 	private String estado;
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_inactivacion_id" , nullable = true)
 	private Usuario usuarioInactivacion;

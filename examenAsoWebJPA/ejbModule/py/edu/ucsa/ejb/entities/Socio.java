@@ -34,19 +34,19 @@ public class Socio {
 	private int nroSocio;
 	@Column(name = "nro_cedula", nullable = true)
 	private int nroCedula;
-	@Column(name = "fecha_ingreso", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaIngreso;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion estadoActual;
-	@Column(name = "fecha_estado_actual", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "fecha_estado_actual", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaEstadoActual;
 	@Column(name = "fundador",  columnDefinition = "boolean" , nullable = true)
 	private boolean fundador;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioCreacion;
-	@Column(name = "fecha_creacion", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDate fecha_creacion;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "socios_id" , nullable = true)

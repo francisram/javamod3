@@ -38,10 +38,10 @@ public class TematicaParticExpoSocio {
 	@Column(name = "cancelo_participacion", columnDefinition="boolean",  nullable = true)
 	private boolean canceloPartidoTematica;
 	
-	@Column(name = "fecha_cancelacion", columnDefinition="TIMESTAMPS",  nullable = true)
+	@Column(name = "fecha_cancelacion", columnDefinition="DATE",  nullable = true)
 	private LocalDate fechaCancelacion;
 	
-	@Column(name = "cancelo_creacion", columnDefinition="TIMESTAMPS",  nullable = true)
+	@Column(name = "cancelo_creacion", columnDefinition="DATE",  nullable = true)
 	private LocalDate fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import py.edu.ucsa.ejb.entities.Rol;
+import py.edu.ucsa.ejb.entities.RolUsuario;
 import py.edu.ucsa.ejb.entities.Usuario;
 import py.edu.ucsa.ejb.services.RolUsuarioEjbRemote;
 import py.edu.ucsa.ejb.services.UsuarioEjbRemote;
@@ -23,7 +24,7 @@ public class Login extends HttpServlet {
 	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/UsuarioEjbImpl!py.edu.ucsa.ejb.services.UsuarioEjbRemote")
 	private UsuarioEjbRemote usuarioEjbClient;
 	
-	@EJB(mappedName = "")
+	@EJB(mappedName = "java:global/AsoWeb-0.0.1/RolUsuarioEjbImpl!py.edu.ucsa.ejb.services.RolUsuarioEjbRemote")
 	private RolUsuarioEjbRemote rolUsuarioEjbRemote;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,8 +51,8 @@ public class Login extends HttpServlet {
 				System.out.println("usuario conectado" + usuario);
 				request.getSession(true).setAttribute("SOCIO_CONECTADO :", usuario);
 				//List<RolUsuario> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
-				Iterable<Rol> roles = usuarioEjbClient.getRolesByUsuario(usuario.getId());
-				roles.forEach(x->System.out.println(x));
+				Iterable<RolUsuario> roles = rolUsuarioEjbRemote.getRolesByUsuario(usuario);
+				//roles.forEach(x->System.out.println(x));
 				request.getSession().setAttribute("ROLES", roles);
 				request.getRequestDispatcher("menu.jsp").forward(request, response);
 			}

@@ -23,20 +23,20 @@ public class ParticExpoSocio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socios_id" , nullable = true)
+	@JoinColumn(name = "participante_id" , nullable = true)
 	private Socio socio;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "exposiciones_id" , nullable = true)
+	@JoinColumn(name = "exposicion_id" , nullable = true)
 	private Exposicion exposicion;
 	
 	@Column(name = "cancelo_participacion", columnDefinition="boolean",  nullable = true)
 	private boolean canceloParticipacion;
 	
-	@Column(name = "fecha_cancelacion", columnDefinition="TIMESTAMPS", nullable = true)
+	@Column(name = "fecha_cancelacion", columnDefinition="DATE", nullable = true)
 	private LocalDateTime fechaCancelacion;
 	
-	@Column(name = "fecha_creacion", columnDefinition="TIMESTAMPS", nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition="DATE", nullable = true)
 	private LocalDateTime fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)

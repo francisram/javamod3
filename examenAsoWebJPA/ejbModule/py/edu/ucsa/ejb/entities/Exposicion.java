@@ -30,11 +30,11 @@ public class Exposicion {
 	private String organiza;
 	@Column(name = "ubicacion", nullable = true)
 	private String ubicacion;
-	@Column(name = "fecha_expo", columnDefinition = "	TIMESTAMP", nullable = true)
+	@Column(name = "fecha_expo", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaExpo;
 	@Column(name = "contacto", nullable = true)
 	private String contacto;
-	@Column(name = "fecha_creacion", columnDefinition = "	TIMESTAMP",nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDate fechaCreacion;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarios_creacion_id" )

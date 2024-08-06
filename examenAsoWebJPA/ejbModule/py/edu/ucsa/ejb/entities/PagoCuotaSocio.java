@@ -28,7 +28,7 @@ public class PagoCuotaSocio {
 	@Column(name = "exonerado", columnDefinition = "boolean" ,nullable = true)
     private boolean exonerado;
 	
-	@Column(name = "fecha_creacion", nullable = true)
+	@Column(name = "fecha_creacion",columnDefinition = "DATE", nullable = true)
     private Date fechaCreacion;
 	
 	@Column(name = "mes_cuota", nullable = true)

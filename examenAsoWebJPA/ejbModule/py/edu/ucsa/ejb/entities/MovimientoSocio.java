@@ -21,7 +21,7 @@ public class MovimientoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "fecha_pago", nullable = true)
+	@Column(name = "fecha_pago", columnDefinition = "DATE",nullable = true)
 	private LocalDateTime fechaPago;
 	@Column(name = "monto", nullable = true)
 	private double monto;

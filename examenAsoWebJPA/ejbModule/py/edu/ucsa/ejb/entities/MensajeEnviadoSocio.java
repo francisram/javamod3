@@ -30,7 +30,7 @@ public class MensajeEnviadoSocio {
 	@JoinColumn(name = "mensajes_socio_id" )
 	private MensajeEnviadoSocio mensaje;
 	
-	@Column(name = "fecha_creacion", nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDateTime fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)

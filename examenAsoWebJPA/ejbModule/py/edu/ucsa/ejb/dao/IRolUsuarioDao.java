@@ -10,6 +10,6 @@ import py.edu.ucsa.ejb.entities.Usuario;
 
 public interface IRolUsuarioDao extends IGenericDao<Long, RolUsuario>{
 
-	Iterable<Rol> getRolesByUsuario(Usuario idUsuario);
+	Iterable<RolUsuario> getRolesByUsuario(Usuario idUsuario);
 
 }

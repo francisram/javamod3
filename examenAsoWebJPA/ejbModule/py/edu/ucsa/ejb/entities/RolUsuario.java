@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +17,15 @@ import py.edu.ucsa.ejb.dto.RolUsuarioDTO;
 @Table(name = "roles_usuarios")
 @NamedQuery(name = "RolUsuario.findAll", query = "SELECT r FROM RolUsuario r ORDER BY r.idRol ASC")
 @NamedQuery(name = "RolUsuario.getRolesByUsuario" , query = "SELECT r FROM RolUsuario r WHERE r.idUsuario = :usuario")
-public class RolUsuario {
+public class RolUsuario implements Serializable {
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -52,7 +62,7 @@ public class RolUsuario {
 		
 	@Override
 	public String toString() {
-		return "RolUsuarioDTO [idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
+		return "RolUsuario [id=" + id + ", idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
 	}
 	
 

@@ -26,12 +26,12 @@ public class EstadoSocio {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estado_id" )
 	private EstadoSocio estado;
-	@Column(name = "fecha_estado", nullable = true)
+	@Column(name = "fecha_estado",columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaEstado;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_creacion_id" )
 	private Usuario usuarioCreacion;
-	@Column(name = "fecha_creacion", nullable = true)
+	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaCreacion;
 	@Column(name = "observacion", nullable = true)
 	private String observacion;
