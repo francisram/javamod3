@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.IOpcionDao;
 import py.edu.ucsa.ejb.dto.OpcionDTO;
+import py.edu.ucsa.ejb.entities.Dominio;
 import py.edu.ucsa.ejb.entities.Opcion;
 import py.edu.ucsa.ejb.services.OpcionEjbRemote;
 
@@ -32,14 +33,9 @@ public class OpcionEjbImpl implements OpcionEjbRemote {
 		return null;
 	}
 
-	@Override
-	public Iterable<Opcion> getOpcionesByCodDominio(String dominio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public Iterable<Opcion> getOpcionesByIdDominio(Integer idDominio) {
+	public Iterable<Opcion> getOpcionesByIdDominio(Dominio dominio) {
 		// TODO Auto-generated method stub
 		return null;
 	}

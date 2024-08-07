@@ -1,12 +1,10 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import java.util.List;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import py.edu.ucsa.ejb.dao.IOpcionDao;
+import py.edu.ucsa.ejb.entities.Dominio;
 import py.edu.ucsa.ejb.entities.Opcion;
 
 
@@ -30,16 +28,12 @@ public class OpcionDaoImpl extends AbstractDao<Long, Opcion> implements IOpcionD
 	}
 
 	@Override
-	public Iterable<Opcion> getOpcionesByCodDominio(String dominio) {
+	public Iterable<Opcion> getOpcionesByIdDominio(Dominio dominio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public Iterable<Opcion> getOpcionesByIdDominio(Integer idDominio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	
 

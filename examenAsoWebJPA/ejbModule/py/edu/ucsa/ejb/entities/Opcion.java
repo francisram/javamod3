@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,15 +19,17 @@ import py.edu.ucsa.ejb.dto.OpcionDTO;
 @Table(name = "opciones")
 @NamedQuery(name = "Opcion.findAll", query = "SELECT o FROM Opcion o ORDER BY o.codigo ASC")
 @NamedQuery(name = "Opcion.getOpcionByDominioCodOpcion",
-	    	query = "SELECT o, d.codigo as codDominio, d.descripcion as descDominio, " +
-	            "padre.codigo as codOpcionPadre, padre.descripcion as descOpcionPadre " +
-	            "FROM Opcion o " +
-	            "JOIN o.dominio d " +
-	            "LEFT JOIN o.padre padre "
-	            + "WHERE d.codigo = :dominio and o.codigo = :opcion"
-	)
+	    	query = "SELECT o, d.codigo as codDominio, d.descripcion as descDominio,padre.codigo as codOpcionPadre, padre.descripcion as descOpcionPadre "
+	    			+ "FROM Opcion o JOIN o.dominio d LEFT JOIN o.padre padre "
+	    			+ "WHERE d.codigo = :dominio and o.codigo = :opcion")
+@NamedQuery(name = "Opcion.getOpcionByDominio",query = "SELECT o FROM Opcion o JOIN o.dominio d JOIN o.padre p WHERE o.dominio = :dominio")
 
-public class Opcion {
+
+public class Opcion implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -35,10 +39,10 @@ public class Opcion {
 	private String descripcion;
 	@Column(name = "estado",  nullable = true)
 	private String estado;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "dominios_id" , nullable = true)
 	private Dominio dominio;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "opciones_id" , nullable = true)
 	private Opcion padre;
 	
