@@ -31,7 +31,7 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	}
 
 	@Override
-	public Iterable<Exposicion> obtenerParticipacionesPorSocio(Socio socio) {
+	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio) {
 		// TODO Auto-generated method stub
 		return null;
 	}

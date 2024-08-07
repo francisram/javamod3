@@ -4,6 +4,9 @@ import java.util.List;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import py.edu.ucsa.ejb.dao.impl.DominioDaoImpl;
 import py.edu.ucsa.ejb.dto.DominioDTO;
 import py.edu.ucsa.ejb.services.DominioEjbRemote;
 
@@ -13,7 +16,11 @@ import py.edu.ucsa.ejb.services.DominioEjbRemote;
 @Stateless(mappedName = "DominioEjb")
 @LocalBean
 public class DominioEjbImpl implements DominioEjbRemote {
-
+ 
+	@Inject
+	@Named("dominioDao")
+	private DominioDaoImpl dDao;
+	
     /**
      * Default constructor. 
      */

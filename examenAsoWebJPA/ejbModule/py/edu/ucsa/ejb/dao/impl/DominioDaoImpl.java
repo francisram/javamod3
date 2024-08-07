@@ -1,9 +1,13 @@
 package py.edu.ucsa.ejb.dao.impl;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import py.edu.ucsa.ejb.dao.IDominioDao;
 import py.edu.ucsa.ejb.entities.Dominio;
 
+@RequestScoped
+@Named("dominioDao")
 public class DominioDaoImpl extends AbstractDao<Long, Dominio> implements IDominioDao {
 
 	

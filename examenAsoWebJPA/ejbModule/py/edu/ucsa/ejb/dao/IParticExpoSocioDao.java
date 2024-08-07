@@ -9,6 +9,6 @@ public interface IParticExpoSocioDao extends IGenericDao<Long, ParticExpoSocio> 
 
 	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio);
 
-	Iterable<Exposicion> obtenerParticipacionesPorSocio(Integer idSocio);
+	Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Integer idSocio);
 
 }

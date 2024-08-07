@@ -28,11 +28,11 @@ import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 @WebServlet(urlPatterns = { "/ExposicionServlet" })
 public class ExposicionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/ExposicionEjbImpl!py.edu.ucsa.ejb.services.ExposicionEjbRemote")
 	private ExposicionEjbRemote exposicionEjbRemote;
-	
-	@EJB(mappedName = " java:global/AsoWebJPA-0.0.1/ParticExpoSocioEjbImpl!py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote")
+
+	@EJB(mappedName = "java:global/AsoWeb-0.0.1/ParticExpoSocioEjbImpl!py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote")
 	private ParticExpoSocioEjbRemote particExpoSocioEjbRemote;
 
 	/**
@@ -50,12 +50,18 @@ public class ExposicionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//ParticExpoSocioDao participacionesDao = DaoFactory.getParticExpoSocioDao();
-		//ExposicionDao exposicionesDao = DaoFactory.getExposicionDao();
+		// ParticExpoSocioDao participacionesDao = DaoFactory.getParticExpoSocioDao();
+		// ExposicionDao exposicionesDao = DaoFactory.getExposicionDao();
 		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
-				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
-				request.getSession().setAttribute("EXPOSICIONES", exposiciones);
+				try {
+					List<ExposicionDTO> exposiciones;
+					exposiciones = exposicionEjbRemote.findAll();
+					request.getSession().setAttribute("EXPOSICIONES", exposiciones);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				// System.out.println(exposiciones);
 				request.getRequestDispatcher("listaExposiciones.jsp").forward(request, response);
 			}
@@ -64,61 +70,59 @@ public class ExposicionServlet extends HttpServlet {
 				user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
 				response.setContentType("application/json");
 				System.out.println("llego pedido por json");
+				try {
 				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
-			
-				//ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
-				
-				//List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
-				Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote.obtenerParticipacionesPorSocio(user.getIdSocio());;
-			
-				
-				JsonArray newArray = new JsonArray();
+					// ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
+					// List<ParticExpoSocio> listadoPorSocio =
+					// participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+					Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote
+							.obtenerParticipacionesPorSocio(user.getIdSocio());
+					;
 
-				for (ExposicionDTO exposicion : exposiciones) {
-				    boolean encontrado = false;
+					JsonArray newArray = new JsonArray();
 
-				    for (ParticExpoSocio particExpoSocio : listadoPorSocio) {
-				        if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
-				            encontrado = true;
+					for (ExposicionDTO exposicion : exposiciones) {
+						boolean encontrado = false;
 
-				            JsonObject jsonObj = new JsonObject();
-				            jsonObj.put("id", exposicion.getId());
-				            jsonObj.put("nombre", exposicion.getNombre());
-				            jsonObj.put("descripcion", exposicion.getDescripcion());
-				            jsonObj.put("organiza", exposicion.getOrganiza());
-				            jsonObj.put("ubicacion", exposicion.getUbicacion());   
-				            jsonObj.put("fechaExpo", exposicion.getFechaExpo().toString());
-				            jsonObj.put("contacto", exposicion.getContacto());
-				            jsonObj.put("fechaCreacion", exposicion.getFechaCreacion());
-				            jsonObj.put("usuarioCreacion", exposicion.getUsuarioCreacion());
-				            jsonObj.put("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
+						for (ParticExpoSocio particExpoSocio : listadoPorSocio) {
+							if (exposicion.getId() == particExpoSocio.getId()) {
+								encontrado = true;
+								JsonObject jsonObj = new JsonObject();
+								jsonObj.addProperty("id", exposicion.getId());
+								jsonObj.addProperty("nombre", exposicion.getNombre());
+								jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+								jsonObj.addProperty("organiza", exposicion.getOrganiza());
+								jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+								jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+								jsonObj.addProperty("contacto", exposicion.getContacto());
+								jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+								jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+								jsonObj.addProperty("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
+								newArray.add(jsonObj);
+								break; //
+							}
+						}
 
-				            newArray.add(jsonObj);
-				            break; //
-				        }
-				    }
+						if (!encontrado) {
+							JsonObject jsonObj = new JsonObject();
+							jsonObj.addProperty("id", exposicion.getId());
+							jsonObj.addProperty("nombre", exposicion.getNombre());
+							jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+							jsonObj.addProperty("organiza", exposicion.getOrganiza());
+							jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+							jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+							jsonObj.addProperty("contacto", exposicion.getContacto());
+							jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+							jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+							jsonObj.addProperty("activo", 0);
 
-				    if (!encontrado) {
-				        JsonObject jsonObj = new JsonObject();
-				        jsonObj.addProperty("id", exposicion.getId());
-				        jsonObj.addProperty("nombre", exposicion.getNombre());
-				        jsonObj.addProperty("descripcion", exposicion.getDescripcion());
-				        jsonObj.addProperty("organiza", exposicion.getOrganiza());
-				        jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
-				        jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
-				        jsonObj.addProperty("contacto", exposicion.getContacto());
-				        jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
-				        jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
-				        jsonObj.addProperty("activo", 0);
-
-				        newArray.add(jsonObj);
-				    }
+							newArray.add(jsonObj);
+						}
+					}
+					response.getWriter().print(newArray);
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
-
-
-				//System.out.println("original--> "+ JSONArray.fromObject(exposiciones));
-				//System.out.println("nuevo--> "+ newArray);
-				response.getWriter().print(newArray);
 
 			}
 
@@ -148,52 +152,54 @@ public class ExposicionServlet extends HttpServlet {
 		Iterable<ExposicionDTO> exposiciones = exposicionEjbRemote.listarPorFechas(inicio, fin);
 		System.out.println(exposiciones);
 		JsonArray newArray = new JsonArray();
-		//ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
+		// ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
 		user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
-		//List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
-		Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote.obtenerParticipacionesPorSocio(user.getIdSocio());
+		// List<ParticExpoSocio> listadoPorSocio =
+		// participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+		Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote
+				.obtenerParticipacionesPorSocio(user.getIdSocio());
 
-		for (Exposicion exposicion : exposiciones) {
-		    boolean encontrado = false;
+		for (ExposicionDTO exposicion : exposiciones) {
+			boolean encontrado = false;
 
-		    for (ParticExpoSocio particExpoSocio : listadoPorSocio) {
-		        if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
-		            encontrado = true;
+			for (ParticExpoSocio particExpoSocio : listadoPorSocio) {
+				if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
+					encontrado = true;
 
-		            JsonObject jsonObj = new JsonObject();
-		            jsonObj.addProperty("id", exposicion.getId());
-		            jsonObj.addProperty("nombre", exposicion.getNombre());
-		            jsonObj.addProperty("descripcion", exposicion.getDescripcion());
-		            jsonObj.addProperty("organiza", exposicion.getOrganiza());
-		            jsonObj.addProperty("ubicacion", exposicion.getUbicacion());   
-		            jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
-		            jsonObj.addProperty("contacto", exposicion.getContacto());
-		            jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
-		            jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
-		            jsonObj.addProperty("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
+					JsonObject jsonObj = new JsonObject();
+					jsonObj.addProperty("id", exposicion.getId());
+					jsonObj.addProperty("nombre", exposicion.getNombre());
+					jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+					jsonObj.addProperty("organiza", exposicion.getOrganiza());
+					jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+					jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+					jsonObj.addProperty("contacto", exposicion.getContacto());
+					jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+					jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+					jsonObj.addProperty("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
 
-		            newArray.add(jsonObj);
-		            break; //
-		        }
-		    }
+					newArray.add(jsonObj);
+					break; //
+				}
+			}
 
-		    if (!encontrado) {
-		        JsonObject jsonObj = new JsonObject();
-		        jsonObj.addProperty("id", exposicion.getId());
-		        jsonObj.addProperty("nombre", exposicion.getNombre());
-		        jsonObj.addProperty("descripcion", exposicion.getDescripcion());
-		        jsonObj.addProperty("organiza", exposicion.getOrganiza());
-		        jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
-		        jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
-		        jsonObj.addProperty("contacto", exposicion.getContacto());
-		        jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
-		        jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
-		        jsonObj.addProperty("activo", 0);
+			if (!encontrado) {
+				JsonObject jsonObj = new JsonObject();
+				jsonObj.addProperty("id", exposicion.getId());
+				jsonObj.addProperty("nombre", exposicion.getNombre());
+				jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+				jsonObj.addProperty("organiza", exposicion.getOrganiza());
+				jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+				jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+				jsonObj.addProperty("contacto", exposicion.getContacto());
+				jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+				jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+				jsonObj.addProperty("activo", 0);
 
-		        newArray.add(jsonObj);
-		    }
+				newArray.add(jsonObj);
+			}
 		}
-		
+
 		response.setContentType("application/json");
 		response.getWriter().print(newArray);
 	}

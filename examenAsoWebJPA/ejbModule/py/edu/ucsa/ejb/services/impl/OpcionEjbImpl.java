@@ -27,12 +27,6 @@ public class OpcionEjbImpl implements OpcionEjbRemote {
         // TODO Auto-generated constructor stub
     }
 
-	@Override
-	public Opcion getOpcionByDominioCodOpcion(String dominio, String codOpcion) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 	@Override
 	public Iterable<Opcion> getOpcionesByIdDominio(Dominio dominio) {
@@ -74,6 +68,15 @@ public class OpcionEjbImpl implements OpcionEjbRemote {
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+
+	@Override
+	public Opcion getOpcionByDominioCodOpcion(Dominio dominio, Opcion codOpcion) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

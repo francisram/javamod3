@@ -11,5 +11,5 @@ public interface ParticExpoSocioEjbRemote extends GenericEjbRemote<Long, ParticE
 
 	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio);
 
-	Iterable<Exposicion> obtenerParticipacionesPorSocio(Socio socio);
+	Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio);
 }

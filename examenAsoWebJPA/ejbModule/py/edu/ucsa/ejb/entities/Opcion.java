@@ -78,10 +78,12 @@ public class Opcion implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "OpcionDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+		return "Opcion [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", dominio=" + dominio + ", padre=" + padre + "]";
 	}
 

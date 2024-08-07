@@ -8,7 +8,7 @@ import py.edu.ucsa.ejb.entities.Opcion;
 @Remote
 public interface OpcionEjbRemote extends GenericEjbRemote<Long, OpcionDTO> {
 	
-	Opcion getOpcionByDominioCodOpcion(String dominio,String codOpcion);
+	Opcion getOpcionByDominioCodOpcion(Dominio dominio,Opcion codOpcion);
 	Iterable<Opcion> getOpcionesByIdDominio(Dominio dominio);
 
 }

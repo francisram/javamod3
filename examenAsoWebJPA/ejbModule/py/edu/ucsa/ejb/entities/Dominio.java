@@ -98,9 +98,10 @@ public class Dominio {
 		this.dominioPadre = dominioPadre;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "DominioDTO [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+		return "Dominio [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", dominioPadre=" + dominioPadre + "]";
 	}
 

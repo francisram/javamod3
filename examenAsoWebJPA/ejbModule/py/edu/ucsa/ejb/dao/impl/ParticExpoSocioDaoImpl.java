@@ -26,7 +26,7 @@ public class ParticExpoSocioDaoImpl extends AbstractDao<Long, ParticExpoSocio> i
 	}
 
 	@Override
-	public Iterable<Exposicion> obtenerParticipacionesPorSocio(Integer idSocio) {
+	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Integer idSocio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
