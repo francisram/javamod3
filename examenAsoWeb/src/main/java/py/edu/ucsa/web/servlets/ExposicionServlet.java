@@ -73,7 +73,7 @@ public class ExposicionServlet extends HttpServlet {
 				
 				JSONArray newArray = new JSONArray();
 
-				for (Exposicion exposicion : exposiciones) {
+				for (ExposicionDTO exposicion : exposiciones) {
 				    boolean encontrado = false;
 
 				    for (ParticExpoSocio particExpoSocio : listadoPorSocio) {

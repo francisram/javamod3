@@ -2,9 +2,13 @@ package py.edu.ucsa.ejb.dao.impl;
 
 import java.util.List;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.IExposicionDao;
 import py.edu.ucsa.ejb.entities.Exposicion;
 
+@RequestScoped
+@Named("exposicionDao")
 public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements IExposicionDao {
 
 	
@@ -54,6 +58,9 @@ public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements 
 	@Override
 	public Iterable<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {
 		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 

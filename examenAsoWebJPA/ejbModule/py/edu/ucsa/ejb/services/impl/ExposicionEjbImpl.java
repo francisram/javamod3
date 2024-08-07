@@ -1,11 +1,16 @@
 package py.edu.ucsa.ejb.services.impl;
 
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.IExposicionDao;
 import py.edu.ucsa.ejb.dto.ExposicionDTO;
+import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 
 /**
@@ -15,6 +20,8 @@ import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 @LocalBean
 public class ExposicionEjbImpl implements ExposicionEjbRemote {
 	
+	@Inject
+	@Named("exposicionDao")
 	private IExposicionDao eDao;
 
     /**
@@ -26,8 +33,8 @@ public class ExposicionEjbImpl implements ExposicionEjbRemote {
 
 	@Override
 	public List<ExposicionDTO> findAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Stream<Exposicion> exposiciones = StreamSupport.stream(eDao.findAll().spliterator(), false);
+		return exposiciones.map(Exposicion::toDTO).toList();
 	}
 
 	@Override
@@ -63,8 +70,8 @@ public class ExposicionEjbImpl implements ExposicionEjbRemote {
 	@Override
 	public Iterable<ExposicionDTO> listarPorFechas(String fechaInicial, String fechaFinal) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		Stream<Exposicion> exposiciones = StreamSupport.stream(eDao.listarPorFechas(fechaInicial, fechaFinal).spliterator(), false);
+		return exposiciones.map(Exposicion::toDTO).toList();
 	}
 
 }
