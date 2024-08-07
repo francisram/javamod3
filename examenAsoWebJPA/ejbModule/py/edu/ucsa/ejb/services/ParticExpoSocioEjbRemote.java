@@ -2,6 +2,7 @@ package py.edu.ucsa.ejb.services;
 
 import jakarta.ejb.Remote;
 import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
+import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
 import py.edu.ucsa.ejb.entities.Socio;
 
@@ -10,5 +11,5 @@ public interface ParticExpoSocioEjbRemote extends GenericEjbRemote<Long, ParticE
 
 	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio);
 
-	Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio);
+	Iterable<Exposicion> obtenerParticipacionesPorSocio(Socio socio);
 }

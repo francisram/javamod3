@@ -18,15 +18,16 @@ import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
 @Entity
 @Table(name = "partic_expo_socios")
 @NamedQuery(name = "ParticExpoSocio.findAll", query = "SELECT pe FROM ParticExpoSocio pe ORDER BY pe.id ASC")
+@NamedQuery(name = "ParticExpoSocio.obtenerParticipacionesPorSocio", query = "SELECT pe FROM ParticExpoSocio pe JOIN pe.exposicion e WHERE PE.socio = :socio ")
 public class ParticExpoSocio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "participante_id" , nullable = true)
 	private Socio socio;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "exposicion_id" , nullable = true)
 	private Exposicion exposicion;
 	

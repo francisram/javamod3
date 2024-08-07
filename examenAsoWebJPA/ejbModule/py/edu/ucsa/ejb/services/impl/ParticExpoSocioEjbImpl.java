@@ -4,7 +4,11 @@ import java.util.List;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import py.edu.ucsa.ejb.dao.impl.ParticExpoSocioDaoImpl;
 import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
+import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
 import py.edu.ucsa.ejb.entities.Socio;
 import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
@@ -16,7 +20,10 @@ import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 @LocalBean
 public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	
-
+	@Inject
+	@Named("particExpoSocioDao")
+	private ParticExpoSocioDaoImpl pDao;
+	
     @Override
 	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio) {
 		// TODO Auto-generated method stub
@@ -24,7 +31,7 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	}
 
 	@Override
-	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio) {
+	public Iterable<Exposicion> obtenerParticipacionesPorSocio(Socio socio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
