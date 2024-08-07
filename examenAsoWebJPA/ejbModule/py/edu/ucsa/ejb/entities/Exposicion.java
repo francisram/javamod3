@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -17,7 +18,14 @@ import py.edu.ucsa.ejb.dto.ExposicionDTO;
 @Entity
 @Table(name = "exposiciones")
 @NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e ORDER BY e.nombre ASC")
-public class Exposicion {
+@NamedQuery(name = "Exposicion.listarPorFechas" , query = "SELECT e FROM Exposicion  e "
+		+ "	JOIN e.usuarioCreacion u WHERE e.fechaExpo BETWEEN :fechaInicio and :fechaFin" )
+
+public class Exposicion implements Serializable {
+	
+
+	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +44,7 @@ public class Exposicion {
 	private String contacto;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDate fechaCreacion;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuarios_creacion_id" )
 	private Usuario usuarioCreacion;
 	
@@ -125,9 +133,11 @@ public class Exposicion {
 	public void setUsuarioCreacion(Usuario usuarioCreacion) {
 		this.usuarioCreacion = usuarioCreacion;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "ExposicionDTO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", organiza=" + organiza
+		return "Exposicion [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", organiza=" + organiza
 				+ ", ubicacion=" + ubicacion + ", fechaExpo=" + fechaExpo + ", contacto=" + contacto
 				+ ", fechaCreacion=" + fechaCreacion + ", usuarioCreacion=" + usuarioCreacion + "]";
 	}

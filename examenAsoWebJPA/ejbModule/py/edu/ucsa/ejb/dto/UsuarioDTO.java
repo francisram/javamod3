@@ -90,9 +90,9 @@ public class UsuarioDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UsuarioDTO [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave + ", habilitado="
-				+ habilitado + ", cuentaExpirada=" + cuentaExpirada + ", cuentaBloqueada=" + cuentaBloqueada
-				+ ", fechaCreacionUsuario=" + fechaCreacionUsuario + ", idSocio=" + idSocio + "]";
+		return "UsuarioDTO [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave
+				+ ", habilitado=" + habilitado + ", cuentaExpirada=" + cuentaExpirada + ", cuentaBloqueada="
+				+ cuentaBloqueada + ", fechaCreacionUsuario=" + fechaCreacionUsuario + ", idSocio=" + idSocio + "]";
 	}
 	
 	

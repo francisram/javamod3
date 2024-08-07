@@ -22,6 +22,7 @@ public class RolDTO implements Serializable {
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
 	}
+	
 	@Override
 	public String toString() {
 		return "RolDTO [id=" + id + ", nombreRol=" + nombreRol + "]";

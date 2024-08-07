@@ -30,10 +30,10 @@ public class RolUsuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_id" , nullable = true)
 	private Usuario idUsuario;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol_id" , nullable = true)
 	private Rol idRol;
 	
@@ -60,12 +60,6 @@ public class RolUsuario implements Serializable {
 	
 	
 		
-	@Override
-	public String toString() {
-		return "RolUsuario [id=" + id + ", idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
-	}
-	
-
 
 	public Usuario getIdUsuario() {
 		return idUsuario;
@@ -93,6 +87,11 @@ public class RolUsuario implements Serializable {
 
 	public void setIdRol(Rol idRol) {
 		this.idRol = idRol;
+	}
+
+	@Override
+	public String toString() {
+		return "RolUsuario [id=" + id + ", idUsuario=" + idUsuario + ", idRol=" + idRol + "]";
 	}
 
 	

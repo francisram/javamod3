@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,8 +17,12 @@ import py.edu.ucsa.ejb.dto.RolDTO;
 @Entity
 @Table(name = "roles ")
 @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r ORDER BY r.id ASC")
-public class Rol {
+public class Rol implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -51,9 +57,10 @@ public class Rol {
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
 	}
+	
 	@Override
 	public String toString() {
-		return "RolDTO [id=" + id + ", nombreRol=" + nombreRol + "]";
+		return "Rol [id=" + id + ", nombreRol=" + nombreRol + "]";
 	}
 	
 	

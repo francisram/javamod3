@@ -52,7 +52,9 @@ public class Login extends HttpServlet {
 				request.getSession(true).setAttribute("SOCIO_CONECTADO :", usuario);
 				//List<RolUsuario> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
 				Iterable<RolUsuario> roles = rolUsuarioEjbRemote.getRolesByUsuario(usuario);
-				roles.forEach((x)->System.out.println(x));
+				for (RolUsuario rolUsuario : roles) {
+					System.out.println(rolUsuario.toString());
+				}
 				request.getSession().setAttribute("ROLES", roles);
 				request.getRequestDispatcher("menu.jsp").forward(request, response);
 			}

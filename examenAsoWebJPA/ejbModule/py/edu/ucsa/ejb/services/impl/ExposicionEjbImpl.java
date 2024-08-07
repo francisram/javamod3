@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import py.edu.ucsa.ejb.dao.IExposicionDao;
 import py.edu.ucsa.ejb.dto.ExposicionDTO;
 import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 
@@ -13,6 +14,8 @@ import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
 @Stateless(mappedName = "ExposicionEjb")
 @LocalBean
 public class ExposicionEjbImpl implements ExposicionEjbRemote {
+	
+	private IExposicionDao eDao;
 
     /**
      * Default constructor. 
@@ -55,6 +58,13 @@ public class ExposicionEjbImpl implements ExposicionEjbRemote {
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Iterable<ExposicionDTO> listarPorFechas(String fechaInicial, String fechaFinal) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 
 }

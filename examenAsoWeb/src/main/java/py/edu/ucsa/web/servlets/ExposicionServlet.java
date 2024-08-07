@@ -1,14 +1,5 @@
 package py.edu.ucsa.web.servlets;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
@@ -17,12 +8,31 @@ import java.util.Objects;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import jakarta.ejb.EJB;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import py.edu.ucsa.ejb.dto.ExposicionDTO;
+import py.edu.ucsa.ejb.entities.Exposicion;
+import py.edu.ucsa.ejb.entities.ParticExpoSocio;
+import py.edu.ucsa.ejb.entities.Usuario;
+import py.edu.ucsa.ejb.services.ExposicionEjbRemote;
+import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
+
 /**
  * Servlet implementation class ExposicionServlet
  */
 @WebServlet(urlPatterns = { "/ExposicionServlet" })
 public class ExposicionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@EJB(mappedName = "java:global/AsoWebJPA-0.0.1/ExposicionEjbImpl!py.edu.ucsa.ejb.services.ExposicionEjbRemote")
+	private ExposicionEjbRemote exposicionEjbRemote;
+	
+	@EJB(mappedName = " java:global/AsoWebJPA-0.0.1/ParticExpoSocioEjbImpl!py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote")
+	private ParticExpoSocioEjbRemote particExpoSocioEjbRemote;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,11 +49,11 @@ public class ExposicionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ParticExpoSocioDao participacionesDao = DaoFactory.getParticExpoSocioDao();
-		ExposicionDao exposicionesDao = DaoFactory.getExposicionDao();
+		//ParticExpoSocioDao participacionesDao = DaoFactory.getParticExpoSocioDao();
+		//ExposicionDao exposicionesDao = DaoFactory.getExposicionDao();
 		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
-				List<Exposicion> exposiciones = exposicionesDao.listar();
+				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
 				request.getSession().setAttribute("EXPOSICIONES", exposiciones);
 				// System.out.println(exposiciones);
 				request.getRequestDispatcher("listaExposiciones.jsp").forward(request, response);
@@ -53,12 +63,12 @@ public class ExposicionServlet extends HttpServlet {
 				user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
 				response.setContentType("application/json");
 				System.out.println("llego pedido por json");
-				List<Exposicion> exposiciones = exposicionesDao.listar();
+				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
 			
 				ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
 				
-				List<ParticExpoSocio> listadoPorSocio = participacion
-						.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+				//List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+				List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
 			
 				
 				JSONArray newArray = new JSONArray();
@@ -134,7 +144,7 @@ public class ExposicionServlet extends HttpServlet {
 		String fin = jsonObject.get("fin").getAsString();
 		System.out.println("inicio : " + inicio);
 		System.out.println("fin : " + fin);
-		List<Exposicion> exposiciones = DaoFactory.getExposicionDao().listarPorFechas(inicio,fin);
+		Iterable<ExposicionDTO> exposiciones = exposicionEjbRemote.listarPorFechas(inicio, fin);
 		System.out.println(exposiciones);
 		JSONArray newArray = new JSONArray();
 		ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
