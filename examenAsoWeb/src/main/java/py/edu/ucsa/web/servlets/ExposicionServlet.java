@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import jakarta.ejb.EJB;
@@ -65,13 +66,13 @@ public class ExposicionServlet extends HttpServlet {
 				System.out.println("llego pedido por json");
 				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
 			
-				ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
+				//ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
 				
 				//List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
-				List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+				Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote.obtenerParticipacionesPorSocio(user.getIdSocio());;
 			
 				
-				JSONArray newArray = new JSONArray();
+				JsonArray newArray = new JsonArray();
 
 				for (ExposicionDTO exposicion : exposiciones) {
 				    boolean encontrado = false;
@@ -80,7 +81,7 @@ public class ExposicionServlet extends HttpServlet {
 				        if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
 				            encontrado = true;
 
-				            JSONObject jsonObj = new JSONObject();
+				            JsonObject jsonObj = new JsonObject();
 				            jsonObj.put("id", exposicion.getId());
 				            jsonObj.put("nombre", exposicion.getNombre());
 				            jsonObj.put("descripcion", exposicion.getDescripcion());
@@ -98,17 +99,17 @@ public class ExposicionServlet extends HttpServlet {
 				    }
 
 				    if (!encontrado) {
-				        JSONObject jsonObj = new JSONObject();
-				        jsonObj.put("id", exposicion.getId());
-				        jsonObj.put("nombre", exposicion.getNombre());
-				        jsonObj.put("descripcion", exposicion.getDescripcion());
-				        jsonObj.put("organiza", exposicion.getOrganiza());
-				        jsonObj.put("ubicacion", exposicion.getUbicacion());
-				        jsonObj.put("fechaExpo", exposicion.getFechaExpo().toString());
-				        jsonObj.put("contacto", exposicion.getContacto());
-				        jsonObj.put("fechaCreacion", exposicion.getFechaCreacion());
-				        jsonObj.put("usuarioCreacion", exposicion.getUsuarioCreacion());
-				        jsonObj.put("activo", 0);
+				        JsonObject jsonObj = new JsonObject();
+				        jsonObj.addProperty("id", exposicion.getId());
+				        jsonObj.addProperty("nombre", exposicion.getNombre());
+				        jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+				        jsonObj.addProperty("organiza", exposicion.getOrganiza());
+				        jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+				        jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+				        jsonObj.addProperty("contacto", exposicion.getContacto());
+				        jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+				        jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+				        jsonObj.addProperty("activo", 0);
 
 				        newArray.add(jsonObj);
 				    }
@@ -146,11 +147,11 @@ public class ExposicionServlet extends HttpServlet {
 		System.out.println("fin : " + fin);
 		Iterable<ExposicionDTO> exposiciones = exposicionEjbRemote.listarPorFechas(inicio, fin);
 		System.out.println(exposiciones);
-		JSONArray newArray = new JSONArray();
-		ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
+		JsonArray newArray = new JsonArray();
+		//ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
 		user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
-		List<ParticExpoSocio> listadoPorSocio = participacion
-				.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+		//List<ParticExpoSocio> listadoPorSocio = participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+		Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote.obtenerParticipacionesPorSocio(user.getIdSocio());
 
 		for (Exposicion exposicion : exposiciones) {
 		    boolean encontrado = false;
@@ -159,17 +160,17 @@ public class ExposicionServlet extends HttpServlet {
 		        if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
 		            encontrado = true;
 
-		            JSONObject jsonObj = new JSONObject();
-		            jsonObj.put("id", exposicion.getId());
-		            jsonObj.put("nombre", exposicion.getNombre());
-		            jsonObj.put("descripcion", exposicion.getDescripcion());
-		            jsonObj.put("organiza", exposicion.getOrganiza());
-		            jsonObj.put("ubicacion", exposicion.getUbicacion());   
-		            jsonObj.put("fechaExpo", exposicion.getFechaExpo().toString());
-		            jsonObj.put("contacto", exposicion.getContacto());
-		            jsonObj.put("fechaCreacion", exposicion.getFechaCreacion());
-		            jsonObj.put("usuarioCreacion", exposicion.getUsuarioCreacion());
-		            jsonObj.put("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
+		            JsonObject jsonObj = new JsonObject();
+		            jsonObj.addProperty("id", exposicion.getId());
+		            jsonObj.addProperty("nombre", exposicion.getNombre());
+		            jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+		            jsonObj.addProperty("organiza", exposicion.getOrganiza());
+		            jsonObj.addProperty("ubicacion", exposicion.getUbicacion());   
+		            jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+		            jsonObj.addProperty("contacto", exposicion.getContacto());
+		            jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+		            jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+		            jsonObj.addProperty("activo", particExpoSocio.isCanceloParticipacion() ? 0 : 1);
 
 		            newArray.add(jsonObj);
 		            break; //
@@ -177,17 +178,17 @@ public class ExposicionServlet extends HttpServlet {
 		    }
 
 		    if (!encontrado) {
-		        JSONObject jsonObj = new JSONObject();
-		        jsonObj.put("id", exposicion.getId());
-		        jsonObj.put("nombre", exposicion.getNombre());
-		        jsonObj.put("descripcion", exposicion.getDescripcion());
-		        jsonObj.put("organiza", exposicion.getOrganiza());
-		        jsonObj.put("ubicacion", exposicion.getUbicacion());
-		        jsonObj.put("fechaExpo", exposicion.getFechaExpo().toString());
-		        jsonObj.put("contacto", exposicion.getContacto());
-		        jsonObj.put("fechaCreacion", exposicion.getFechaCreacion());
-		        jsonObj.put("usuarioCreacion", exposicion.getUsuarioCreacion());
-		        jsonObj.put("activo", 0);
+		        JsonObject jsonObj = new JsonObject();
+		        jsonObj.addProperty("id", exposicion.getId());
+		        jsonObj.addProperty("nombre", exposicion.getNombre());
+		        jsonObj.addProperty("descripcion", exposicion.getDescripcion());
+		        jsonObj.addProperty("organiza", exposicion.getOrganiza());
+		        jsonObj.addProperty("ubicacion", exposicion.getUbicacion());
+		        jsonObj.addProperty("fechaExpo", exposicion.getFechaExpo().toString());
+		        jsonObj.addProperty("contacto", exposicion.getContacto());
+		        jsonObj.addProperty("fechaCreacion", exposicion.getFechaCreacion().toString());
+		        jsonObj.addProperty("usuarioCreacion", exposicion.getUsuarioCreacion().toString());
+		        jsonObj.addProperty("activo", 0);
 
 		        newArray.add(jsonObj);
 		    }

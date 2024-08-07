@@ -55,13 +55,15 @@ public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements 
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {
 		// TODO Auto-generated method stub
-		
-		
-		
-		return null;
+				
+		return this.entityManager.createNamedQuery("Exposicion.listarPorFechas")
+				.setParameter("fechaInicio", fechaInicial)
+				.setParameter("fechaFin", fechaFinal)
+				.getResultList();
 	}
 
 }

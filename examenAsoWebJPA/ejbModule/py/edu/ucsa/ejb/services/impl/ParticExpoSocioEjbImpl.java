@@ -6,6 +6,7 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
+import py.edu.ucsa.ejb.entities.Socio;
 import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 
 /**
@@ -23,7 +24,7 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	}
 
 	@Override
-	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Integer idSocio) {
+	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
