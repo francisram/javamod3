@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	    } 
 	    $.ajax({
 	        type: 'POST',
-	        url: '/aso-web/ParticipacionesExposServlet', 
+	        url: 'ParticipacionesExposServlet', 
 	        contentType: 'application/json',
 	        data: JSON.stringify({ valores: valoresSeleccionados,'accion':'inscribir' }),
 	        success: function (response) {
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	    } 
 	    $.ajax({
 	        type: 'POST',
-	        url: '/aso-web/ParticipacionesExposServlet', 
+	        url: 'ParticipacionesExposServlet', 
 	        contentType: 'application/json',
 	        data: JSON.stringify({ valores: valoresSeleccionados,'accion':'cancelar' }),
 	        success: function (response) {
@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", function() {
 											{
 												"columns" : columns,
 												"ajax" : {
-													"url" : '/aso-web/ExposicionServlet?ACCION=LISTAR&FORMATO=JSON',
+													"url" : 'ExposicionServlet?ACCION=LISTAR&FORMATO=JSON',
 													"dataSrc" : "",
 												/*
 												"success": function (data) {
@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       $.ajax({
 	        type: 'POST',
-	        url: '/aso-web/ExposicionServlet', 
+	        url: 'ExposicionServlet', 
 	        contentType: 'application/json',
 	        data: JSON.stringify({ 'inicio': startDateString,'fin': endDateString,'FORMATO':'JSON' }),
 	        success: function (response) {

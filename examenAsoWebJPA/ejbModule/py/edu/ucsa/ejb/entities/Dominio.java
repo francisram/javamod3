@@ -7,8 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import py.edu.ucsa.ejb.dto.DominioDTO;
 
@@ -25,7 +25,7 @@ public class Dominio {
 	private String descripcion;
 	@Column(name = "estado" , nullable = true)
 	private String estado;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dominio_padre_id" , nullable = true)
 	private Dominio dominioPadre;
 	

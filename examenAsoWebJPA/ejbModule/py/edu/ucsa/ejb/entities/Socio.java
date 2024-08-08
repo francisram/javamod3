@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -43,15 +44,15 @@ public class Socio {
 	private LocalDate fechaEstadoActual;
 	@Column(name = "fundador",  columnDefinition = "boolean" , nullable = true)
 	private boolean fundador;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuarios_id" , nullable = true)
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDate fecha_creacion;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socios_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_socio_proponente" , nullable = true)
 	private Socio socioProponente;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipo_socio_id" , nullable = true)
 	private Opcion tipoSocio;
 	

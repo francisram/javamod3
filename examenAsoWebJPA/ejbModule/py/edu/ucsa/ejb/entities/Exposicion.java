@@ -10,8 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import py.edu.ucsa.ejb.dto.ExposicionDTO;
 
@@ -44,7 +44,7 @@ public class Exposicion implements Serializable {
 	private String contacto;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDate fechaCreacion;
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuarios_creacion_id" )
 	private Usuario usuarioCreacion;
 	

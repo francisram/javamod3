@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -28,7 +29,7 @@ public class EstadoSocio {
 	private EstadoSocio estado;
 	@Column(name = "fecha_estado",columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaEstado;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_creacion_id" )
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
