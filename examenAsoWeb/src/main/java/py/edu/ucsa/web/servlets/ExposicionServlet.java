@@ -49,14 +49,13 @@ public class ExposicionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("llegamos al exposicion servlet");
 		// ParticExpoSocioDao participacionesDao = DaoFactory.getParticExpoSocioDao();
 		// ExposicionDao exposicionesDao = DaoFactory.getExposicionDao();
 		if (Objects.isNull(request.getParameter("ACCION")) || "LISTAR".equals(request.getParameter("ACCION"))) {
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
 				try {
-					List<ExposicionDTO> exposiciones;
-					exposiciones = exposicionEjbRemote.findAll();
+					List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
 					request.getSession().setAttribute("EXPOSICIONES", exposiciones);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -121,8 +120,7 @@ public class ExposicionServlet extends HttpServlet {
 					}
 					response.getWriter().print(newArray);
 				} catch (Exception e) {
-					// TODO: handle exception
-				}
+					e.printStackTrace();				}
 
 			}
 
