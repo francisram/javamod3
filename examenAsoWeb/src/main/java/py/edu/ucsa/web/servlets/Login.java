@@ -2,13 +2,14 @@ package py.edu.ucsa.web.servlets;
 
 import java.io.IOException;
 import java.util.Objects;
+
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import py.edu.ucsa.ejb.entities.Rol;
+import jakarta.servlet.http.HttpSession;
 import py.edu.ucsa.ejb.entities.RolUsuario;
 import py.edu.ucsa.ejb.entities.Usuario;
 import py.edu.ucsa.ejb.services.RolUsuarioEjbRemote;
@@ -48,13 +49,12 @@ public class Login extends HttpServlet {
 				System.out.println("fallo de inicio de session");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-				System.out.println("usuario conectado" + usuario);
+				System.out.println("usuario conectado " + usuario);
 				request.getSession(true).setAttribute("SOCIO_CONECTADO :", usuario);
+				HttpSession session = request.getSession(true); 
+				session.setAttribute("SOCIO_CONECTADO", usuario);
 				//List<RolUsuario> roles = DaoFactory.getUsuarioDao().getRolesByUsuario(usuario.getId());
 				Iterable<RolUsuario> roles = rolUsuarioEjbRemote.getRolesByUsuario(usuario);
-				for (RolUsuario rolUsuario : roles) {
-					System.out.println(rolUsuario.toString());
-				}
 				request.getSession().setAttribute("ROLES", roles);
 				request.getRequestDispatcher("menu.jsp").forward(request, response);
 			}
