@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.Query;
 import py.edu.ucsa.ejb.dao.IParticExpoSocioDao;
 import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
@@ -26,10 +27,15 @@ public class ParticExpoSocioDaoImpl extends AbstractDao<Long, ParticExpoSocio> i
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio idSocio) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Query q = this.entityManager.createNamedQuery("ParticExpoSocio.obtenerParticipacionesPorSocio");
+		q.setParameter("socio", idSocio);
+
+		return q.getResultList();
 	}
 
 

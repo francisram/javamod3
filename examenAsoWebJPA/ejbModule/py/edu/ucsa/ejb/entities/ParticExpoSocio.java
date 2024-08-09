@@ -1,6 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,9 @@ import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
 @Table(name = "partic_expo_socios")
 @NamedQuery(name = "ParticExpoSocio.findAll", query = "SELECT pe FROM ParticExpoSocio pe ORDER BY pe.id ASC")
 @NamedQuery(name = "ParticExpoSocio.obtenerParticipacionesPorSocio", query = "SELECT pe FROM ParticExpoSocio pe JOIN pe.exposicion e WHERE PE.socio = :socio ")
-public class ParticExpoSocio {
+public class ParticExpoSocio implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
