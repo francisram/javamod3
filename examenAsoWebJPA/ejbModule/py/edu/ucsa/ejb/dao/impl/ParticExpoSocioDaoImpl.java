@@ -7,6 +7,7 @@ import jakarta.inject.Named;
 import py.edu.ucsa.ejb.dao.IParticExpoSocioDao;
 import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
+import py.edu.ucsa.ejb.entities.Socio;
 
 
 @RequestScoped
@@ -26,7 +27,7 @@ public class ParticExpoSocioDaoImpl extends AbstractDao<Long, ParticExpoSocio> i
 	}
 
 	@Override
-	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Integer idSocio) {
+	public Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio idSocio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
