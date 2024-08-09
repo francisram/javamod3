@@ -17,7 +17,7 @@ import py.edu.ucsa.ejb.dto.ExposicionDTO;
 
 @Entity
 @Table(name = "exposiciones")
-@NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e ORDER BY e.nombre ASC")
+@NamedQuery(name = "Exposicion.findAll", query = "SELECT e FROM Exposicion e WHERE e.fechaExpo >= CURRENT_DATE ORDER BY e.nombre ASC")
 @NamedQuery(name = "Exposicion.listarPorFechas" , query = "SELECT e FROM Exposicion  e "
 		+ "	JOIN e.usuarioCreacion u WHERE e.fechaExpo BETWEEN :fechaInicio and :fechaFin" )
 
