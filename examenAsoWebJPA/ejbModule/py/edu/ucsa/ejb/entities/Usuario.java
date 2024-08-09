@@ -46,7 +46,7 @@ public class Usuario implements Serializable {
 	private boolean cuentaBloqueada;
 	@Column(name = "fecha_creacion_usuario", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaCreacionUsuario;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio idSocio;
 	
@@ -184,10 +184,12 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave + ", habilitado="
-				+ habilitado + ", cuentaExpirada=" + cuentaExpirada + ", cuentaBloqueada=" + cuentaBloqueada
-				+ ", fechaCreacionUsuario=" + fechaCreacionUsuario + ", idSocio=" + idSocio + "]";
+	    return "Usuario [id=" + id + ", usuario=" + usuario + ", email=" + email + ", clave=" + clave 
+	           + ", habilitado=" + habilitado + ", cuentaExpirada=" + cuentaExpirada 
+	           + ", cuentaBloqueada=" + cuentaBloqueada + ", fechaCreacionUsuario=" + fechaCreacionUsuario 
+	           + ", idSocio=" + (idSocio != null ? idSocio.getId() : null) + "]";
 	}
+
 	
 	
 	

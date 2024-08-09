@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,7 +17,13 @@ import py.edu.ucsa.ejb.dto.DominioDTO;
 @Entity
 @Table(name = "dominios")
 @NamedQuery(name = "Dominio.findAll", query = "SELECT c FROM Dominio c ORDER BY c.codigo ASC")
-public class Dominio {
+public class Dominio implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -25,7 +33,7 @@ public class Dominio {
 	private String descripcion;
 	@Column(name = "estado" , nullable = true)
 	private String estado;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_dominio_padre" , nullable = true)
 	private Dominio dominioPadre;
 	
@@ -99,10 +107,12 @@ public class Dominio {
 	}
 
 	
+	
 	@Override
 	public String toString() {
-		return "Dominio [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
-				+ ", dominioPadre=" + dominioPadre + "]";
+	    return "Dominio [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
+	            + ", dominioPadre=" + (dominioPadre != null ? dominioPadre.getId() : "null") + "]";
 	}
+
 
 }

@@ -84,8 +84,10 @@ public class Opcion implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Opcion [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado
-				+ ", dominio=" + dominio + ", padre=" + padre + "]";
+	    return "Opcion [id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion 
+	           + ", estado=" + estado 
+	           + ", dominio=" + (dominio != null ? dominio.getId() : null) 
+	           + ", padre=" + (padre != null ? padre.getId() : null) + "]";
 	}
 
 	public Opcion(Integer id) {

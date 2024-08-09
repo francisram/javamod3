@@ -24,7 +24,7 @@ public class EstadoSocio {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio socio;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado" )
 	private EstadoSocio estado;
 	@Column(name = "fecha_estado",columnDefinition = "DATE", nullable = true)

@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -21,7 +22,11 @@ import py.edu.ucsa.ejb.dto.UsuarioDTO;
 @Entity
 @Table(name = "socios")
 @NamedQuery(name = "Socio.findAll", query = "SELECT s FROM Socio s ORDER BY s.nombres ASC")
-public class Socio {
+public class Socio implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,22 +42,22 @@ public class Socio {
 	private int nroCedula;
 	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaIngreso;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_estado_actual" , nullable = true)
 	private Opcion estadoActual;
 	@Column(name = "fecha_estado_actual", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaEstadoActual;
 	@Column(name = "fundador",  columnDefinition = "boolean" , nullable = true)
 	private boolean fundador;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_usuario_creacion" , nullable = true)
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDate fecha_creacion;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_socio_proponente" , nullable = true)
 	private Socio socioProponente;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_tipo_socio" , nullable = true)
 	private Opcion tipoSocio;
 	
@@ -205,12 +210,16 @@ public class Socio {
 	}
 	@Override
 	public String toString() {
-		return "SocioDTO [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email
-				+ ", nroSocio=" + nroSocio + ", nroCedula=" + nroCedula + ", fechaIngreso=" + fechaIngreso
-				+ ", estadoActual=" + estadoActual + ", fechaEstadoActual=" + fechaEstadoActual + ", fundador="
-				+ fundador + ", usuarioCreacion=" + usuarioCreacion + ", fecha_creacion=" + fecha_creacion
-				+ ", socioProponente=" + socioProponente + ", tipoSocio=" + tipoSocio + "]";
+	    return "Socio [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email 
+	           + ", nroSocio=" + nroSocio + ", nroCedula=" + nroCedula + ", fechaIngreso=" + fechaIngreso 
+	           + ", estadoActual=" + (estadoActual != null ? estadoActual.getId() : null) 
+	           + ", fechaEstadoActual=" + fechaEstadoActual + ", fundador=" + fundador 
+	           + ", usuarioCreacion=" + (usuarioCreacion != null ? usuarioCreacion.getId() : null) 
+	           + ", fecha_creacion=" + fecha_creacion 
+	           + ", socioProponente=" + (socioProponente != null ? socioProponente.getId() : null) 
+	           + ", tipoSocio=" + (tipoSocio != null ? tipoSocio.getId() : null) + "]";
 	}
+
 	
 	
 	
