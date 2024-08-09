@@ -47,7 +47,7 @@ public class Usuario implements Serializable {
 	@Column(name = "fecha_creacion_usuario", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaCreacionUsuario;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socio_id" , nullable = true)
+	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio idSocio;
 	
 	

@@ -23,18 +23,18 @@ public class MensajeEnviadoSocio {
 	private Integer id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socio_destino_id" )
+	@JoinColumn(name = "id_socio_destino" )
 	private Socio socioDestino;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "mensajes_socio_id" )
+	@JoinColumn(name = "id_mensaje" )
 	private MensajeEnviadoSocio mensaje;
 	
 	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDateTime fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_creacion_id" )
+	@JoinColumn(name = "id_usuario_creacion" )
 	private Usuario usuarioCreacion;
 	
 	public Integer getId() {

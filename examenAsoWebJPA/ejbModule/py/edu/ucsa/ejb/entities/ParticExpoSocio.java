@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -24,11 +25,11 @@ public class ParticExpoSocio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "participante_id" , nullable = true)
+	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio socio;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "exposicion_id" , nullable = true)
+	@JoinColumn(name = "id_exposicion" , nullable = true)
 	private Exposicion exposicion;
 	
 	@Column(name = "cancelo_participacion", columnDefinition="boolean",  nullable = true)
@@ -40,8 +41,8 @@ public class ParticExpoSocio {
 	@Column(name = "fecha_creacion", columnDefinition="DATE", nullable = true)
 	private LocalDateTime fechaCreacion;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario_creacion" , nullable = true)
 	private Usuario usuarioCreacion;
 	
 	

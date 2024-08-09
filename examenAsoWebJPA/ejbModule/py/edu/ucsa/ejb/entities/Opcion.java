@@ -40,11 +40,11 @@ public class Opcion implements Serializable {
 	private String descripcion;
 	@Column(name = "estado",  nullable = true)
 	private String estado;
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "dominios_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_dominio" , nullable = true)
 	private Dominio dominio;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "id_opcion_padre" , nullable = true)
 	private Opcion padre;
 	
 	

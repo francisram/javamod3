@@ -26,7 +26,7 @@ public class Dominio {
 	@Column(name = "estado" , nullable = true)
 	private String estado;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dominio_padre_id" , nullable = true)
+	@JoinColumn(name = "id_dominio_padre" , nullable = true)
 	private Dominio dominioPadre;
 	
 	public static Dominio ofDTO(DominioDTO dto) {

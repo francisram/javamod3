@@ -42,7 +42,7 @@ public class MontoCuota {
 	private String estado;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_inactivacion_id" , nullable = true)
+	@JoinColumn(name = "id_usuario_inactivacion" , nullable = true)
 	private Usuario usuarioInactivacion;
 	
 	

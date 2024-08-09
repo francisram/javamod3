@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -26,25 +27,25 @@ public class MovimientoSocio {
 	@Column(name = "monto", nullable = true)
 	private double monto;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "concepto_id" , nullable = true)
+	@JoinColumn(name = "id_concepto" , nullable = true)
 	private Opcion concepto;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "estado_id" , nullable = true)
+	@JoinColumn(name = "id_estado" , nullable = true)
 	private Opcion estado;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "medio_pago_id" , nullable = true)
+	@JoinColumn(name = "id_medio_pago" , nullable = true)
 	private Opcion medioPago;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socios_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio socio;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tipos_movimientos_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_movimiento" , nullable = true)
 	private TipoMovimiento tipoMovimiento;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_aprobacion_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario_aprobacion" , nullable = true)
 	private Usuario usuarioAprobacion;
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario_creacion" , nullable = true)
 	private Usuario usuarioCreacion;
 
 	

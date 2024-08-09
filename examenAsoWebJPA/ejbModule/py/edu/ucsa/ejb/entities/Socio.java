@@ -38,14 +38,14 @@ public class Socio {
 	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaIngreso;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "opciones_id" , nullable = true)
+	@JoinColumn(name = "id_estado_actual" , nullable = true)
 	private Opcion estadoActual;
 	@Column(name = "fecha_estado_actual", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaEstadoActual;
 	@Column(name = "fundador",  columnDefinition = "boolean" , nullable = true)
 	private boolean fundador;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id" , nullable = true)
+	@JoinColumn(name = "id_usuario_creacion" , nullable = true)
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDate fecha_creacion;
@@ -53,7 +53,7 @@ public class Socio {
 	@JoinColumn(name = "id_socio_proponente" , nullable = true)
 	private Socio socioProponente;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tipo_socio_id" , nullable = true)
+	@JoinColumn(name = "id_tipo_socio" , nullable = true)
 	private Opcion tipoSocio;
 	
 	

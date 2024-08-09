@@ -22,15 +22,15 @@ public class EstadoSocio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "socio_id" , nullable = true)
+	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio socio;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "estado_id" )
+	@JoinColumn(name = "id_estado" )
 	private EstadoSocio estado;
 	@Column(name = "fecha_estado",columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaEstado;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_creacion_id" )
+	@JoinColumn(name = "id_usuario_creacion" )
 	private Usuario usuarioCreacion;
 	@Column(name = "fecha_creacion", columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaCreacion;

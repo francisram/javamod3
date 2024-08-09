@@ -34,7 +34,7 @@ public class Menu {
 	@Column(name = "vista", nullable = true)
 	private String vista;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sub_menu_id" )
+	@JoinColumn(name = "id_sub_menu" )
 	private Menu subMenu;
 	
 	

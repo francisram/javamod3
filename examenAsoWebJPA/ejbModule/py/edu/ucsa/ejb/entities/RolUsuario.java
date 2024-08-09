@@ -31,10 +31,10 @@ public class RolUsuario implements Serializable {
 	private Long id;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "usuario_id" , nullable = true)
+	@JoinColumn(name = "id_usuario" , nullable = true)
 	private Usuario idUsuario;
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "rol_id" , nullable = true)
+	@JoinColumn(name = "id_rol" , nullable = true)
 	private Rol idRol;
 	
 	

@@ -33,7 +33,7 @@ public class CodigoDeSeguridad {
 	private Integer tipoActivacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_id" , nullable = true)
+	@JoinColumn(name = "id_usuario" , nullable = true)
 	private Usuario usuario;
 	
 		

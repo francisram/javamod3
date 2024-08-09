@@ -25,11 +25,11 @@ public class TematicaParticExpoSocio {
 	private int id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "partic_expo_socios_id" , nullable = true)
+	@JoinColumn(name = "id_partic_expo_socios" , nullable = true)
 	private ParticExpoSocio particExpoSocio;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tematica_general_id" , nullable = true)
+	@JoinColumn(name = "id_tematica_general" , nullable = true)
 	private Opcion tematicaGeneral;
 	
 	@Column(name = "tematica_especifica",   nullable = true)
@@ -45,7 +45,7 @@ public class TematicaParticExpoSocio {
 	private LocalDate fechaCreacion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_creacion_id" , nullable = true)
+	@JoinColumn(name = "id_usuario_creacion" , nullable = true)
 	private Usuario usuarioCreacion;
 
 	public int getId() {

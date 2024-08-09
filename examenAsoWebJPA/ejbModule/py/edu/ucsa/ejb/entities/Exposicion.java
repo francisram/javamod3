@@ -25,8 +25,7 @@ public class Exposicion implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;
-	
-	
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -45,7 +44,7 @@ public class Exposicion implements Serializable {
 	@Column(name = "fecha_creacion", columnDefinition = "DATE",nullable = true)
 	private LocalDate fechaCreacion;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "usuarios_creacion_id" )
+	@JoinColumn(name = "id_usuario_creacion" )
 	private Usuario usuarioCreacion;
 	
 	public static Exposicion ofDTO(ExposicionDTO dto) {
