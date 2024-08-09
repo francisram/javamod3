@@ -30,8 +30,8 @@ public class OpcionEjbImpl implements OpcionEjbRemote {
 
 	@Override
 	public Iterable<Opcion> getOpcionesByIdDominio(Dominio dominio) {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Opcion> opciones = oDao.getOpcionesByIdDominio(dominio);
+		return opciones;
 	}
 
 	@Override

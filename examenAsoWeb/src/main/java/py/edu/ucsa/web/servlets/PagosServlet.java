@@ -32,7 +32,7 @@ public class PagosServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		
-		
+		/*
 		if (Objects.isNull(request.getParameter("ACCION")) || "".equals(request.getParameter("ACCION"))
 				|| "LISTAR".equals(request.getParameter("ACCION"))) {
 			PagoCuotaSocioDao pagoscuotas = DaoFactory.getPagoCuotaSocioDao();
@@ -50,7 +50,7 @@ public class PagosServlet extends HttpServlet {
 		}
 		
 		
-		
+		*/
 	}
 
 	/**
