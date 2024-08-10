@@ -2,6 +2,7 @@ package py.edu.ucsa.ejb.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -58,7 +59,9 @@ public class Exposicion implements Serializable {
 			exposicion.setOrganiza(dto.getOrganiza());
 			exposicion.setUbicacion(dto.getUbicacion());
 			exposicion.setUbicacion(dto.getUbicacion());
-			exposicion.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));
+			if(!Objects.isNull(dto.getUsuarioCreacion())) {
+				exposicion.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));				
+			}
 			return exposicion;
 	}
 	
@@ -74,7 +77,9 @@ public class Exposicion implements Serializable {
 		exposicion.setOrganiza(this.getOrganiza());
 		exposicion.setUbicacion(this.getUbicacion());
 		exposicion.setUbicacion(this.getUbicacion());
-		exposicion.setUsuarioCreacion(this.getUsuarioCreacion().toDTO());
+		if(!Objects.isNull(this.getUsuarioCreacion())) {
+			exposicion.setUsuarioCreacion(this.getUsuarioCreacion().toDTO());			
+		}
 		return exposicion;
 	}
 	

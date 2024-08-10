@@ -1,6 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,12 +51,20 @@ public class Opcion implements Serializable {
 	
 	public static Opcion ofDTO(OpcionDTO dto) {
 		Opcion opcion = new Opcion();
-		opcion.setCodigo(dto.getCodigo());
+		if(!Objects.isNull(dto.getCodigo())) {
+			opcion.setCodigo(dto.getCodigo());			
+		}
 		opcion.setDescripcion(dto.getDescripcion());
-		opcion.setDominio(Dominio.ofDTO(dto.getDominio()));
+		if(!Objects.isNull(dto.getDominio())) {
+			opcion.setDominio(Dominio.ofDTO(dto.getDominio()));			
+		}
 		opcion.setEstado(dto.getEstado());
-		opcion.setId(dto.getId());
-		opcion.setPadre(Opcion.ofDTO(dto.getPadre()));
+		if(!Objects.isNull(dto.getId())) {
+			opcion.setId(dto.getId());			
+		}
+		if(!Objects.isNull(dto.getPadre())) {
+			opcion.setPadre(Opcion.ofDTO(dto.getPadre()));			
+		}
 		return opcion;
 	}
 	
@@ -63,12 +72,16 @@ public class Opcion implements Serializable {
 		OpcionDTO opcion = new OpcionDTO();
 		opcion.setCodigo(this.getCodigo());
 		opcion.setDescripcion(this.getDescripcion());
-		DominioDTO dominio = new DominioDTO();
-		dominio.setId(this.getDominio().getId());
-		opcion.setDominio(dominio);
-		opcion.setEstado(this.getEstado());
+		if(!Objects.isNull(this.getDominio())) {
+			opcion.setDominio(this.getDominio().toDTO());			
+		}
+		if(!Objects.isNull(this.getEstado())) {
+			opcion.setEstado(this.getEstado());			
+		}
 		opcion.setId(this.getId());
-		opcion.setPadre(this.getPadre().toDTO());
+		if(!Objects.isNull(this.getPadre())) {
+			opcion.setPadre(this.getPadre().toDTO());			
+		}
 		return opcion;
 	}
 

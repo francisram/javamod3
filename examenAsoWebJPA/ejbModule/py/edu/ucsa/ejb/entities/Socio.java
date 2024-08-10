@@ -42,7 +42,7 @@ public class Socio implements Serializable{
 	private int nroCedula;
 	@Column(name = "fecha_ingreso", columnDefinition = "DATE", nullable = true)
 	private LocalDate fechaIngreso;
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_estado_actual" , nullable = true)
 	private Opcion estadoActual;
 	@Column(name = "fecha_estado_actual", columnDefinition = "DATE", nullable = true)
@@ -66,7 +66,9 @@ public class Socio implements Serializable{
 		Socio socio = new Socio();
 		socio.setApellidos(dto.getApellidos());
 		socio.setEmail(dto.getEmail());
-		socio.setEstadoActual(Opcion.ofDTO(dto.getEstadoActual()));
+		if(!Objects.isNull(dto.getEstadoActual())) {
+			socio.setEstadoActual(Opcion.ofDTO(dto.getEstadoActual()));			
+		}
 		socio.setFecha_creacion(dto.getFecha_creacion());
 		socio.setFechaEstadoActual(dto.getFechaEstadoActual());
 		socio.setFechaIngreso(dto.getFechaIngreso());
@@ -83,11 +85,11 @@ public class Socio implements Serializable{
 	
 	public SocioDTO toDTO() {
 		SocioDTO socio = new SocioDTO();
-		socio.setApellidos(this.apellidos);
-		socio.setEmail(this.email);
-		OpcionDTO opcion = new OpcionDTO();
-		opcion.setId(this.estadoActual.getId());
-		socio.setEstadoActual(opcion);
+		socio.setApellidos(this.getApellidos());
+		socio.setEmail(this.getEmail());
+		if(!Objects.isNull(this.getEstadoActual())) {
+			socio.setEstadoActual(this.getEstadoActual().toDTO());			
+		}
 		if(!Objects.isNull(this.fecha_creacion)) {
 			socio.setFecha_creacion(this.fecha_creacion);			
 		}
@@ -99,18 +101,18 @@ public class Socio implements Serializable{
 		}
 		socio.setFundador(this.fundador);
 		socio.setId(this.id);
-		socio.setNombres(this.nombres);
-		socio.setNroCedula(this.nroCedula);
-		socio.setNroSocio(this.nroSocio);
-		SocioDTO proponente = new SocioDTO();
-		proponente.setId(this.socioProponente.getId());
-		socio.setSocioProponente(proponente);
-		OpcionDTO tipoSocio = new OpcionDTO();
-		tipoSocio.setId(this.tipoSocio.getId());
-		socio.setTipoSocio(tipoSocio);
-		UsuarioDTO creador = new UsuarioDTO();
-		creador.setId(this.usuarioCreacion.getId());
-		socio.setUsuarioCreacion(creador);
+		socio.setNombres(this.getNombres());
+		socio.setNroCedula(this.getNroCedula());
+		socio.setNroSocio(this.getNroSocio());
+		if(!Objects.isNull(this.getSocioProponente())) {
+			socio.setSocioProponente(this.getSocioProponente().toDTO());			
+		}
+		if(!Objects.isNull(this.getTipoSocio())) {
+			socio.setTipoSocio(this.getTipoSocio().toDTO());			
+		}
+		if(!Objects.isNull(this.getUsuarioCreacion())) {
+			socio.setUsuarioCreacion(this.getUsuarioCreacion().toDTO());			
+		}
 		
 		return socio;
 	}

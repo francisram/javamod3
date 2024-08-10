@@ -173,8 +173,8 @@ public class ParticipacionesExposServlet extends HttpServlet {
 
 	public void registrarParticipacion(ParticExpoSocio participacion) {
 		try {
-			//ParticExpoSocioImpl pExpoImpl = new ParticExpoSocioImpl();
-			//pExpoImpl.insertar(participacion);
+			System.out.println("se debe registrar");
+			System.out.println(participacion);
 			particExpoSocioEjbRemote.insert(participacion.toDTO());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
