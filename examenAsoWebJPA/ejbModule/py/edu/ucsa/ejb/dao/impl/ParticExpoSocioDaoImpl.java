@@ -1,10 +1,9 @@
 package py.edu.ucsa.ejb.dao.impl;
 
-import java.util.List;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import py.edu.ucsa.ejb.dao.IParticExpoSocioDao;
 import py.edu.ucsa.ejb.entities.Exposicion;
 import py.edu.ucsa.ejb.entities.ParticExpoSocio;
@@ -22,9 +21,27 @@ public class ParticExpoSocioDaoImpl extends AbstractDao<Long, ParticExpoSocio> i
 	}
 
 	@Override
-	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio) {
+	public ParticExpoSocio ObtenerParticipacion(Integer id_expo, Integer id_socio) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		//ParticExpoSocio.ObtenerParticipacion
+		Socio s = new Socio();
+		s.setId(id_socio);
+		Exposicion e = new Exposicion();
+		e.setId(id_expo);
+		
+		 TypedQuery<ParticExpoSocio> q = this.entityManager.createNamedQuery("ParticExpoSocio.ObtenerParticipacion", ParticExpoSocio.class);
+	        q.setParameter("socio", s);
+	        q.setParameter("exposicion", e);
+	        
+	        
+	        try {
+	        	ParticExpoSocio p = q.getSingleResult();
+	        	 return p;
+			} catch (Exception ex) {
+				// TODO: handle exception
+				return null; 
+			}
 	}
 
 	@SuppressWarnings("unchecked")

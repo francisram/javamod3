@@ -27,7 +27,8 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
     @Override
 	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio) {
 		// TODO Auto-generated method stub
-		return null;
+    	
+		return pDao.ObtenerParticipacion(id, id_socio);
 	}
 
 	@Override

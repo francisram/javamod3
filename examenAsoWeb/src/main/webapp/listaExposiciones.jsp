@@ -416,9 +416,6 @@ document.addEventListener("DOMContentLoaded", function() {
       var endDate = new Date(endDateString + 'T00:00:00');
       var hoy = new Date();
       hoy.setHours(0, 0, 0, 0);
-      //console.log(startDate);
-      //console.log(endDate);
-      //console.log(hoy);
       if (startDate < hoy) {
         Swal.fire({
           icon: 'error',
@@ -456,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	        error: function (error) {
 	            Swal.fire({
 	                title: 'Error',
-	                text: 'Error en la solicitud AJAX',
+	                text: 'Error en la solicitud filtrado por fecha',
 	                icon: 'error',
 	                confirmButtonText: 'OK'
 	            });

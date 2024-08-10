@@ -1,5 +1,6 @@
 package py.edu.ucsa.ejb.dao.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.enterprise.context.RequestScoped;
@@ -57,7 +58,7 @@ public class ExposicionDaoImpl extends AbstractDao<Long, Exposicion> implements 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<Exposicion> listarPorFechas(String fechaInicial, String fechaFinal) {
+	public Iterable<Exposicion> listarPorFechas(LocalDate fechaInicial, LocalDate fechaFinal) {
 		// TODO Auto-generated method stub
 				
 		return this.entityManager.createNamedQuery("Exposicion.listarPorFechas")

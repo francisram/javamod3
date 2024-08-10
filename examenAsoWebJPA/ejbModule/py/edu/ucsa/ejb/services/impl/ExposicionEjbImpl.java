@@ -1,5 +1,7 @@
 package py.edu.ucsa.ejb.services.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -70,7 +72,10 @@ public class ExposicionEjbImpl implements ExposicionEjbRemote {
 	@Override
 	public Iterable<ExposicionDTO> listarPorFechas(String fechaInicial, String fechaFinal) {
 		// TODO Auto-generated method stub
-		Stream<Exposicion> exposiciones = StreamSupport.stream(eDao.listarPorFechas(fechaInicial, fechaFinal).spliterator(), false);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate fechaInicio = LocalDate.parse(fechaInicial, formatter);
+	    LocalDate fechaFin = LocalDate.parse(fechaFinal, formatter);
+		Stream<Exposicion> exposiciones = StreamSupport.stream(eDao.listarPorFechas(fechaInicio, fechaFin).spliterator(), false);
 		return exposiciones.map(Exposicion::toDTO).toList();
 	}
 

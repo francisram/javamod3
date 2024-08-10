@@ -78,7 +78,6 @@ public class ParticipacionesExposServlet extends HttpServlet {
 
 			if ("inscribir".equals(accion)) {
 				for (JsonElement elemento : valores) {
-
 					JsonObject object = elemento.getAsJsonObject();
 					int id = object.get("id").getAsInt();
 					String nombre = object.get("nombre").getAsString();
@@ -96,6 +95,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					ParticExpoSocio participa = new ParticExpoSocio();
 					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
 					participa = particExpoSocioEjbRemote.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
+					System.out.println("participacion : " + participa);
 					// antes de registrar vamos a verificar que hacer con el
 					String queHacer = validarSiActualizarRegistrarSaltar(participa);
 					//System.out.println(queHacer);
