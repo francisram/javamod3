@@ -1,6 +1,7 @@
 package py.edu.ucsa.ejb.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,21 +40,41 @@ public class Dominio implements Serializable{
 	
 	public static Dominio ofDTO(DominioDTO dto) {
 		Dominio dominio = new Dominio();
-		dominio.setCodigo(dto.getCodigo());
-		dominio.setDescripcion(dto.getDescripcion());
-		dominio.setDominioPadre(Dominio.ofDTO(dto.getDominioPadre()));
-		dominio.setEstado(dto.getEstado());
-		dominio.setId(dto.getId());
+		if(!Objects.isNull(dto.getCodigo())) {
+			dominio.setCodigo(dto.getCodigo());			
+		}
+		if(!Objects.isNull(dto.getDescripcion())) {
+			dominio.setDescripcion(dto.getDescripcion());			
+		}
+		if(!Objects.isNull(dto.getDominioPadre())) {
+			dominio.setDominioPadre(Dominio.ofDTO(dto.getDominioPadre()));			
+		}
+		if(!Objects.isNull(dto.getEstado())) {
+			dominio.setEstado(dto.getEstado());			
+		}
+		if(!Objects.isNull(dto.getId())) {
+			dominio.setId(dto.getId());			
+		}
 		return dominio;
 	}
 	
 	public DominioDTO toDTO() {
 		DominioDTO dominio = new DominioDTO();
-		dominio.setCodigo(this.getCodigo());
-		dominio.setDescripcion(this.getDescripcion());
-		dominio.setDominioPadre(this.getDominioPadre().toDTO());
-		dominio.setEstado(this.getEstado());
-		dominio.setId(this.getId());
+		if(!Objects.isNull(this.getCodigo())) {
+			dominio.setCodigo(this.getCodigo());
+		}
+		if(!Objects.isNull(this.getDescripcion())) {
+			dominio.setDescripcion(this.getDescripcion());			
+		}
+		if(!Objects.isNull(this.getDominioPadre())) {
+			dominio.setDominioPadre(this.getDominioPadre().toDTO());			
+		}
+		if(!Objects.isNull(this.getEstado())) {
+			dominio.setEstado(this.getEstado());			
+		}
+		if(!Objects.isNull(this.getId())) {
+			dominio.setId(this.getId());			
+		}
 		return dominio;
 	}
 

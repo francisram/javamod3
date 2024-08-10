@@ -72,8 +72,6 @@ public class ParticipacionesExposServlet extends HttpServlet {
 			String accion = jsonObject.get("accion").getAsString();
 			Usuario  user = new Usuario();
 			user = (Usuario) request.getSession().getAttribute("SOCIO_CONECTADO");
-			Socio socio = new Socio();
-			socio.setId(user.getIdSocio().getId());
 			LocalDateTime fechaActual = LocalDateTime.now();
 
 			if ("inscribir".equals(accion)) {
@@ -91,7 +89,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					pExpo.setFechaCreacion(fechaActual);
 					pExpo.setFechaCancelacion(fechaActual);
 					pExpo.setUsuarioCreacion(user);
-					pExpo.setSocio(socio);
+					pExpo.setSocio(user.getIdSocio());
 					// verificamos si ya existe el registro
 					ParticExpoSocio participa = new ParticExpoSocio();
 					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
@@ -126,7 +124,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					pExpo.setFechaCreacion(fechaActual);
 					pExpo.setFechaCancelacion(fechaActual);
 					pExpo.setUsuarioCreacion(user);
-					pExpo.setSocio(socio);
+					pExpo.setSocio(user.getIdSocio());
 					// verificamos si ya existe el registro
 					ParticExpoSocio participa = new ParticExpoSocio();
 					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
