@@ -3,6 +3,7 @@ package py.edu.ucsa.ejb.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,11 +29,11 @@ public class ParticExpoSocio implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_socio" , nullable = true)
 	private Socio socio;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_exposicion" , nullable = true)
 	private Exposicion exposicion;
 	
@@ -51,15 +52,35 @@ public class ParticExpoSocio implements Serializable {
 	
 	
 	public static ParticExpoSocio ofDTO(ParticExpoSocioDTO dto) {
-		ParticExpoSocio particExpoSocio = new ParticExpoSocio();
-		
-		return particExpoSocio;
+		ParticExpoSocio pes = new ParticExpoSocio();
+		pes.setCanceloParticipacion(dto.isCanceloParticipacion());
+		pes.setExposicion(Exposicion.ofDTO(dto.getExposicion()));
+		if(!Objects.isNull(dto.getFechaCancelacion())) {
+			pes.setFechaCancelacion(dto.getFechaCancelacion());			
+		}
+		if(!Objects.isNull(dto.getFechaCreacion())) {
+			pes.setFechaCreacion(dto.getFechaCreacion());			
+		}
+		pes.setId(dto.getId());
+		pes.setSocio(Socio.ofDTO(dto.getSocio()));
+		pes.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));
+		return pes;
 	}
 
 	public ParticExpoSocioDTO toDTO() {
-		ParticExpoSocioDTO partic = new ParticExpoSocioDTO();
-		
-		return partic;
+		ParticExpoSocioDTO pes = new ParticExpoSocioDTO();
+		pes.setCanceloParticipacion(this.isCanceloParticipacion());
+		pes.setExposicion(this.getExposicion().toDTO());
+		if(!Objects.isNull(this.getFechaCancelacion())) {
+			pes.setFechaCancelacion(this.getFechaCancelacion());			
+		}
+		if(!Objects.isNull(this.getFechaCreacion())) {
+			pes.setFechaCreacion(this.getFechaCreacion());			
+		}
+		pes.setId(this.getId());
+		pes.setSocio(this.getSocio().toDTO());
+		pes.setUsuarioCreacion(this.getUsuarioCreacion().toDTO());
+		return pes;
 	}
 	
 	

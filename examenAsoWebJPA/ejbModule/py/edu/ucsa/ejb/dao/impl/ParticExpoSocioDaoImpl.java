@@ -2,6 +2,7 @@ package py.edu.ucsa.ejb.dao.impl;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import py.edu.ucsa.ejb.dao.IParticExpoSocioDao;
@@ -21,26 +22,25 @@ public class ParticExpoSocioDaoImpl extends AbstractDao<Long, ParticExpoSocio> i
 	}
 
 	@Override
-	public ParticExpoSocio ObtenerParticipacion(Integer id_expo, Integer id_socio) {
+	public ParticExpoSocio ObtenerParticipacion(Exposicion expo, Socio socio) {
 		// TODO Auto-generated method stub
 		
-		//ParticExpoSocio.ObtenerParticipacion
-		Socio s = new Socio();
-		s.setId(id_socio);
-		Exposicion e = new Exposicion();
-		e.setId(id_expo);
 		
 		 TypedQuery<ParticExpoSocio> q = this.entityManager.createNamedQuery("ParticExpoSocio.ObtenerParticipacion", ParticExpoSocio.class);
-	        q.setParameter("socio", s);
-	        q.setParameter("exposicion", e);
+	        q.setParameter("socio", socio);
+	        q.setParameter("exposicion", expo);
 	        
 	        
 	        try {
 	        	ParticExpoSocio p = q.getSingleResult();
 	        	 return p;
-			} catch (Exception ex) {
-				// TODO: handle exception
-				return null; 
+			}catch (NoResultException ex) {
+		        System.out.println("No se encontró la participación para socio");
+		        return new ParticExpoSocio();  // Retornar un nuevo objeto si no se encuentra resultado
+		    } 
+	        catch (Exception ex) {
+				System.out.println(ex.getMessage());
+				return new ParticExpoSocio();
 			}
 	}
 

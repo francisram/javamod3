@@ -16,7 +16,7 @@ import py.edu.ucsa.ejb.services.ParticExpoSocioEjbRemote;
 /**
  * Session Bean implementation class ParticExpoSocioEjbImpl
  */
-@Stateless(mappedName = "ParticExpoSocioEjb")
+@Stateless(mappedName = "particExpoSocioEjb")
 @LocalBean
 public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	
@@ -25,10 +25,9 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	private ParticExpoSocioDaoImpl pDao;
 	
     @Override
-	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio) {
+	public ParticExpoSocio ObtenerParticipacion(Exposicion expo, Socio socio) {
 		// TODO Auto-generated method stub
-    	
-		return pDao.ObtenerParticipacion(id, id_socio);
+		return pDao.ObtenerParticipacion(expo, socio);
 	}
 
 	@Override
@@ -37,12 +36,7 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 		return pDao.obtenerParticipacionesPorSocio(socio);
 	}
 
-	/**
-     * Default constructor. 
-     */
-    public ParticExpoSocioEjbImpl() {
-        // TODO Auto-generated constructor stub
-    }
+
 
 	@Override
 	public List<ParticExpoSocioDTO> findAll() throws Exception {
@@ -50,9 +44,19 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 		return null;
 	}
 
+	public ParticExpoSocioEjbImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void insert(ParticExpoSocioDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			
+			pDao.insert(ParticExpoSocio.ofDTO(dto));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 

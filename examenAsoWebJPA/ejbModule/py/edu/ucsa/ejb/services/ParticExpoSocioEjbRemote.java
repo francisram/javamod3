@@ -9,7 +9,7 @@ import py.edu.ucsa.ejb.entities.Socio;
 @Remote
 public interface ParticExpoSocioEjbRemote extends GenericEjbRemote<Long, ParticExpoSocioDTO> {
 
-	public ParticExpoSocio ObtenerParticipacion(Integer id, Integer id_socio);
+	public ParticExpoSocio ObtenerParticipacion(Exposicion expo, Socio socio);
 
 	Iterable<ParticExpoSocio> obtenerParticipacionesPorSocio(Socio socio);
 }
