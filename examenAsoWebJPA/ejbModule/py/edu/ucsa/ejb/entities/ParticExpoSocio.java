@@ -11,9 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import py.edu.ucsa.ejb.dto.ParticExpoSocioDTO;
 
@@ -60,7 +60,7 @@ public class ParticExpoSocio implements Serializable {
 			pes.setFechaCreacion(dto.getFechaCreacion());
 		}
 		pes.setId(dto.getId());
-		if (Objects.isNull(dto.getSocio())) {
+		if (!Objects.isNull(dto.getSocio())) {
 			pes.setSocio(Socio.ofDTO(dto.getSocio()));
 		}
 		pes.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));

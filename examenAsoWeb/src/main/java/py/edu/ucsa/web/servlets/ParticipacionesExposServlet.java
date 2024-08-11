@@ -173,6 +173,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 		try {
 			System.out.println("se debe registrar");
 			System.out.println(participacion);
+			participacion.setFechaCancelacion(null);
 			particExpoSocioEjbRemote.insert(participacion.toDTO());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

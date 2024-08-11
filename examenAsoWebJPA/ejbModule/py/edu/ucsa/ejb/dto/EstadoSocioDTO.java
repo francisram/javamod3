@@ -3,13 +3,15 @@ package py.edu.ucsa.ejb.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import py.edu.ucsa.ejb.entities.Opcion;
+
 public class EstadoSocioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
 	private Integer id;
-	private SocioDTO socioDTO;
-	private EstadoSocioDTO estado;
+	private SocioDTO socio;
+	private OpcionDTO estado;
 	private LocalDateTime fechaEstado;
 	private UsuarioDTO usuarioCreacion;
 	private LocalDateTime fechaCreacion;
@@ -20,7 +22,7 @@ public class EstadoSocioDTO implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "EstadoSocioDTO [id=" + id + ", socioDTO=" + socioDTO + ", estado=" + estado + ", fechaEstado=" + fechaEstado
+		return "EstadoSocioDTO [id=" + id + ", socio=" + socio + ", estado=" + estado + ", fechaEstado=" + fechaEstado
 				+ ", usuarioCreacion=" + usuarioCreacion + ", fechaCreacion=" + fechaCreacion + ", observacion="
 				+ observacion + "]";
 	}
@@ -31,15 +33,17 @@ public class EstadoSocioDTO implements Serializable{
 		this.id = id;
 	}
 	public SocioDTO getSocio() {
-		return socioDTO;
+		return socio;
 	}
 	public void setSocio(SocioDTO socioDTO) {
-		this.socioDTO = socioDTO;
+		this.socio = socioDTO;
 	}
-	public EstadoSocioDTO getEstado() {
+
+	
+	public OpcionDTO getEstado() {
 		return estado;
 	}
-	public void setEstado(EstadoSocioDTO estado) {
+	public void setEstado(OpcionDTO estado) {
 		this.estado = estado;
 	}
 	public LocalDateTime getFechaEstado() {

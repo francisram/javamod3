@@ -27,7 +27,7 @@ public class EstadoSocio {
 	private Socio socio;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_estado" )
-	private EstadoSocio estado;
+	private Opcion estado;
 	@Column(name = "fecha_estado",columnDefinition = "DATE", nullable = true)
 	private LocalDateTime fechaEstado;
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -59,10 +59,10 @@ public class EstadoSocio {
 	public void setSocio(Socio socio) {
 		this.socio = socio;
 	}
-	public EstadoSocio getEstado() {
+	public Opcion getEstado() {
 		return estado;
 	}
-	public void setEstado(EstadoSocio estado) {
+	public void setEstado(Opcion estado) {
 		this.estado = estado;
 	}
 	public LocalDateTime getFechaEstado() {

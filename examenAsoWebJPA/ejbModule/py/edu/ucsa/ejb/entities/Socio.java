@@ -69,24 +69,50 @@ public class Socio implements Serializable{
 		if(!Objects.isNull(dto.getEstadoActual())) {
 			socio.setEstadoActual(Opcion.ofDTO(dto.getEstadoActual()));			
 		}
-		socio.setFecha_creacion(dto.getFecha_creacion());
-		socio.setFechaEstadoActual(dto.getFechaEstadoActual());
-		socio.setFechaIngreso(dto.getFechaIngreso());
-		socio.setFundador(dto.isFundador());
-		socio.setId(dto.getId());
-		socio.setNombres(dto.getNombres());
-		socio.setNroCedula(dto.getNroCedula());
-		socio.setNroSocio(dto.getNroSocio());
-		socio.setSocioProponente(Socio.ofDTO(dto.getSocioProponente()));
-		socio.setTipoSocio(Opcion.ofDTO(dto.getTipoSocio()));
-		socio.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));
+		if(!Objects.isNull(dto.getFecha_creacion())) {
+			socio.setFecha_creacion(dto.getFecha_creacion());			
+		}
+		if(!Objects.isNull(dto.getFechaEstadoActual())) {
+			socio.setFechaEstadoActual(dto.getFechaEstadoActual());			
+		}
+		if(!Objects.isNull(dto.getFechaIngreso())) {
+			socio.setFechaIngreso(dto.getFechaIngreso());			
+		}
+		if(!Objects.isNull(dto.isFundador())) {
+			socio.setFundador(dto.isFundador());			
+		}
+		if(!Objects.isNull(dto.getId())) {
+			socio.setId(dto.getId());			
+		}
+		if(!Objects.isNull(dto.getNombres())) {
+			socio.setNombres(dto.getNombres());			
+		}
+		if(!Objects.isNull(dto.getNroCedula())) {
+			socio.setNroCedula(dto.getNroCedula());			
+		}
+		if(!Objects.isNull(dto.getNroSocio())) {
+			socio.setNroSocio(dto.getNroSocio());			
+		}
+		if(!Objects.isNull(dto.getSocioProponente())) {
+			socio.setSocioProponente(Socio.ofDTO(dto.getSocioProponente()));			
+		}
+		if(!Objects.isNull(dto.getTipoSocio())) {
+			socio.setTipoSocio(Opcion.ofDTO(dto.getTipoSocio()));			
+		}
+		if(!Objects.isNull(dto.getUsuarioCreacion())) {
+			socio.setUsuarioCreacion(Usuario.ofDTO(dto.getUsuarioCreacion()));			
+		}
 		return socio;
 	}
 	
 	public SocioDTO toDTO() {
 		SocioDTO socio = new SocioDTO();
-		socio.setApellidos(this.getApellidos());
-		socio.setEmail(this.getEmail());
+		if(!Objects.isNull(this.getApellidos())) {
+			socio.setApellidos(this.getApellidos());			
+		}
+		if(!Objects.isNull(this.getEmail())) {
+			socio.setEmail(this.getEmail());			
+		}
 		if(!Objects.isNull(this.getEstadoActual())) {
 			socio.setEstadoActual(this.getEstadoActual().toDTO());			
 		}
@@ -99,11 +125,21 @@ public class Socio implements Serializable{
 		if(Objects.isNull(this.fechaIngreso)) {
 			socio.setFechaIngreso(this.fechaIngreso);		
 		}
-		socio.setFundador(this.fundador);
-		socio.setId(this.id);
-		socio.setNombres(this.getNombres());
-		socio.setNroCedula(this.getNroCedula());
-		socio.setNroSocio(this.getNroSocio());
+		if(!Objects.isNull(this.fundador)) {
+			socio.setFundador(this.fundador);			
+		}
+		if(!Objects.isNull(this.id)) {
+			socio.setId(this.id);			
+		}
+		if(!Objects.isNull(this.nombres)) {
+			socio.setNombres(this.getNombres());			
+		}
+		if(!Objects.isNull(this.nroCedula)) {
+			socio.setNroCedula(this.getNroCedula());			
+		}
+		if(!Objects.isNull(this.nroSocio)) {
+			socio.setNroSocio(this.getNroSocio());			
+		}
 		if(!Objects.isNull(this.getSocioProponente())) {
 			socio.setSocioProponente(this.getSocioProponente().toDTO());			
 		}

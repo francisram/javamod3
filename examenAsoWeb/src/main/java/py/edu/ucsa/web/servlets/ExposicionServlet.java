@@ -56,7 +56,7 @@ public class ExposicionServlet extends HttpServlet {
 			if (Objects.isNull(request.getParameter("FORMATO")) || "HTML".equals(request.getParameter("FORMATO"))) {
 				try {
 					List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
-					request.getSession().setAttribute("EXPOSICIONES", exposiciones);
+					//request.getSession().setAttribute("EXPOSICIONES", exposiciones);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,12 +71,10 @@ public class ExposicionServlet extends HttpServlet {
 				System.out.println("llego pedido por json");
 				try {
 				List<ExposicionDTO> exposiciones = exposicionEjbRemote.findAll();
-					// ParticExpoSocioImpl participacion = new ParticExpoSocioImpl();
-					// List<ParticExpoSocio> listadoPorSocio =
-					// participacion.obtenerParticipacionesPorSocio(user.getIdSocio().getId());
+
 					Iterable<ParticExpoSocio> listadoPorSocio = particExpoSocioEjbRemote
 							.obtenerParticipacionesPorSocio(user.getIdSocio());
-					;
+					
 
 					JsonArray newArray = new JsonArray();
 
