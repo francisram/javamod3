@@ -76,6 +76,12 @@ public class ParticExpoSocioEjbImpl implements ParticExpoSocioEjbRemote {
 	public void actualizar(ParticExpoSocioDTO obj) {
 		// TODO Auto-generated method stub
 		
+		try {
+			pDao.update(ParticExpoSocio.ofDTO(obj));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

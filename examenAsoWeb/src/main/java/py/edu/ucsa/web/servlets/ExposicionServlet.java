@@ -82,7 +82,7 @@ public class ExposicionServlet extends HttpServlet {
 						boolean encontrado = false;
 
 						for (ParticExpoSocio particExpoSocio : listadoPorSocio) {
-							if (exposicion.getId() == particExpoSocio.getId()) {
+							if (exposicion.getId() == particExpoSocio.getExposicion().getId()) {
 								encontrado = true;
 								JsonObject jsonObj = new JsonObject();
 								jsonObj.addProperty("id", exposicion.getId());
@@ -101,6 +101,7 @@ public class ExposicionServlet extends HttpServlet {
 						}
 
 						if (!encontrado) {
+							System.out.println("no encontrado");
 							JsonObject jsonObj = new JsonObject();
 							jsonObj.addProperty("id", exposicion.getId());
 							jsonObj.addProperty("nombre", exposicion.getNombre());

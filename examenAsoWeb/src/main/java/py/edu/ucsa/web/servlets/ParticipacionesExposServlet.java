@@ -87,7 +87,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					pExpo.setCanceloParticipacion(false);
 					pExpo.setExposicion(expo);
 					pExpo.setFechaCreacion(fechaActual);
-					pExpo.setFechaCancelacion(fechaActual);
+					pExpo.setFechaCancelacion(null);
 					pExpo.setUsuarioCreacion(user);
 					pExpo.setSocio(user.getIdSocio());
 					// verificamos si ya existe el registro
@@ -129,9 +129,10 @@ public class ParticipacionesExposServlet extends HttpServlet {
 					ParticExpoSocio participa = new ParticExpoSocio();
 					//participa = pExpoImpl.ObtenerParticipacion(pExpo.getExposicion().getId(), pExpo.getSocio().getId());
 					participa = particExpoSocioEjbRemote.ObtenerParticipacion(pExpo.getExposicion(), pExpo.getSocio());
+					System.out.println("expo a cancelar: " + participa);
 					// antes de registrar vamos a verificar que hacer con el
 					String queHacer = validarSiCancelarSaltar(participa);
-					//System.out.println(queHacer);
+					System.out.println(queHacer);
 					if ("actualizar".equals(queHacer)) {
 						// hay que actualizar
 						pExpo.setId(participa.getId());
@@ -173,7 +174,7 @@ public class ParticipacionesExposServlet extends HttpServlet {
 		try {
 			System.out.println("se debe registrar");
 			System.out.println(participacion);
-			participacion.setFechaCancelacion(null);
+			//participacion.setFechaCancelacion(null);
 			particExpoSocioEjbRemote.insert(participacion.toDTO());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
