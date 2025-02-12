@@ -3,6 +3,7 @@ package py.edu.ucsa.coope.dev.core.entities;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -44,13 +45,13 @@ public class Usuario implements Serializable {
 	private String username;
 
 	//uni-directional many-to-one association to Usuario
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to Usuario
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -41,16 +42,18 @@ public class Departamento implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Ciudad
+	@JsonBackReference
 	@OneToMany(mappedBy="departamento")
-	@JsonIgnore
 	private List<Ciudad> ciudades;
 
 	//uni-directional many-to-one association to Usuario
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to Usuario
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;

@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -61,6 +63,7 @@ public class Socio implements Serializable {
 	private List<CajaAhorro> cajaAhorros;
 
 	//bi-directional many-to-one association to Prestamo
+	@JsonBackReference
 	@OneToMany(mappedBy="socio")
 	private List<Prestamo> prestamos;
 
@@ -80,16 +83,19 @@ public class Socio implements Serializable {
 	private Sexo sexo;
 
 	//uni-directional many-to-one association to TipoDocumento
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="tipo_documento")
 	private TipoDocumento tipoDocumento;
 
 	//uni-directional many-to-one association to Usuario
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to Usuario
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;
