@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import py.edu.ucsa.coope.dev.core.entities.Barrio;
 import py.edu.ucsa.coope.dev.core.services.BarrioServices;
+import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
 
 
 
@@ -37,25 +38,30 @@ public class BarrioController {
 		return ResponseEntity.ok(barrioSrv.listar());
 	}
 	*/
-	@GetMapping
-	public ResponseEntity<?> listar(){
-		logger.info("obteniendo todas la opciones");
-		List<Barrio> barrios = barrioSrv.listar();
-		logger.info("cantidad de opciones devueltas : " + barrios.size());
-		return new ResponseEntity<List<Barrio>> (barrios, HttpStatus.OK);
+	/*
+	 * @GetMapping public ResponseEntity<?> listar(){
+	 * logger.info("obteniendo todas la opciones"); List<BarrioDto> barrios =
+	 * barrioSrv.listar(); logger.info("cantidad de opciones devueltas : " +
+	 * barrios.size()); return new ResponseEntity<List<Barrio>> (barrios,
+	 * HttpStatus.OK); }
+	 */
+	
+	public ResponseEntity<List<BarrioDto>>listar(){
+		return ResponseEntity.ok(barrioSrv.listar());
 	}
 	
+	
 	@GetMapping("/{idBarrio}")
-	public ResponseEntity<Barrio> getById(@PathVariable("idBarrio") Integer id) {
+	public ResponseEntity<BarrioDto> getById(@PathVariable("idBarrio") Integer id) {
 		return ResponseEntity.ok(barrioSrv.getById(id));
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> insertar(@RequestBody Barrio objeto) {
+	public ResponseEntity<?> insertar(@RequestBody BarrioDto objeto) {
 		return ResponseEntity.ok(barrioSrv.persistir(objeto));
 	}
 	@PutMapping
-	public ResponseEntity<?> actualizar(@RequestBody Barrio objeto) {
+	public ResponseEntity<?> actualizar(@RequestBody BarrioDto objeto) {
 		return ResponseEntity.ok(barrioSrv.actualizar(objeto));
 	}
 	

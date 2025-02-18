@@ -17,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import py.edu.ucsa.coope.dev.web.dto.DepartamentoDto;
 
 
 /**
@@ -129,6 +130,11 @@ public class Departamento implements Serializable {
 
 	public void setUsuarioModificacion(Usuario usuarioModificacion) {
 		this.usuarioModificacion = usuarioModificacion;
+	}
+
+	public static Departamento fromDto(DepartamentoDto departamento) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

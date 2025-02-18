@@ -1,6 +1,8 @@
 package py.edu.ucsa.coope.dev.core.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,9 @@ import jakarta.transaction.Transactional;
 import py.edu.ucsa.coope.dev.core.dao.BarrioDao;
 import py.edu.ucsa.coope.dev.core.entities.Barrio;
 import py.edu.ucsa.coope.dev.core.services.BarrioServices;
+import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
+import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 
 
 @Service("barrioService")
@@ -20,51 +24,59 @@ public class BarrioServiceImpl implements BarrioServices {
 	private BarrioDao barrioDao;
 
 	@Override
-	public List<Barrio> listar() {
-		// TODO Auto-generated method stub
-		return barrioDao.listar();
+	public List<BarrioDto> listar() {
+		List<Barrio> entities = barrioDao.listar();
+		return entities.stream().map(b -> b.toDto()).toList();
 	}
 
 	@Override
-	public PaginadoDto<Barrio> listar(int pagina, int tamanhoPagina, String ordenarPor, String orden, String busqueda) {
-		// TODO Auto-generated method stub
-		return null;
+	public PaginadoDto<BarrioDto> listar(int pagina, int tamanhoPagina, String ordenarPor, String orden, String busqueda) {
+		
+		PaginadoDto<BarrioDto> paginado = new PaginadoDto<>();
+		PaginadoDto<Barrio> paginadoConEntities = barrioDao.listar(tamanhoPagina, pagina, ordenarPor, orden, busqueda);
+		
+		if(Objects.nonNull(paginadoConEntities.getData()) && !paginadoConEntities.getData().isEmpty()) {
+			paginado.setData(paginadoConEntities.getData().stream().map(b -> b.toDto()).toList());
+			paginado.setPagination(paginadoConEntities.getPagination());
+		}else {
+			paginado.setPagination(new PaginationDto());
+			paginado.setData(new ArrayList<>());
+		}
+		
+		
+		return paginado;
 	}
 
 	@Override
-	public Barrio getById(Integer id) {
-		// TODO Auto-generated method stub
-		return barrioDao.getById(id);
+	public BarrioDto getById(Integer id) {
+		Barrio b = barrioDao.getById(id);
+		return b != null ? b.toDto(): null;
 	}
 
 	@Override
-	public Barrio persistir(Barrio entity) {
-		// TODO Auto-generated method stub
-		return barrioDao.persistir(entity);
+	public BarrioDto persistir(BarrioDto dto) {
+		return barrioDao.persistir(Barrio.fromDto(dto)).toDto();
 	}
 
 	@Override
-	public Barrio actualizar(Barrio entity) {
-		// TODO Auto-generated method stub
-		return barrioDao.actualizar(entity);
+	public BarrioDto actualizar(BarrioDto dto) {
+		return barrioDao.actualizar(Barrio.fromDto(dto)).toDto();
 	}
 
 	@Override
-	public void eliminar(Barrio entity) {
-		barrioDao.eliminar(entity);
+	public void eliminar(BarrioDto dto) {
+		barrioDao.eliminar(Barrio.fromDto(dto));
 		
 	}
 
-	@Override
-	public List<Barrio> castEntitiesListToDoList(List<Barrio> res) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public List<Barrio> getBarriosByIdCiudad(Integer idCiudad) {
+	public List<BarrioDto> getBarriosByIdCiudad(Integer idCiudad) {
 		// TODO Auto-generated method stub
-		return barrioDao.getBarriosByIdCiudad(idCiudad);
+		return barrioDao.getBarriosByIdCiudad(idCiudad).stream().map(b -> b.toDto()).toList();
 	}
+
+
+
 
 }

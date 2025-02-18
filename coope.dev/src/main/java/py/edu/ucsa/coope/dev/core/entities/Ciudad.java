@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,6 +19,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 
 
 /**
@@ -144,6 +147,21 @@ public class Ciudad implements Serializable {
 
 	public void setUsuarioModificacion(Usuario usuarioModificacion) {
 		this.usuarioModificacion = usuarioModificacion;
+	}
+
+	public CiudadDto toDto() {
+		CiudadDto dto = new CiudadDto();
+		BeanUtils.copyProperties(this, dto);
+		return dto;
+	}
+	
+	public static Ciudad fromDto(CiudadDto dto) {
+		Ciudad entity = new Ciudad();
+		BeanUtils.copyProperties(dto, entity);
+		if(dto.getDepartamento() != null) {
+			entity.setDepartamento(Departamento.fromDto(dto.getDepartamento()));
+		}
+		return entity;
 	}
 
 }

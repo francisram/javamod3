@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,6 +19,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
+import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 
 
 /**
@@ -143,6 +147,27 @@ public class Barrio implements Serializable {
 		socio.setBarrio(null);
 
 		return socio;
+	}
+	
+	public BarrioDto toDto() {
+		BarrioDto dto = new BarrioDto();
+		BeanUtils.copyProperties(this, dto);
+		if(this.getCiudad() != null) {
+			dto.setCiudad(this.getCiudad().toDto());
+		}
+		return dto;
+	}
+	
+	
+	public static Barrio fromDto(BarrioDto dto) {
+		
+		Barrio entity = new Barrio();
+		BeanUtils.copyProperties(dto, entity);
+		if(dto.getCiudad() != null) {
+			entity.setCiudad(Ciudad.fromDto(dto.getCiudad()));
+		}
+		return entity;
+		
 	}
 
 }
