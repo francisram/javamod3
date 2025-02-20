@@ -1,13 +1,11 @@
 package py.edu.ucsa.coope.dev.core.entities;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +18,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
-import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 
 
 /**
@@ -31,7 +28,7 @@ import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 @Table(name="barrios")
 @NamedQuery(name="Barrio.findAll", query="SELECT b FROM Barrio b")
 @NamedQuery(name="Barrio.getBarriosByIdCiudad", query="SELECT b FROM Barrio b WHERE b.ciudad.id = :idCiudad")
-public class Barrio implements Serializable {
+public class Barrio implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -51,13 +48,13 @@ public class Barrio implements Serializable {
 	@JoinColumn(name="id_ciudad")
 	private Ciudad ciudad;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
@@ -155,6 +152,7 @@ public class Barrio implements Serializable {
 		if(this.getCiudad() != null) {
 			dto.setCiudad(this.getCiudad().toDto());
 		}
+		BaseDataCopier.copybaseDataToDto(this, dto);
 		return dto;
 	}
 	
@@ -166,8 +164,10 @@ public class Barrio implements Serializable {
 		if(dto.getCiudad() != null) {
 			entity.setCiudad(Ciudad.fromDto(dto.getCiudad()));
 		}
+		BaseDataCopier.copybaseDataFromDtoToEntity(dto, entity);
 		return entity;
 		
 	}
+
 
 }

@@ -2,6 +2,9 @@ package py.edu.ucsa.coope.dev.core.entities;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import py.edu.ucsa.coope.dev.web.dto.UsuarioDto;
 
 
 /**
@@ -44,13 +48,13 @@ public class Usuario implements Serializable {
 
 	private String username;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
@@ -122,5 +126,21 @@ public class Usuario implements Serializable {
 	public void setUsuarioModificacion(Usuario usuarioModificacion) {
 		this.usuarioModificacion = usuarioModificacion;
 	}
+
+
+	public UsuarioDto toDto() {
+		UsuarioDto dto = new UsuarioDto();
+		BeanUtils.copyProperties(this, dto);
+		return dto;
+	}
+
+	public static Usuario fromDto(UsuarioDto dto) {
+		// TODO Auto-generated method stub
+		Usuario entity = new Usuario();
+		BeanUtils.copyProperties(dto, entity);
+		
+		return entity;
+	}
+
 
 }

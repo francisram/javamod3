@@ -88,13 +88,13 @@ public class Socio implements Serializable {
 	@JoinColumn(name="tipo_documento")
 	private TipoDocumento tipoDocumento;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")

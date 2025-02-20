@@ -62,12 +62,12 @@ public class Cuota implements Serializable {
 	@JoinColumn(name="id_prestamo")
 	private Prestamo prestamo;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;

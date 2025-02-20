@@ -44,12 +44,12 @@ public class CajaAhorro implements Serializable {
 	@JoinColumn(name="id_socio")
 	private Socio socio;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;

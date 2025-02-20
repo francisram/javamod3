@@ -47,13 +47,13 @@ public class Departamento implements Serializable {
 	@OneToMany(mappedBy="departamento")
 	private List<Ciudad> ciudades;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")

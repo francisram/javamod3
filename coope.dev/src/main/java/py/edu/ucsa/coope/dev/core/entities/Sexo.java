@@ -36,13 +36,13 @@ public class Sexo implements Serializable {
 	@Column(name="fecha_modificacion")
 	private Timestamp fechaModificacion;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;

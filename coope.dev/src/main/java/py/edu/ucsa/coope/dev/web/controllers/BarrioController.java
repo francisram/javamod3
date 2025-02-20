@@ -3,6 +3,7 @@ package py.edu.ucsa.coope.dev.web.controllers;
 
 
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import py.edu.ucsa.coope.dev.core.entities.Barrio;
 import py.edu.ucsa.coope.dev.core.services.BarrioServices;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
+import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 
 
 
@@ -48,6 +50,25 @@ public class BarrioController {
 	
 	public ResponseEntity<List<BarrioDto>>listar(){
 		return ResponseEntity.ok(barrioSrv.listar());
+	}
+	
+	@GetMapping("/paginado")
+	public ResponseEntity<?> finPerPage(
+			@RequestParam("page") int pagina,
+			@RequestParam("size") int tamanioPagina,
+			@RequestParam("sort") String ordenarPor,
+			@RequestParam("order") String orden,
+			@RequestParam("search") String busqueda	
+			){
+		if(Objects.nonNull(busqueda)) {
+			busqueda = busqueda.toUpperCase();
+		}
+		logger.info("obteniendo los registros de la pagina {} de un tamaño de {} ordenado por {} en orden {} con la busqueda {} ",pagina,tamanioPagina,ordenarPor,orden,busqueda);
+		
+		PaginadoDto<BarrioDto> paginado = barrioSrv.listar(tamanioPagina, pagina, ordenarPor, orden, busqueda);
+		
+		return new ResponseEntity<PaginadoDto<BarrioDto>>(paginado,HttpStatus.OK);
+		
 	}
 	
 	

@@ -15,7 +15,7 @@ import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 @Repository
 public class BarrioDaoImpl extends AbstractDao<Integer, Barrio> implements BarrioDao{
 	
-	private  String queryStr = "SELECT b.* FROM  barrios b";
+	
 
 	@SuppressWarnings("unchecked")
 	public List<Barrio> getBarriosByIdCiudad(Integer idCiudad){
@@ -26,13 +26,24 @@ public class BarrioDaoImpl extends AbstractDao<Integer, Barrio> implements Barri
 	@Override
 	public PaginadoDto<Barrio> listar(int pagina, int tamanioPagina, String ordenarPor, String orden, String busqueda) {
 		
-		queryStr += Objects.nonNull(busqueda) && !busqueda.isBlank() ? " WHERE d.timbrado LIKE :timbrado" : "";
+		String queryStr = "SELECT b FROM  barrio b";
+		queryStr += Objects.nonNull(busqueda) && !busqueda.isBlank() ? " WHERE b.nombre LIKE :busqueda" : "";
 		queryStr += " ORDER BY b." + (Objects.nonNull(ordenarPor) && !ordenarPor.isBlank() ? ordenarPor : "id");
 		queryStr += " " + (Objects.nonNull(orden) && !orden.isBlank() ? orden : "ASC");
 		
 		Query query = getEntityManager().createQuery(queryStr, Barrio.class);
 		
+		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
+			query.setParameter("nombre", "%" + busqueda + "%");			
+		}
+		
 		int total = query.getResultList().size();
+		
+		 query = getEntityManager().createQuery(queryStr, Barrio.class);
+		
+		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
+			query.setParameter("nombre", "%" + busqueda + "%");			
+		}
 		query.setFirstResult(pagina * tamanioPagina);
 		query.setMaxResults(tamanioPagina);
 		

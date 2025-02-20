@@ -54,12 +54,12 @@ public class ExtractoCaja implements Serializable {
 	@JoinColumn(name="id_caja")
 	private CajaAhorro cajaAhorro;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_alta")
 	private Usuario usuarioAlta;
 
-	//uni-directional many-to-one association to Usuario
+	//uni-directional many-to-one association to UsuarioDto
 	@ManyToOne
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;
