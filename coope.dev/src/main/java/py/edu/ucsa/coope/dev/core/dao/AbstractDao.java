@@ -1,6 +1,7 @@
 package py.edu.ucsa.coope.dev.core.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -61,14 +62,29 @@ public class AbstractDao<PK extends Serializable , T> implements GenericDao<PK, 
 
 	@Override
 	public T persistir(T entity) {
-		// TODO Auto-generated method stub
+
 		return this.getEntityManager().merge(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T actualizar(T entity) {
-		// TODO Auto-generated method stub
-		return this.getEntityManager().merge(entity);
+		T entityFinded ;
+		PK id ;
+		try {
+			 var idField = persistenclass.getDeclaredField("id");
+		        idField.setAccessible(true);
+		         id = (PK) idField.get(entity);
+		     entityFinded = this.getById(id);
+		        if (entityFinded == null) {
+		            throw new IllegalArgumentException("No se puede actualizar, la entidad con ID " + id + " no existe.");
+		        }
+			return this.getEntityManager().merge(entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
+
 	}
 
 	@Override
