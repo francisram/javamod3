@@ -2,6 +2,7 @@ package py.edu.ucsa.coope.dev.web.controllers;
 
 
 
+import java.io.Console;
 import java.util.List;
 import java.util.Objects;
 
@@ -79,6 +80,7 @@ public class BarrioController {
 	
 	@PostMapping
 	public ResponseEntity<?> insertar(@RequestBody BarrioDto objeto) {
+		//System.out.println("metodo insertar: " + objeto.toString());
 		return ResponseEntity.ok(barrioSrv.persistir(objeto));
 	}
 	@PutMapping

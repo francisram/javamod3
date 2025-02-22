@@ -12,14 +12,14 @@ public abstract class BaseDataCopier {
 			dtoDestino.setFechaAlta(entityOrigen.getFechaAlta().toLocalDateTime());
 		}
 		if (Objects.nonNull(entityOrigen.getFechaModificacion())) {
-			dtoDestino.setFechaAlta(entityOrigen.getFechaModificacion().toLocalDateTime());
+			dtoDestino.setFechaModificacion(entityOrigen.getFechaModificacion().toLocalDateTime());
 		}
 
 		if (Objects.nonNull(entityOrigen.getUsuarioAlta())) {
 			dtoDestino.setUsuarioAlta(entityOrigen.getUsuarioAlta().toDto());
 		}
 		if (Objects.nonNull(entityOrigen.getUsuarioModificacion())) {
-			dtoDestino.setUsuarioAlta(entityOrigen.getUsuarioModificacion().toDto());
+			dtoDestino.setUsuarioModificacion(entityOrigen.getUsuarioModificacion().toDto());
 		}
 	}
 	public static void copybaseDataFromDtoToEntity(BaseDto dtoOrigen, BaseEntity entityDestino) {
@@ -27,7 +27,7 @@ public abstract class BaseDataCopier {
 			entityDestino.setFechaAlta(Timestamp.valueOf(dtoOrigen.getFechaAlta()));
 		}
 		if (Objects.nonNull(dtoOrigen.getFechaModificacion())) {
-			entityDestino.setFechaAlta(Timestamp.valueOf(dtoOrigen.getFechaModificacion()));
+			entityDestino.setFechaModificacion(Timestamp.valueOf(dtoOrigen.getFechaModificacion()));
 		}
 		
 		if (Objects.nonNull(dtoOrigen.getUsuarioAlta())) {

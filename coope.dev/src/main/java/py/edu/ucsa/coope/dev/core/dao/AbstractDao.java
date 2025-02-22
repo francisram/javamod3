@@ -56,24 +56,24 @@ public class AbstractDao<PK extends Serializable , T> implements GenericDao<PK, 
 	@Override
 	public T getById(PK id) {
 		// TODO Auto-generated method stub
-		return null;
+		return (T) this.getEntityManager().find(persistenclass, id);
 	}
 
 	@Override
 	public T persistir(T entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getEntityManager().merge(entity);
 	}
 
 	@Override
 	public T actualizar(T entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getEntityManager().merge(entity);
 	}
 
 	@Override
 	public void eliminar(T entity) {
-		// TODO Auto-generated method stub
+		this.getEntityManager().remove(entity);
 		
 	}
 
