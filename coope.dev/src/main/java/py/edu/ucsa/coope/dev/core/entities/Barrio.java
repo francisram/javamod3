@@ -60,10 +60,13 @@ public class Barrio implements BaseEntity {
 	@JoinColumn(name="usuario_modificacion")
 	private Usuario usuarioModificacion;
 
-	//bi-directional many-to-one association to Socio
-	@JsonBackReference
-	@OneToMany(mappedBy="barrio")
-	private List<Socio> socios;
+	/*
+	 * //bi-directional many-to-one association to Socio
+	 * 
+	 * @JsonBackReference
+	 * 
+	 * @OneToMany(mappedBy="barrios") private List<Socio> socios;
+	 */
 
 	public Barrio() {
 	}
@@ -123,7 +126,7 @@ public class Barrio implements BaseEntity {
 	public void setUsuarioModificacion(Usuario usuarioModificacion) {
 		this.usuarioModificacion = usuarioModificacion;
 	}
-
+/*
 	public List<Socio> getSocios() {
 		return this.socios;
 	}
@@ -131,7 +134,8 @@ public class Barrio implements BaseEntity {
 	public void setSocios(List<Socio> socios) {
 		this.socios = socios;
 	}
-
+	*/
+/*
 	public Socio addSocio(Socio socio) {
 		getSocios().add(socio);
 		socio.setBarrio(this);
@@ -139,12 +143,14 @@ public class Barrio implements BaseEntity {
 		return socio;
 	}
 
+	
 	public Socio removeSocio(Socio socio) {
 		getSocios().remove(socio);
 		socio.setBarrio(null);
 
 		return socio;
 	}
+	*/
 	
 	public BarrioDto toDto() {
 		BarrioDto dto = new BarrioDto();

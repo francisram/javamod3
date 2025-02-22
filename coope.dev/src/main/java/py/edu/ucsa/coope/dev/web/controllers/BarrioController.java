@@ -34,12 +34,12 @@ public class BarrioController {
 	@Autowired
 	private BarrioServices barrioSrv;
 	
-	/*
+	
 	@GetMapping
-	public ResponseEntity< List<Barrio>> list(){
+	public ResponseEntity< List<BarrioDto>> list(){
 		return ResponseEntity.ok(barrioSrv.listar());
 	}
-	*/
+	
 	/*
 	 * @GetMapping public ResponseEntity<?> listar(){
 	 * logger.info("obteniendo todas la opciones"); List<BarrioDto> barrios =

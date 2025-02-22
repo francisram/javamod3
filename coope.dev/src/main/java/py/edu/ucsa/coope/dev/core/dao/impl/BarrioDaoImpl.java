@@ -26,15 +26,15 @@ public class BarrioDaoImpl extends AbstractDao<Integer, Barrio> implements Barri
 	@Override
 	public PaginadoDto<Barrio> listar(int pagina, int tamanioPagina, String ordenarPor, String orden, String busqueda) {
 		
-		String queryStr = "SELECT b FROM  barrio b";
-		queryStr += Objects.nonNull(busqueda) && !busqueda.isBlank() ? " WHERE b.nombre LIKE :busqueda" : "";
+		String queryStr = "SELECT b FROM  Barrio b";
+		queryStr += Objects.nonNull(busqueda) && !busqueda.isBlank() ? " WHERE UPPER(b.nombre) LIKE UPPER(:busqueda)" : "";
 		queryStr += " ORDER BY b." + (Objects.nonNull(ordenarPor) && !ordenarPor.isBlank() ? ordenarPor : "id");
 		queryStr += " " + (Objects.nonNull(orden) && !orden.isBlank() ? orden : "ASC");
 		
 		Query query = getEntityManager().createQuery(queryStr, Barrio.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
-			query.setParameter("nombre", "%" + busqueda + "%");			
+			query.setParameter("busqueda", "%" + busqueda + "%");			
 		}
 		
 		int total = query.getResultList().size();
@@ -42,7 +42,7 @@ public class BarrioDaoImpl extends AbstractDao<Integer, Barrio> implements Barri
 		 query = getEntityManager().createQuery(queryStr, Barrio.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
-			query.setParameter("nombre", "%" + busqueda + "%");			
+			query.setParameter("busqueda", "%" + busqueda + "%");			
 		}
 		query.setFirstResult(pagina * tamanioPagina);
 		query.setMaxResults(tamanioPagina);
