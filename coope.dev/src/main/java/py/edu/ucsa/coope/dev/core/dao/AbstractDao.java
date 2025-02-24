@@ -93,12 +93,14 @@ public class AbstractDao<PK extends Serializable , T> implements GenericDao<PK, 
 		
 	}
 
+	
 	@Override
 	public void eliminar(PK id) {
 		T entity = this.getById(id);
 		this.getEntityManager().remove(entity);
 		
 	}
+	
 	
 	
 

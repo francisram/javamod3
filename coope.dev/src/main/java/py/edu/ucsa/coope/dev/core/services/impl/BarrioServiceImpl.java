@@ -72,8 +72,15 @@ public class BarrioServiceImpl implements BarrioServices {
 
 	@Override
 	public List<BarrioDto> getBarriosByIdCiudad(Integer idCiudad) {
-		// TODO Auto-generated method stub
+		
 		return barrioDao.getBarriosByIdCiudad(idCiudad).stream().map(b -> b.toDto()).toList();
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		//barrioDao.eliminar(Barrio.fromDto(barrio));
+		barrioDao.eliminar(id);
+		
 	}
 
 
