@@ -30,7 +30,7 @@ import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 @Table(name="ciudades")
 @NamedQuery(name="Ciudad.findAll", query="SELECT c FROM Ciudad c")
 @NamedQuery(name="Ciudad.getCiudadesByDepto", query="SELECT c FROM Ciudad c WHERE c.departamento.id =:idDepartamento")
-public class Ciudad implements Serializable {
+public class Ciudad implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -152,6 +152,9 @@ public class Ciudad implements Serializable {
 	public CiudadDto toDto() {
 		CiudadDto dto = new CiudadDto();
 		BeanUtils.copyProperties(this, dto);
+		if(this.getDepartamento() != null) {
+			dto.setDepartamento(this.getDepartamento().toDto());
+		}
 		return dto;
 	}
 	

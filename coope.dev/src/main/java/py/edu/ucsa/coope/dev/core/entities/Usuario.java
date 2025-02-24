@@ -28,7 +28,7 @@ import py.edu.ucsa.coope.dev.web.dto.UsuarioDto;
 @Entity
 @Table(name="usuarios")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+public class Usuario implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -138,7 +138,7 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated method stub
 		Usuario entity = new Usuario();
 		BeanUtils.copyProperties(dto, entity);
-		
+		BaseDataCopier.copybaseDataFromDtoToEntity(dto, entity);
 		return entity;
 	}
 

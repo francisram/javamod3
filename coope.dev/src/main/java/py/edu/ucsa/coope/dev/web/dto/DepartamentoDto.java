@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
-public class DepartamentoDto {
+public class DepartamentoDto extends BaseDto  {
 	private Integer id;
 	private String nombre;
 

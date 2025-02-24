@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,7 +29,7 @@ import py.edu.ucsa.coope.dev.web.dto.DepartamentoDto;
 @Entity
 @Table(name="departamentos")
 @NamedQuery(name="Departamento.findAll", query="SELECT d FROM Departamento d")
-public class Departamento implements Serializable {
+public class Departamento implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -132,7 +134,14 @@ public class Departamento implements Serializable {
 		this.usuarioModificacion = usuarioModificacion;
 	}
 
-	public static Departamento fromDto(DepartamentoDto departamento) {
+	public static Departamento fromDto(DepartamentoDto dto) {
+		Departamento entity = new Departamento();
+		BeanUtils.copyProperties(dto, entity);
+		BaseDataCopier.copybaseDataFromDtoToEntity(dto, entity);
+		return entity;
+	}
+
+	public DepartamentoDto toDto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
