@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import py.edu.ucsa.coope.dev.core.entities.Barrio;
 import py.edu.ucsa.coope.dev.core.services.BarrioServices;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
+import py.edu.ucsa.coope.dev.web.dto.ErrorDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
+import py.edu.ucsa.coope.dev.web.validators.impl.ValidadorBarrio;
 
 
 
@@ -82,11 +84,25 @@ public class BarrioController {
 	
 	@PostMapping
 	public ResponseEntity<?> insertar(@RequestBody BarrioDto objeto) {
-		//System.out.println("metodo insertar: " + objeto.toString());
+		objeto.getValidadores().add(new ValidadorBarrio());
+		//objeto.getValidadores().add(new ValidadorBarrioFecha());
+		
+		List<ErrorDto> errores = objeto.ejecutarValidadores();
+		if(!errores.isEmpty()) {
+			return new ResponseEntity<List<ErrorDto>>(errores,HttpStatus.PRECONDITION_FAILED);
+		}
 		return ResponseEntity.ok(barrioSrv.persistir(objeto));
 	}
+	
 	@PutMapping
 	public ResponseEntity<?> actualizar(@RequestBody BarrioDto objeto) {
+		objeto.getValidadores().add(new ValidadorBarrio());
+		//objeto.getValidadores().add(new ValidadorBarrioFecha());
+		
+		List<ErrorDto> errores = objeto.ejecutarValidadores();
+		if(!errores.isEmpty()) {
+			return new ResponseEntity<List<ErrorDto>>(errores,HttpStatus.PRECONDITION_FAILED);
+		}
 		return ResponseEntity.ok(barrioSrv.actualizar(objeto));
 	}
 	

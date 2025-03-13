@@ -3,6 +3,8 @@ package py.edu.ucsa.coope.dev.core.dao.impl;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.stereotype.Repository;
+
 import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.CiudadDao;
@@ -11,6 +13,7 @@ import py.edu.ucsa.coope.dev.core.entities.Ciudad;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 
+@Repository
 public class CiudadDaoImpl extends AbstractDao<Integer, Ciudad> implements CiudadDao{
 
 	@SuppressWarnings("unchecked")

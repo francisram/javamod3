@@ -10,7 +10,7 @@ import py.edu.ucsa.coope.dev.config.CoopeDevDataSourceConfiguration;
 @SpringBootApplication(scanBasePackages = { 
 		"py.edu.ucsa.coope.dev.core.dao",
 		"py.edu.ucsa.coope.dev.core.services",
-		"py.edu.ucsa.coope.dev.web.controllers"})
+		"py.edu.ucsa.coope.dev.web"})
 @Import(CoopeDevDataSourceConfiguration.class)
 public class CoopeDevApplication extends SpringBootServletInitializer {
 

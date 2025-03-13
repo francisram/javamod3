@@ -2,7 +2,11 @@ package py.edu.ucsa.coope.dev.core.dao.impl;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.UsuarioDao;
@@ -11,6 +15,7 @@ import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 
+@Repository
 public class UsuarioDaoImpl extends AbstractDao<Integer, Usuario> implements UsuarioDao {
 
 	@Override
@@ -51,6 +56,17 @@ public class UsuarioDaoImpl extends AbstractDao<Integer, Usuario> implements Usu
 		p.setEndIndex(p.getStartIndex() + (tamanioPagina-1));
 		paginado.setPagination(p);
 		return paginado;
+	}
+
+	@Override
+	public Optional<Usuario> findByUsuario(String usuario) {
+		
+		try {
+			return Optional.of( (Usuario) this.getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("username", usuario).getSingleResult());			
+		} catch (NoResultException e) {
+			return Optional.empty();
+		}
+		
 	}
 
 }
