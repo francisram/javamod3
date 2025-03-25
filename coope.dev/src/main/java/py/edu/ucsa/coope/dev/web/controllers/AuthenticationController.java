@@ -28,19 +28,21 @@ public class AuthenticationController {
 	@PostMapping("/registrar")
 	public ResponseEntity<AutenticationResponse> register (@RequestBody RegistroRequest request)
 	{
-		return ResponseEntity.ok(service.registrar(request));
+		//return ResponseEntity.ok(service.registrar(request));
+		return null;
 	}
 
 	@PostMapping("/autenticar")
 	public ResponseEntity<AutenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
 	{
-		return ResponseEntity.ok(service.autenticar(request));
+		//return ResponseEntity.ok(service.autenticar(request));
+		return null;
 	}
 
 	@PostMapping("/refrescar-token")
 	public void refreshToken(HttpServletRequest request , HttpServletResponse response) throws IOException
 	{
-		service.refreshToken(request, response);
+		//service.refreshToken(request, response);
 	}
 
 }
