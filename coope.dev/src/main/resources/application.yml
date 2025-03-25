@@ -9,7 +9,7 @@ spring:
  datasource:
   coopedev:
    url: jdbc:postgresql://localhost:5432/coopedev
-   username: postgres
+   username: francis
    password: admin123
    driver-class-name: org.postgresql.Driver
  jpa:
