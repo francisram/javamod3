@@ -2,9 +2,7 @@ package py.edu.ucsa.coope.dev.core.dao.impl;
 
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.stereotype.Repository;
-
 import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.BarrioDao;

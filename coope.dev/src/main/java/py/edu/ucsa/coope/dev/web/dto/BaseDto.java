@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 
 @Data
 public abstract class BaseDto implements Serializable {

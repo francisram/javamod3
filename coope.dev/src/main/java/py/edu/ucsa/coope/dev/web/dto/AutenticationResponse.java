@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 
 @Data
 @Builder
@@ -22,7 +25,7 @@ public class AutenticationResponse {
 	@JsonProperty("navigationItems")
 	private List<ItemNavegacionDto> itemsNavegacion;
 	@JsonProperty("grantedOperations")
-	private List<OperacionXItemNavegacion> operacionesDelUsuario;
+	private List<OperacionesXItemNavegacionDto> operacionesDelUsuario;
 	@JsonProperty("refreshToken")
 	private String refreshToken;
 

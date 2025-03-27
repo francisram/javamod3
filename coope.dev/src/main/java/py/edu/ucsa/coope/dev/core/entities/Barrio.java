@@ -1,12 +1,9 @@
 package py.edu.ucsa.coope.dev.core.entities;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import org.springframework.beans.BeanUtils;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,9 +12,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 
 /**
@@ -158,7 +155,7 @@ public class Barrio implements BaseEntity {
 		if(this.getCiudad() != null) {
 			dto.setCiudad(this.getCiudad().toDto());
 		}
-		BaseDataCopier.copybaseDataToDto(this, dto);
+		BaseDataCopier.copyBaseDataToDto(this, dto);
 		return dto;
 	}
 	
@@ -170,7 +167,7 @@ public class Barrio implements BaseEntity {
 		if(dto.getCiudad() != null) {
 			entity.setCiudad(Ciudad.fromDto(dto.getCiudad()));
 		}
-		BaseDataCopier.copybaseDataFromDtoToEntity(dto, entity);
+		BaseDataCopier.copyBaseDataFromDtoToEntity(dto, entity);
 		return entity;
 		
 	}

@@ -1,13 +1,11 @@
 package py.edu.ucsa.coope.dev.core.entities;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,6 +18,7 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 
 /**

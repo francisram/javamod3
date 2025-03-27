@@ -4,10 +4,12 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 import py.edu.ucsa.coope.dev.web.dto.BaseDto;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 public abstract class BaseDataCopier {
 
-	public static void copybaseDataToDto(BaseEntity entityOrigen, BaseDto dtoDestino) {
+	public static void copyBaseDataToDto(BaseEntity entityOrigen, BaseDto dtoDestino) {
 		if (Objects.nonNull(entityOrigen.getFechaAlta())) {
 			dtoDestino.setFechaAlta(entityOrigen.getFechaAlta().toLocalDateTime());
 		}
@@ -22,7 +24,7 @@ public abstract class BaseDataCopier {
 			dtoDestino.setUsuarioModificacion(entityOrigen.getUsuarioModificacion().toDto());
 		}
 	}
-	public static void copybaseDataFromDtoToEntity(BaseDto dtoOrigen, BaseEntity entityDestino) {
+	public static void copyBaseDataFromDtoToEntity(BaseDto dtoOrigen, BaseEntity entityDestino) {
 		if (Objects.nonNull(dtoOrigen.getFechaAlta())) {
 			entityDestino.setFechaAlta(Timestamp.valueOf(dtoOrigen.getFechaAlta()));
 		}
