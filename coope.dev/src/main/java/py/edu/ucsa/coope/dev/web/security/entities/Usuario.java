@@ -32,9 +32,9 @@ import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.BaseDataCopier;
 import py.edu.ucsa.coope.dev.core.entities.BaseEntity;
 import py.edu.ucsa.coope.dev.core.entities.Opcion;
+import py.edu.ucsa.coope.dev.core.entities.Token;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 import py.edu.ucsa.coope.dev.web.security.Rol;
-import py.edu.ucsa.coope.dev.web.security.Token;
 
 @Data
 @Builder

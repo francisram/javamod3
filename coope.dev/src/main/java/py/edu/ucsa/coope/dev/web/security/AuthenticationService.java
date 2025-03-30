@@ -1,25 +1,27 @@
-package py.edu.ucsa.coope.dev.web.dto;
+package py.edu.ucsa.coope.dev.web.security;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import py.edu.ucsa.coope.dev.core.entities.Token;
+import py.edu.ucsa.coope.dev.web.dto.AuthenticationRequest;
+import py.edu.ucsa.coope.dev.web.dto.AuthenticationResponse;
+import py.edu.ucsa.coope.dev.web.dto.ItemNavegacionRepo;
+import py.edu.ucsa.coope.dev.web.dto.RegistroRequest;
+import py.edu.ucsa.coope.dev.web.dto.TokenRepository;
+import py.edu.ucsa.coope.dev.web.dto.UsuarioRepo;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilXUsuarioDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
-import py.edu.ucsa.coope.dev.web.security.JwtService;
-import py.edu.ucsa.coope.dev.web.security.Token;
-import py.edu.ucsa.coope.dev.web.security.TokenType;
 import py.edu.ucsa.coope.dev.web.security.entities.ItemNavegacion;
+import py.edu.ucsa.coope.dev.web.security.entities.OperacionesXItemNavegacion;
 import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 @Service
@@ -46,12 +48,13 @@ public class AuthenticationService {
 
 
 	public AuthenticationResponse autenticar(AuthenticationRequest request) {
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario() , request.getPassword()));
+		authenticationManager
+			.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario() , request.getPassword()));
 		var usu = usuarioRepo.findByUsuario(request.getUsuario()).orElseThrow();
 		
-		List<ItemNavegacion> itemsNav = itemNavRepo.findNavByIdUsuario(request.getUsuario()).orElseThrow();
-		List<ItemNavegacionDto> result =  itemNavegacionMapper.mapToDtoList(itemsNav);
-		List<OperacionXItemNavegacion> operXItemNav = itemNavRepo.findOperacionXItemNavByIdUsuario(usu.getId()).orElseThrow();
+		List<ItemNavegacion> itemsNav = itemNavRepo.findItemsNavByIdUsuario(usu.getId()).orElseThrow();
+		List<ItemNavegacionDto> result =  ItemNavegacionMapper.mapToDtoList(itemsNav);
+		List<OperacionesXItemNavegacion> operXItemNav = itemNavRepo.findOperacionesXItemNavByIdUsuario(usu.getId()).orElseThrow();
 		var jwtToken = jwtService.generarToken(usu);
 		var refreshToken = jwtService.generarRefreshToken(usu);
 		
@@ -61,16 +64,16 @@ public class AuthenticationService {
 		UsuarioDto usuDto =  usu.toDto();
 		usuDto.setNavigationItems(result);
 		
-		return AuthenticationResponse.builder().accessToken(jwtToken).refreshTokenre(refreshToken)
+		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken)
 				.user(usuDto).operacionesDelUsuario(operXItemNav).build();
 		
 	}
 	
 	private List<PerfilXUsuarioDto> getPerfilesFromDtoList(List<PerfilXUsuarioDto> dtosPerfiles){
-		List<PerfilXUsuarioDto> perfiles =  dtosPerfiles.
-				stream().
-				map(p -> PerfilXUsuarioDto.fromDto(perfil))
-				.collect(Collectors.toList()));
+		List<PerfilXUsuarioDto> perfiles =  dtosPerfiles
+				.stream()
+				.map(perfil -> PerfilXUsuarioDto.fromDTO(perfil))
+				.collect(Collectors.toList());
 		return perfiles;
 		
 	}
@@ -85,14 +88,12 @@ public class AuthenticationService {
 	}
 	
 
-	private void revocarTodosLosTokensDelUsuario(Usuario usu) {
-		// TODO Auto-generated method stub
-		
-		var validUserTokens =  tokenRepo.findAllValidTokenByUsuario(usu.getId());
+	private void revocarTodosLosTokensDelUsuario(Usuario usu) {		
+		var validUserTokens =  tokenRepo.findAllValidTokensByUsuario(usu.getId());
 		if(validUserTokens.isEmpty()) {
 			return;
 		}
-		validUserTokens.foreach(token ->{
+		validUserTokens.forEach(token ->{
 				token.setExpirado(true);
 				token.setRevocado(true);}
 				);

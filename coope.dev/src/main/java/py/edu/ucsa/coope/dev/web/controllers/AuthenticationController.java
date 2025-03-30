@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import py.edu.ucsa.coope.dev.web.dto.AutenticationResponse;
 import py.edu.ucsa.coope.dev.web.dto.AuthenticationRequest;
-import py.edu.ucsa.coope.dev.web.dto.AuthenticationService;
 import py.edu.ucsa.coope.dev.web.dto.RegistroRequest;
+import py.edu.ucsa.coope.dev.web.security.AuthenticationService;
 
 
 @RestController

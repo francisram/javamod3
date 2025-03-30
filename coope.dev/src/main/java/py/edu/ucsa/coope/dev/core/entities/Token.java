@@ -1,4 +1,4 @@
-package py.edu.ucsa.coope.dev.web.security;
+package py.edu.ucsa.coope.dev.core.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import py.edu.ucsa.coope.dev.web.security.TokenType;
 import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 @Data

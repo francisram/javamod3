@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
-import py.edu.ucsa.coope.dev.web.security.Token;
+import py.edu.ucsa.coope.dev.core.entities.Token;
 import py.edu.ucsa.coope.dev.web.security.TokenDao;
 
 @Repository
