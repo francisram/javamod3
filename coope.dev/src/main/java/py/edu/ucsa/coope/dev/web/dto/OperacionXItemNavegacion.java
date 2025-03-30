@@ -73,7 +73,7 @@ public class OperacionXItemNavegacion implements Serializable, BaseEntity  {
 	@JoinColumn(name = "id_item_navegacion")
 	private ItemNavegacion itemNavegacion;
 	
-	public OperacionesXItemNavegacion(Long id, Opcion estado, Opcion accion, ItemNavegacion itemNavegacion) {
+	public OperacionXItemNavegacion(Long id, Opcion estado, Opcion accion, ItemNavegacion itemNavegacion) {
 		super();
 		this.id = id;
 		this.estado = estado;
