@@ -1,0 +1,209 @@
+type: collection.insomnia.rest/5.0
+name: javamod4
+meta:
+  id: wrk_6df0f2c19f36456895f5d0ae125bdad3
+  created: 1739399104157
+  modified: 1739399104157
+collection:
+  - name: barrios
+    meta:
+      id: fld_6b31d8be879e40c09274c8f13dbdf91c
+      created: 1740608209289
+      modified: 1740608209289
+      sortKey: -1740608209289
+    children:
+      - url: "{{ _.baseUrl
+          }}coope.dev/barrios/paginado?page=0&size=10&sort=nombre&order=desc&se\
+          arch=san"
+        name: berrios listar con params
+        meta:
+          id: req_3a59e1eaba9e4f45802fff96d88f31e0
+          created: 1739399377644
+          modified: 1740608230349
+          isPrivate: false
+          sortKey: -1740608216961
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}coope.dev/barrios"
+        name: barrios
+        meta:
+          id: req_ac3d8632ee9e486c9ccebadbb810d16d
+          created: 1740228519320
+          modified: 1742429184878
+          isPrivate: false
+          sortKey: -1740608216761
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}coope.dev/barrios"
+        name: insertar nuevo barrio
+        meta:
+          id: req_5c151c20df904c508c9e32da78ed0c9c
+          created: 1740235156573
+          modified: 1740612605384
+          isPrivate: false
+          sortKey: -1740608216861
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "nombre": "Barrio San Miguel",
+                "ciudad": {    "id": 5  },
+            	"usuarioAlta":{		"id":1	},
+            	"fechaAlta":"22/02/2025 00:00:00"
+            	
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}coope.dev/barrios"
+        name: actualizar barrio
+        meta:
+          id: req_bfa43661ef5d4dec884192662bd4ac6e
+          created: 1740252949941
+          modified: 1740608219943
+          isPrivate: false
+          sortKey: -1740608216661
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+            	"id":7,
+              "nombre": "Barrio San Miguelon",
+                "ciudad": {    "id": 5  },
+            		"usuarioAlta":{		"id":1	},
+            	"usuarioModificacion":{		"id":1	},
+            	"fechaAlta":"22/02/2025 00:00:00",
+            	"fechaModificacion":"22/02/2025 16:37:00"
+            	
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}coope.dev/barrios/7"
+        name: delete barrio
+        meta:
+          id: req_f8bbce2164514dafba9b73698ea699bc
+          created: 1740341134141
+          modified: 1740608216635
+          isPrivate: false
+          sortKey: -1740608216561
+        method: DELETE
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}api/v1/auth"
+        name: New Request
+        meta:
+          id: req_116cb37dbce2460fb371fc80862b93ef
+          created: 1742432331142
+          modified: 1742432427486
+          isPrivate: false
+          sortKey: -1742432331142
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - url: "{{ _.baseUrl }}coope.dev/ciudades"
+    name: ciudades
+    meta:
+      id: req_68875b83bffd4a84a5d602388bbddf1f
+      created: 1740606864624
+      modified: 1740607083749
+      isPrivate: false
+      sortKey: -1740606864624
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_2ed1ac477d616fcbe7ee257c909431c93c211f13
+    created: 1739399104169
+    modified: 1742430663422
+  cookies:
+    - key: JSESSIONID
+      value: r6mY5ncPSjg1HGRvSG8H2ata4xVqJeSeo1BZPxvh.nb13122101
+      domain: 127.0.0.1
+      path: /coope.dev
+      hostOnly: true
+      creation: 2025-03-13T12:11:26.547Z
+      lastAccessed: 2025-03-20T00:31:03.422Z
+      id: d997c06b-5dc5-4c63-8423-bc16bc9c1e97
+environments:
+  name: Base Environment
+  meta:
+    id: env_2ed1ac477d616fcbe7ee257c909431c93c211f13
+    created: 1739399104165
+    modified: 1739399104165
+    isPrivate: false
