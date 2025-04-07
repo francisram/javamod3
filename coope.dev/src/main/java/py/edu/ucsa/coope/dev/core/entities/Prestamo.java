@@ -18,7 +18,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 
 /**

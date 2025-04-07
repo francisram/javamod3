@@ -3,8 +3,6 @@ package py.edu.ucsa.coope.dev.core.entities;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
-
 
 
 public interface BaseEntity extends Serializable {

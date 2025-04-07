@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
-import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 
 /**

@@ -19,6 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.BaseDataCopier;
 import py.edu.ucsa.coope.dev.core.entities.BaseEntity;
+import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
 
 
@@ -30,7 +31,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_items_navegacion", schema = "usuarios")
+@Table(name = "usu_items_navegacion", schema = "usu_usuarios")
 @NamedQuery(name = "ItemNavegacion.findAll", query = "SELECT i FROM ItemNavegacion i")
 @NamedQuery(name = "ItemNavegacion.getByTitulo", query = "SELECT i FROM ItemNavegacion i WHERE i.title = :titulo")
 @NamedQuery(name = "ItemNavegacion.getById", query = "SELECT i FROM ItemNavegacion i WHERE i.id = :id")

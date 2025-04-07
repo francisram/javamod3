@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.BaseDataCopier;
 import py.edu.ucsa.coope.dev.core.entities.BaseEntity;
 import py.edu.ucsa.coope.dev.core.entities.Opcion;
+import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
 
 
@@ -33,7 +34,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_operaciones_x_item_nav", schema = "usuarios")
+@Table(name = "usu_operaciones_x_item_nav", schema = "usu_usuarios")
 @NamedQuery(name = "OperacionesXItemNavegacion.findAll", query = "SELECT u FROM OperacionesXItemNavegacion u")
 public class OperacionesXItemNavegacion implements Serializable, BaseEntity {
 

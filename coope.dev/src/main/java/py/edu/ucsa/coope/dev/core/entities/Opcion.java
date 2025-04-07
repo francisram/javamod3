@@ -21,7 +21,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.web.dto.OpcionDto;
-import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
+
 
 
 /**

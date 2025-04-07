@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.BaseDataCopier;
 import py.edu.ucsa.coope.dev.core.entities.BaseEntity;
 import py.edu.ucsa.coope.dev.core.entities.Opcion;
+import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilXUsuarioDto;
 
 
@@ -33,7 +34,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilXUsuarioDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_perfiles_x_usuario", schema = "usuarios")
+@Table(name = "usu_perfiles_x_usuario", schema = "usu_usuarios")
 @NamedQuery(name = "PerfilXUsuario.findAll", query = "SELECT u FROM PerfilXUsuario u")
 public class PerfilXUsuario implements Serializable, BaseEntity {
 

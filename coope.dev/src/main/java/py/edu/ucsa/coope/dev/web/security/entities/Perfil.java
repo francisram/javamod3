@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.BaseDataCopier;
 import py.edu.ucsa.coope.dev.core.entities.BaseEntity;
 import py.edu.ucsa.coope.dev.core.entities.Opcion;
+import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilDto;
 
 @Data
@@ -29,7 +30,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_perfiles", schema = "usuarios")
+@Table(name = "usu_perfiles", schema = "usu_usuarios")
 @NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p")
 @NamedQuery(name = "Perfil.getByCodigo", query = "SELECT i FROM Perfil i WHERE i.codigo = :codigo")
 @NamedQuery(name = "Perfil.getByEstado", query = "SELECT i FROM Perfil i WHERE i.estado.codigo = :codEstado")

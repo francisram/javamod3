@@ -15,19 +15,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import py.edu.ucsa.coope.dev.core.entities.Token;
+import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.AuthenticationRequest;
 import py.edu.ucsa.coope.dev.web.dto.AuthenticationResponse;
 import py.edu.ucsa.coope.dev.web.dto.ItemNavegacionRepo;
 import py.edu.ucsa.coope.dev.web.dto.RegistroRequest;
 import py.edu.ucsa.coope.dev.web.dto.TokenRepository;
-import py.edu.ucsa.coope.dev.web.dto.UsuarioRepo;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilXUsuarioDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 import py.edu.ucsa.coope.dev.web.security.entities.ItemNavegacion;
 import py.edu.ucsa.coope.dev.web.security.entities.OperacionesXItemNavegacion;
 import py.edu.ucsa.coope.dev.web.security.entities.PerfilXUsuario;
-import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
+import py.edu.ucsa.coope.dev.web.security.repo.UsuarioRepo;
 
 @Service
 @RequiredArgsConstructor
@@ -57,8 +58,9 @@ public class AuthenticationService {
 
 		List<ItemNavegacion> itemsNav = itemNavRepo.findItemsNavByIdUsuario(usu.getId()).orElseThrow();
 		List<ItemNavegacionDto> result = ItemNavegacionMapper.mapToDtoList(itemsNav);
-		List<OperacionesXItemNavegacion> operXItemNav = itemNavRepo.findOperacionesXItemNavByIdUsuario(usu.getId())
-				.orElseThrow();
+		List<OperacionesXItemNavegacion> operXItemNav = itemNavRepo.findOperacionesXItemNavByIdUsuario(usu.getId()).orElseThrow();
+		List<OperacionesXItemNavegacionDto> resultOpCItem = OperacionesXItemNavegacionMapper.mapToDtoList(operXItemNav);
+
 		var jwtToken = jwtService.generarToken(usu);
 		var refreshToken = jwtService.generarRefreshToken(usu);
 
@@ -69,7 +71,7 @@ public class AuthenticationService {
 		usuDto.setNavigationItems(result);
 
 		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).user(usuDto)
-				.operacionesDelUsuario(operXItemNav).build();
+				.operacionesDelUsuario(resultOpCItem).build();
 
 	}
 
