@@ -34,7 +34,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_operaciones_x_item_nav", schema = "usu_usuarios")
+@Table(name = "usu_operaciones_x_item_nav", schema = "usuarios")
 @NamedQuery(name = "OperacionesXItemNavegacion.findAll", query = "SELECT u FROM OperacionesXItemNavegacion u")
 public class OperacionesXItemNavegacion implements Serializable, BaseEntity {
 

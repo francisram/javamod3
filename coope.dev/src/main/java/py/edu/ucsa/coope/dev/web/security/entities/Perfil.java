@@ -30,7 +30,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_perfiles", schema = "usu_usuarios")
+@Table(name = "usu_perfiles", schema = "usuarios")
 @NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p")
 @NamedQuery(name = "Perfil.getByCodigo", query = "SELECT i FROM Perfil i WHERE i.codigo = :codigo")
 @NamedQuery(name = "Perfil.getByEstado", query = "SELECT i FROM Perfil i WHERE i.estado.codigo = :codEstado")

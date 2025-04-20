@@ -6,12 +6,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import py.edu.ucsa.coope.dev.web.security.entities.ItemNavegacion;
 import py.edu.ucsa.coope.dev.web.security.entities.OperacionesXItemNavegacion;
 
 
-
+@Repository
 public interface ItemNavegacionRepo extends JpaRepository<ItemNavegacion, String>{
 //	@Query("Select i from ItemNavegacionXPerfil i where i.perfil in ()")
 	@Query(value="SELECT inav "

@@ -34,7 +34,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.PerfilXUsuarioDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_perfiles_x_usuario", schema = "usu_usuarios")
+@Table(name = "usu_perfiles_x_usuario", schema = "usuarios")
 @NamedQuery(name = "PerfilXUsuario.findAll", query = "SELECT u FROM PerfilXUsuario u")
 public class PerfilXUsuario implements Serializable, BaseEntity {
 

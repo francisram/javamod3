@@ -20,7 +20,8 @@ import jakarta.persistence.EntityManagerFactory;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		entityManagerFactoryRef = "coopeDevEntityManagerFactory",
+		//entityManagerFactoryRef = "coopeDevEntityManagerFactory",
+		entityManagerFactoryRef = "entityManagerFactory",
 		transactionManagerRef = "coopeDevTransactionManager",
 		basePackages = {"py.edu.ucsa.coope.dev.core.dao"}
 		)
@@ -38,11 +39,15 @@ public class CoopeDevDataSourceConfiguration {
 		return properties.initializeDataSourceBuilder().build();
 	}
 	
-	@Bean(name = "coopeDevEntityManagerFactory")
+	//@Bean(name = "coopeDevEntityManagerFactory")
+	
+	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean coopDevEntityMangerFactory(
 			EntityManagerFactoryBuilder builder ,@Qualifier("coopeDevDatasource") DataSource dataSource
 			) {
-				return builder.dataSource(dataSource).packages("py.edu.ucsa.coope.dev.core.entities")
+				return builder.dataSource(dataSource).packages(
+						"py.edu.ucsa.coope.dev.core.entities",
+						"py.edu.ucsa.coope.dev.web.security.entities" )
 						.persistenceUnit("coopedev-pu")
 						.build();
 	}
@@ -51,7 +56,8 @@ public class CoopeDevDataSourceConfiguration {
 	@Bean(name = "coopeDevTransactionManager")
 	@ConfigurationProperties("spring.jpa.coopedev")
 	public PlatformTransactionManager coopDevTransactionManager(
-			@Qualifier("coopeDevEntityManagerFactory")
+			//@Qualifier("coopeDevEntityManagerFactory")
+			@Qualifier("entityManagerFactory")
 			EntityManagerFactory entityManagerFactory
 			) {
 		return new JpaTransactionManager(entityManagerFactory);

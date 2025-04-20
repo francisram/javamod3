@@ -1,5 +1,6 @@
 package py.edu.ucsa.coope.dev.web.dto.usuarios;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

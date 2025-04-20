@@ -31,7 +31,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usu_items_navegacion", schema = "usu_usuarios")
+@Table(name = "usu_items_navegacion", schema = "usuarios")
 @NamedQuery(name = "ItemNavegacion.findAll", query = "SELECT i FROM ItemNavegacion i")
 @NamedQuery(name = "ItemNavegacion.getByTitulo", query = "SELECT i FROM ItemNavegacion i WHERE i.title = :titulo")
 @NamedQuery(name = "ItemNavegacion.getById", query = "SELECT i FROM ItemNavegacion i WHERE i.id = :id")
