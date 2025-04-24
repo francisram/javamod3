@@ -44,18 +44,18 @@ public class OperacionesXItemNavegacion implements Serializable, BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "fechaalta")
-	private Timestamp fecha_Alta;
+	@Column(name = "fecha_hora_modificacion")
+	private Timestamp fecha_hora_creacion;
 	
-	@Column(name = "fecha_modificacion")
+	@Column(name = "fecha_hora_ult_modif")
 	private Timestamp fechaModificacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "usuario_alta")
+	@JoinColumn(name = "id_usuario_creacion")
 	private Usuario usuarioAlta;
 	
 	@ManyToOne
-	@JoinColumn(name = "usuario_modificacion")
+	@JoinColumn(name = "id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
 	
 	@ManyToOne

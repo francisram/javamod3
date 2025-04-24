@@ -32,22 +32,22 @@ public class EstadoCivil implements Serializable {
 
 	private String descripcion;
 
-	@Column(name="fecha_alta")
+	@Column(name="fecha_hora_creacion")
 	private Timestamp fechaAlta;
 
-	@Column(name="fecha_modificacion")
+	@Column(name="fecha_hora_ult_modif")
 	private Timestamp fechaModificacion;
 
 	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="usuario_alta")
+	@JoinColumn(name="id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="usuario_modificacion")
+	@JoinColumn(name="id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
 
 	public EstadoCivil() {

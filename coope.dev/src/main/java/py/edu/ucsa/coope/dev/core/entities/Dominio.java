@@ -31,7 +31,7 @@ import py.edu.ucsa.coope.dev.web.dto.usuarios.DominioDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="dominios", schema = "munisys")
+@Table(name="dominios", schema = "public")
 @NamedQuery(name="Dominio.findAll", query="SELECT d FROM Dominio d")
 public class Dominio implements Serializable {
 	private static final long serialVersionUID = 844145437183003457L;

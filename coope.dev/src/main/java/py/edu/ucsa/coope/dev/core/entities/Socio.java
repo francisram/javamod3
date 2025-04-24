@@ -41,14 +41,14 @@ public class Socio implements Serializable {
 
 	private String email;
 
-	@Column(name="fecha_alta")
+	@Column(name="fecha_hora_creacion")
 	private Timestamp fechaAlta;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_ingreso")
 	private Date fechaIngreso;
 
-	@Column(name="fecha_modificacion")
+	@Column(name="fecha_hora_ult_modif")
 	private Timestamp fechaModificacion;
 
 	private String nombre;
@@ -91,13 +91,13 @@ public class Socio implements Serializable {
 	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="usuario_alta")
+	@JoinColumn(name="id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to UsuarioDto
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="usuario_modificacion")
+	@JoinColumn(name="id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
 
 	public Socio() {

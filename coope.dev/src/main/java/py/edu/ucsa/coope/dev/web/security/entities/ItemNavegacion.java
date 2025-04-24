@@ -42,18 +42,18 @@ public class ItemNavegacion implements Serializable, BaseEntity {
 	@Id
 	private String id;
 
-	@Column(name = "fecha_alta")
+	@Column(name = "fecha_hora_creacion")
 	private Timestamp fechaAlta;
 
-	@Column(name = "fecha_modificacion")
+	@Column(name = "fecha_hora_ult_modif")
 	private Timestamp fechaModificacion;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_alta")
+	@JoinColumn(name = "id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_modificacion")
+	@JoinColumn(name = "id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
 
 	@Column(name = "titulo")

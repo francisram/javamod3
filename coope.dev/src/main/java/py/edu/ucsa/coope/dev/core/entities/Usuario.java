@@ -39,6 +39,7 @@ import py.edu.ucsa.coope.dev.web.security.Rol;
 @Entity
 @Table(name = "usu_usuarios", schema = "usuarios")
 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+//@NamedQuery(name = "Usuario.getUsuarioByUserName", query = "")
 public class Usuario implements Serializable, BaseEntity, UserDetails {
 
 	private static final long serialVersionUID = 46167056262484645L;
@@ -48,7 +49,7 @@ public class Usuario implements Serializable, BaseEntity, UserDetails {
 	private Long id;
 
 	@Column(name = "fecha_hora_creacion")
-	private Timestamp fechaHoraCreacion;
+	private Timestamp fechaAlta;
 
 	@Column(name = "fecha_hora_ult_modif")
 	private Timestamp fechaHoraUltModif;
@@ -63,8 +64,6 @@ public class Usuario implements Serializable, BaseEntity, UserDetails {
 	@JsonBackReference
 	private Usuario usuarioUltModif;
 	
-	@Column(name = "id_contribuyente")
-	private Integer contribuyente;
 
 	@ManyToOne(targetEntity = Opcion.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")

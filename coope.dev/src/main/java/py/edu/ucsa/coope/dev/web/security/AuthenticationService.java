@@ -52,6 +52,7 @@ public class AuthenticationService {
 	}
 
 	public AuthenticationResponse autenticar(AuthenticationRequest request) {
+		System.out.println("credenciales: " + request.getUsuario() +"|"+ request.getPassword());
 		authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
 		var usu = usuarioRepo.findByUsuario(request.getUsuario()).orElseThrow();

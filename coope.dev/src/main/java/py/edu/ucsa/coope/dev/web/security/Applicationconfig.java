@@ -14,13 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
-import py.edu.ucsa.coope.dev.core.dao.UsuarioDao;
+import py.edu.ucsa.coope.dev.web.security.repo.UsuarioRepo;
+
 
 @Configuration
 @RequiredArgsConstructor
 public class Applicationconfig {
 	
-	private final UsuarioDao usuDao;
+	private final UsuarioRepo usuDao;
 	
 	@Bean
 	public UserDetailsService userDetailsService() {

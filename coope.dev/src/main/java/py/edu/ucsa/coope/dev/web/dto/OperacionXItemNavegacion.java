@@ -45,20 +45,20 @@ public class OperacionXItemNavegacion implements Serializable, BaseEntity  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "fecha_alta")
+	@Column(name = "fecha_hora_creacion")
 	private Timestamp fechaAlta;
 
-	@Column(name = "fecha_modificacion")
+	@Column(name = "fecha_hora_ult_modif")
 	private Timestamp fechaModificacion;
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "usuario_alta")
+	@JoinColumn(name = "id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "usuario_modificacion")
+	@JoinColumn(name = "id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
 	
 	@ManyToOne
