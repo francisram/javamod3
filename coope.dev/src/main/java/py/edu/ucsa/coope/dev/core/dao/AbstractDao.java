@@ -1,107 +1,85 @@
 package py.edu.ucsa.coope.dev.core.dao;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-
 @Component
-public class AbstractDao<PK extends Serializable , T> implements GenericDao<PK, T> {
-	private final Class<T> persistenclass;
+public abstract class AbstractDao<PK extends Serializable, T> implements GenericDao<PK, T> {
+
+    private final Class<T> persistenClass;
 	protected Logger logger = null;
 
 	@SuppressWarnings("unchecked")
 	public AbstractDao() {
+		
 		Type genericSuperClass = getClass().getGenericSuperclass();
 		ParameterizedType parameterizedType = null;
 		while (parameterizedType == null && genericSuperClass != null) {
-			if((genericSuperClass  instanceof ParameterizedType)) {
-				parameterizedType = (ParameterizedType) genericSuperClass;
+			if((genericSuperClass instanceof ParameterizedType)) {
+				parameterizedType = (ParameterizedType)genericSuperClass;
+			}else {
+				genericSuperClass = ((Class<?>)genericSuperClass).getGenericSuperclass();
 			}
-			else {
-				genericSuperClass = ((Class<?>) genericSuperClass).getGenericSuperclass(); 
-			}
-			
 		}
-		if(parameterizedType != null) {
-			persistenclass = (Class<T>) parameterizedType.getActualTypeArguments()[1];
-			this.logger =  LoggerFactory.getLogger(persistenclass);
-			
+		if(parameterizedType!=null) {
+			persistenClass = (Class<T>)parameterizedType.getActualTypeArguments()[1];
+			this.logger = LoggerFactory.getLogger(persistenClass);
 		}else {
-			persistenclass = null;
+			persistenClass=null;	
 		}
+
 	}
-	
-	@PersistenceContext(unitName = "coopedev-pu")
-	private EntityManager entityManager;
-	
+
+	@PersistenceContext(name = "coopedev-pu")
+	protected EntityManager entityManager;
+
 	protected EntityManager getEntityManager() {
 		return this.entityManager;
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> listar() {
-		return this.getEntityManager().createQuery("from " + persistenclass.getName()).getResultList();
-
+	public Iterable<T> findAll() {
+		return this.entityManager.createNamedQuery(persistenClass.getSimpleName() + ".findAll").getResultList();
 	}
-
-	@Override
-	public T getById(PK id) {
-		// TODO Auto-generated method stub
-		return (T) this.getEntityManager().find(persistenclass, id);
-	}
-
-	@Override
-	public T persistir(T entity) {
-
-		return this.getEntityManager().merge(entity);
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public T actualizar(T entity) {
-		T entityFinded ;
-		PK id ;
-		try {
-			 var idField = persistenclass.getDeclaredField("id");
-		        idField.setAccessible(true);
-		         id = (PK) idField.get(entity);
-		     entityFinded = this.getById(id);
-		        if (entityFinded == null) {
-		            throw new IllegalArgumentException("No se puede actualizar, la entidad con ID " + id + " no existe.");
-		        }
-			return this.getEntityManager().merge(entity);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return entity;
-
+	public List<T> listar() {
+		//return this.entityManager.createNamedQuery(persistentClass.getSimpleName() + ".findAll").getResultList();
+		return this.entityManager.createQuery("from " + persistenClass.getName()).getResultList();
 	}
-
+	
+	@Override
+	public T getById(PK id) {
+		return (T) entityManager.find(persistenClass, id);
+	}
+	
+	@Override
+	public T persistir(T entity) {
+		return (T) entityManager.merge(entity);
+	}
+	
+	@Override
+	public T actualizar(T entity) {
+		return (T) entityManager.merge(entity);
+	}
+	
 	@Override
 	public void eliminar(T entity) {
-		this.getEntityManager().remove(entity);
-		
+		entityManager.remove(entity);
 	}
-
 	
 	@Override
 	public void eliminar(PK id) {
-		T entity = this.getById(id);
-		this.getEntityManager().remove(entity);
-		
+		this.entityManager.remove(this.getById(id));
 	}
-	
-	
 	
 
 }

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import py.edu.ucsa.coope.dev.core.dao.CiudadDao;
 import py.edu.ucsa.coope.dev.core.entities.Ciudad;
-import py.edu.ucsa.coope.dev.core.services.CiudadServices;
+import py.edu.ucsa.coope.dev.core.services.CiudadService;
 import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 
 @Service("ciudadService")
 @Transactional
-public class CiudadServiceImpl implements CiudadServices{
+public class CiudadServiceImpl implements CiudadService{
 	
 	@Autowired
 	CiudadDao ciudadDao;

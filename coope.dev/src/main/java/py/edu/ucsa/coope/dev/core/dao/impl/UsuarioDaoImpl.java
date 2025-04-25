@@ -11,9 +11,9 @@ import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.UsuarioDao;
 import py.edu.ucsa.coope.dev.core.entities.Barrio;
-import py.edu.ucsa.coope.dev.core.entities.Usuario;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 @Repository
 public class UsuarioDaoImpl extends AbstractDao<Integer, Usuario> implements UsuarioDao {

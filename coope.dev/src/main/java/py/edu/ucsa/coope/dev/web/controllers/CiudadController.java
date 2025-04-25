@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import py.edu.ucsa.coope.dev.core.services.CiudadServices;
+import py.edu.ucsa.coope.dev.core.services.CiudadService;
 import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 
 @RequestMapping("/ciudades")
@@ -15,7 +15,7 @@ import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 public class CiudadController {
 	
 	@Autowired
-	private CiudadServices ciudadService;
+	private CiudadService ciudadService;
 	
 	@GetMapping
 	public ResponseEntity< List<CiudadDto>> list(){

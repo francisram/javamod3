@@ -15,7 +15,7 @@ import py.edu.ucsa.coope.dev.config.CoopeDevDataSourceConfiguration;
 		"py.edu.ucsa.coope.dev.web",
 		"py.edu.ucsa.coope.dev.core.entities",
 		"py.edu.ucsa.coope.dev.web.security.entities"
-		//,"py.edu.ucsa.coope.dev.web.security.repo"
+		,"py.edu.ucsa.coope.dev.web.security.repo"
 		
 		})
 @EnableJpaRepositories(basePackages = {

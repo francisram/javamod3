@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import py.edu.ucsa.coope.dev.core.dao.DepartamentoDao;
 import py.edu.ucsa.coope.dev.core.entities.Departamento;
-import py.edu.ucsa.coope.dev.core.services.DepartamentoServices;
+import py.edu.ucsa.coope.dev.core.services.DepartamentoService;
 import py.edu.ucsa.coope.dev.web.dto.DepartamentoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 
 @Service("departamentoService")
 @Transactional
-public class DepartamentoServiceImpl implements DepartamentoServices {
+public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Autowired
 	private DepartamentoDao departamentoDao;

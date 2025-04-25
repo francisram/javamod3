@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 import py.edu.ucsa.coope.dev.web.dto.BaseDto;
+import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 public abstract class BaseDataCopier {
 

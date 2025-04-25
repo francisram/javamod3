@@ -20,48 +20,40 @@ import jakarta.persistence.EntityManagerFactory;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		//entityManagerFactoryRef = "coopeDevEntityManagerFactory",
-		entityManagerFactoryRef = "entityManagerFactory",
-		transactionManagerRef = "coopeDevTransactionManager",
-		basePackages = {"py.edu.ucsa.coope.dev.core.dao"}
-		)
+entityManagerFactoryRef = "coopeDevEntityManagerFactory",
+transactionManagerRef = "coopeDevTransactionManager",
+basePackages = {"py.edu.ucsa.coope.dev.core.dao"})
 public class CoopeDevDataSourceConfiguration {
-	
-	@Bean(name = "coopeDevProperties")
-	@ConfigurationProperties("spring.datasource.coopedev")
-	public DataSourceProperties coopDevProperties() {
-		return new DataSourceProperties();
-	}
-	
-	@Bean(name = "coopeDevDatasource" )
-	@ConfigurationProperties(prefix = "spring.datasource.coopedev")
-	public DataSource coopDevDataSource(@Qualifier("coopeDevProperties") DataSourceProperties properties) {
-		return properties.initializeDataSourceBuilder().build();
-	}
-	
-	//@Bean(name = "coopeDevEntityManagerFactory")
-	
-	@Bean(name = "entityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean coopDevEntityMangerFactory(
-			EntityManagerFactoryBuilder builder ,@Qualifier("coopeDevDatasource") DataSource dataSource
-			) {
-				return builder.dataSource(dataSource).packages(
-						"py.edu.ucsa.coope.dev.core.entities",
-						"py.edu.ucsa.coope.dev.web.security.entities" )
-						.persistenceUnit("coopedev-pu")
-						.build();
-	}
-	
-	@Primary
-	@Bean(name = "coopeDevTransactionManager")
-	@ConfigurationProperties("spring.jpa.coopedev")
-	public PlatformTransactionManager coopDevTransactionManager(
-			//@Qualifier("coopeDevEntityManagerFactory")
-			@Qualifier("entityManagerFactory")
-			EntityManagerFactory entityManagerFactory
-			) {
-		return new JpaTransactionManager(entityManagerFactory);
-		
-	}
+
+@Bean(name = "coopeDevProperties")
+@ConfigurationProperties(value = "spring.datasource.coopedev")
+public DataSourceProperties coopeDevProperties() {
+return new DataSourceProperties();
+}
+
+@Bean(name = "coopeDevDatasource")
+@ConfigurationProperties(value = "spring.datasource.coopedev")
+public DataSource coopeDevDataSource(@Qualifier("coopeDevProperties") DataSourceProperties properties) {
+return properties.initializeDataSourceBuilder().build();
+}
+
+@Bean(name = "coopeDevEntityManagerFactory")
+public LocalContainerEntityManagerFactoryBean coopeDevEntityManagerFactory(
+EntityManagerFactoryBuilder builder,
+@Qualifier("coopeDevDatasource") DataSource dataSource) {
+return builder.dataSource(dataSource).packages(
+"py.edu.ucsa.coope.dev.core.entities",
+"py.edu.ucsa.coope.dev.web.security.entities" )
+.persistenceUnit("coopedev-pu").build();
+}
+
+@Primary
+@Bean(name = "coopeDevTransactionManager")
+@ConfigurationProperties("spring.jpa.coopedev")
+public PlatformTransactionManager coopeDevTransactionManager(
+@Qualifier("coopeDevEntityManagerFactory")
+EntityManagerFactory entityManagerFactory) {
+return new JpaTransactionManager(entityManagerFactory);
+}
 
 }

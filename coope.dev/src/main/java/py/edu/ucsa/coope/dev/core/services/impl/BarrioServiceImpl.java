@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import py.edu.ucsa.coope.dev.core.dao.BarrioDao;
 import py.edu.ucsa.coope.dev.core.entities.Barrio;
-import py.edu.ucsa.coope.dev.core.services.BarrioServices;
+import py.edu.ucsa.coope.dev.core.services.BarrioService;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
@@ -18,7 +18,7 @@ import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 
 @Service("barrioService")
 @Transactional
-public class BarrioServiceImpl implements BarrioServices {
+public class BarrioServiceImpl implements BarrioService {
 	
 	@Autowired
 	private BarrioDao barrioDao;

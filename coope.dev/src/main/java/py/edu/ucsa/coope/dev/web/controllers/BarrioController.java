@@ -2,42 +2,34 @@ package py.edu.ucsa.coope.dev.web.controllers;
 
 
 
-import java.io.Console;
-import java.util.List;
-import java.util.Objects;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import py.edu.ucsa.coope.dev.core.entities.Barrio;
-import py.edu.ucsa.coope.dev.core.services.BarrioServices;
+import py.edu.ucsa.coope.dev.core.services.BarrioService;
+import py.edu.ucsa.coope.dev.web.validators.impl.ValidadorBarrio;
 import py.edu.ucsa.coope.dev.web.dto.BarrioDto;
 import py.edu.ucsa.coope.dev.web.dto.ErrorDto;
-import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
-import py.edu.ucsa.coope.dev.web.validators.impl.ValidadorBarrio;
-
 
 
 @RequestMapping("/barrios")
 @RestController
 public class BarrioController {
+
 	public static final Logger  logger = LoggerFactory.getLogger(BarrioController.class);
 	
 	
 	@Autowired
-	private BarrioServices barrioSrv;
+	private BarrioService barrioSrv;
 	
 	
 	@GetMapping
