@@ -26,15 +26,13 @@ import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 @AllArgsConstructor
 @Entity
 @Table(name="usu_token", schema="usuarios")
-@NamedQuery(name="Token.getTokenActivoPorUsuario",
-			query="select t from Token t inner join Usuario u "
+@NamedQuery(name="Token.getTokenActivoPorUsuario", query="select t from Token t inner join Usuario u "
 					+ "on t.usuario.id = u.id where u.id = :id and (t.expirado "
 					+ "= false or t.revocado= false)")
 @SequenceGenerator(name = "Token.TokenSeqGenerator", schema = "usuarios", sequenceName = "usu_token_id_seq", allocationSize = 1)
 public class Token {
   @Id
-	@GeneratedValue(generator = "Token.TokenSeqGenerator",
-		  strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(generator = "Token.TokenSeqGenerator", strategy = GenerationType.SEQUENCE)
   public Integer id;
 
   @Column(unique = true)
@@ -52,4 +50,5 @@ public class Token {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_usuario")
   public Usuario usuario;
+  
 }

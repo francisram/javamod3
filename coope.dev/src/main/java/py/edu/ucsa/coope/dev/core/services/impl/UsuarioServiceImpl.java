@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import py.edu.ucsa.coope.dev.core.dao.UsuarioDao;
-import py.edu.ucsa.coope.dev.core.services.UsuarioServices;
+import py.edu.ucsa.coope.dev.core.services.UsuarioService;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
@@ -17,7 +17,7 @@ import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 
 @Service("usuarioService")
 @Transactional
-public class UsuarioServiceImpl implements UsuarioServices {
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioDao usuarioDao;

@@ -2,6 +2,7 @@ package py.edu.ucsa.coope.dev.web.security;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,20 +17,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import py.edu.ucsa.coope.dev.web.security.repo.UsuarioRepo;
 
-
 @Configuration
 @RequiredArgsConstructor
 public class Applicationconfig {
-	
+
+	@Autowired
 	private final UsuarioRepo usuDao;
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return usuario -> usuDao.findByUsuario(usuario)
-				.orElseThrow(()->new UsernameNotFoundException("usuario no encontrado") );
+				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 	}
-	
-	
+
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -37,15 +37,13 @@ public class Applicationconfig {
 		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 	}
-	
-	
+
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
-	
+
 	@Bean
-	
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

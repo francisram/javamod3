@@ -2,6 +2,7 @@ package py.edu.ucsa.coope.dev.core.entities;
 
 import java.sql.Timestamp;
 import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
@@ -24,7 +25,7 @@ import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 @Entity
 @Table(name="barrios")
 @NamedQuery(name="Barrio.findAll", query="SELECT b FROM Barrio b")
-@NamedQuery(name="Barrio.getBarriosByIdCiudad", query="SELECT b FROM Barrio b WHERE b.ciudad.id = :idCiudad")
+@NamedQuery(name="Barrio.getBarriosByIdCiudad", query="SELECT b FROM Barrio b WHERE b.ciudad = :idCiudad ")
 public class Barrio implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 

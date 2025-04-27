@@ -13,6 +13,6 @@ public class AuthenticationRequest {
 	
 	private String usuario;
 	
-	String password;
+	private String password;
 
 }

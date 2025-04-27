@@ -10,9 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.ItemNavegacionDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionDto;
-import py.edu.ucsa.coope.dev.web.dto.usuarios.OperacionesXItemNavegacionXPerfilDto;
 import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
-import py.edu.ucsa.coope.dev.web.security.entities.OperacionesXItemNavegacion;
+
 
 @Data
 @Builder

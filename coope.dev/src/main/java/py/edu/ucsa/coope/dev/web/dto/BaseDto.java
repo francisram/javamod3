@@ -19,9 +19,10 @@ public abstract class BaseDto implements Serializable {
 	private static final long serialVersionUID = 3192435694803666889L;
 	private UsuarioDto usuarioAlta;
 	private UsuarioDto usuarioModificacion;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime fechaAlta;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime fechaModificacion;
 
 }

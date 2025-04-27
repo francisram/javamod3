@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PaginationDto {
 
-	
 	private int length;
 	private int size;
 	private int page;
 	private int lastPage;
 	private int startIndex;
 	private int endIndex;
+	
 	
 }

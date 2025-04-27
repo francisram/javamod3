@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
-import py.edu.ucsa.coope.dev.core.entities.Token;
 import py.edu.ucsa.coope.dev.web.security.TokenDao;
+import py.edu.ucsa.coope.dev.web.security.entities.Token;
 
 @Repository
 public class TokenDaoImpl extends AbstractDao<Integer, Token> implements TokenDao {

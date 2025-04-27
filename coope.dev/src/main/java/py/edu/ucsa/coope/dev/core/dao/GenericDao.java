@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface GenericDao<PK extends Serializable, T> {
 
-List<T> listar();
-T getById(PK id);
-T persistir(T entity);
-T actualizar (T entity);
-void eliminar(T entity);
-void eliminar(PK id);
-
+	List<T> listar();
+	T getById(PK id);
+	T persistir(T entity);
+	T actualizar (T entity);
+	void eliminar(T entity);
+	void eliminar(PK id);
+	
 }

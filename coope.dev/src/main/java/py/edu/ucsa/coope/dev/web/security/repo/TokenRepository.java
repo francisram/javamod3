@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import py.edu.ucsa.coope.dev.core.entities.Token;
+import py.edu.ucsa.coope.dev.web.security.entities.Token;
 
 
 

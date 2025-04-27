@@ -22,7 +22,10 @@ import jakarta.persistence.EntityManagerFactory;
 @EnableJpaRepositories(
 entityManagerFactoryRef = "coopeDevEntityManagerFactory",
 transactionManagerRef = "coopeDevTransactionManager",
-basePackages = {"py.edu.ucsa.coope.dev.core.dao"})
+basePackages = {
+"py.edu.ucsa.coope.dev.core.dao",
+"py.edu.ucsa.coope.dev.web.security.repo",
+"py.edu.ucsa.coope.dev.core.repositories"})
 public class CoopeDevDataSourceConfiguration {
 
 @Bean(name = "coopeDevProperties")

@@ -15,13 +15,16 @@ import py.edu.ucsa.coope.dev.config.CoopeDevDataSourceConfiguration;
 		"py.edu.ucsa.coope.dev.web",
 		"py.edu.ucsa.coope.dev.core.entities",
 		"py.edu.ucsa.coope.dev.web.security.entities"
-		,"py.edu.ucsa.coope.dev.web.security.repo"
+		//,"py.edu.ucsa.coope.dev.web.security.repo"
 		
 		})
-@EnableJpaRepositories(basePackages = {
+
+/*/
+		@EnableJpaRepositories(basePackages = {
 	    "py.edu.ucsa.coope.dev.core.repositories",
 	    "py.edu.ucsa.coope.dev.web.security.repo"
 	})
+	*/
 @EntityScan(basePackages = "py.edu.ucsa.coope.dev.core.entities")
 @Import(CoopeDevDataSourceConfiguration.class)
 public class CoopeDevApplication extends SpringBootServletInitializer {
