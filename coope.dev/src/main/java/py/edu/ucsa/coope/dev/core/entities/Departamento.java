@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,18 +45,18 @@ public class Departamento implements BaseEntity {
 	private String nombre;
 
 	//bi-directional many-to-one association to Ciudad
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="departamento")
 	private List<Ciudad> ciudades;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
