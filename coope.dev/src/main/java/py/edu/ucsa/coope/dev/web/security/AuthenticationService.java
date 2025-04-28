@@ -3,6 +3,8 @@ package py.edu.ucsa.coope.dev.web.security;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,28 +34,29 @@ import py.edu.ucsa.coope.dev.web.security.repo.UsuarioRepo;
 @RequiredArgsConstructor
 public class AuthenticationService {
 	
-	private final UsuarioRepo usuarioRepo;
+	private final UsuarioRepo usuRepo;
 	private final ItemNavegacionRepo itemNavRepo;
 	private final TokenRepository tokenRepo;
-	private final PasswordEncoder passwordEnconder;
+	private final PasswordEncoder passwordEncoder;
 	private final JwtService jwtService;
-	private final AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager; 
 
 	public AuthenticationResponse registrar(RegistroRequest request) {
 		var user = Usuario.builder().nombres(request.getNombres()).apellidos(request.getApellidos())
-				.email(request.getEmail()).usuario(request.getUsuario()).password(request.getPassword()).build();
-		var usuGuardado = usuarioRepo.save(user);
+				.email(request.getEmail()).usuario(request.getUsuario())
+				.password(passwordEncoder.encode(request.getPassword())).build();
+		var usuGuardado = usuRepo.save(user);
 		var jwtToken = jwtService.generarToken(user);
 		var refreshToken = jwtService.generarRefreshToken(user);
 		grabarTokenDeUsuario(usuGuardado, jwtToken);
 		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
 	}
-
+	
 	public AuthenticationResponse autenticar(AuthenticationRequest request) {
-		System.out.println("credenciales: " + request.getUsuario() +"|"+ request.getPassword());
 		authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
-		var usu = usuarioRepo.findByUsuario(request.getUsuario()).orElseThrow();
+		.authenticate(new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getPassword()));
+		
+		var usu = usuRepo.findByUsuario(request.getUsuario()).orElseThrow();
 		
 		List<ItemNavegacion> itemsNav = itemNavRepo.findItemsNavByIdUsuario(usu.getId()).orElseThrow();
 		List<ItemNavegacionDto> result = ItemNavegacionMapper.mapToDtoList(itemsNav);
@@ -68,12 +71,11 @@ public class AuthenticationService {
 		
 		UsuarioDto usuDto = usu.toDto();
 		usuDto.setNavigationItems(result);
-
-		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).user(usuDto)
-				.operacionesDelUsuario(resultOpCItem).build();
+		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken)
+				.user(usuDto).operacionesDelUsuario(resultOpCItem).build();
 
 	}
-
+	
 	private List<PerfilXUsuario> getPerfilesFromDtoList(List<PerfilXUsuarioDto> dtosPerfiles) {
 
 		List<PerfilXUsuario> perfiles = dtosPerfiles.stream().map(perfil -> PerfilXUsuario.fromDto(perfil))
@@ -82,9 +84,9 @@ public class AuthenticationService {
 	}
 	
 	private void grabarTokenDeUsuario(Usuario user, String jwtToken) {
-		// TODO Auto-generated method stub
-		var token = Token.builder().usuario(user).token(jwtToken).tipoToken(TokenType.BEARER).expirado(false)
-				.revocado(false).build();
+		var token = Token.builder().usuario(user).token(jwtToken)
+				.tipoToken(TokenType.BEARER).expirado(false).revocado(false)
+				.build();
 		tokenRepo.save(token);
 	}
 	
@@ -101,7 +103,7 @@ public class AuthenticationService {
 	}
 	
 	public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		final String authHeader = request.getHeader(org.springframework.http.HttpHeaders.AUTHORIZATION);
+		final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 		final String refreshToken;
 		final String userEmail;
 		if(authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -109,9 +111,9 @@ public class AuthenticationService {
 		}
 		
 		refreshToken = authHeader.substring(7);
-		userEmail = jwtService.extractUserName(refreshToken);
+		userEmail = jwtService.extractUsername(refreshToken);
 		if(userEmail!=null) {
-			var user = this.usuarioRepo.findByUsuario(userEmail).orElseThrow();
+			var user = this.usuRepo.findByUsuario(userEmail).orElseThrow();
 			if(jwtService.isTokenValid(refreshToken, user)) {
 				var accessToken = jwtService.generarToken(user);
 				revocarTodosLosTokensDelUsuario(user);

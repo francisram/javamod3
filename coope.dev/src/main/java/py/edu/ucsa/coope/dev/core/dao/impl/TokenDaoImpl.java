@@ -22,9 +22,9 @@ public class TokenDaoImpl extends AbstractDao<Integer, Token> implements TokenDa
 	@SuppressWarnings("unchecked")
 	@Override
 	public Optional<Token> findByToken(String token) {
-		// TODO Auto-generated method stub
-		return (Optional<Token>) this.getEntityManager()
-				.createQuery("select t from Token where t.token = :token").setParameter("token", token).getSingleResult();
+		//return (Optional<Token>) this.getEntityManager().createQuery("SELECT t FROM  Token t WHERE t.token = :token ").setParameter("token", token).getSingleResult();
+		Token result =  this.getEntityManager().createQuery("SELECT t FROM  Token t WHERE t.token = :token ",Token.class).setParameter("token", token).getSingleResult();
+		return Optional.ofNullable(result);
 	}
 
 }
