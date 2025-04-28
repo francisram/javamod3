@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.CiudadDao;
-import py.edu.ucsa.coope.dev.core.entities.Barrio;
 import py.edu.ucsa.coope.dev.core.entities.Ciudad;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
@@ -30,7 +29,7 @@ public class CiudadDaoImpl extends AbstractDao<Integer, Ciudad> implements Ciuda
 		queryStr += " ORDER BY c." + (Objects.nonNull(ordenarPor) && !ordenarPor.isBlank() ? ordenarPor : "id");
 		queryStr += " " + (Objects.nonNull(orden) && !orden.isBlank() ? orden : "ASC");
 		
-		Query query = getEntityManager().createQuery(queryStr, Barrio.class);
+		Query query = getEntityManager().createQuery(queryStr, Ciudad.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
 			query.setParameter("busqueda", "%" + busqueda + "%");			
@@ -38,7 +37,7 @@ public class CiudadDaoImpl extends AbstractDao<Integer, Ciudad> implements Ciuda
 		
 		int total = query.getResultList().size();
 		
-		 query = getEntityManager().createQuery(queryStr, Barrio.class);
+		 query = getEntityManager().createQuery(queryStr, Ciudad.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
 			query.setParameter("busqueda", "%" + busqueda + "%");			

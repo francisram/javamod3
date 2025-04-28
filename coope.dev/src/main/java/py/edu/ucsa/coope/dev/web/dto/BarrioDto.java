@@ -12,8 +12,7 @@ import lombok.Data;
 import py.edu.ucsa.coope.dev.web.validators.Validable;
 import py.edu.ucsa.coope.dev.web.validators.Validador;
 
-
-
+@Data
 public class BarrioDto extends BaseDto implements Validable<BarrioDto> {
 
 	private static final long serialVersionUID = 1L;
@@ -26,41 +25,22 @@ public class BarrioDto extends BaseDto implements Validable<BarrioDto> {
 	
 	@Override
 	public List<ErrorDto> ejecutarValidadores() {
-		List<ErrorDto> errores  = new ArrayList<>();
+		List<ErrorDto> errores = new ArrayList<>();
 		this.getValidadores().forEach(v -> errores.addAll(v.validar(this)));
 		return errores;
 	}
+	
 	@Override
 	public void agregarValidador(Validador<BarrioDto> v) {
 		this.getValidadores().add(v);
-	
 	}
-	
+
 	public List<Validador<BarrioDto>> getValidadores(){
 		if(Objects.isNull(validadores)) {
 			validadores = new ArrayList<>();
 		}
 		return validadores;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public CiudadDto getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(CiudadDto ciudad) {
-		this.ciudad = ciudad;
-	}
 	
 	
-
 }

@@ -2,11 +2,9 @@ package py.edu.ucsa.coope.dev.core.entities;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 import org.springframework.beans.BeanUtils;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,19 +48,18 @@ public class Ciudad implements BaseEntity {
 	private List<Barrio> barrios;
 
 	//bi-directional many-to-one association to Departamento
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_departamento")
 	private Departamento departamento;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
@@ -163,6 +160,7 @@ public class Ciudad implements BaseEntity {
 		if(dto.getDepartamento() != null) {
 			entity.setDepartamento(Departamento.fromDto(dto.getDepartamento()));
 		}
+		BaseDataCopier.copyBaseDataFromDtoToEntity(dto, entity);
 		return entity;
 	}
 

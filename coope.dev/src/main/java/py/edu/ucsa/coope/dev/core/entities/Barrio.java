@@ -25,7 +25,7 @@ import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 @Entity
 @Table(name="barrios")
 @NamedQuery(name="Barrio.findAll", query="SELECT b FROM Barrio b")
-@NamedQuery(name="Barrio.getBarriosByIdCiudad", query="SELECT b FROM Barrio b WHERE b.ciudad = :idCiudad ")
+@NamedQuery(name="Barrio.getBarriosByIdCiudad", query="SELECT b FROM Barrio b WHERE b.ciudad.id = :idCiudad ")
 public class Barrio implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
