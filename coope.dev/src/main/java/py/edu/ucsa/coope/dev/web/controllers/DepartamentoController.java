@@ -58,8 +58,8 @@ public class DepartamentoController {
 		
 	}
 	
-	@GetMapping("/{idCiudad}")
-	public ResponseEntity<DepartamentoDto> getById(@PathVariable("idCiudad") Integer id){
+	@GetMapping("/{idDepartamento}")
+	public ResponseEntity<DepartamentoDto> getById(@PathVariable("idDepartamento") Integer id){
 		return ResponseEntity.ok(deptoService.getById(id));
 	}
 	

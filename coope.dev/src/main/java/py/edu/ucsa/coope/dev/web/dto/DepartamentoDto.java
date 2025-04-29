@@ -1,14 +1,12 @@
 package py.edu.ucsa.coope.dev.web.dto;
 
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Column;
 import lombok.Data;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 import py.edu.ucsa.coope.dev.web.validators.Validable;
 import py.edu.ucsa.coope.dev.web.validators.Validador;
 
@@ -20,6 +18,8 @@ public class DepartamentoDto extends BaseDto implements Validable<DepartamentoDt
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nombre;
+	private UsuarioDto usuarioAlta;
+	private UsuarioDto usuarioModificacion;
 	
 	@JsonIgnore
 	List<Validador<DepartamentoDto>> validadores;

@@ -166,49 +166,49 @@ public class Usuario implements Serializable, BaseEntity, UserDetails {
 	@Override
 	public Timestamp getFechaAlta() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.fechaAlta;
 	}
 
 	@Override
 	public void setFechaAlta(Timestamp fechaAlta) {
-		// TODO Auto-generated method stub
+		this.fechaAlta = fechaAlta;
 		
 	}
 
 	@Override
 	public Timestamp getFechaModificacion() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return this.fechaHoraUltModif;
 	}
 
 	@Override
 	public void setFechaModificacion(Timestamp fechaModificacion) {
-		// TODO Auto-generated method stub
 		
+		this.fechaHoraUltModif = fechaModificacion;
 	}
 
 	@Override
 	public Usuario getUsuarioAlta() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.usuarioCreacion;
 	}
 
 	@Override
 	public void setUsuarioAlta(Usuario usuarioAlta) {
-		// TODO Auto-generated method stub
+		this.usuarioCreacion = usuarioAlta;
 		
 	}
 
 	@Override
 	public Usuario getUsuarioModificacion() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.usuarioUltModif;
 	}
 
 	@Override
 	public void setUsuarioModificacion(Usuario usuarioModificacion) {
 		// TODO Auto-generated method stub
-		
+		this.usuarioUltModif = usuarioModificacion;
 	}
 	
 	

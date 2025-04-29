@@ -145,23 +145,28 @@ public class Ciudad implements BaseEntity {
 		this.usuarioModificacion = usuarioModificacion;
 	}
 
+	
 	public CiudadDto toDto() {
 		CiudadDto dto = new CiudadDto();
 		BeanUtils.copyProperties(this, dto);
 		if(this.getDepartamento() != null) {
 			dto.setDepartamento(this.getDepartamento().toDto());
 		}
+		BaseDataCopier.copyBaseDataToDto(this, dto);
+		
 		return dto;
 	}
 	
 	public static Ciudad fromDto(CiudadDto dto) {
 		Ciudad entity = new Ciudad();
-		BeanUtils.copyProperties(dto, entity);
+		BeanUtils.copyProperties(dto,entity);
 		if(dto.getDepartamento() != null) {
 			entity.setDepartamento(Departamento.fromDto(dto.getDepartamento()));
 		}
+		
 		BaseDataCopier.copyBaseDataFromDtoToEntity(dto, entity);
+		
 		return entity;
 	}
-
+	
 }

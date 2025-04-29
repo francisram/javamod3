@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import jakarta.persistence.Query;
 import py.edu.ucsa.coope.dev.core.dao.AbstractDao;
 import py.edu.ucsa.coope.dev.core.dao.DepartamentoDao;
-import py.edu.ucsa.coope.dev.core.entities.Barrio;
-import py.edu.ucsa.coope.dev.core.entities.Ciudad;
 import py.edu.ucsa.coope.dev.core.entities.Departamento;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginationDto;
@@ -25,7 +23,7 @@ public class DepartamentoDaoImpl extends AbstractDao<Integer, Departamento> impl
 		queryStr += " ORDER BY d." + (Objects.nonNull(ordenarPor) && !ordenarPor.isBlank() ? ordenarPor : "id");
 		queryStr += " " + (Objects.nonNull(orden) && !orden.isBlank() ? orden : "ASC");
 		
-		Query query = getEntityManager().createQuery(queryStr, Barrio.class);
+		Query query = getEntityManager().createQuery(queryStr, Departamento.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
 			query.setParameter("busqueda", "%" + busqueda + "%");			
@@ -33,7 +31,7 @@ public class DepartamentoDaoImpl extends AbstractDao<Integer, Departamento> impl
 		
 		int total = query.getResultList().size();
 		
-		 query = getEntityManager().createQuery(queryStr, Barrio.class);
+		 query = getEntityManager().createQuery(queryStr,  Departamento.class);
 		
 		if (Objects.nonNull(busqueda) && !busqueda.isBlank()) {
 			query.setParameter("busqueda", "%" + busqueda + "%");			

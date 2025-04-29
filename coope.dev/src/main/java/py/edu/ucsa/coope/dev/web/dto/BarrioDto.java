@@ -9,6 +9,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import py.edu.ucsa.coope.dev.web.dto.usuarios.UsuarioDto;
 import py.edu.ucsa.coope.dev.web.validators.Validable;
 import py.edu.ucsa.coope.dev.web.validators.Validador;
 
@@ -19,6 +20,8 @@ public class BarrioDto extends BaseDto implements Validable<BarrioDto> {
 	private Integer id;
 	private String nombre;
 	private CiudadDto ciudad;
+	private UsuarioDto usuarioAlta;
+	private UsuarioDto usuarioModificacion;
 	
 	@JsonIgnore
 	List<Validador<BarrioDto>> validadores;

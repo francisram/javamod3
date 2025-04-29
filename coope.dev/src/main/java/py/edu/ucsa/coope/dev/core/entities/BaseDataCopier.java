@@ -11,6 +11,7 @@ import py.edu.ucsa.coope.dev.web.security.entities.Usuario;
 public abstract class BaseDataCopier {
 
 	public static void copyBaseDataToDto(BaseEntity entityOrigen, BaseDto dtoDestino) {
+		//System.out.println("base entity : " + entityOrigen);
 		if(Objects.nonNull(entityOrigen.getFechaAlta())){
 			dtoDestino.setFechaAlta(entityOrigen.getFechaAlta().toLocalDateTime());
 		}
@@ -26,6 +27,7 @@ public abstract class BaseDataCopier {
 		}
 	}
 	public static void copyBaseDataFromDtoToEntity(BaseDto dtoOrigen, BaseEntity entityDestino) {
+	//	System.out.println("base dto : " + dtoOrigen);
 		if(Objects.nonNull(dtoOrigen.getFechaAlta())){
 			entityDestino.setFechaAlta(Timestamp.valueOf(dtoOrigen.getFechaAlta()));
 		}

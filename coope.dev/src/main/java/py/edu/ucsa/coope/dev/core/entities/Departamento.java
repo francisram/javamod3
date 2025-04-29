@@ -45,18 +45,16 @@ public class Departamento implements BaseEntity {
 	private String nombre;
 
 	//bi-directional many-to-one association to Ciudad
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(mappedBy="departamento")
 	private List<Ciudad> ciudades;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_usuario_creacion")
 	private Usuario usuarioAlta;
 
 	//uni-directional many-to-one association to UsuarioDto
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_usuario_ult_modif")
 	private Usuario usuarioModificacion;
@@ -103,13 +101,14 @@ public class Departamento implements BaseEntity {
 	public void setCiudades(List<Ciudad> ciudades) {
 		this.ciudades = ciudades;
 	}
-
+/*
 	public Ciudad addCiudade(Ciudad ciudade) {
 		getCiudades().add(ciudade);
 		ciudade.setDepartamento(this);
 
 		return ciudade;
 	}
+	*/
 
 	public Ciudad removeCiudade(Ciudad ciudade) {
 		getCiudades().remove(ciudade);
@@ -142,8 +141,12 @@ public class Departamento implements BaseEntity {
 	}
 
 	public DepartamentoDto toDto() {
-		// TODO Auto-generated method stub
-		return null;
+		DepartamentoDto dto = new DepartamentoDto();
+		BeanUtils.copyProperties(this, dto);
+		
+		BaseDataCopier.copyBaseDataToDto(this, dto);
+		
+		return dto;
 	}
 
 }
