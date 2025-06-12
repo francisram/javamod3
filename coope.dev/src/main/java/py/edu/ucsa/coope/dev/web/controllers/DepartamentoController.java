@@ -96,7 +96,7 @@ public class DepartamentoController {
 
 	    DepartamentoDto entity = deptoService.getById(id); 
 	    if (entity == null) {
-	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ciudad no encontrada.");
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento no encontrado.");
 	    }
 	    deptoService.eliminar(id);
 	    return ResponseEntity.ok("Ciudad eliminado correctamente.");
