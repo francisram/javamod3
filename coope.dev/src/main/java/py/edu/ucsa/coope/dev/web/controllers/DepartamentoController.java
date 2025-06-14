@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import py.edu.ucsa.coope.dev.core.services.DepartamentoService;
-import py.edu.ucsa.coope.dev.web.dto.CiudadDto;
 import py.edu.ucsa.coope.dev.web.dto.DepartamentoDto;
 import py.edu.ucsa.coope.dev.web.dto.ErrorDto;
 import py.edu.ucsa.coope.dev.web.dto.PaginadoDto;
-import py.edu.ucsa.coope.dev.web.validators.impl.ValidadorCiudad;
 import py.edu.ucsa.coope.dev.web.validators.impl.ValidadorDepartamento;
 
 @RequestMapping("/departamentos")
@@ -92,14 +90,22 @@ public class DepartamentoController {
 
 	
 	@DeleteMapping("/{idDepartamento}")
-	public ResponseEntity<?> eliminar(@PathVariable("idCiudad") Integer id) {
+	public ResponseEntity<?> eliminar(@PathVariable("idDepartamento") Integer id) {
 
 	    DepartamentoDto entity = deptoService.getById(id); 
 	    if (entity == null) {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento no encontrado.");
 	    }
-	    deptoService.eliminar(id);
-	    return ResponseEntity.ok("Ciudad eliminado correctamente.");
+	    //deptoService.eliminar(id);
+	    //return ResponseEntity.ok("Departamento eliminado correctamente.");
+	    try {
+	        deptoService.eliminar(id); // Asumiendo que este método lanza una excepción si no lo encuentra o falla
+	        return ResponseEntity.ok(true); // Retorna 200 OK con un cuerpo de 'true'
+	    } catch (Exception e) {
+	        // Log the exception for debugging purposes
+	        System.err.println("Error al eliminar departamento: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false); // Retorna un error con un cuerpo de 'false'
+	    }
 	}
 	
 	
