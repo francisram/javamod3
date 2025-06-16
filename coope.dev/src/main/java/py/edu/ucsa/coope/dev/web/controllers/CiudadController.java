@@ -100,8 +100,17 @@ public class CiudadController {
 	    if (entity == null) {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ciudad no encontrada.");
 	    }
-	    ciudadService.eliminar(id);
-	    return ResponseEntity.ok("Ciudad eliminado correctamente.");
+	   // ciudadService.eliminar(id);
+	   // return ResponseEntity.ok("Ciudad eliminado correctamente.");
+	    
+	    try {
+	    	ciudadService.eliminar(id); 
+	        return ResponseEntity.ok(true); 
+	    } catch (Exception e) {
+	        // Log the exception for debugging purposes
+	        System.err.println("Error al eliminar ciudad: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false); // Retorna un error con un cuerpo de 'false'
+	    }
 	}
 
 }
