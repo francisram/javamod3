@@ -115,7 +115,7 @@ public class BarrioController {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Barrio no encontrado.");
 	    }
 	    barrioSrv.eliminar(id);
-	    return ResponseEntity.ok("Barrio eliminado correctamente.");
+	    return ResponseEntity.ok(true);
 	}
 
 
